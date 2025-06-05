@@ -98,6 +98,27 @@
 	if(soulsharer)
 		soulsharer.dust(FALSE)
 
+/datum/soullink/oneway/delay/ownerDies(gibbed, mob/living/owner)
+	if(soulsharer)
+		to_chat(soulsharer, span_danger("Your soullink has died. Say your goodbyes."))
+
+		// After 30 seconds, trigger the heart attack
+		spawn(30 SECONDS)
+			if(!soulsharer || !isliving(soulsharer)) return
+
+			var/mob/living/carbon/C = soulsharer
+			C.set_heartattack(TRUE)
+			to_chat(C, span_danger("I feel a stabbing pain in my heart!"))
+
+			// After another 10 seconds, eject the heart
+			spawn(10 SECONDS)
+				if(!C || !isliving(C)) return
+
+				var/obj/item/organ/heart/heart = C.getorganslot(ORGAN_SLOT_HEART)
+				if(heart)
+					var/turf/T = get_turf(C)
+					heart.Remove(C)
+					heart.forceMove(T)
 
 /////////////////
 // SHARED BODY //

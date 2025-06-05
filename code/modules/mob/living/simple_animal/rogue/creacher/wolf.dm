@@ -162,3 +162,7 @@
 
 /datum/intent/simple/bite/wolf
 	clickcd = WOLF_ATTACK_SPEED
+
+/mob/living/simple_animal/hostile/retaliate/rogue/wolf/familiar
+	name = "wolf familiar"
+	faction = list("neutral", "Station") //until i find a way to not make it suck.

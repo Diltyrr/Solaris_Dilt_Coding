@@ -114,3 +114,17 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	resistance_flags = FIRE_PROOF
 	sewrepair = FALSE
+
+/obj/item/clothing/wrists/roguetown/vambraces
+	name = "iron couter"
+	desc = "Protection mainly focused around the elbows."
+	body_parts_covered = ARMS
+	icon_state = "vambraces"
+	item_state = "vambraces"
+	armor = list("blunt" = 70, "slash" = 90, "stab" = 60, "bullet" = 50, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
+	blocksound = PLATEHIT
+	max_integrity = 200
+	anvilrepair = /datum/skill/craft/blacksmithing
+	smeltresult = /obj/item/ingot/iron
+	sewrepair = FALSE

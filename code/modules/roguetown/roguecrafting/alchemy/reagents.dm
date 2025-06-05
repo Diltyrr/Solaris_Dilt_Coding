@@ -505,3 +505,23 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 		to_chat(M, span_small("I feel even worse..."))
 	return ..()
 
+/datum/reagent/medicine/soporpot
+	name = "Soporific Poison"
+	description = "Weakens those it enters."
+	reagent_state = LIQUID
+	color = "#fcefa8"
+	taste_description = "drowsyness"
+	overdose_threshold = 0
+	metabolization_rate = 1 * REAGENTS_METABOLISM
+	alpha = 225
+
+/datum/reagent/medicine/soporpot/on_mob_life(mob/living/carbon/M)
+	M.confused += 1
+	M.dizziness += 1
+	M.rogstam_add(-25)
+	if(M.rogfat > 75)
+		M.drowsyness += 2
+	else
+		M.rogfat_add(15)
+	..()
+	. = 1

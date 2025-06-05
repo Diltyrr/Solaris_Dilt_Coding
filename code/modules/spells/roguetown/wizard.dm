@@ -299,3 +299,83 @@
 			playsound(get_turf(target), 'sound/magic/magic_nulled.ogg', 100)
 			qdel(src)
 			return BULLET_ACT_BLOCK
+
+/obj/effect/proc_holder/spell/invoked/seelie_dust
+	name = "Seelie Dust"
+	overlay_state = "createlight"
+	releasedrain = 50
+	charge_max = 150 SECONDS
+	range = 3
+	cast_without_targets = TRUE
+	sound = 'sound/magic/churn.ogg'
+	invocation = " blows some dust from their palm."
+	invocation_type = "emote"
+
+/obj/effect/proc_holder/spell/invoked/seelie_dust/cast(list/targets, mob/living/user)
+	. = ..()
+	user.emote("giggle")
+	if(iscarbon(targets[1]))
+		var/mob/living/carbon/target = targets[1]
+		target.reagents.add_reagent(/datum/reagent/seelie_drugs, 10)
+		user.log_message("has drugged [key_name(target)] with Seelie dust", LOG_ATTACK)
+	return TRUE
+
+/obj/effect/proc_holder/spell/invoked/arcane_storm
+	name = "Arcane storm"
+	desc = "Conjure ripples of force into existance over a large area, injuring any who enter"
+	cost = 2
+	xp_gain = TRUE
+	releasedrain = 50
+	chargedrain = 1
+	chargetime = 20
+	charge_max = 50 SECONDS
+	warnie = "spellwarning"
+	no_early_release = TRUE
+	movement_interrupt = TRUE
+	charging_slowdown = 2
+	chargedloop = /datum/looping_sound/invokegen
+	associated_skill = /datum/skill/magic/arcane
+	overlay_state = "hierophant"
+	range = 2
+	var/damage = 10
+
+/obj/effect/proc_holder/spell/invoked/arcane_storm/cast(list/targets, mob/user = usr)
+	var/turf/T = get_turf(targets[1])
+	var/list/affected_turfs = list()
+	for(var/turf/turfs_in_range in range(range, T)) // use inrange instead of view
+		if(turfs_in_range.density)
+			continue
+		affected_turfs.Add(turfs_in_range)
+	for(var/i = 1, i < 16, i++)
+		addtimer(CALLBACK(src, PROC_REF(apply_damage), affected_turfs), wait = i * 1 SECONDS)
+	return TRUE
+
+/obj/effect/proc_holder/spell/invoked/arcane_storm/proc/apply_damage(list/affected_turfs)
+	for(var/turf/damage_turf in affected_turfs)
+		new /obj/effect/temp_visual/hierophant/squares(damage_turf)
+		for(var/mob/living/L in damage_turf.contents)
+			L.adjustBruteLoss(damage)
+			playsound(damage_turf, "genslash", 40, TRUE)
+			to_chat(L, "<span class='userdanger'>I'm cut by arcane force!</span>")
+
+/obj/effect/temp_visual/hierophant/squares
+	icon_state = "hierophant_squares"
+	duration = 3
+	light_outer_range = MINIMUM_USEFUL_LIGHT_RANGE
+	randomdir = FALSE
+
+/obj/effect/proc_holder/spell/aoe_turf/conjure/Wolf
+	name = "Summon Volf"
+	desc = ""
+	school = "conjuration"
+	charge_max = 1200
+	clothes_req = FALSE
+	invocation = "NOUK FHUNMM SACP RISSKA"
+	invocation_type = "shout"
+	overlay_state = "wolf_head"
+	range = 1
+	cost = 1
+	xp_gain = TRUE
+
+	summon_type = list(/mob/living/simple_animal/hostile/retaliate/rogue/wolf/familiar )
+	cast_sound = 'sound/blank.ogg'

@@ -208,6 +208,15 @@
 		if(ishuman(src) && user.mind)
 			var/mob/living/carbon/human/bite_victim = src
 			/*
+				POISON DAMAGE FROM TRAIT_POISONBITE
+			*/
+			if(HAS_TRAIT(user, TRAIT_POISONBITE))
+				if(src.reagents)
+					var/poison = user.STACON/2
+					src.reagents.add_reagent(/datum/reagent/toxin/venom, poison/2)
+					src.reagents.add_reagent(/datum/reagent/medicine/soporpot, poison)
+					to_chat(user, span_warning("Your fangs inject venom into [src]!"))
+			/*
 				WEREWOLF INFECTION VIA BITE
 			*/
 			if(istype(user.dna.species, /datum/species/werewolf))
@@ -492,6 +501,7 @@
 		. = TRUE
 	if(interaction_flags_atom & INTERACT_ATOM_ATTACK_HAND)
 		. = _try_interact(user)
+	SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND_RIGHT, user)
 
 //Return a non FALSE value to cancel whatever called this from propagating, if it respects it.
 /atom/proc/_try_interact(mob/user)

@@ -60,6 +60,9 @@
 #define TRAIT_PERFECT_TRACKER "Perfect Tracker" //Will always find any tracks and analyzes them perfectly.
 #define TRAIT_ZIRASIGHT "Blessing of Zira" // Clearer night vision; roughly equivalent to wearing mesons in base SS13.
 #define TRAIT_DEATHSIGHT "Veiled Whispers" // Is notified when a player character dies, but not told exactly where or how.
+#define TRAIT_WILDMAGIC "Wild Magic" //low chance for insane stuff to happen when casting
+#define TRAIT_FIENDKISS "Kiss of the Fiend" //after casting some spells, hurl a firebolt at the same location
+#define TRAIT_POISONBITE "Poison Bite" // Adds tox damage on bites
 //Hearthstone/Azure end.
 
 // ROGUEspecialTRAITS (description when rmb skills button)
@@ -242,8 +245,11 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_NOMOOD = span_info("I feel no sorrow, no joy, and no stress."),
 	TRAIT_SUNMARCHNATIVE = span_info("I've grown up and lived all my life in these lands. I can only trigger ambushes if I sprint through them."),
 	TRAIT_SLEUTH = span_info("I can spot my tracked Mark's trail without needing to approach it, and can spot them at a distance. I can track more frequently, and the act is not impaired by movement. I can examine tracks right away."),
-  TRAIT_HARDSHELL = span_info("The bulk of this armor prevents me from parrying effectively, but I can still move out of the way."),
-	TRAIT_WOODWALKER = span_notice("I can climb trees quicker, and gain climbing experience twice as quickly. I can step on thorns and branches safely in the woods. I can get twice as many things from searching bushes, and I can stand on leaves in trees safely.")
+	TRAIT_HARDSHELL = span_info("The bulk of this armor prevents me from parrying effectively, but I can still move out of the way."),
+	TRAIT_WOODWALKER = span_info("I can climb trees quicker, and gain climbing experience twice as quickly. I can step on thorns and branches safely in the woods. I can get twice as many things from searching bushes, and I can stand on leaves in trees safely."),
+	TRAIT_WILDMAGIC = span_info("My magic sometimes has unexpected consequences."),
+	TRAIT_FIENDKISS = span_info("When I cast projectile magic, the fiend also hurls a fire bolt at the same location."),
+	TRAIT_POISONBITE = span_info("My bites inject venom into my target.")
 ))
 
 // trait accessor defines

@@ -468,6 +468,15 @@
 		var/datum/wound/caused_wound = limb_grabbed.bodypart_attacked_by(BCLASS_BITE, damage, user, sublimb_grabbed, crit_message = TRUE)
 		if(user.mind && caused_wound)
 			/*
+				TRAIT_POISONBITE CHEW.
+			*/
+			if(HAS_TRAIT(user, TRAIT_POISONBITE))
+				if(C.reagents)
+					var/poison = user.STACON/2 //more peak species level, more poison
+					C.reagents.add_reagent(/datum/reagent/toxin/venom, poison/2)
+					C.reagents.add_reagent(/datum/reagent/medicine/soporpot, poison)
+					to_chat(user, span_warning("Your fangs inject venom into [C]!"))			
+			/*
 				WEREWOLF CHEW.
 			*/
 			if(istype(user.dna.species, /datum/species/werewolf))

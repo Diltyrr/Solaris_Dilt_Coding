@@ -201,6 +201,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	///played when an item that is equipped blocks a hit
 	var/list/blocksound
 
+	var/mob/living/item_owner
+
 	var/thrown_damage_flag = "blunt"
 
 	var/sheathe_sound // played when item is placed on hip_r or hip_l, the belt side slots
@@ -636,6 +638,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			var/oldy = pixel_y
 			pixel_y = pixel_y+5
 			animate(src, pixel_y = oldy, time = 0.5)
+		SEND_SIGNAL(src, COMSIG_ITEM_DROPPED_TURF,user)
 	if(altgripped || wielded)
 		ungrip(user, FALSE)
 	item_flags &= ~IN_INVENTORY

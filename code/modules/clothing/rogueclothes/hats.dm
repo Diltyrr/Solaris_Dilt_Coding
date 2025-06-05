@@ -1844,3 +1844,31 @@
 					H.update_inv_head()
 		user.update_fov_angles()
  
+/obj/item/clothing/head/roguetown/helmet/foresterhelmet
+	name = "forester helmet"
+	desc = "A helmet worn by those who dwell in the forests of the world."
+	icon_state = "foresterhelmet"
+	item_state = "foresterhelmet"
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/64x64/head.dmi'
+	worn_x_dimension = 64
+	worn_y_dimension = 64
+	emote_environment = 3
+	block2add = FOV_BEHIND
+	flags_inv = HIDEEARS|HIDEHAIR|HIDEFACIALHAIR|HIDEFACE
+	smeltresult = /obj/item/ash
+
+/obj/item/clothing/head/roguetown/helmet/carapacecap
+	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_HIP
+	name = "carapace cap"
+	desc = "Watery armored plates sown together to protect your head."
+	body_parts_covered = HEAD|HAIR
+	icon_state = "carapacecap"
+	item_state = "carapacecap"
+	armor = list("blunt" = 60, "slash" = 60, "stab" = 60, "bullet" = 60, "laser" = 0,"energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 30, "acid" = 0)
+	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT)
+	max_integrity = 100
+	anvilrepair = null
+	sewrepair = TRUE
+	blocksound = PLATEHIT
+	smeltresult = /obj/item/ash
+	drop_sound = 'sound/foley/dropsound/chain_drop.ogg'

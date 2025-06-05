@@ -216,7 +216,6 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 		/obj/effect/proc_holder/spell/invoked/longstrider,
 		/obj/effect/proc_holder/spell/invoked/invisibility,
 		/obj/effect/proc_holder/spell/invoked/blindness,
-		/obj/effect/proc_holder/spell/invoked/projectile/acidsplash5e,
 //		/obj/effect/proc_holder/spell/invoked/frostbite5e,
 		/obj/effect/proc_holder/spell/invoked/guidance,
 		/obj/effect/proc_holder/spell/invoked/fortitude,
@@ -232,7 +231,27 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 		/obj/effect/proc_holder/spell/invoked/leap,
 		/obj/effect/proc_holder/spell/invoked/blink,
 		/obj/effect/proc_holder/spell/invoked/mirror_transform,
-		/obj/effect/proc_holder/spell/invoked/mindlink
+		/obj/effect/proc_holder/spell/invoked/mindlink,
+		/obj/effect/proc_holder/spell/invoked/projectile/acidsplash5e,
+		/obj/effect/proc_holder/spell/self/bladeward5e,
+		/obj/effect/proc_holder/spell/invoked/boomingblade5e,
+		/obj/effect/proc_holder/spell/invoked/chilltouch5e,
+		/obj/effect/proc_holder/spell/aoe_turf/conjure/createbonfire5e,
+		/obj/effect/proc_holder/spell/invoked/decompose5e,
+		/obj/effect/proc_holder/spell/targeted/encodethoughts5e,
+		/obj/effect/proc_holder/spell/invoked/projectile/firebolt5e,
+		/obj/effect/proc_holder/spell/invoked/frostbite5e,
+		/obj/effect/proc_holder/spell/invoked/greenflameblade5e,
+		/obj/effect/proc_holder/spell/invoked/guidance5e,
+		/obj/effect/proc_holder/spell/invoked/infestation5e,
+		/obj/effect/proc_holder/spell/self/light5e,
+		/obj/effect/proc_holder/spell/targeted/lightninglure5e,
+		/obj/effect/proc_holder/spell/invoked/magicstone5e,
+		/obj/effect/proc_holder/spell/invoked/mending5e,
+		/obj/effect/proc_holder/spell/invoked/mindsliver5e,
+		/obj/effect/proc_holder/spell/invoked/poisonspray5e,
+		/obj/effect/proc_holder/spell/self/primalsavagery5e,
+		/obj/effect/proc_holder/spell/invoked/projectile/rayoffrost5e,
 	)
 
 	for(var/i = 1, i <= spell_choices.len, i++)
@@ -718,7 +737,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	name = "Acid Splash"
 	desc = "A slow-moving glob of acid that sprays over an area upon impact."
 	range = 8
-	projectile_type = /obj/projectile/magic/acidsplash5e
+	projectile_type = /obj/projectile/magic/aoe/acidsplash5e
 	overlay_state = "null"
 	sound = list('sound/magic/whiteflame.ogg')
 	active = FALSE
@@ -745,7 +764,7 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	target.visible_message(span_warning("[target] hurls a caustic bubble!"), span_notice("You hurl a caustic bubble!"))
 	. = ..()
 
-/obj/projectile/magic/acidsplash5e //port. todo: the sounds these came with aren't good and drink_blood sounds like ur slurpin pintle
+/obj/projectile/magic/aoe/acidsplash5e //port. todo: the sounds these came with aren't good and drink_blood sounds like ur slurpin pintle
 	name = "acid bubble"
 	icon_state = "green_laser"
 	damage = 10
@@ -753,9 +772,9 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	flag = "magic"
 	range = 15
 	speed = 15 //higher is slower
-	var/aoe_range = 1
+	aoe_range = 1
 
-/obj/projectile/magic/acidsplash5e/on_hit(atom/target, blocked = FALSE)
+/obj/projectile/magic/aoe/acidsplash5e/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	var/turf/T = get_turf(src)
 	playsound(src, 'sound/misc/drink_blood.ogg', 100)
@@ -967,7 +986,6 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 	flag = "magic"
 	range = 10
 	speed = 12 //higher is slower
-	var/aoe_range = 0
 
 /obj/projectile/magic/frostbolt/on_hit(target)
 	. = ..()

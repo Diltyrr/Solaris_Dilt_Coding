@@ -139,6 +139,7 @@ GLOBAL_LIST_INIT(stone_personality_descs, list(
 	experimental_inhand = FALSE
 	/// If our stone is magical, this lets us know -how- magical. Maximum is 15.
 	var/magic_power = 0
+	var/magicstone = FALSE
 
 /obj/item/natural/stone/Initialize()
 	. = ..()
