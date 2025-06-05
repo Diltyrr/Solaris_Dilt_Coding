@@ -393,6 +393,7 @@
 	spitoutmouth = FALSE
 	muteinmouth = FALSE
 	alternate_worn_layer  = 8.9 //On top of helmet
+	//mill_result = /obj/item/reagent_containers/food/snacks/grown/rogue/rosa_petals
 
 	major_pot = /datum/alch_cauldron_recipe/rosewater_potion
 	med_pot = /datum/alch_cauldron_recipe/rosewater_potion

@@ -130,6 +130,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 	//Grinder vars
 	var/list/grind_results //A reagent list containing the reagents this item produces when ground up in a grinder - this can be an empty list to allow for reagent transferring only
 	var/list/juice_results //A reagent list containing blah blah... but when JUICED in a grinder!
+	var/mill_result = null //What it grinds into on a millstone or similar.
 
 	var/canMouseDown = FALSE
 	var/can_parry = FALSE

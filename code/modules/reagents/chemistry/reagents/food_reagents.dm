@@ -648,3 +648,10 @@
 	color = "#78280A" // rgb: 120 40, 10
 	taste_mult = 2.5 //sugar's 1.5, capsacin's 1.5, so a good middle ground.
 	taste_description = "smokey sweetness"
+
+/datum/reagent/consumable/oil/tallow
+	name = "Tallow"
+	description = "Oil made from rendering animal fat. Used for deep frying."
+	nutriment_factor = 20
+	color = "#A6987B" // rgb: 48, 32, 0
+	taste_description = "rendered fat"

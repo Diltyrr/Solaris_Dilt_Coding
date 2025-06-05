@@ -26,7 +26,7 @@
 	. = ..()
 //	. += span_notice("It is currently [open?"open, letting you pour liquids in.":"closed, letting you draw liquids."]")
 
-/obj/structure/fermenting_barrel/proc/makeWine(obj/item/reagent_containers/food/snacks/grown/fruit)
+/obj/structure/fermenting_barrel/proc/makeWine(obj/item/reagent_containers/food/snacks/fruit)
 	if(fruit.reagents)
 		fruit.reagents.remove_reagent(/datum/reagent/consumable/nutriment, fruit.reagents.total_volume)
 		fruit.reagents.trans_to(src, fruit.reagents.total_volume)
@@ -37,7 +37,7 @@
 	return TRUE
 
 /obj/structure/fermenting_barrel/attackby(obj/item/I, mob/user, params)
-	if(istype(I,/obj/item/reagent_containers/food/snacks/grown))
+	if(istype(I,/obj/item/reagent_containers/food/snacks/))
 		if(try_ferment(I, user))
 			return TRUE
 	if(istype(I,/obj/item/reagent_containers/powder))
@@ -48,7 +48,7 @@
 		return TRUE
 	if(istype(I,/obj/item/storage/roguebag) && I.contents.len)
 		var/success
-		for(var/obj/item/reagent_containers/food/snacks/grown/bagged_fruit in I.contents)
+		for(var/obj/item/reagent_containers/food/snacks/bagged_fruit in I.contents)
 			if(try_ferment(bagged_fruit, user, TRUE))
 				success = TRUE
 		if(success)
@@ -59,7 +59,7 @@
 		return TRUE
 	..()
 
-/obj/structure/fermenting_barrel/proc/try_ferment(obj/item/reagent_containers/food/snacks/grown/fruit, mob/user, batch_process)
+/obj/structure/fermenting_barrel/proc/try_ferment(obj/item/reagent_containers/food/snacks/fruit, mob/user, batch_process)
 	if(!fruit.can_distill)
 		if(!batch_process)
 			to_chat(user, span_warning("I can't ferment this into anything."))

@@ -159,6 +159,13 @@
 	glass_name = "glass of lemon juice"
 	glass_desc = ""
 
+/datum/reagent/consumable/meadbase
+    name = "Mead Base"
+    description = "The freshly pressed base for a fine, and smooth mead."
+    color = "#e0c133"
+    taste_description = "freshly pressed honey"
+    glass_name = "glass of mead base"
+
 /datum/reagent/consumable/banana
 	name = "Banana Juice"
 	description = "The raw essence of a banana. HONK"

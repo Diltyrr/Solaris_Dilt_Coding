@@ -53,7 +53,7 @@
 
 	var/co2overloadtime = null
 	var/temperature_resistance = T0C+75
-	var/obj/item/reagent_containers/food/snacks/meat/slab/type_of_meat = /obj/item/reagent_containers/food/snacks/meat/slab
+	var/obj/item/reagent_containers/food/snacks/rogue/meat/type_of_meat = /obj/item/reagent_containers/food/snacks/rogue/meat
 
 	var/gib_type = /obj/effect/decal/cleanable/blood/gibs
 

@@ -1,4 +1,5 @@
 // Juices and what core drinks I could take from SS13 remain in their original files. See drink_reagents.dm for example. 
+/** Made in cooperation with @flowergirltulip. Shout out to her for the entire concept vertical!*/
 //     - Antarion
 
 //     - This file is for Solaris Ridge drinks only, and is not used by the core game.
@@ -56,6 +57,16 @@
 	taste_description = "rum"
 	glass_name = "glass of rum"
 	color = "#ef7f16"
+
+/datum/reagent/consumable/ethanol/mead
+	name = "Beespider Mead"
+	description = "A sweet and smooth mead made from the simplest of ingredients"
+	boozepwr = 30
+	taste_description = "simple mead"
+	glass_name = "glass of mead"
+	color = "#e0c133"
+	hydration_factor = 10
+
 
 // Tier Two drinks, made from the finest ingredients and brewed with care.
 /datum/chemical_reaction/fine_ale
@@ -196,3 +207,18 @@
 	boozepwr = 50
 	color = "#d2b48c"
 	hydration_factor = 10
+
+/datum/chemical_reaction/fine_mead
+    name = "Honey Grove Mead"
+    id = /datum/reagent/consumable/ethanol/fine_mead
+    results = list(/datum/reagent/consumable/ethanol/fine_mead = 66)
+    required_reagents = list(/datum/reagent/water = 33, /datum/reagent/consumable/meadbase = 33, /datum/reagent/consumable/sugar = 1)
+    mix_message = "The mix swirls and turns into a smooth golden liquid that reminds you of fine mead"
+
+/datum/reagent/consumable/ethanol/fine_mead
+    name = "Honey Grove Mead"
+    description = "A fine mead maded from the collected honey of distant apiaries, with a hint of sweetness."
+    taste_description = "Smooth honey, sweetness"
+    boozepwr = 50
+    color = "#e0c133"
+    hydration_factor = 10

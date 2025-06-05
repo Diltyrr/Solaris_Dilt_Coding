@@ -1,3 +1,6 @@
+/** Made in cooperation with @flowergirltulip. Shout out to her for the entire concept vertical!*/
+
+
 /obj/structure/brewers_press
 	name = "brewer's press"
 	desc = "A press used to extract juice from fruit, or to press hops into a cake."
@@ -36,6 +39,16 @@
 			else
 				to_chat(user, span_warning("I can't press [bagged_fruit] in [src]."))
 				return FALSE
+		for(var/obj/item/reagent_containers/food/snacks/rogue/honey/honeyitem in I.contents)
+			if(honeyitem.can_press)
+				STR.remove_from_storage(honeyitem, get_turf(user))
+				if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, honeyitem, null, TRUE, TRUE))
+					honeyitem.inventory_flip(null, TRUE)
+					if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, honeyitem, null, TRUE, TRUE))
+						qdel(honeyitem)
+			else
+				to_chat(user, span_warning("I can't press [honeyitem] in [src]."))
+				return FALSE
 		to_chat(user, span_info("I dump the contents of [I] into [src]."))
 		I.update_icon()	
 		return TRUE
@@ -43,7 +56,7 @@
 		if(user.used_intent.type in list(/datum/intent/fill,/datum/intent/pour,/datum/intent/splash))
 			return I.attack_obj(src, user) // Allow pouring reagents into the press.
 
-	if(!istype(I,/obj/item/reagent_containers/food/snacks/grown))
+	if(!istype(I,/obj/item/reagent_containers/food/snacks/))
 		return FALSE
 	..()
 
@@ -64,22 +77,30 @@
 		CP.rmb_show(user)
 		return TRUE
 
-/obj/structure/brewers_press/proc/makeJuice(obj/item/reagent_containers/food/snacks/grown/fruit)
-	if(fruit.reagents)
-		fruit.reagents.remove_reagent(/datum/reagent/consumable/nutriment, fruit.reagents.total_volume)
-		fruit.reagents.remove_reagent(/datum/reagent/water, fruit.reagents.total_volume)
-		fruit.reagents.remove_reagent(/datum/reagent/floure, fruit.reagents.total_volume)
-		fruit.reagents.trans_to(src, fruit.reagents.total_volume)
-	if(fruit.press_reagent)
-		reagents.add_reagent(fruit.press_reagent, fruit.press_amt)
-	qdel(fruit)
+/obj/structure/brewers_press/proc/makeJuice(obj/item/reagent_containers/food/snacks/food)
+	if(istype(food,/obj/item/reagent_containers/food/snacks/grown/))
+		if(food.reagents)
+			food.reagents.remove_reagent(/datum/reagent/consumable/nutriment, food.reagents.total_volume)
+			food.reagents.remove_reagent(/datum/reagent/water, food.reagents.total_volume)
+			food.reagents.remove_reagent(/datum/reagent/floure, food.reagents.total_volume)
+			food.reagents.trans_to(src, food.reagents.total_volume)
+		if(food.press_reagent)
+			reagents.add_reagent(food.press_reagent, food.press_amt)
+	else if(istype(food,/obj/item/reagent_containers/food/snacks/rogue/honey))
+		if(food.reagents)
+			food.reagents.remove_reagent(/datum/reagent/consumable/nutriment, food.reagents.total_volume)
+			food.reagents.remove_reagent(/datum/reagent/water, food.reagents.total_volume)
+		if(food.press_reagent)
+			reagents.add_reagent(food.press_reagent, food.press_amt)
+		
+	qdel(food)
 	playsound(src, "bubbles", 100, TRUE)
 	return TRUE
 
-/obj/structure/brewers_press/proc/try_press(obj/item/reagent_containers/food/snacks/grown/fruit, mob/living/user)
-	to_chat(user, span_notice("I press [fruit] in [src]."))
+/obj/structure/brewers_press/proc/try_press(obj/item/reagent_containers/food/snacks/food, mob/living/user)
+	to_chat(user, span_notice("I press [food] in [src]."))
 	if(do_after(user, 3 SECONDS, target = src))
 		add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
-		makeJuice(fruit)
+		makeJuice(food)
 		//to_chat(user, span_notice("I extract juice from [fruit]."))
 	return TRUE

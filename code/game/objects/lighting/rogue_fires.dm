@@ -1,3 +1,10 @@
+#define MIN_STEW_TEMPERATURE 374 // For cooking
+#define VOLUME_PER_STEW_COOK 32 // Volume to cook per ingredient
+#define VOLUME_PER_STEW_COOK_AFTER 1 // Volume to deduct after the sleep is over
+#define DEEP_FRY_TIME 5 SECONDS // Default deep fry time
+#define OIL_CONSUMED 5 // Amount of oil consumed per deep fry (1 fat = 4 fry)
+
+
 /obj/machinery/light/rogue/firebowl
 	name = "brazier"
 	icon = 'icons/roguetown/misc/lighting.dmi'
@@ -337,6 +344,30 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/rogue/torchholder, 0)
 	else
 		return !density
 
+/obj/machinery/light/rogue/hearth/examine(mob/user)
+	. = ..()
+	if(attachment)
+		if(istype(attachment, /obj/item/cooking/pan))
+			if(food)
+				. += "There's \a [attachment.name] on it with \a [food.name] in it."
+			else
+				. += "There's \a [attachment.name] on it."
+		else if(istype(attachment, /obj/item/reagent_containers/glass/bucket/pot))
+			var/isboiling = attachment.reagents.chem_temp > MIN_STEW_TEMPERATURE
+			if(isboiling)
+				. += "There's \a [attachment.name] on it, it is boiling." // This is common shorthand for the contents don't nitpick
+			else
+				. += "There's \a [attachment.name] on it. It is not boiling"
+		. += span_notice("Right click to start fanning the flame and make it cook faster.")
+
+/obj/machinery/light/rogue/hearth/attack_right(mob/user)
+	var/datum/skill/craft/cooking/cs = user?.mind?.get_skill_level(/datum/skill/craft/cooking)
+	var/cooktime_divisor = get_cooktime_divisor(cs)
+	if(do_after(user, 2 SECONDS / cooktime_divisor, target = src))
+		to_chat(user, span_info("I fan the flame on [src].")) // Until line combine is on by default gotta do this to avoid spam
+		try_cook(cooktime_divisor)
+		attack_right(user)
+
 /obj/machinery/light/rogue/hearth/attackby(obj/item/W, mob/living/user, params)
 	lastuser = user // For processing food
 	var/datum/skill/craft/cooking/cs = lastuser?.mind?.get_skill_level(/datum/skill/craft/cooking)
@@ -346,6 +377,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/rogue/torchholder, 0)
 		if(istype(W, /obj/item/cooking/pan) || istype(W, /obj/item/reagent_containers/glass/bucket/pot))
 			playsound(get_turf(user), 'sound/foley/dropsound/shovel_drop.ogg', 40, TRUE, -1)
 			attachment = W
+			user.doUnEquip(W)
 			W.forceMove(src)
 			update_icon()
 			return
@@ -367,94 +399,54 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/rogue/torchholder, 0)
 					update_icon()
 					playsound(src.loc, 'sound/misc/frying.ogg', 80, FALSE, extrarange = 5)
 					return
-// New concept = boil at least 33 water, add item, it turns into food reagent volume 33 of the appropriate type
+// Stew + Deep Frying code - refactored!!
 		else if(istype(attachment, /obj/item/reagent_containers/glass/bucket/pot))
 			var/obj/item/reagent_containers/glass/bucket/pot = attachment
-			if(istype(W, /obj/item/reagent_containers/food/snacks/grown/oat))
-				if(!pot.reagents.has_reagent(/datum/reagent/water, 33))
-					to_chat(user, "<span class='notice'>Not enough water.</span>")
-					return TRUE
-				if(pot.reagents.chem_temp < 374)
-					to_chat(user, "<span class='warning'>[pot] isn't boiling!</span>")
-					return
-				if(do_after(user,2 SECONDS, target = src))
-					user.visible_message("<span class='info'>[user] places [W] into the pot.</span>")
-					qdel(W)
-					playsound(src.loc, 'sound/items/Fish_out.ogg', 20, TRUE)
-					pot.reagents.remove_reagent(/datum/reagent/water, 32)
-					sleep(300/cooktime_divisor)
-					playsound(src, "bubbles", 30, TRUE)
-					pot.reagents.add_reagent(/datum/reagent/consumable/soup/oatmeal, 32)
-					pot.reagents.remove_reagent(/datum/reagent/water, 1)
-				return
-
-			if(W.type in subtypesof(/obj/item/reagent_containers/food/snacks/rogue/veg))
-				if(!pot.reagents.has_reagent(/datum/reagent/water, 33))
-					to_chat(user, "<span class='notice'>Not enough water.</span>")
-					return TRUE
-				if(pot.reagents.chem_temp < 374)
-					to_chat(user, "<span class='warning'>[pot] isn't boiling!</span>")
-					return
-				if(do_after(user,2 SECONDS, target = src))
-					user.visible_message("<span class='info'>[user] places [W] into the pot.</span>")
-					playsound(src.loc, 'sound/items/Fish_out.ogg', 20, TRUE)
-					pot.reagents.remove_reagent(/datum/reagent/water, 32)
-					if(istype(W, /obj/item/reagent_containers/food/snacks/rogue/veg/potato_sliced))
-						qdel(W)
-						sleep(1 MINUTES/cooktime_divisor)
-						playsound(src, "bubbles", 30, TRUE)
-						pot.reagents.add_reagent(/datum/reagent/consumable/soup/veggie/potato, 32)
-						pot.reagents.remove_reagent(/datum/reagent/water, 1)
-					if(istype(W, /obj/item/reagent_containers/food/snacks/rogue/veg/onion_sliced))
-						qdel(W)
-						sleep(1 MINUTES/cooktime_divisor)
-						playsound(src, "bubbles", 30, TRUE)
-						pot.reagents.add_reagent(/datum/reagent/consumable/soup/veggie/onion, 32)
-						pot.reagents.remove_reagent(/datum/reagent/water, 1)
-					if(istype(W, /obj/item/reagent_containers/food/snacks/rogue/veg/cabbage_sliced))
-						qdel(W)
-						sleep(1 MINUTES/cooktime_divisor)
-						playsound(src, "bubbles", 30, TRUE)
-						pot.reagents.add_reagent(/datum/reagent/consumable/soup/veggie/cabbage, 32)
-						pot.reagents.remove_reagent(/datum/reagent/water, 1)
-				return
-
-			if(W.type in subtypesof(/obj/item/reagent_containers/food/snacks/rogue/meat))
-				if(!pot.reagents.has_reagent(/datum/reagent/water, 33))
-					to_chat(user, "<span class='notice'>Not enough water.</span>")
-					return TRUE
-				if(pot.reagents.chem_temp < 374)
-					to_chat(user, "<span class='warning'>[pot] isn't boiling!</span>")
-					return
-				if(do_after(user,2 SECONDS, target = src))
-					user.visible_message("<span class='info'>[user] places [W] into the pot.</span>")
-					playsound(src.loc, 'sound/items/Fish_out.ogg', 20, TRUE)
-					pot.reagents.remove_reagent(/datum/reagent/water, 32)
-					if(istype(W, /obj/item/reagent_containers/food/snacks/rogue/meat/mince/fish))
-						qdel(W)
-						sleep(1 MINUTES/cooktime_divisor)
-						playsound(src, "bubbles", 30, TRUE)
-						pot.reagents.add_reagent(/datum/reagent/consumable/soup/stew/fish, 32)
-						pot.reagents.remove_reagent(/datum/reagent/water, 1)
-					if(istype(W, /obj/item/reagent_containers/food/snacks/rogue/meat/spider))
-						qdel(W)
-						sleep(1 MINUTES/cooktime_divisor)
-						playsound(src, "bubbles", 30, TRUE)
-						pot.reagents.add_reagent(/datum/reagent/consumable/soup/stew/yucky, 32)
-						pot.reagents.remove_reagent(/datum/reagent/water, 1)
-					if(istype(W, /obj/item/reagent_containers/food/snacks/rogue/meat/poultry/cutlet) || istype(W, /obj/item/reagent_containers/food/snacks/rogue/meat/mince/poultry))
-						qdel(W)
-						sleep(1 MINUTES/cooktime_divisor)
-						playsound(src, "bubbles", 30, TRUE)
-						pot.reagents.add_reagent(/datum/reagent/consumable/soup/stew/chicken, 32)
-						pot.reagents.remove_reagent(/datum/reagent/water, 1)
-					else
-						qdel(W)
-						sleep(1 MINUTES/cooktime_divisor)
-						playsound(src, "bubbles", 30, TRUE)
-						pot.reagents.add_reagent(/datum/reagent/consumable/soup/stew/meat, 32)
-						pot.reagents.remove_reagent(/datum/reagent/water, 1)
-				return
+			if(istype(W, /obj/item/reagent_containers/food/snacks))
+				var/obj/item/reagent_containers/food/snacks/S = W
+				if(S.fat_yield)
+					if(pot.reagents.has_reagent(/datum/reagent/water))
+						to_chat(user, span_warning("You can't render fat in a pot with water!"))
+						return
+					if(do_after(user, 2 SECONDS / cooktime_divisor, target = src))
+						user.visible_message(span_info("[user] melts [S] in the pot.</span>"))
+						qdel(S)
+						pot.reagents.add_reagent(/datum/reagent/consumable/oil/tallow, S.fat_yield)
+						return
+				if(pot.reagents.has_reagent(/datum/reagent/consumable/oil/tallow) && S.deep_fried_type)
+					if(!pot.reagents.has_reagent(/datum/reagent/consumable/oil/tallow, OIL_CONSUMED))
+						to_chat(user, span_notice("Not enough tallow."))
+						return
+					if(pot.reagents.has_reagent(/datum/reagent/water))
+						to_chat(user, span_warning("You can't deep fry in a pot with water!"))
+						return
+					if(do_after(user, DEEP_FRY_TIME / cooktime_divisor, target = src))
+						user.visible_message(span_info("[user] deep fries [S] in the pot.</span>"))
+						add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
+						new S.deep_fried_type(src.loc)
+						qdel(S)
+						pot.reagents.remove_reagent(/datum/reagent/consumable/oil/tallow, OIL_CONSUMED)
+						return
+			for(var/datum/stew_recipe/R in GLOB.stew_recipes)
+				for(var/I in R.inputs)
+					if(istype(W, I))
+						if(!pot.reagents.has_reagent(/datum/reagent/water, VOLUME_PER_STEW_COOK + VOLUME_PER_STEW_COOK_AFTER))
+							to_chat(user, span_notice("Not enough water."))
+							return
+						if(pot.reagents.chem_temp < MIN_STEW_TEMPERATURE)
+							to_chat(user, span_notice("[pot] isn't boiling!</span>"))
+							return
+						if(do_after(user, 2 SECONDS / cooktime_divisor, target = src))
+							user.visible_message(span_info("[user] places [W] into the pot.</span>"))
+							add_sleep_experience(user, /datum/skill/craft/cooking, user.STAINT)
+							qdel(W)
+							playsound(src.loc, 'sound/items/Fish_out.ogg', 20, TRUE)
+							pot.reagents.remove_reagent(/datum/reagent/water, VOLUME_PER_STEW_COOK)
+							sleep(R.cooktime / cooktime_divisor)
+							playsound(src, "bubbles", 30, TRUE)
+							pot.reagents.remove_reagent(/datum/reagent/water, VOLUME_PER_STEW_COOK_AFTER) // Remove water first prevent overfill
+							pot.reagents.add_reagent(R.output, VOLUME_PER_STEW_COOK + VOLUME_PER_STEW_COOK_AFTER)
+							return
 	. = ..()
 
 //////////////////////////////////
@@ -519,26 +511,29 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/rogue/torchholder, 0)
 		if(IS_WET_OPEN_TURF(O))
 			extinguish()
 	if(on)
-		if(initial(fueluse) > 0)
-			if(fueluse > 0)
-				fueluse = max(fueluse - 10, 0)
-			if(fueluse == 0)
-				burn_out()
-		if(attachment)
-			if(istype(attachment, /obj/item/cooking/pan))
-				if(food)
-					var/obj/item/C = food.cooking(20 * cooktime_divisor, 20, src)
-					if(C)
-						qdel(food)
-						food = C
-			if(istype(attachment, /obj/item/reagent_containers/glass/bucket/pot))
-				if(attachment.reagents)
-					attachment.reagents.expose_temperature(400, 0.033)
-					if(attachment.reagents.chem_temp > 374)
-						boilloop.start()
-					else
-						boilloop.stop()
-		update_icon()
+		try_cook(cooktime_divisor)
+
+/obj/machinery/light/rogue/hearth/proc/try_cook(var/cooktime_divisor)
+	if(initial(fueluse) > 0)
+		if(fueluse > 0)
+			fueluse = max(fueluse - 10, 0)
+		if(fueluse == 0)
+			burn_out()
+	if(attachment)
+		if(istype(attachment, /obj/item/cooking/pan))
+			if(food)
+				var/obj/item/C = food.cooking(20 * cooktime_divisor, 20, src)
+				if(C)
+					qdel(food)
+					food = C
+		if(istype(attachment, /obj/item/reagent_containers/glass/bucket/pot))
+			if(attachment.reagents)
+				attachment.reagents.expose_temperature(400, 0.033)
+				if(attachment.reagents.chem_temp > MIN_STEW_TEMPERATURE)
+					boilloop.start()
+				else
+					boilloop.stop()
+	update_icon()
 
 
 /obj/machinery/light/rogue/hearth/onkick(mob/user)
@@ -646,3 +641,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/rogue/torchholder, 0)
 
 /obj/machinery/light/rogue/campfire/longlived
 	fueluse = 180 MINUTES
+
+#undef MIN_STEW_TEMPERATURE
+#undef VOLUME_PER_STEW_COOK
+#undef VOLUME_PER_STEW_COOK_AFTER

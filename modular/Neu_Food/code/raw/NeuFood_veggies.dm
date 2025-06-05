@@ -71,6 +71,18 @@
 	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/preserved/carrot_baked
 	tastes = list("carrot" = 1)
 	dropshrink = 0.75
+	slices_num = 1
+	slice_path = /obj/item/reagent_containers/food/snacks/rogue/veg/carrot_sliced
+	chopping_sound = TRUE
+
+/obj/item/reagent_containers/food/snacks/rogue/veg/carrot_sliced
+	name = "carrot slice"
+	icon_state = "carrot_sliced"
+	desc = "A neatly sliced bit of carrot. Nicer to eat. Refined, even."
+	faretype = FARE_FINE
+	tastes = list("crunchy with a hint of sweetness" = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
+	
 
 /*	..................   Cucumber   ................... */
 /obj/item/reagent_containers/food/snacks/grown/cucumber

@@ -13,6 +13,7 @@
 	icon_state = "fat"
 	list_reagents = list(/datum/reagent/consumable/nutriment = SNACK_DECENT)
 	eat_effect = /datum/status_effect/debuff/uncookedfood
+	fat_yield = 20
 
 /obj/item/reagent_containers/food/snacks/fat/attackby(obj/item/I, mob/living/user, params)
 	var/found_table = locate(/obj/structure/table) in (loc)
@@ -90,6 +91,11 @@
 	tastes = list("sweetness and spiderwebs" = 1)
 	eat_effect = null
 	rotprocess = null
+	can_press = TRUE
+	can_distill = TRUE
+	distill_reagent = /datum/reagent/consumable/ethanol/mead
+	press_reagent = /datum/reagent/consumable/meadbase
+	press_amt = 12
 
 
 /*	........   Drying Rack recipes   ................ */
@@ -336,6 +342,18 @@
 	slice_batch = FALSE
 	bitesize = 6
 	slice_sound = TRUE
+
+/obj/item/reagent_containers/food/snacks/butter/attackby(obj/item/I, mob/living/user, params)
+	update_cooktime(user)
+	if(istype(I, /obj/item/reagent_containers/food/snacks/egg))
+		to_chat(user, span_notice("Cracking an egg over the butter."))
+		if(do_after(user, short_cooktime, target = src))
+			playsound(get_turf(user), 'modular/Neu_Food/sound/eggbreak.ogg', 100, TRUE, -1)
+			new /obj/item/reagent_containers/food/snacks/rogue/foodbase/squires_delight(drop_location())
+			qdel(I)
+			qdel(src)
+			return
+	return ..()
 
 /obj/item/reagent_containers/food/snacks/butter/update_icon()
 	if(slices_num)

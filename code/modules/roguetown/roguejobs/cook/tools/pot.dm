@@ -1,7 +1,7 @@
 /obj/item/reagent_containers/glass/bucket/pot
 	force = 10
 	name = "pot"
-	desc = ""
+	desc = "A pot made out of iron. It can hold a lot of liquid."
 	icon = 'modular/Neu_Food/icons/cooking.dmi'
 	lefthand_file = 'modular/Neu_Food/icons/food_lefthand.dmi'
 	righthand_file = 'modular/Neu_Food/icons/food_righthand.dmi'
@@ -14,7 +14,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	reagent_flags = OPENCONTAINER
 	throwforce = 10
-	volume = 99
+	volume = 198
 
 /obj/item/reagent_containers/glass/bucket/pot/update_icon()
 	cut_overlays()
@@ -42,3 +42,5 @@
 
 /obj/item/reagent_containers/glass/bucket/pot/stone
 	name = "stone pot"
+	desc = "A pot made out of stone. It can hold less than a metal pot."
+	volume = 99 // 99 is the max volume for a stone pot
