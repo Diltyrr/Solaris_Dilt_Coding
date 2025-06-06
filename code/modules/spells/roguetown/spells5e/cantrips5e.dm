@@ -63,7 +63,7 @@
 	. = ..()
 
 /obj/projectile/magic/aoe/acidsplash5e
-	name = "acid bubble"
+	name = "Acid bubble"
 	icon_state = "green_laser"
 	damage = 25
 	damage_type = BURN
@@ -271,6 +271,7 @@
 // This now attaches a ghost hand to a targeted body part and does different things depending on the part
 /obj/effect/proc_holder/spell/invoked/chilltouch5e
 	name = "Chill Touch"
+	desc = "Conjures a spectral skeletal hand that clings to your target, delivering chilling torment."
 	overlay_state = "null"
 	releasedrain = 50
 	chargetime = 10
@@ -313,7 +314,6 @@
 
 /obj/item/chilltouch5e
 	name = "Skeletal Hand"
-	desc = "Conjures a spectral skeletal hand that clings to your target, delivering chilling torment."
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "bounty"
 
@@ -435,7 +435,7 @@
 	action_icon_state = "the_traps"
 
 /obj/machinery/light/rogue/campfire/createbonfire5e
-	name = "magical bonfire"
+	name = "Magical bonfire"
 	icon_state = "churchfire1"
 	base_state = "churchfire"
 	density = FALSE
@@ -486,8 +486,8 @@
 	invocation_type = "whisper"
 
 /obj/effect/proc_holder/spell/invoked/decompose5e/cast(list/targets, mob/living/user)
-	if(!isliving(targets[1]))
-		var/mob/living/target = targets[1]
+	if(!isliving(targets))
+		var/mob/living/target = targets
 		if(target == user)
 			return FALSE
 		var/has_rot = FALSE
@@ -559,13 +559,13 @@
 	xp_gain = TRUE
 	miracle = FALSE
 
-	invocation = "Begone!" // Bad incantation but it's funny.
+	invocation = ""
 	invocation_type = "shout"
 	ignore_fiendkiss = FALSE
 
 
 /obj/projectile/magic/eldritchblast5e
-	name = "eldritch blast"
+	name = "Eldritch blast"
 	desc = "Unleashes a crackling arcane force toward a distant foe."
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "arcane_barrage"
@@ -580,8 +580,8 @@
 	playsound(src, 'sound/magic/swap.ogg', 100)
 
 /obj/effect/proc_holder/spell/invoked/projectile/eldritchblast5e/empowered
-	name = "empowered eldritch blast"
-	desc = "Empowered form of eldritch blast. Hits harder and knocks targets back with a surge of otherworldly power.""
+	name = "Empowered eldritch blast"
+	desc = "Empowered form of eldritch blast. Hits harder and knocks targets back with a surge of otherworldly power."
 	charge_max = 8 SECONDS //cooldown
 	releasedrain = 40
 	projectile_type = /obj/projectile/magic/eldritchblast5e/empowered
@@ -681,7 +681,7 @@
 	xp_gain = TRUE
 
 /obj/projectile/magic/aoe/fireball/firebolt5e
-	name = "fireball"
+	name = "Fireball"
 	exp_heavy = 0
 	exp_light = 0
 	exp_flash = 1
@@ -702,7 +702,7 @@
 //	FROSTBITE
 //==============================================
 /obj/effect/proc_holder/spell/invoked/frostbite5e
-	name = "frostbite"
+	name = "Frostbite"
 	desc = "Unleashes a chilling blast of arcane cold that slows your target and deals immediate cold damage."
 	overlay_state = "null"
 	releasedrain = 50
@@ -767,8 +767,8 @@
 //	GREEN-FLAME BLADE
 //==============================================
 /obj/effect/proc_holder/spell/invoked/greenflameblade5e
-	name = "green-Flame Blade"
-	desc = "A melee strike engulfed in magical green fire that burns the target and ignites nearby foes with a burst of flame.""
+	name = "Green-Flame Blade"
+	desc = "A melee strike engulfed in magical green fire that burns the target and ignites nearby foes with a burst of flame."
 	overlay_state = "null"
 	releasedrain = 50
 	chargetime = 3
@@ -814,7 +814,7 @@
 /obj/effect/temp_visual/greenflameblade5e
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "1"
-	name = "green-flame"
+	name = "Green-flame"
 	desc = "Magical fire. Interesting."
 	randomdir = FALSE
 	duration = 1 SECONDS
@@ -824,7 +824,7 @@
 //	GUIDANCE
 //==============================================
 /obj/effect/proc_holder/spell/invoked/guidance5e
-	name = "guidance"
+	name = "Guidance"
 	desc = "Bestows a blessing to someone else that sharpens their mind, granting a temporary boost to intelligence."
 	overlay_state = "null"
 	releasedrain = 50
@@ -895,7 +895,7 @@
 //	INFESTATION
 //==============================================
 /obj/effect/proc_holder/spell/invoked/infestation5e
-	name = "infestation"
+	name = "Infestation"
 	desc = "Surrounds the target with swarming vermin that weaken their constitution and deal ongoing toxic and physical damage."
 	overlay_state = "null"
 	releasedrain = 50
@@ -983,8 +983,8 @@
 //	LIGHT
 //==============================================
 /obj/effect/proc_holder/spell/self/light5e
-	name = "light"
-	desc = "Conjures a glowing orb of pure light that illuminates your surroundings and can be held like a magical torch.""
+	name = "Light"
+	desc = "Conjures a glowing orb of pure light that illuminates your surroundings and can be held like a magical torch."
 	overlay_state = "null"
 	releasedrain = 50
 	chargetime = 1
@@ -1030,7 +1030,7 @@
 	return item
 
 /obj/item/flashlight/flare/light5e
-	name = "condensed light"
+	name = "Condensed light"
 	desc = "An orb of condensed light."
 	w_class = WEIGHT_CLASS_NORMAL
 	light_outer_range = 10
@@ -1148,7 +1148,7 @@
 //==============================================
 
 /obj/effect/proc_holder/spell/targeted/lightninglure5e
-	name = "lightning Lure"
+	name = "Lightning Lure"
 	desc = "Creates a crackling electrical link to a target, shocking them if they get too close and forcing them away."
 	overlay_state = "null"
 	releasedrain = 50
@@ -1253,7 +1253,7 @@
 //==============================================
 
 /obj/effect/proc_holder/spell/invoked/mending5e
-	name = "mending"
+	name = "Mending"
 	desc = "Repairs a damaged item, restoring a portion of its integrity and fixing broken status."
 	overlay_state = "null"
 	releasedrain = 50
@@ -1347,7 +1347,7 @@
 /obj/effect/temp_visual/mindsliver5e_p1
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "bluestream_fade"
-	name = "rippeling psionic energy"
+	name = "Rippeling psionic energy"
 	desc = "Get out of the way!"
 	light_outer_range = 2
 	duration = 7
@@ -1374,68 +1374,8 @@
 //==============================================
 
 //==============================================
-//	Poison Spray
+//	Poison Spray - See Aerosolize in Wizard.dm
 //==============================================
-//hold a container in your hand, it's contents turn into a 3-radius smoke, more interesting than the source material
-//in the source material this would just be some sort of poison, since we have all sorts of potions, this is better.
-//my hope is that it doesn't work with love poiton...
-/obj/effect/proc_holder/spell/invoked/poisonspray5e
-	name = "poison cloud" //renamed to better reflect wtf this does -- vide
-	desc = "A cloud of toxic fumes is created at the targetted location by spraying the reagents inside the caster's currently held container."
-	overlay_state = "null"
-	releasedrain = 50
-	chargetime = 3
-	charge_max = 20 SECONDS
-	//chargetime = 10
-	//charge_max = 30 SECONDS
-	range = 6
-	warnie = "spellwarning"
-	movement_interrupt = FALSE
-	no_early_release = FALSE
-	antimagic_allowed = FALSE
-	chargedloop = null
-	sound = 'sound/magic/whiteflame.ogg'
-	chargedloop = /datum/looping_sound/invokegen
-	associated_skill = /datum/skill/magic/arcane //can be arcane, druidic, blood, holy
-	cost = 2
-
-	xp_gain = TRUE
-	miracle = FALSE
-
-	invocation = "Poison Cloud!"
-	invocation_type = "shout" //can be none, whisper, emote and shout
-
-/obj/effect/proc_holder/spell/invoked/poisonspray5e/cast(list/targets, mob/living/user)
-	var/turf/T = get_turf(targets[1]) //check for turf
-	if(T)
-		var/obj/item/held_item = user.get_active_held_item() //get held item
-		var/obj/item/reagent_containers/con = held_item //get held item
-		if(con)
-			if(con.spillable)
-				if(con.reagents.total_volume > 0)
-					var/datum/reagents/R = con.reagents
-					var/datum/effect_system/smoke_spread/chem/smoke = new
-					smoke.set_up(R, 1, T, FALSE)
-					smoke.start()
-
-					user.visible_message(span_warning("[user] sprays the contents of the [held_item], creating a cloud!"), span_warning("You spray the contents of the [held_item], creating a cloud!"))
-					con.reagents.clear_reagents() //empty the container
-					playsound(user, 'sound/magic/webspin.ogg', 100)
-				else
-					to_chat(user, "<span class='warning'>The [held_item] is empty!</span>")
-					revert_cast()
-			else
-				to_chat(user, "<span class='warning'>I can't get access to the contents of this [held_item]!</span>")
-				revert_cast()
-		else
-			to_chat(user, "<span class='warning'>I need to hold a container to cast this!</span>")
-			revert_cast()
-	else
-		to_chat(user, "<span class='warning'>I couldn't find a good place for this!</span>")
-		revert_cast()
-
-/obj/effect/proc_holder/spell/invoked/poisonspray5e/test
-	antimagic_allowed = TRUE
 
 //==============================================
 //	Primal Savagery
@@ -1483,7 +1423,7 @@
 
 /atom/movable/screen/alert/status_effect/buff/primalsavagery5e
 	name = "Primal Savagery"
-	desc = "I have grown venomous fangs inject my victims with poison."
+	desc = "I have grown venomous fangs."
 	icon_state = "buff"
 
 /datum/status_effect/buff/primalsavagery5e/on_remove()
@@ -1496,7 +1436,7 @@
 //==============================================
 // Notes: another projectile, this one slows the target for a short while
 /obj/effect/proc_holder/spell/invoked/projectile/rayoffrost5e
-	name = "ray of frost"
+	name = "Ray of frost"
 	desc = "Fires a chilling ray that deals damage and slows the target’s movement for 6 seconds."
 	clothes_req = FALSE
 	range = 8
@@ -1527,7 +1467,7 @@
 	ignore_fiendkiss = FALSE
 
 /obj/projectile/magic/rayoffrost5e
-	name = "ray of frost"
+	name = "Ray of frost"
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "ice_2"
 	damage = 25

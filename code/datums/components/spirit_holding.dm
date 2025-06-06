@@ -70,6 +70,7 @@
 		affix_spirit(user, chosen_one)
 	else	
 		to_chat(user, span_notice("The weapon is silent..."))
+		attempting_awakening = FALSE
 
 /// On conclusion of the ghost poll
 /datum/component/spirit_holding/proc/affix_spirit(mob/awakener, mob/ghost)

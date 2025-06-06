@@ -231,3 +231,9 @@
 			if(M.has_status_effect(/datum/status_effect/debuff/netted))
 				M.remove_status_effect(/datum/status_effect/debuff/netted)
 	return ..()	
+
+/obj/item/rope/nature
+	name = "entangling roots"
+	desc = "A writhing bundle of magical roots that restrain movement."
+	color = "#228B22"
+	buckle_requires_restraints = FALSE

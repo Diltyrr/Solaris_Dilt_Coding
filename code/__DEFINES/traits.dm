@@ -249,7 +249,8 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_WOODWALKER = span_info("I can climb trees quicker, and gain climbing experience twice as quickly. I can step on thorns and branches safely in the woods. I can get twice as many things from searching bushes, and I can stand on leaves in trees safely."),
 	TRAIT_WILDMAGIC = span_info("My magic sometimes has unexpected consequences."),
 	TRAIT_FIENDKISS = span_info("When I cast projectile magic, the fiend also hurls a fire bolt at the same location."),
-	TRAIT_POISONBITE = span_info("My bites inject venom into my target.")
+	TRAIT_POISONBITE = span_info("My bites inject venom into my target."),
+	TRAIT_NOFIRE = span_info("I am immunized to most forms of fire.")
 ))
 
 // trait accessor defines
