@@ -246,3 +246,13 @@
 /datum/alch_grind_recipe/transistus
 	valid_input = list(/obj/item/alch/artemisia,/obj/item/alch/benedictus,/obj/item/alch/hypericum,/obj/item/alch/salvia,/obj/item/alch/atropa,/obj/item/alch/taraxacum)
 	valid_outputs = list(/obj/item/alch/transisdust = 1)
+
+//Grinding Regression Fixes. Put interactions from old mortar not found here.
+
+/datum/alch_grind_recipe/grain
+	valid_input = /obj/item/reagent_containers/food/snacks/grown/wheat
+	valid_outputs = list(/obj/item/reagent_containers/powder/flour = 1)
+
+/datum/alch_grind_recipe/bone2
+	valid_input = /obj/item/natural/bone
+	valid_outputs = list(/obj/item/alch/bonemeal = 1)
