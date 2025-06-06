@@ -13,7 +13,7 @@
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
-	charge_max = 20 SECONDS
+	recharge_time = 20 SECONDS
 	miracle = TRUE
 	devotion_cost = 15
 
@@ -46,7 +46,7 @@
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
-	charge_max = 10 SECONDS
+	recharge_time = 10 SECONDS
 	miracle = TRUE
 	devotion_cost = 50
 
@@ -100,7 +100,7 @@
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
-	charge_max = 180 SECONDS
+	recharge_time = 180 SECONDS
 	miracle = TRUE
 	devotion_cost = 100
 	var/townercrab = TRUE //I was looking at this for three days and i am utterly stupid for not fixing it

@@ -33,7 +33,7 @@
 	armor = /obj/item/clothing/suit/roguetown/shirt/robe/black
 	belt = /obj/item/storage/belt/rogue/leather/rope
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
-	beltl = /obj/item/book/granter/spellbook/magician
+	beltl = /obj/item/book/spellbook
 	beltr = /obj/item/storage/keyring/mages_university
 	id = /obj/item/scomstone/bad
 	shoes = /obj/item/clothing/shoes/roguetown/simpleshoes

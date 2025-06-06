@@ -35,7 +35,7 @@
 	STALUC = 15
 	loot = list(/obj/effect/temp_visual/lich_dying)
 	projectiletype = /obj/projectile/magic
-	var/allowed_projectile_types = list(/obj/projectile/magic/lightning, /obj/projectile/magic/sickness, /obj/projectile/magic/arcane_barrage, /obj/projectile/magic/aoe/acidsplash5e)
+	var/allowed_projectile_types = list(/obj/projectile/magic/lightning, /obj/projectile/magic/sickness, /obj/projectile/magic/arcane_barrage, /obj/projectile/magic/acidsplash)
 	footstep_type = FOOTSTEP_MOB_SHOE
 	stat_attack = UNCONSCIOUS
 
@@ -432,7 +432,7 @@
 	desc = ""
 
 	school = "abjuration"
-	charge_max = 20
+	recharge_time = 20
 	clothes_req = FALSE
 	invocation = "none"
 	invocation_type = "none"

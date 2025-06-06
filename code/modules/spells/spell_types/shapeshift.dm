@@ -3,7 +3,7 @@
 	desc = ""
 	clothes_req = FALSE
 	human_req = FALSE
-	charge_max = 200
+	recharge_time = 200
 	cooldown_min = 50
 	range = -1
 	include_user = TRUE

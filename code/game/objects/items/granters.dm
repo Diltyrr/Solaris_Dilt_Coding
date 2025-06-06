@@ -39,10 +39,6 @@
 
 
 /obj/item/book/granter/attack_self(mob/living/user)
-	if(user.mind?.has_studied == TRUE)
-		to_chat(user, span_notice("These symbols assault my mind -- I cannot control the book's power!"))
-		recoil(user)
-		return FALSE
 	if(reading)
 		to_chat(user, span_warning("I'm already reading this!"))
 		return FALSE
@@ -228,7 +224,7 @@
 
 /obj/item/book/granter/spell/blackstone/acidsplash5e
 	name = "Scroll of Acid Splash"
-	spell = /obj/effect/proc_holder/spell/invoked/projectile/acidsplash5e
+	spell = /obj/effect/proc_holder/spell/invoked/projectile/acidsplash
 	spellname = "Acid Splash"
 	icon_state ="scrolldarkred"
 	remarks = list("Lapides corrodunt..", "Spuma venenosa..", "Guttae flavescentes..")
@@ -257,7 +253,7 @@
 
 /obj/item/book/granter/spell/blackstone/poisonspray5e
 	name = "Scroll of Aerosolize"
-	spell = /obj/effect/proc_holder/spell/invoked/poisonspray5e
+	spell = /obj/effect/proc_holder/spell/invoked/aerosolize
 	spellname = "Aerosolize"
 	icon_state ="scrolldarkred"
 	remarks = list("Lapides corrodunt..", "Spuma venenosa..", "Guttae flavescentes..")
@@ -293,14 +289,14 @@
 
 /obj/item/book/granter/spell/blackstone/ensnare
 	name = "Scroll of Ensnare"
-	spell = /obj/effect/proc_holder/spell/invoked/slowdown_spell_aoe
+	spell = /obj/effect/proc_holder/spell/invoked/ensnare
 	spellname = "Ensnare"
 	icon_state ="scrolldarkred"
 	remarks = list("Qui intrat..", "Radices in tenebris..", "Nexus occultus..")
 
 /obj/item/book/granter/spell/blackstone/forcewall_weak
 	name = "Scroll of Forcewall"
-	spell = /obj/effect/proc_holder/spell/invoked/forcewall_weak
+	spell = /obj/effect/proc_holder/spell/invoked/forcewall
 	spellname = "Forcewall"
 	icon_state ="scrolldarkred"
 	remarks = list("Murus non solum hostem..", "Manus invisibiles saxa invicem..", "Infracta moenia..")

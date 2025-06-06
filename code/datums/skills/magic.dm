@@ -14,7 +14,7 @@
 
 /datum/skill/magic/arcane
 	name = "Arcane Magic"
-	desc = "Each point in Arcane Magic gives you +1 spellpoint."
+	desc = "Decreases casting time by 5% per level."
 
 /datum/skill/magic/druidic
 	name = "Druidic Trickery"

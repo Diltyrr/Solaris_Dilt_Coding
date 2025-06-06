@@ -2,12 +2,11 @@
 	name = "Instant Summons"
 	desc = ""
 	school = "transmutation"
-	charge_max = 100
+	recharge_time = 100
 	clothes_req = FALSE
 	invocation = "GAR YOK"
 	invocation_type = "whisper"
 	range = -1
-	level_max = 0 //cannot be improved
 	cooldown_min = 100
 	include_user = TRUE
 

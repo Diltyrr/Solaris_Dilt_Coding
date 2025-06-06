@@ -3,7 +3,7 @@
 	allowed_sexes = list(MALE)
 	allowed_races = list(/datum/species/human/northern)
 	outfit = /datum/outfit/job/roguetown/adventurer/whitecheese
-	traits_applied = list(TRAIT_HEAVYARMOR, TRAIT_BREADY, TRAIT_STEELHEARTED)
+	traits_applied = list(TRAIT_HEAVYARMOR, TRAIT_BREADY, TRAIT_STEELHEARTED, TRAIT_ARCANE_T2)
 	// oh god oh fuck this dont seem very safe to do
 	// this looks kinda op so imma just leave it at patreon level 1 until someone puts this behind a different lock
 	maximum_possible_slots = 1
@@ -36,6 +36,7 @@
 	H.mind.adjust_skillrank(/datum/skill/craft/crafting, 4, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/craft/carpentry, rand(4,5), TRUE)
 	H.mind.adjust_skillrank(/datum/skill/craft/masonry, rand(1,2), TRUE)
+	H.mind.adjust_spellpoints(3)
 
 	belt = /obj/item/storage/belt/rogue/leather
 	pants = /obj/item/clothing/under/roguetown/tights/black

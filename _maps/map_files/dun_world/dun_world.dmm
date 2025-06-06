@@ -16437,7 +16437,6 @@
 /turf/open/floor/rogue/rooftop,
 /area/rogue/outdoors/town/roofs)
 "gIQ" = (
-/obj/item/rogueweapon/huntingknife/idagger/silver/arcane,
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/dungeon/old_ruin)
@@ -49761,7 +49760,6 @@
 /area/rogue/indoors/town/magician)
 "ulk" = (
 /obj/structure/table/wood/fancy/black,
-/obj/item/rogueweapon/huntingknife/idagger/silver/arcane,
 /obj/item/spellbook_unfinished/pre_arcane,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon/winding_halls)
@@ -53667,7 +53665,7 @@
 /obj/effect/spawner/lootdrop/potion_vitals,
 /obj/item/ingot/blacksteel,
 /obj/item/ingot/blacksteel,
-/obj/item/book/granter/spellbook/magician,
+/obj/item/book/spellbook,
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/under/cave/dungeon/dragonden)
 "vQt" = (
@@ -56072,7 +56070,7 @@
 /area/rogue/under/town/sewer)
 "wXe" = (
 /obj/structure/bookcase,
-/obj/item/book/granter/spellbook,
+/obj/item/book/spellbook,
 /turf/open/floor/rogue/blocks,
 /area/rogue/under/cave/dungeon/winding_halls)
 "wXm" = (

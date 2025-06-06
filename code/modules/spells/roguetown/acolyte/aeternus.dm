@@ -14,7 +14,7 @@
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
-	charge_max = 5 SECONDS
+	recharge_time = 5 SECONDS
 	miracle = TRUE
 	devotion_cost = 30
 
@@ -57,7 +57,7 @@
 	sound = 'sound/magic/revive.ogg'
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
-	charge_max = 2 MINUTES
+	recharge_time = 2 MINUTES
 	miracle = TRUE
 	devotion_cost = 80
 	/// Amount of PQ gained for reviving people

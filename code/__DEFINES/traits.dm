@@ -133,6 +133,10 @@
 #define TRAIT_SLEUTH	"Sleuth"
 #define TRAIT_HARDSHELL "Hardshell"
 #define TRAIT_WOODWALKER "Woodwalker"
+#define TRAIT_ARCANE_T1 "Arcane Training (Novice)"
+#define TRAIT_ARCANE_T2 "Arcane Training (Apprentice)"
+#define TRAIT_ARCANE_T3 "Arcane Training (Expert)"
+#define TRAIT_ARCANE_T4 "Arcane Training (Master)"
 
 
 GLOBAL_LIST_INIT(roguetraits, list(
@@ -245,12 +249,16 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_NOMOOD = span_info("I feel no sorrow, no joy, and no stress."),
 	TRAIT_SUNMARCHNATIVE = span_info("I've grown up and lived all my life in these lands. I can only trigger ambushes if I sprint through them."),
 	TRAIT_SLEUTH = span_info("I can spot my tracked Mark's trail without needing to approach it, and can spot them at a distance. I can track more frequently, and the act is not impaired by movement. I can examine tracks right away."),
-	TRAIT_HARDSHELL = span_info("The bulk of this armor prevents me from parrying effectively, but I can still move out of the way."),
-	TRAIT_WOODWALKER = span_info("I can climb trees quicker, and gain climbing experience twice as quickly. I can step on thorns and branches safely in the woods. I can get twice as many things from searching bushes, and I can stand on leaves in trees safely."),
+  TRAIT_HARDSHELL = span_info("The bulk of this armor prevents me from parrying effectively, but I can still move out of the way."),
+	TRAIT_WOODWALKER = span_notice("I can climb trees quicker, and gain climbing experience twice as quickly. I can step on thorns and branches safely in the woods. I can get twice as many things from searching bushes, and I can stand on leaves in trees safely."),
+	TRAIT_ARCANE_T1 = span_notice("I have received basic training in the arcane arts, allowing me access to a small variety of spells useful outside of combat."),
+	TRAIT_ARCANE_T2 = span_notice("I have received advanced training in the arcane arts, allowing me to learn basic combat spells"),
+	TRAIT_ARCANE_T3 = span_notice("I am a full-fledged mage, and have access to devastating spells that affects a wide area."),
+	TRAIT_ARCANE_T4 = span_notice("I'm a master of the arcane arts, and has access to some of the most powerful spells ever devised."),
 	TRAIT_WILDMAGIC = span_info("My magic sometimes has unexpected consequences."),
 	TRAIT_FIENDKISS = span_info("When I cast projectile magic, the fiend also hurls a fire bolt at the same location."),
 	TRAIT_POISONBITE = span_info("My bites inject venom into my target."),
-	TRAIT_NOFIRE = span_info("I am immunized to most forms of fire.")
+	TRAIT_NOFIRE = span_info("I am immunized to most forms of fire."),
 ))
 
 // trait accessor defines

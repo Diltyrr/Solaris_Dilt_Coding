@@ -23,7 +23,7 @@
 
 /datum/outfit/job/roguetown/archivist/pre_equip(mob/living/carbon/human/H)
 	..()
-	backpack_contents = list(/obj/item/book/granter/spellbook/magician = 1)
+	backpack_contents = list(/obj/item/book/spellbook = 1)
 	if(should_wear_femme_clothes(H))
 		shirt = /obj/item/clothing/suit/roguetown/shirt/robe/archivist
 		pants = /obj/item/clothing/under/roguetown/tights/stockings/black
@@ -50,7 +50,7 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/magic/arcane, 2, TRUE)
-		H.mind.adjust_spellpoints(1)
+		H.mind.adjust_spellpoints(3)
 		H.grant_language(/datum/language/elvish)
 		H.grant_language(/datum/language/dwarvish)
 		H.grant_language(/datum/language/celestial)
@@ -61,6 +61,7 @@
 		ADD_TRAIT(H, TRAIT_SEEPRICES_SHITTY, "[type]")
 		ADD_TRAIT(H, TRAIT_INTELLECTUAL, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
 		H.change_stat("strength", -1)
 		H.change_stat("constitution", -1)
 		H.change_stat("intelligence", 4)
@@ -77,7 +78,7 @@
 	releasedrain = 50
 	chargedrain = 0
 	chargetime = 0
-	charge_max = 30 SECONDS
+	recharge_time = 30 SECONDS
 	antimagic_allowed = TRUE
 
 /obj/effect/proc_holder/spell/invoked/teach/cast(list/targets, mob/user = usr)

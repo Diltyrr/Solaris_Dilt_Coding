@@ -1264,7 +1264,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/blood
 	antimagic_allowed = TRUE
-	charge_max = 10 SECONDS
+	recharge_time = 10 SECONDS
 	include_user = 0
 	max_targets = 1
 
@@ -1349,7 +1349,7 @@ GLOBAL_LIST_EMPTY(vampire_objects)
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/blood
 	antimagic_allowed = TRUE
-	charge_max = 10 SECONDS
+	recharge_time = 10 SECONDS
 	include_user = 0
 	max_targets = 0
 

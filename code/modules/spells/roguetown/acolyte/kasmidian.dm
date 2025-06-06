@@ -10,7 +10,7 @@
 	sound = 'sound/misc/letsgogambling.ogg'
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
-	charge_max = 5 MINUTES
+	recharge_time = 5 MINUTES
 	
 /obj/effect/proc_holder/spell/invoked/wheel/cast(list/targets, mob/user = usr)
 	if(isliving(targets[1]))
@@ -26,7 +26,7 @@
 	name = "Vicious Mockery"
 	releasedrain = 50
 	associated_skill = /datum/skill/misc/music
-	charge_max = 2 MINUTES
+	recharge_time = 2 MINUTES
 	range = 7
 
 /obj/effect/proc_holder/spell/invoked/mockery/cast(list/targets, mob/user = usr)

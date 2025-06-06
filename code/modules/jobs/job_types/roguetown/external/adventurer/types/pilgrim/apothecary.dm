@@ -8,7 +8,7 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/adventurer/apothecary
 	category_tags = list(CTAG_PILGRIM, CTAG_TOWNER)
-	traits_applied = list(TRAIT_RITUALIST, TRAIT_DEATHSIGHT)
+	traits_applied = list(TRAIT_RITUALIST, TRAIT_DEATHSIGHT, TRAIT_ARCANE_T1)
 	cmode_music = 'sound/music/combat_bog.ogg'
 
 /datum/outfit/job/roguetown/adventurer/apothecary/pre_equip(mob/living/carbon/human/H)
@@ -45,6 +45,7 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/sewing, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/craft/carpentry, 2, TRUE)
+		H.mind.adjust_spellpoints(1)
 		H.change_stat("intelligence", 3)
 		H.change_stat("speed", 2)
 		H.change_stat("fortune", 1)

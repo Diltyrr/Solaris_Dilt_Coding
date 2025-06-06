@@ -9,7 +9,7 @@
 
 	allowed_races = RACES_ALL_KINDS
 	allowed_sexes = list(MALE, FEMALE)
-	spells = list(/obj/effect/proc_holder/spell/targeted/touch/prestidigitation, /obj/effect/proc_holder/spell/invoked/projectile/fireball/greater)
+	spells = list(/obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 
 	tutorial = "You are the highest-ranking member of the local branch of the Mage's University, having honed your skills for years upon years \
 				in every field of study that even berefts Kasmidian's realm - and yet in spite of your stature, in spite of the micromanaging and \
@@ -17,8 +17,8 @@
 
 	outfit = /datum/outfit/job/roguetown/head_mage
 	display_order = JDO_HEAD_MAGE
-	give_bank_account = 8
-	min_pq = 4 // Head of the damn "department"
+	give_bank_account = 47
+	min_pq = 4 // Head of the damn "department", High potential for abuse, lovepotion/killersice/greater fireball is not for the faint of heart
 	max_pq = null
 	round_contrib_points = 3
 	cmode_music = 'sound/music/combat_bandit_mage.ogg'
@@ -33,12 +33,13 @@
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
 	belt = /obj/item/storage/belt/rogue/leather/plaquesilver
 	beltr = /obj/item/storage/keyring/head_mage
-	beltl = /obj/item/book/granter/spellbook/magician
-	r_hand = /obj/item/rogueweapon/woodstaff
+	beltl = /obj/item/book/spellbook
+	r_hand = /obj/item/rogueweapon/woodstaff/riddle_of_steel/head_mage
 	backl = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(/obj/item/storage/belt/rogue/pouch/coins/rich)
 	ADD_TRAIT(H, TRAIT_SEEPRICES, "[type]")
 	ADD_TRAIT(H, TRAIT_INTELLECTUAL, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_ARCANE_T4, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 6, TRUE)
@@ -58,4 +59,10 @@
 		H.change_stat("strength", -1)
 		H.change_stat("constitution", -1)
 		H.change_stat("intelligence", 4)
-		H.mind.adjust_spellpoints(3)
+		H.mind.adjust_spellpoints(11)
+		if(H.age == AGE_OLD)
+			H.mind.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
+			H.change_stat("speed", -1)
+			H.change_stat("intelligence", 1)
+			H.change_stat("perception", 1)
+			H.mind.adjust_spellpoints(2)

@@ -48,7 +48,7 @@
 	charging_slowdown = 1
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/holy
-	charge_max = 60 SECONDS
+	recharge_time = 60 SECONDS
 
 /obj/effect/proc_holder/spell/invoked/bud/cast(list/targets, mob/living/user)
 	var/target = targets[1]
@@ -84,7 +84,7 @@
 	sound = 'sound/magic/whiteflame.ogg'
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
-	charge_max = 10 SECONDS
+	recharge_time = 10 SECONDS
 	miracle = FALSE
 
 /obj/effect/proc_holder/spell/invoked/variellecurse/cast(list/targets, mob/living/user)

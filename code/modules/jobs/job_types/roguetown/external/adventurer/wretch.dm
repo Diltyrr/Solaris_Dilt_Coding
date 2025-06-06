@@ -253,7 +253,7 @@
 	allowed_races = RACES_ALL_KINDS
 	outfit = /datum/outfit/job/roguetown/wretch/necromancer
 	category_tags = list(CTAG_WRETCH)
-	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_OUTLANDER, TRAIT_ZOMBIE_IMMUNE, TRAIT_MAGEARMOR, TRAIT_GRAVEROBBER, TRAIT_OUTLAW)
+	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_OUTLANDER, TRAIT_ZOMBIE_IMMUNE, TRAIT_MAGEARMOR, TRAIT_GRAVEROBBER, TRAIT_OUTLAW, TRAIT_ARCANE_T3)
 
 
 /datum/outfit/job/roguetown/wretch/necromancer/pre_equip(mob/living/carbon/human/H)
@@ -269,7 +269,7 @@
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	beltl = /obj/item/rogueweapon/huntingknife
 	backl = /obj/item/storage/backpack/rogue/satchel
-	backr = /obj/item/rogueweapon/woodstaff
+	backr = /obj/item/rogueweapon/woodstaff/ruby
 	backpack_contents = list(/obj/item/spellbook_unfinished/pre_arcane = 1, /obj/item/roguegem/amethyst = 1, /obj/item/roguekey/underking = 1, /obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/flashlight/flare/torch/lantern/prelit = 1)
 	H.mind.adjust_skillrank(/datum/skill/combat/polearms, 3, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
@@ -282,7 +282,7 @@
 	H.cmode_music = 'sound/music/combat_cult.ogg'
 	if(H.age == AGE_OLD)
 		H.mind.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
-		H.mind.adjust_spellpoints(1)
+		H.mind.adjust_spellpoints(2)
 	H.change_stat("intelligence", 4)
 	H.change_stat("endurance", 1)
 	H.change_stat("speed", 1)
@@ -292,14 +292,14 @@
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/minion_order)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/raise_lesser_undead/necromancer)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/gravemark)
-	H.mind.adjust_spellpoints(1)
+	H.mind.adjust_spellpoints(5)
 	GLOB.excommunicated_players += H.real_name
 	var/my_crime = input(H, "What is your crime?", "Crime") as text|null
 	if (!my_crime)
 		my_crime = "crimes against the Crown"
 	var/bounty_total
 	bounty_total = rand(151, 250)
-	add_bounty(H.real_name, bounty_total, FALSE, my_crime, "The Holy See")
+	add_bounty(H.real_name, bounty_total, FALSE, my_crime, "The Chapel Of Lights")
 
 
 /datum/advclass/wretch/berserker

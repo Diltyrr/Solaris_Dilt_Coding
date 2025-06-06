@@ -6,7 +6,7 @@
 	chargedrain = 1
 	chargetime = 0 SECONDS
 	releasedrain = 0 
-	charge_max = 3 SECONDS
+	recharge_time = 3 SECONDS
 	var/order_range = 12
 	var/faction_ordering = FALSE ///this sets whether it orders mobs the user is aligned with in range or just mobs who are the character's 'friends' (ie, their summons)
 

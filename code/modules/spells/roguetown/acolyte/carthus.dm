@@ -4,7 +4,7 @@
 /obj/effect/proc_holder/spell/self/divine_strike
 	name = "Divine Strike"
 	overlay = "createlight"
-	charge_max = 1 MINUTES
+	recharge_time = 1 MINUTES
 	movement_interrupt = FALSE
 	chargedrain = 0
 	chargetime = 1 SECONDS
@@ -80,7 +80,7 @@
 	name = "Call to Arms"
 	desc = "Grants you and all allies nearby a buff to their strength, endurance, and constitution."
 	overlay_state = "call_to_arms"
-	charge_max = 5 MINUTES
+	recharge_time = 5 MINUTES
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	invocation = "FOR GLORY AND HONOR!"
 	invocation_type = "shout"
@@ -116,7 +116,7 @@
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
-	charge_max = 20 SECONDS
+	recharge_time = 20 SECONDS
 	miracle = TRUE
 	devotion_cost = 50
 

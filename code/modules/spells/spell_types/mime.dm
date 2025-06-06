@@ -7,7 +7,7 @@
 	invocation_type = "emote"
 	invocation_emote_self = "<span class='notice'>I form a wall in front of myself.</span>"
 	summon_lifespan = 300
-	charge_max = 300
+	recharge_time = 300
 	clothes_req = FALSE
 	antimagic_allowed = TRUE
 	range = 0
@@ -36,7 +36,7 @@
 	invocation_type = "emote"
 	invocation_emote_self = "<span class='notice'>I conjure an invisible chair and sit down.</span>"
 	summon_lifespan = 250
-	charge_max = 300
+	recharge_time = 300
 	clothes_req = FALSE
 	antimagic_allowed = TRUE
 	range = 0
@@ -73,7 +73,7 @@
 	clothes_req = FALSE
 	human_req = TRUE
 	antimagic_allowed = TRUE
-	charge_max = 3000
+	recharge_time = 3000
 	range = -1
 	include_user = TRUE
 
@@ -112,7 +112,7 @@
 	wall_type = /obj/effect/forcefield/mime/advanced
 	invocation_type = "emote"
 	invocation_emote_self = "<span class='notice'>I form a blockade in front of myself.</span>"
-	charge_max = 600
+	recharge_time = 600
 	sound =  null
 	clothes_req = FALSE
 	antimagic_allowed = TRUE

@@ -94,7 +94,7 @@
 		playsound(owner, 'sound/blank.ogg', 75, FALSE)
 		to_chat(rewarded, span_greentext("I feel a surge of mana flow into you!"))
 		for(var/obj/effect/proc_holder/spell/spell in rewarded.mind.spell_list)
-			spell.charge_counter = spell.charge_max
+			spell.charge_counter = spell.recharge_time
 			spell.recharging = FALSE
 			spell.update_icon()
 		rewarded.adjustBruteLoss(-25)

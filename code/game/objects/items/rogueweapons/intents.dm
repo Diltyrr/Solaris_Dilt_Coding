@@ -45,10 +45,18 @@
 	var/reach = 1 //In tiles, how far this weapon can reach; 1 for adjacent, which is default
 	var/miss_text //THESE ARE FOR UNARMED MISSING ATTACKS
 	var/miss_sound //THESE ARE FOR UNARMED MISSING ATTACKS
+	var/glow_intensity = null	//How much glow this intent has. Used for spells
+	var/glow_color = null // The color of the glow. Used for spells
+	var/mob_light = null // tracking mob_light
+	var/obj/effect/mob_charge_effect = null // The effect to be added (on top) of the mob while it is charging
 
 /datum/intent/Destroy()
 	if(chargedloop)
 		chargedloop.stop()
+	if(mob_light)
+		QDEL_NULL(mob_light)
+	if(mob_charge_effect)
+		mastermob.vis_contents -= mob_charge_effect
 	if(mastermob.curplaying == src)
 		mastermob.curplaying = null
 	mastermob = null
@@ -165,12 +173,20 @@
 			chargedloop.stop()
 		chargedloop.start(chargedloop.parent)
 		mastermob.curplaying = src
+	if(glow_color && glow_intensity)
+		mob_light = mastermob.mob_light(glow_color, glow_intensity)
+	if(mob_charge_effect)
+		mastermob.vis_contents += mob_charge_effect
 
 /datum/intent/proc/on_mouse_up()
 	if(chargedloop)
 		chargedloop.stop()
 	if(mastermob?.curplaying == src)
 		mastermob?.curplaying = null
+	if(mob_light)
+		qdel(mob_light)
+	if(mob_charge_effect)
+		mastermob.vis_contents -= mob_charge_effect
 
 
 /datum/intent/use

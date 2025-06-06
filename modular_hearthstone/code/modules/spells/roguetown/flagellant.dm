@@ -25,7 +25,7 @@
 	invocation_type = "shout"
 	associated_skill = /datum/skill/misc/medicine
 	antimagic_allowed = TRUE
-	charge_max = 300 // 30 seconds cooldown
+	recharge_time = 300 // 30 seconds cooldown
 	miracle = FALSE
 	devotion_cost = 0
 	var/mob/living/carbon/human/linked_target = null
@@ -230,7 +230,7 @@
 	invocation_type = "shout"
 	associated_skill = /datum/skill/misc/medicine
 	antimagic_allowed = TRUE
-	charge_max = 300 // 30 seconds cooldown
+	recharge_time = 300 // 30 seconds cooldown
 	devotion_cost = 0
 
 /obj/effect/proc_holder/spell/invoked/affliction_transfer/cast(list/targets, mob/living/user)
@@ -376,7 +376,7 @@
 	invocation_type = "shout"
 	associated_skill = /datum/skill/misc/medicine
 	antimagic_allowed = TRUE
-	charge_max = 300 // 30 seconds cooldown
+	recharge_time = 300 // 30 seconds cooldown
 	miracle = FALSE
 	devotion_cost = 0
 
@@ -445,7 +445,7 @@
 	invocation_type = "shout"
 	associated_skill = /datum/skill/misc/medicine
 	antimagic_allowed = TRUE
-	charge_max = 300 // 30 seconds cooldown
+	recharge_time = 300 // 30 seconds cooldown
 	miracle = FALSE
 	devotion_cost = 0
 

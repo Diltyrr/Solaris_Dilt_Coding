@@ -24,7 +24,7 @@
 /datum/outfit/job/roguetown/alchemist
 	name = "Alchemist"
 	jobtype = /datum/job/roguetown/alchemist
-	backpack_contents = list(/obj/item/book/granter/spellbook/magician = 1)
+	backpack_contents = list(/obj/item/book/spellbook = 1)
 
 /datum/outfit/job/roguetown/alchemist/pre_equip(mob/living/carbon/human/H)
 	..()

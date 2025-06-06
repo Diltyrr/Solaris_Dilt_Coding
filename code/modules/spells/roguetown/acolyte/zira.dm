@@ -11,9 +11,12 @@
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
 	sound = 'sound/magic/churn.ogg'
+	spell_tier = 2 // Combat spell
+	invocation = "Obcaeco!"
+	invocation_type = "whisper"
 	associated_skill = /datum/skill/magic/arcane
 	antimagic_allowed = TRUE
-	charge_max = 15 SECONDS
+	recharge_time = 15 SECONDS
 	cost = 1
 
 /obj/effect/proc_holder/spell/invoked/blindness/miracle
@@ -45,14 +48,16 @@
 	chargedrain = 5
 	chargetime = 5
 	clothes_req = FALSE
-	charge_max = 30 SECONDS
+	recharge_time = 30 SECONDS
 	range = 3
 	warnie = "sydwarning"
 	movement_interrupt = FALSE
+	spell_tier = 2
 	invocation_type = "none"
 	sound = 'sound/misc/area.ogg' //This sound doesnt play for some reason. Fix me.
 	associated_skill = /datum/skill/magic/arcane
 	antimagic_allowed = TRUE
+	hide_charge_effect = TRUE
 	cost = 2
 
 /obj/effect/proc_holder/spell/invoked/invisibility/miracle

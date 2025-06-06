@@ -4,7 +4,7 @@
 	range = 5
 	overlay_state = "consecrateburial"
 	releasedrain = 30
-	charge_max = 30 SECONDS
+	recharge_time = 30 SECONDS
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	max_targets = 0
 	cast_without_targets = TRUE
@@ -36,7 +36,7 @@
 	overlay_state = "necra"
 	releasedrain = 30
 	chargetime = 2 SECONDS
-	charge_max = 60 SECONDS
+	recharge_time = 60 SECONDS
 	max_targets = 0
 	cast_without_targets = TRUE
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
@@ -88,7 +88,7 @@
 	range = 5
 	overlay_state = "speakwithdead"
 	releasedrain = 30
-	charge_max = 30 SECONDS
+	recharge_time = 30 SECONDS
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	max_targets = 0
 	cast_without_targets = TRUE

@@ -25,7 +25,8 @@
 		TRAIT_HEAVYARMOR,
 		TRAIT_DEATHSIGHT,
 		TRAIT_COUNTERCOUNTERSPELL,
-		TRAIT_RITUALIST
+		TRAIT_RITUALIST,
+		TRAIT_ARCANE_T3
 		)
 
 	var/STASTR = 10
@@ -113,6 +114,7 @@
 	H.mind.adjust_skillrank(/datum/skill/combat/knives, 5, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/craft/crafting, 1, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
+	H.mind.adjust_spellpoints(5)
 
 	H.change_stat("strength", -1)
 	H.change_stat("intelligence", 5)
@@ -192,7 +194,7 @@
 		/obj/item/storage/belt/rogue/leather/black,
 		/obj/item/reagent_containers/glass/bottle/rogue/manapot,
 		/obj/item/rogueweapon/huntingknife/idagger/steel,
-		/obj/item/rogueweapon/woodstaff/wise,
+		/obj/item/rogueweapon/woodstaff/riddle_of_steel,
 		/obj/item/ritechalk,
 		/obj/item/storage/backpack/rogue/satchel,
 	)

@@ -97,7 +97,7 @@
 	chargedrain = 1
 	chargetime = 15
 	releasedrain = 80 // This is quite costy. Shouldn't be able to really spam them right off the cuff, combined with having to type out an order. Should prevent VERY occupied officers from ALSO ordering
-	charge_max = 2 MINUTES
+	recharge_time = 2 MINUTES
 	miracle = FALSE
 	sound = 'sound/magic/inspire_02.ogg'
 

@@ -30,7 +30,7 @@
 			msg = span_notice("[deactive_msg]")
 		if(charge_type == "recharge")
 			var/refund_percent = current_amount/projectile_amount
-			charge_counter = charge_max * refund_percent
+			charge_counter = recharge_time * refund_percent
 			start_recharge()
 		active = FALSE
 		remove_ranged_ability(msg)
@@ -100,7 +100,7 @@
 	name = "Fireball"
 	desc = ""
 	school = "evocation"
-	charge_max = 60
+	recharge_time = 60
 	clothes_req = FALSE
 	invocation = "ONI SOMA"
 	invocation_type = "shout"
@@ -122,6 +122,5 @@
 	movement_interrupt = TRUE
 
 /obj/effect/proc_holder/spell/aimed/fireball/fire_projectile(list/targets, mob/living/user)
-	var/range = 6 + 2*spell_level
-	projectile_var_overrides = list("range" = range)
+	projectile_var_overrides = list("range" = 6)
 	return ..()

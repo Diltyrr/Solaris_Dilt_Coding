@@ -359,6 +359,7 @@
 	if(damaged_clothes)
 		update_clothes_damaged_state(FALSE)
 	armor = original_armor
+
 /obj/item/clothing/proc/update_clothes_damaged_state(damaging = TRUE)
 	var/index = "[REF(initial(icon))]-[initial(icon_state)]"
 	var/static/list/damaged_clothes_icons = list()
