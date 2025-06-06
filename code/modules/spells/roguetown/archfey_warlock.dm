@@ -1,5 +1,6 @@
 /obj/effect/proc_holder/spell/invoked/archfey_warlock_strip
-	name = "Strip Clothes"
+	name = "strip clothes"
+	desc = "Magically removes a piece of clothing from a nearby target."
 	overlay_state = "bcry"
 	releasedrain = 80
 	charge_max = 3 MINUTES
@@ -21,7 +22,8 @@
 	return TRUE
 
 /obj/effect/proc_holder/spell/targeted/archfey_warlock_seelie_kiss
-	name = "Regenerative Kiss"
+	name = "regenerative kiss"
+	desc = "Heals a nearby ally with a magical kiss, restoring health and stamina but causing mild nausea.""
 	overlay_state = "heal"
 	releasedrain = 0
 	charge_max = 2 MINUTES
@@ -43,7 +45,8 @@
 	return FALSE
 
 /obj/effect/proc_holder/spell/invoked/summon_rat
-	name = "Call Beast"
+	name = "call Beast"
+	dest = "Summons a small rat or, rarely, a hostile giant rat."
 	overlay_state = "dendor"
 	releasedrain = 30
 	charge_max = 2 MINUTES
@@ -68,6 +71,7 @@
 
 /obj/effect/proc_holder/spell/targeted/roustame
 	name = "Tame Rous"
+	desc = "Calms a nearby hostile rous, turning them into loyal allies.
 	range = 5
 	overlay_state = "tamebeast"
 	releasedrain = 30

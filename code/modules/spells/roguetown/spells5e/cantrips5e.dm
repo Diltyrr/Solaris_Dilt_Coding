@@ -120,7 +120,7 @@
 // Notes: You extend your hand and trace a sigil of warding in the air.
 /obj/effect/proc_holder/spell/self/bladeward5e
 	name = "Blade Ward"
-	desc = ""
+	desc = "Grants you temporary resistance to physical harm. For a short time, incoming weapon damage is dulled, lessening its impact."
 	clothes_req = FALSE
 	range = 8
 	overlay_state = "null"
@@ -185,6 +185,7 @@
 /obj/effect/proc_holder/spell/invoked/boomingblade5e
 	name = "Booming Blade"
 	overlay_state = "blade_burst"
+	desc = "Infuses your weapon strike with volatile energy. If the target moves after being hit, a thunderous explosion erupts around them, dealing extra damage"
 	releasedrain = 50
 	chargetime = 3
 	charge_max = 15 SECONDS
@@ -312,7 +313,7 @@
 
 /obj/item/chilltouch5e
 	name = "Skeletal Hand"
-	desc = "A ghostly, skeletal hand which moves of it's own accord."
+	desc = "Conjures a spectral skeletal hand that clings to your target, delivering chilling torment."
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "bounty"
 
@@ -398,7 +399,7 @@
 //Conjure temporary campfire, why not?
 /obj/effect/proc_holder/spell/aoe_turf/conjure/createbonfire5e
 	name = "Create Bonfire"
-	desc = ""
+	desc = "Summons a small magical fire that crackles with arcane energy. It sheds light, burns enemies, and can even be used for cooking."
 	clothes_req = FALSE
 	range = 0
 	overlay_state = "null"
@@ -461,6 +462,7 @@
 // Notes: turn a freshly dead body into a rotman
 /obj/effect/proc_holder/spell/invoked/decompose5e
 	name = "Decompose"
+	desc = "whispers a curse that hastens decay in a living body. If successful, it rots flesh, weakens limbs, and may even awaken something foul within the target."
 	overlay_state = "null"
 	releasedrain = 50
 	chargetime = 5
@@ -557,13 +559,14 @@
 	xp_gain = TRUE
 	miracle = FALSE
 
-	invocation = "Eldritch blast!" // Bad incantation but it's funny.
+	invocation = "Begone!" // Bad incantation but it's funny.
 	invocation_type = "shout"
 	ignore_fiendkiss = FALSE
 
 
 /obj/projectile/magic/eldritchblast5e
 	name = "eldritch blast"
+	desc = "Unleashes a crackling arcane force toward a distant foe."
 	icon = 'icons/obj/projectiles.dmi'
 	icon_state = "arcane_barrage"
 	damage = 25
@@ -578,6 +581,7 @@
 
 /obj/effect/proc_holder/spell/invoked/projectile/eldritchblast5e/empowered
 	name = "empowered eldritch blast"
+	desc = "Empowered form of eldritch blast. Hits harder and knocks targets back with a surge of otherworldly power.""
 	charge_max = 8 SECONDS //cooldown
 	releasedrain = 40
 	projectile_type = /obj/projectile/magic/eldritchblast5e/empowered
@@ -654,7 +658,7 @@
 
 /obj/effect/proc_holder/spell/invoked/projectile/firebolt5e
 	name = "Fire Bolt"
-	desc = ""
+	desc = "A blazing bolt of fire leaps from your hand to scorch a target."
 	clothes_req = FALSE
 	range = 8
 	projectile_type = /obj/projectile/magic/aoe/fireball/firebolt5e
@@ -698,7 +702,8 @@
 //	FROSTBITE
 //==============================================
 /obj/effect/proc_holder/spell/invoked/frostbite5e
-	name = "Frostbite"
+	name = "frostbite"
+	desc = "Unleashes a chilling blast of arcane cold that slows your target and deals immediate cold damage."
 	overlay_state = "null"
 	releasedrain = 50
 	chargetime = 1
@@ -762,7 +767,8 @@
 //	GREEN-FLAME BLADE
 //==============================================
 /obj/effect/proc_holder/spell/invoked/greenflameblade5e
-	name = "Green-Flame Blade"
+	name = "green-Flame Blade"
+	desc = "A melee strike engulfed in magical green fire that burns the target and ignites nearby foes with a burst of flame.""
 	overlay_state = "null"
 	releasedrain = 50
 	chargetime = 3
@@ -782,7 +788,7 @@
 	xp_gain = TRUE
 	miracle = FALSE
 
-	invocation = "Green flame blade!"
+	invocation = "Blade of emerald blaze!"
 	invocation_type = "shout" //can be none, whisper, emote and shout
 
 /obj/effect/proc_holder/spell/invoked/greenflameblade5e/cast(list/targets, mob/living/user)
@@ -818,7 +824,8 @@
 //	GUIDANCE
 //==============================================
 /obj/effect/proc_holder/spell/invoked/guidance5e
-	name = "Guidance"
+	name = "guidance"
+	desc = "Bestows a blessing to someone else that sharpens their mind, granting a temporary boost to intelligence."
 	overlay_state = "null"
 	releasedrain = 50
 	chargetime = 1
@@ -888,7 +895,8 @@
 //	INFESTATION
 //==============================================
 /obj/effect/proc_holder/spell/invoked/infestation5e
-	name = "Infestation"
+	name = "infestation"
+	desc = "Surrounds the target with swarming vermin that weaken their constitution and deal ongoing toxic and physical damage."
 	overlay_state = "null"
 	releasedrain = 50
 	chargetime = 10
@@ -975,7 +983,8 @@
 //	LIGHT
 //==============================================
 /obj/effect/proc_holder/spell/self/light5e
-	name = "Light"
+	name = "light"
+	desc = "Conjures a glowing orb of pure light that illuminates your surroundings and can be held like a magical torch.""
 	overlay_state = "null"
 	releasedrain = 50
 	chargetime = 1
@@ -1139,7 +1148,8 @@
 //==============================================
 
 /obj/effect/proc_holder/spell/targeted/lightninglure5e
-	name = "Lightning Lure"
+	name = "lightning Lure"
+	desc = "Creates a crackling electrical link to a target, shocking them if they get too close and forcing them away."
 	overlay_state = "null"
 	releasedrain = 50
 	chargetime = 1
@@ -1196,6 +1206,7 @@
 //==============================================
 /obj/effect/proc_holder/spell/invoked/magicstone5e
 	name = "Magic Stone"
+	desc = "Infuses a stone with magical energy, increasing its damage and throwing force."
 	overlay_state = "null"
 	releasedrain = 50
 	chargetime = 10
@@ -1242,7 +1253,8 @@
 //==============================================
 
 /obj/effect/proc_holder/spell/invoked/mending5e
-	name = "Mending"
+	name = "mending"
+	desc = "Repairs a damaged item, restoring a portion of its integrity and fixing broken status."
 	overlay_state = "null"
 	releasedrain = 50
 	chargetime = 5
@@ -1297,6 +1309,7 @@
 
 /obj/effect/proc_holder/spell/invoked/mindsliver5e
 	name = "Mind Sliver"
+	desc = "Instantly blasts a target's brain with psychic energy, dealing direct organ damage and causing intense mental pain."
 	overlay_state = "null"
 	releasedrain = 30
 	chargetime = 0
@@ -1367,7 +1380,8 @@
 //in the source material this would just be some sort of poison, since we have all sorts of potions, this is better.
 //my hope is that it doesn't work with love poiton...
 /obj/effect/proc_holder/spell/invoked/poisonspray5e
-	name = "Poison Cloud" //renamed to better reflect wtf this does -- vide
+	name = "poison cloud" //renamed to better reflect wtf this does -- vide
+	desc = "A cloud of toxic fumes is created at the targetted location by spraying the reagents inside the caster's currently held container."
 	overlay_state = "null"
 	releasedrain = 50
 	chargetime = 3
@@ -1383,7 +1397,7 @@
 	sound = 'sound/magic/whiteflame.ogg'
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane //can be arcane, druidic, blood, holy
-	cost = 1
+	cost = 2
 
 	xp_gain = TRUE
 	miracle = FALSE
@@ -1428,7 +1442,7 @@
 //==============================================
 /obj/effect/proc_holder/spell/self/primalsavagery5e
 	name = "Primal Savagery"
-	desc = ""
+	desc = "Empowers you with venomous fangs, adding poison to your bite attacks for 30 seconds."
 	clothes_req = FALSE
 	range = 8
 	overlay_state = "null"
@@ -1482,8 +1496,8 @@
 //==============================================
 // Notes: another projectile, this one slows the target for a short while
 /obj/effect/proc_holder/spell/invoked/projectile/rayoffrost5e
-	name = "Ray of Frost"
-	desc = ""
+	name = "ray of frost"
+	desc = "Fires a chilling ray that deals damage and slows the target’s movement for 6 seconds."
 	clothes_req = FALSE
 	range = 8
 	projectile_type = /obj/projectile/magic/rayoffrost5e

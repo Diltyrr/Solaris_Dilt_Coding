@@ -252,6 +252,8 @@ GLOBAL_LIST_EMPTY(wizard_spells_list)
 		/obj/effect/proc_holder/spell/invoked/poisonspray5e,
 		/obj/effect/proc_holder/spell/self/primalsavagery5e,
 		/obj/effect/proc_holder/spell/invoked/projectile/rayoffrost5e,
+		/obj/effect/proc_holder/spell/invoked/arcane_storm,
+		/obj/effect/proc_holder/spell/aoe_turf/conjure/Wolf,
 	)
 
 	for(var/i = 1, i <= spell_choices.len, i++)

@@ -3,7 +3,8 @@
 	ignore_faithless = TRUE
 
 /obj/effect/proc_holder/spell/invoked/eldritchhealing
-	name = "Eldritch Healing"
+	name = "eldritch healing"
+	desc = "Restores health with shimmering arcane energy."
 	overlay_state = null
 	releasedrain = 30
 	chargedrain = 0
@@ -49,6 +50,7 @@
 // curse
 /obj/effect/proc_holder/spell/invoked/eldritchcurse
 	name = "curse of the "
+	desc = "Inflicts a lingering curse that weakens various abilities depending on patron."
 	overlay_state = null
 	releasedrain = 30
 	chargedrain = 0
@@ -109,8 +111,8 @@
 
 // cloak of flies
 /obj/effect/proc_holder/spell/self/cloakofflies
-	name = "Cloak of Flies"
-	desc = ""
+	name = "cloak of flies"
+	desc = "Surrounds you with a buzzing cloud of flies that harms nearby foes."
 	overlay_state = "null"
 	sound = list('sound/magic/whiteflame.ogg')
 	active = FALSE
@@ -168,7 +170,7 @@
 //find familiar (imp, psuedodragon, quasit, seelie)
 /obj/effect/proc_holder/spell/self/findfamiliar
 	name = "Find Familiar"
-	desc = ""
+	desc = "Summon a loyal magical companion to aid you in your adventures."
 	overlay_state = "null"
 	sound = list('sound/magic/whiteflame.ogg')
 	active = FALSE

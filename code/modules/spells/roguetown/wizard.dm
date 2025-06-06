@@ -365,12 +365,12 @@
 	randomdir = FALSE
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/Wolf
-	name = "Summon Volf"
-	desc = ""
+	name = "Summon Wolf"
+	desc = "Summons a wolf familiar that fight for the caster."
 	school = "conjuration"
 	charge_max = 1200
 	clothes_req = FALSE
-	invocation = "NOUK FHUNMM SACP RISSKA"
+	invocation = "By wild pact and silver bond, I summon thee."
 	invocation_type = "shout"
 	overlay_state = "wolf_head"
 	range = 1
