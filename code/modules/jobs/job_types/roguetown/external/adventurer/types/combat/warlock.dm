@@ -89,7 +89,6 @@
 			H.change_stat("intelligence", 1)
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/guidance)
-			ADD_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC) // Goo-locks and book pacts can actually be a mage
 		if("power") //empowered eldritch blast
 			H.mind.RemoveSpell(/obj/effect/proc_holder/spell/invoked/projectile/eldritchblast)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/eldritchblast/empowered)
@@ -146,11 +145,7 @@
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/roustame)
 
 	ADD_TRAIT(H, TRAIT_WILDMAGIC, TRAIT_GENERIC)
-	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) // If we took boon of knowledge, our arcane level gets bumped by one.
-		REMOVE_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
-	else
-		ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
 
 	H.visible_message(span_info("I made a deal with an archseelie from the wild."))
 
@@ -177,11 +172,7 @@
 	H.mind.adjust_spellpoints(2) // general arcane power, less total gain than other trees, 4 points total (it's hard to give "celestial" a real spell theme)
 
 	givehealing(H, patronchoice, TRUE)
-	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) // If we took boon of knowledge, our arcane level gets bumped by one.
-		REMOVE_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
-	else
-		ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
 
 	H.visible_message(span_info("I made a deal with a celestial being from the heavens."))
 
@@ -225,11 +216,7 @@
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_WATERBREATHING, TRAIT_GENERIC)
-	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) // If we took boon of knowledge, our arcane level gets bumped by one.
-		REMOVE_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
-	else
-		ADD_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
 
 	H.visible_message(span_info("I made a deal with a fathomless creecher of the sea."))
 
@@ -258,11 +245,7 @@
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fireball) // fireball is a very strong spell, fiendkiss makes it even stronger
 	ADD_TRAIT(H, TRAIT_NOFIRE, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_FIENDKISS, TRAIT_GENERIC)
-	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) // If we took boon of knowledge, our arcane level gets bumped by one.
-		REMOVE_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
-	else
-		ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
 
 	H.visible_message(span_info("I made a deal with a fiend from the hells."))
 
@@ -292,11 +275,8 @@
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/repulse) // going with wind theme, speed and airblast, possibly eventual picker for "which type of genie did you make a deal with"
 
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) // If we took boon of knowledge, our arcane level gets bumped by one.
-		REMOVE_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
-	else
-		ADD_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
+
 
 	H.visible_message(span_info("I made a deal with a djinn from a magic lamptern."))
 
@@ -324,11 +304,7 @@
 	H.change_stat("perception", 2)
 	H.change_stat("constitution", 1)
 
-	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) //If we took boon of knowledge, our arcane level gets bumped by one.
-		REMOVE_TRAIT(H, TRAIT_ARCANE_T1)
-		ADD_TRAIT(H, TRAIT_ARCANE_T4, TRAIT_GENERIC)
-	else
-		ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
 
 	H.mind.adjust_spellpoints(3) // 6 total spell points after arcane adjust; forbidden eldritch knowledge to build your own spellbook, but you get nothing else
 
@@ -366,11 +342,7 @@
 
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) // If we took boon of knowledge, our arcane level gets bumped by one.
-		REMOVE_TRAIT(H, TRAIT_ARCANE_T1)
-		ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
-	else
-		ADD_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
 
 	H.visible_message(span_info("I made a deal with a sentient weapon."))
 
@@ -408,11 +380,7 @@
 	// ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC) // Unnecessary with the heavy armor trait
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
-	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) // If we took boon of knowledge, our arcane level gets bumped by one.
-		REMOVE_TRAIT(H, TRAIT_ARCANE_T1)
-		ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
-	else
-		ADD_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
 
 	H.visible_message(span_info("I made a deal with a horror from the grave."))
 
@@ -569,28 +537,61 @@
 
 /datum/outfit/job/roguetown/adventurer/warlock/proc/giveweapon(mob/living/carbon/human/H, patronchoice)
 	H.mind.adjust_skillrank_up_to(/datum/skill/magic/arcane, 3, TRUE)
-	var/item_pick = pick(1,2,3,4,5,6,7,8,9,10)
+	
+	var/weapons_choice = list(
+		"Axe",
+		"Battleaxe",
+		"Cleaver",
+		"Dagger",
+		"Eagle's Beak",
+		"Flail",
+		"Goden",
+		"Greatsword",
+		"Halberd",
+		"Longsword",
+		"Mace",
+		"Peasant war flail",
+		"Rapier",
+		"Scythe",
+		"Spear",
+		"Whip",
+	)
+
+	var/weapon_chosen = input("Choose your sentient weapon", "Available weapons") as anything in weapon_choice
 	var/item_type
-	switch(item_pick)
-		if(1)
-			item_type = /obj/item/rogueweapon/sword
-		if(2)
-			item_type = /obj/item/rogueweapon/greatsword
-		if(3)
-			item_type = /obj/item/rogueweapon/spear
-		if(4)
-			item_type = /obj/item/rogueweapon/halberd
-		if(5)
+
+	switch(patronchoice)
+		if("Axe")
+			item_type = /obj/item/rogueweapon/stoneaxe/woodcut/steel
+		if("Battleaxe")
 			item_type = /obj/item/rogueweapon/stoneaxe/battle
-		if(6)
-			item_type = /obj/item/rogueweapon/mace/goden/steel
-		if(7)
-			item_type = /obj/item/rogueweapon/mace/steel
-		if(8)
+		if("Cleaver")
+			item_type = /obj/item/rogueweapon/huntingknife/cleaver
+		if("Dagger")
 			item_type = /obj/item/rogueweapon/huntingknife/idagger/steel
-		if(9)
-			item_type = /obj/item/rogueweapon/flail
-		if(10)
+		if("Eagle's Beak")
+			item_type = /obj/item/rogueweapon/eaglebeak
+		if("Flail")
+			item_type = /obj/item/rogueweapon/flail/sflail
+		if("Goden")
+			item_type = /obj/item/rogueweapon/mace/goden/steel
+		if("Greatsword")
+			item_type = /obj/item/rogueweapon/greatsword
+		if("Halberd")
+			item_type = /obj/item/rogueweapon/halberd
+		if("Longsword")
+			item_type = /obj/item/rogueweapon/sword/long
+		if("Mace")
+			item_type = /obj/item/rogueweapon/mace/steel
+		if("Peasant war flail")
+			item_type = /obj/item/rogueweapon/flail/peasantwarflail
+		if("Rapier")
+			item_type = /obj/item/rogueweapon/sword/rapier
+		if("Scythe")
+			item_type = /obj/item/rogueweapon/sickle/scythe
+		if("Spear")
+			item_type = /obj/item/rogueweapon/spear
+		if("Whip")
 			item_type = /obj/item/rogueweapon/whip
 
 	var/obj/item/item

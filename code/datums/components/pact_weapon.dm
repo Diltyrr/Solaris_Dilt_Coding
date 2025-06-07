@@ -2,14 +2,6 @@
 	var/obj/item/rogueweapon/weapon
 	var/mob/living/weapon_owner //who owns this pact weapon
 	var/patronchoice
-	var/weapons = list(
-		/obj/item/rogueweapon/huntingknife/cleaver, /obj/item/rogueweapon/huntingknife/idagger/steel, //daggers
-		/obj/item/rogueweapon/sword/rapier, /obj/item/rogueweapon/sword/long, /obj/item/rogueweapon/greatsword, //swords
-		/obj/item/rogueweapon/mace/steel, /obj/item/rogueweapon/mace/goden/steel, //blunt
-		/obj/item/rogueweapon/stoneaxe/woodcut/steel, /obj/item/rogueweapon/stoneaxe/battle, //axes
-		/obj/item/rogueweapon/whip, /obj/item/rogueweapon/flail/sflail, /obj/item/rogueweapon/flail/peasantwarflail, //flails
-		/obj/item/rogueweapon/spear, /obj/item/rogueweapon/halberd, /obj/item/rogueweapon/eaglebeak, /obj/item/rogueweapon/sickle/scythe //polearms
-		)
 
 /datum/component/pact_weapon/Initialize(mob/living/L, pc)
 	if(!istype(parent, /obj/item/rogueweapon))
@@ -41,24 +33,6 @@
 		RegisterSignal(weapon_parent, COMSIG_ATOM_ATTACK_HAND_RIGHT, PROC_REF(attack_right))
 		//RegisterSignal(weapon_parent, COMSIG_ITEM_EQUIPPED,PROC_REF(equipped))
 		RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(dropped))
-
-/datum/component/pact_weapon/proc/attack_right(obj/item/source, mob/user)
-	var/mob/living/target = user
-	if(target == weapon_owner)
-		var/obj/item/rogueweapon/weaponchoice = input("Choose your pact weapon", "Available weapons") as anything in weapons
-		var/obj/item/item
-		item = new weaponchoice
-		item.AddComponent(/datum/component/pact_weapon, weapon_owner, patronchoice)
-		item.AddComponent(/datum/component/singing_item, parent.GetComponent(/datum/component/singing_item).weapon_owner, parent.GetComponent(/datum/component/singing_item).personality)
-		var/datum/mind/soul_to_bind = null
-		if(parent.GetComponent(/datum/component/spirit_holding).bound_spirit)
-			soul_to_bind = parent.GetComponent(/datum/component/spirit_holding).bound_spirit.mind
-		item.AddComponent(/datum/component/spirit_holding, soul_to_bind, target)
-		weapon_owner.put_in_hands(item, FALSE)
-		qdel(parent)
-	else
-		to_chat(weapon_owner, span_warning("[target] tried to activate [weapon]!"))
-		weapon.say("You are not my master...")
 
 /* If we'd rather the weapon isn't allowed to be picked up by someone else. Uncomment this, delete the code after.
 /datum/component/pact_weapon/proc/equipped(obj/item/source, mob/user, slot)
