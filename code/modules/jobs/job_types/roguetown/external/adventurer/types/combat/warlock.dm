@@ -108,8 +108,6 @@
 			H.mind.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 		if("wealth") //Pact of the Talisman
-			ADD_TRAIT(H, TRAIT_SEEPRICES, type)
-			H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 3, TRUE)
 			H.put_in_hands(giveamulet(patronchoice), FALSE)
 			beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
 			ADD_TRAIT(H,TRAIT_SEEPRICES, TRAIT_GENERIC)
@@ -150,9 +148,9 @@
 	ADD_TRAIT(H, TRAIT_WILDMAGIC, TRAIT_GENERIC)
 	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) // If we took boon of knowledge, our arcane level gets bumped by one.
 		REMOVE_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_ARCANE_T4, TRAIT_GENERIC)
-	else
 		ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
+	else
+		ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
 
 	H.visible_message(span_info("I made a deal with an archseelie from the wild."))
 
@@ -181,9 +179,9 @@
 	givehealing(H, patronchoice, TRUE)
 	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) // If we took boon of knowledge, our arcane level gets bumped by one.
 		REMOVE_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_ARCANE_T4, TRAIT_GENERIC)
-	else
 		ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
+	else
+		ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
 
 	H.visible_message(span_info("I made a deal with a celestial being from the heavens."))
 
@@ -229,9 +227,9 @@
 	ADD_TRAIT(H, TRAIT_WATERBREATHING, TRAIT_GENERIC)
 	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) // If we took boon of knowledge, our arcane level gets bumped by one.
 		REMOVE_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
-	else
 		ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
+	else
+		ADD_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
 
 	H.visible_message(span_info("I made a deal with a fathomless creecher of the sea."))
 
@@ -262,9 +260,9 @@
 	ADD_TRAIT(H, TRAIT_FIENDKISS, TRAIT_GENERIC)
 	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) // If we took boon of knowledge, our arcane level gets bumped by one.
 		REMOVE_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_ARCANE_T4, TRAIT_GENERIC)
-	else
 		ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
+	else
+		ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
 
 	H.visible_message(span_info("I made a deal with a fiend from the hells."))
 
@@ -296,9 +294,9 @@
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) // If we took boon of knowledge, our arcane level gets bumped by one.
 		REMOVE_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
-		ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
-	else
 		ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
+	else
+		ADD_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
 
 	H.visible_message(span_info("I made a deal with a djinn from a magic lamptern."))
 
@@ -326,12 +324,11 @@
 	H.change_stat("perception", 2)
 	H.change_stat("constitution", 1)
 
-	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) // If we took boon of knowledge we get some spellpoints since we'd be T4 without it.
+	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) //If we took boon of knowledge, our arcane level gets bumped by one.
 		REMOVE_TRAIT(H, TRAIT_ARCANE_T1)
 		ADD_TRAIT(H, TRAIT_ARCANE_T4, TRAIT_GENERIC)
-		H.mind.adjust_spellpoints(3)
 	else
-		ADD_TRAIT(H, TRAIT_ARCANE_T4, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
 
 	H.mind.adjust_spellpoints(3) // 6 total spell points after arcane adjust; forbidden eldritch knowledge to build your own spellbook, but you get nothing else
 
@@ -371,9 +368,9 @@
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) // If we took boon of knowledge, our arcane level gets bumped by one.
 		REMOVE_TRAIT(H, TRAIT_ARCANE_T1)
-		ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
-	else
 		ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
+	else
+		ADD_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
 
 	H.visible_message(span_info("I made a deal with a sentient weapon."))
 
@@ -413,9 +410,9 @@
 	ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
 	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) // If we took boon of knowledge, our arcane level gets bumped by one.
 		REMOVE_TRAIT(H, TRAIT_ARCANE_T1)
-		ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
-	else
 		ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
+	else
+		ADD_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
 
 	H.visible_message(span_info("I made a deal with a horror from the grave."))
 
