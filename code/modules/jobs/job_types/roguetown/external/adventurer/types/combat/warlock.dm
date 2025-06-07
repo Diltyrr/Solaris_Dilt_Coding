@@ -30,91 +30,91 @@
 		ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 	backr = /obj/item/storage/backpack/rogue/satchel
 	neck = null
-	var/patrons = list( //who is your patron?
-		"archfey", //a great seelie | utility | seelie spells
-		"celestial", //a celestial being | utility | faithless healer
-		"fathomless", //a creecher from the depths of the sea | melee combat | medium armor | water themed
-		"fiend", //caster
-		"genie", //a spirit trapped in an item | utility | specialty gear
-		"great old one", //your typical lovecraftian creecher | caster | magic tab
-		"hexblade", //a sentient weapon | melee combat | medium armor | specialty gear
-		"undead" //a creecher from the grave | utility | heavy armor | tank
+	var/patrons = list(
+		"The Verdant Court",        // Formerly "archfey"
+		"The Radiant Ember",        // Formerly "celestial"
+		"The Drowned Choir",        // Formerly "fathomless"
+		"The Ashen Pact",           // Formerly "fiend" 
+		"The Bound Whisper",        // Formerly "genie"
+		"The Hollow Voice",         // Formerly "great old one"
+		"The Wakened Blade",        // Formerly "hexblade"
+		"The Pale Crown",           // Formerly "undead"
 	)
 
 	var/patronchoice = input("Choose your otherworldly patron", "Available patrons") as anything in patrons
 
 	switch(patronchoice)
-		if("archfey")
+		if("The Verdant Court")
 			archfeypatron(H, patronchoice)
-		if("celestial")
+		if("The Radiant Ember")
 			celestialpatron(H, patronchoice)
-		if("fathomless")
+		if("The Drowned Choir")
 			fathomlesspatron(H, patronchoice)
-		if("fiend")
+		if("The Ashen Pact")
 			fiendpatron(H, patronchoice)
-		if("genie")
+		if("The Bound Whisper")
 			geniepatron(H, patronchoice)
-		if("great old one")
+		if("The Hollow Voice")
 			goopatron(H, patronchoice)
-		if("hexblade")
+		if("The Wakened Blade")
 			hexbladepatron(H, patronchoice)
-		if("undead")
+		if("The Pale Crown")
 			undeadpatron(H, patronchoice)
 
-	var/boons = list( //what did you sell your faith for?
-		"strength", //Pact of the Blade
-		"knowledge", //Pact of the Tome
-		"health", //give them healing
-		"wealth", //Pact of the Talisman
-		"love", //ring of soulbinding
-		"friendship", //Pact of the Chain
-		"power", //empowered eldritch blast
-		"purpose", //Pact of the Star Chain
-		"revenge" //give curse
+	var/boons = list( //what did you trade away a piece of yourself for?
+		"A sharper edge",        // strength / blade pact
+		"Secrets best left buried", // knowledge / tome pact
+		"A body that won't break",  // health
+		"Gold that never feels warm", // wealth / talisman
+		"A love that clings",        // soulbinding
+		"A voice that answers",      // friendship / chain pact
+		"A name the world must fear",// power
+		"A reason to keep breathing",// purpose / star chain
+		"A wound that must be answered" // revenge / curse
 	)
 
-	var/boonchoice = input("What did you sell your faith for?", "Available boons") as anything in boons
+	var/boonchoice = input("What did you trade away a piece of yourself for?", "The Boon") as anything in boons
 
 	switch(boonchoice)
-		if("strength") //Pact of the Blade
+		if("A sharper edge") //Pact of the Blade
 			H.put_in_hands(giveweapon(H,patronchoice), FALSE)
 			H.change_stat("strength", 1)
 			H.set_blindness(0)
-		if("friendship") //Pact of the Chain
+		if("A voice that answers") //Pact of the Chain
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/findfamiliar)
 			H.change_stat("perception", 1)
 			H.set_blindness(0)
-		if("knowledge") //Pact of the Tome
+		if("Secrets best left buried") //Pact of the Tome
 			H.put_in_hands(givebook(patronchoice), FALSE)
 			H.change_stat("intelligence", 1)
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/guidance)
-		if("power") //empowered eldritch blast
+		if("A name the world must fear") //empowered eldritch blast
 			H.mind.RemoveSpell(/obj/effect/proc_holder/spell/invoked/projectile/eldritchblast)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/eldritchblast/empowered)
 			H.change_stat("intelligence", 1)
 			H.mind.adjust_spellpoints(1)
-		if("love") //ring of soulbinding
+		if("A love that clings") //ring of soulbinding
 			H.put_in_hands(givering(H))
 			ADD_TRAIT(H, TRAIT_GOODLOVER, TRAIT_GENERIC)
 			H.change_stat("endurance", 1)
 			H.set_blindness(0)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/variellecurse)
-		if("health") //make healthier
+		if("A body that won't break") //make healthier
 			givehealing(H, patronchoice)
 			H.change_stat("constitution", 1)
 			H.set_blindness(0)
 			H.mind.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
 			H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
-		if("wealth") //Pact of the Talisman
+		if("Gold that never feels warm") //Pact of the Talisman
 			H.put_in_hands(giveamulet(patronchoice), FALSE)
 			beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
 			ADD_TRAIT(H,TRAIT_SEEPRICES, TRAIT_GENERIC)
 			H.set_blindness(0)
-		if("purpose") //Pact of the Star Chain
+		if("A reason to keep breathing") //Pact of the Star Chain
 			wrists = /obj/item/rope/chain/constellation
 			H.set_blindness(0)
-		if("revenge") //give curse
+		if("A wound that must be answered") //give curse
 			givecurse(H, patronchoice)
 			H.change_stat("speed", 1)
 			H.set_blindness(0)
@@ -147,7 +147,7 @@
 	ADD_TRAIT(H, TRAIT_WILDMAGIC, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
 
-	H.visible_message(span_info("I made a deal with an archseelie from the wild."))
+	H.visible_message(span_info("I brushed against the glimmering court beneath leaf and moon, and it whispered secrets into my soul."))
 
 /datum/outfit/job/roguetown/adventurer/warlock/proc/celestialpatron(mob/living/carbon/human/H, patronchoice)
 	H.mind.adjust_skillrank_up_to(/datum/skill/combat/polearms, 2, TRUE)
@@ -174,7 +174,7 @@
 	givehealing(H, patronchoice, TRUE)
 	ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
 
-	H.visible_message(span_info("I made a deal with a celestial being from the heavens."))
+	H.visible_message(span_info("Something bright found me in the dark. It left a spark that hasn't gone out."))
 
 /datum/outfit/job/roguetown/adventurer/warlock/proc/fathomlesspatron(mob/living/carbon/human/H, patronchoice) // a watery creature
 	H.mind.adjust_skillrank_up_to(/datum/skill/combat/polearms, 2, TRUE)
@@ -218,7 +218,7 @@
 	ADD_TRAIT(H, TRAIT_WATERBREATHING, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
 
-	H.visible_message(span_info("I made a deal with a fathomless creecher of the sea."))
+	H.visible_message(span_info("The sea sang to me once. I haven't been able to stop hearing it since."))
 
 /datum/outfit/job/roguetown/adventurer/warlock/proc/fiendpatron(mob/living/carbon/human/H, patronchoice) //hellish fiend
 	H.mind.adjust_skillrank_up_to(/datum/skill/combat/polearms, 2, TRUE)
@@ -247,7 +247,7 @@
 	ADD_TRAIT(H, TRAIT_FIENDKISS, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
 
-	H.visible_message(span_info("I made a deal with a fiend from the hells."))
+	H.visible_message(span_info("I reached into a cold fire that never dies. It remembers me now."))
 
 /datum/outfit/job/roguetown/adventurer/warlock/proc/geniepatron(mob/living/carbon/human/H, patronchoice) //a desert entity
 	H.mind.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
@@ -278,7 +278,7 @@
 	ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
 
 
-	H.visible_message(span_info("I made a deal with a djinn from a magic lamptern."))
+	H.visible_message(span_info("There was a voice in a jar, a bottle, a name. I let it out. Or it let me in."))
 
 /datum/outfit/job/roguetown/adventurer/warlock/proc/goopatron(mob/living/carbon/human/H, patronchoice)
 	H.mind.adjust_skillrank_up_to(/datum/skill/combat/polearms, 2, TRUE)
@@ -308,7 +308,7 @@
 
 	H.mind.adjust_spellpoints(3) // 6 total spell points after arcane adjust; forbidden eldritch knowledge to build your own spellbook, but you get nothing else
 
-	H.visible_message(span_info("Most minds would fracture having spoken to the creecher I made a deal with..."))
+	H.visible_message(span_info("I heard a silence too loud to bear. Now it's inside me, humming."))
 
 /datum/outfit/job/roguetown/adventurer/warlock/proc/hexbladepatron(mob/living/carbon/human/H, patronchoice)
 	H.mind.adjust_skillrank_up_to(/datum/skill/combat/swords, 1, TRUE)
@@ -344,7 +344,7 @@
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
 
-	H.visible_message(span_info("I made a deal with a sentient weapon."))
+	H.visible_message(span_info("The weapon spoke first. I only answered. Now it never leaves."))
 
 /datum/outfit/job/roguetown/adventurer/warlock/proc/undeadpatron(mob/living/carbon/human/H, patronchoice)
 	H.mind.adjust_skillrank_up_to(/datum/skill/combat/shields, 2, TRUE)
@@ -382,7 +382,7 @@
 	ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
 
-	H.visible_message(span_info("I made a deal with a horror from the grave."))
+	H.visible_message(span_info("I stepped into a place no longer remembered, and something followed me out."))
 
 ///////////////////////////////
 //	Faithless Healing
@@ -394,25 +394,25 @@
 		eldritchhealing.ignore_faithless = TRUE
 	eldritchhealing.patronname = patronname
 	switch(patronname) //god damn put this in a datum or something....
-		if("archfey")
+		if("The Verdant Court")
 			eldritchhealing.targetnotification = "I am surrounded in a puff of seelie dust."
 			eldritchhealing.othernotification = "is surrounded in a puff of seelie dust."
-		if("celestial")
+		if("The Radiant Ember")
 			eldritchhealing.targetnotification = "I am encircled in a tapestry of glittering starlight."
 			eldritchhealing.othernotification = "is encircled in a tapestry of glittering starlight."
-		if("fathomless")
+		if("The Drowned Choir")
 			eldritchhealing.targetnotification = "My pain is siphoned away by an inky tendril!"
 			eldritchhealing.othernotification = "'s injuries are siphoned away by an inky tendril!"
-		if("genie")
+		if("The Bound Whisper")
 			eldritchhealing.targetnotification = "I just feel better all of a sudden."
 			eldritchhealing.othernotification = "looks better."
-		if("great old one")
+		if("The Hollow Voice")
 			eldritchhealing.targetnotification = "My wounds distort and fade away."
 			eldritchhealing.othernotification = "'s injuries distort and fade away."
-		if("hexblade")
+		if("The Wakened Blade")
 			eldritchhealing.targetnotification = "My wounds close leaving scars."
 			eldritchhealing.othernotification = "'s wounds close leaving scars."
-		if("undead")
+		if("The Pale Crown")
 			eldritchhealing.targetnotification = "Maggots eat away my dead flesh!"
 			eldritchhealing.othernotification = "'s wounds are healed by... Maggots?"
 	H.mind.AddSpell(eldritchhealing)
@@ -426,19 +426,19 @@
 	var/obj/effect/proc_holder/spell/invoked/eldritchcurse/curse = new /obj/effect/proc_holder/spell/invoked/eldritchcurse
 
 	switch(patronname) //god damn put this in a datum or something....
-		if("archfey")
+		if("The Verdant Court")
 			curse.curse = /datum/status_effect/buff/eldritchcurse/archfey
-		if("celestial")
+		if("The Radiant Ember")
 			curse.curse = /datum/status_effect/buff/eldritchcurse/celestial
-		if("fathomless")
+		if("The Drowned Choir")
 			curse.curse = /datum/status_effect/buff/eldritchcurse/fathomless
-		if("genie")
+		if("The Bound Whisper")
 			curse.curse = /datum/status_effect/buff/eldritchcurse/genie
-		if("great old one")
+		if("The Hollow Voice")
 			curse.curse = /datum/status_effect/buff/eldritchcurse/goo
-		if("hexblade")
+		if("The Wakened Blade")
 			curse.curse = /datum/status_effect/buff/eldritchcurse/hexblade
-		if("undead")
+		if("The Pale Crown")
 			curse.curse = /datum/status_effect/buff/eldritchcurse/undead
 	curse.name += patronname
 	curse.patronname = patronname
@@ -557,10 +557,10 @@
 		"Whip",
 	)
 
-	var/weapon_chosen = input("Choose your sentient weapon", "Available weapons") as anything in weapon_choice
+	var/weapon_chosen = input("Choose your sentient weapon", "Available weapons") as anything in weapons_choice
 	var/item_type
 
-	switch(patronchoice)
+	switch(weapon_chosen)
 		if("Axe")
 			item_type = /obj/item/rogueweapon/stoneaxe/woodcut/steel
 		if("Battleaxe")
