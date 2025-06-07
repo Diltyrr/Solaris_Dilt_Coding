@@ -237,3 +237,4 @@
 	desc = "A writhing bundle of magical roots that restrain movement."
 	color = "#228B22"
 	buckle_requires_restraints = FALSE
+	item_flags = DROPDEL

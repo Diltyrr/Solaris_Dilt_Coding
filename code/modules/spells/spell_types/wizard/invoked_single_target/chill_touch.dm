@@ -26,6 +26,11 @@
 
 /obj/effect/proc_holder/spell/invoked/chilltouch/cast(list/targets, mob/living/user)
 	if(isliving(targets[1]))
+		if(!istype(targets[1], /mob/living/carbon))
+			var/mob/living/living_tar = targets[1]
+			living_tar.adjustBruteLoss(10)
+			living_tar.visible_message(span_warning("A skeletal hand punches [living_tar] before vanishing"))
+			return TRUE
 		var/mob/living/carbon/target = targets[1]
 		var/obj/item/bodypart/bodypart = target.get_bodypart(user.zone_selected)
 		if(!bodypart)
@@ -93,7 +98,6 @@
 				to_chat(host, "<span class='warning'>[host] is choked by a skeletal hand!</span>")
 				playsound(get_turf(host), pick('sound/combat/shove.ogg'), 100, FALSE, -1)
 				host.emote("choke")
-
 				target.adjustOxyLoss(oxy_drain*mult*2)
 			if(BODY_ZONE_CHEST)
 				to_chat(host, "<span class='danger'>[host] is pummeled by a skeletal hand!</span>")
