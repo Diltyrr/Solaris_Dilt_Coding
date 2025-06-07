@@ -13,7 +13,7 @@
 	movement_interrupt = FALSE
 	chargedloop = null
 	sound = 'sound/magic/heal.ogg'
-	invocation = "Wounds, be sealed."
+	invocation = "Dóiteáin, bí daingean."
 	invocation_type = "whisper"
 	associated_skill = /datum/skill/magic/arcane
 	antimagic_allowed = TRUE

@@ -19,7 +19,7 @@
 	xp_gain = TRUE
 	miracle = FALSE
 
-	invocation = "Rot, take them!"
+	invocation = "Putredo, eos aufer!"
 	invocation_type = "shout" //can be none, whisper, emote and shout
 	ignore_fiendkiss = FALSE
 

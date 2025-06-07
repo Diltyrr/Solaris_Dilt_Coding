@@ -20,7 +20,7 @@
 	xp_gain = TRUE
 	miracle = FALSE
 
-	invocation = "Be torn apart!"
+	invocation = "Manus Gelida!"
 	invocation_type = "shout"
 	ignore_fiendkiss = FALSE
 

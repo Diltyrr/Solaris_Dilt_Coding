@@ -15,7 +15,7 @@
 	xp_gain = FALSE
 	miracle = FALSE
 
-	invocation = "Shield me with rot!"
+	invocation = "Dún mé le créidim!"
 	invocation_type = "shout"
 	var/activated = FALSE
 	var/rot_type = /datum/component/rot/warlock

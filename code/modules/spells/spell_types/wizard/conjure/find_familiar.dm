@@ -14,8 +14,10 @@
 
 	xp_gain = FALSE
 	miracle = FALSE
+	spell_tier = 1
+	cost = 1
 
-	invocation = "Come forth, familiar."
+	invocation = "Appare, spiritus fidus."
 	invocation_type = "whisper"
 
 	var/mob/living/fam

@@ -19,8 +19,8 @@
 	xp_gain = TRUE
 	miracle = FALSE
 
-	invocation = "Stay sharp and strong."
-	invocation_type = "whisper" //can be none, whisper, emote and shout
+	invocation = "Esto acutus et fortis."
+	invocation_type = "whisper"
 	var/magic_color = "#c8daff"
 
 /obj/effect/proc_holder/spell/invoked/magicstone/cast(list/targets, mob/living/user)

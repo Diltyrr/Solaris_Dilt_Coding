@@ -25,7 +25,7 @@
 	xp_gain = TRUE
 	miracle = FALSE
 
-	invocation = ""
+	invocation = "Táin!"
 	invocation_type = "shout"
 	ignore_fiendkiss = FALSE
 	spell_tier = 1

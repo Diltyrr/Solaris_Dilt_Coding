@@ -4,7 +4,7 @@
 	school = "conjuration"
 	recharge_time = 1200
 	clothes_req = FALSE
-	invocation = "NOUK FHUNMM SACP RISSKA"
+	invocation = "Vocare Lupum!"
 	invocation_type = "shout"
 	overlay_state = "wolf_head"
 	range = 1

@@ -16,7 +16,9 @@
 	overlay_state = "hierophant"
 	range = 2
 	var/damage = 10
-	spell_tier = 3
+	spell_tier = 4
+	invocation = "Tempestas Arcana!"
+	invocation_type = "shout"
 
 /obj/effect/proc_holder/spell/invoked/arcane_storm/cast(list/targets, mob/user = usr)
 	var/turf/T = get_turf(targets[1])

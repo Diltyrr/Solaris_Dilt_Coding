@@ -18,7 +18,7 @@
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	cost = 1
-	invocation = "Sear!"
+	invocation = "Arde!"
 	invocation_type = "shout"
 	xp_gain = TRUE
 	spell_tier = 2

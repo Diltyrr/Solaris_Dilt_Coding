@@ -14,15 +14,15 @@
 	chargedloop = null
 	sound = 'sound/magic/whiteflame.ogg'
 	chargedloop = /datum/looping_sound/invokegen
-	associated_skill = /datum/skill/magic/arcane //can be arcane, druidic, blood, holy
+	associated_skill = /datum/skill/magic/arcane
 	cost = 1
 	spell_tier = 1
 
 	xp_gain = TRUE
 	miracle = FALSE
 
-	invocation = "Be reformed."
-	invocation_type = "whisper" //can be none, whisper, emote and shout
+	invocation = "Reparare et reformare."
+	invocation_type = "whisper"
 
 /obj/effect/proc_holder/spell/invoked/mending/cast(list/targets, mob/living/user)
 	if(istype(targets[1], /obj/item))

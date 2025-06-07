@@ -10,7 +10,8 @@
 	movement_interrupt = FALSE
 	chargedloop = null
 	sound = 'sound/magic/heal.ogg'
-	invocation_type = "none"
+	invocation = "Ceilt an dhorchadais ort."
+	invocation_type = "whisper"
 	associated_skill = /datum/skill/magic/arcane
 	antimagic_allowed = TRUE
 	recharge_time = 20 SECONDS

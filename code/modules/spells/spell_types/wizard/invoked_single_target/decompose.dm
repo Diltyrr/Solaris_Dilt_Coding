@@ -22,7 +22,7 @@
 	xp_gain = TRUE
 	miracle = FALSE
 
-	invocation = "Return to rot."
+	invocation = "Redi ad putredinem."
 	invocation_type = "whisper"
 
 /obj/effect/proc_holder/spell/invoked/decompose/cast(list/targets, mob/living/user)

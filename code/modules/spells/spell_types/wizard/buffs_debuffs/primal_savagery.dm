@@ -25,7 +25,7 @@
 	xp_gain = TRUE
 	miracle = FALSE
 
-	invocation = "Teeth of a serpent."
+	invocation = "Dentes Serpentis."
 	invocation_type = "whisper"
 
 /obj/effect/proc_holder/spell/self/primalsavagery/cast(mob/user = usr)

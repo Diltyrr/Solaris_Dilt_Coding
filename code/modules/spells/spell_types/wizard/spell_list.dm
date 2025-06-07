@@ -65,5 +65,6 @@ GLOBAL_LIST_INIT(learnable_spells, (list(/obj/effect/proc_holder/spell/invoked/p
 		/obj/effect/proc_holder/spell/invoked/mending,
 		/obj/effect/proc_holder/spell/invoked/projectile/firebolt,
 		/obj/effect/proc_holder/spell/invoked/projectile/lightningbolt,
+		/obj/effect/proc_holder/spell/self/findfamiliar,
 		)
 ))

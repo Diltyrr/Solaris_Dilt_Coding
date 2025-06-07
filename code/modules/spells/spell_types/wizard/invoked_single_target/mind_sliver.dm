@@ -19,8 +19,8 @@
 	xp_gain = TRUE
 	miracle = FALSE
 
-	invocation = "Steal their thoughts!"
-	invocation_type = "shout" //can be none, whisper, emote and shout
+	invocation = "Mentem eorum surripite!"
+	invocation_type = "shout"
 	var/delay = 7
 	ignore_fiendkiss = FALSE
 

@@ -19,9 +19,8 @@
 	xp_gain = TRUE
 	miracle = FALSE
 
-	invocation = "Get back!" // This is INTENDED as a "get off me" tool, though rarely actually used for that. Also immediately explains what a target should do.
-	invocation_type = "shout" //can be none, whisper, emote and shout
-
+	invocation = "Abi!"
+	invocation_type = "shout" 
 	var/delay = 3 SECONDS
 	var/sprite_changes = 10
 	var/datum/beam/current_beam = null

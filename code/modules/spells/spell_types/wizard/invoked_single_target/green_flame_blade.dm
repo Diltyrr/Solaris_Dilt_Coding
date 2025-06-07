@@ -17,12 +17,12 @@
 	associated_skill = /datum/skill/magic/arcane //can be arcane, druidic, blood, holy
 	cost = 1
 
-	spell_tier = 1
+	spell_tier = 2
 
 	xp_gain = TRUE
 	miracle = FALSE
 
-	invocation = "Blade of emerald blaze!"
+	invocation = "Gladius flamma viridis!"
 	invocation_type = "shout" //can be none, whisper, emote and shout
 
 /obj/effect/proc_holder/spell/invoked/greenflameblade/cast(list/targets, mob/living/user)
