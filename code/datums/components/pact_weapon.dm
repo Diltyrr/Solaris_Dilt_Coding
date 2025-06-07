@@ -32,14 +32,15 @@
 		weapon.minstr = 1
 		ADD_TRAIT(weapon, TRAIT_NOEMBED, TRAIT_GENERIC)
 		weapon.associated_skill = /datum/skill/magic/arcane
-		//var/mutable_appearance/magic_overlay = mutable_appearance('icons/effects/effects.dmi', "electricity")
-		//item.add_overlay(magic_overlay)
+		var/mutable_appearance/magic_overlay = mutable_appearance('icons/effects/effects.dmi', "electricity")
+		weapon.add_overlay(magic_overlay)
 
 /datum/component/pact_weapon/RegisterWithParent()
-	if(istype(parent, /obj/item/rogueweapon))
-		RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND_RIGHT, PROC_REF(attack_right))
-		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(equipped))
-		// RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(dropped))
+	if(istype(parent, /obj/item))
+		var/obj/item/weapon_parent = parent
+		RegisterSignal(weapon_parent, COMSIG_ATOM_ATTACK_HAND_RIGHT, PROC_REF(attack_right))
+		//RegisterSignal(weapon_parent, COMSIG_ITEM_EQUIPPED,PROC_REF(equipped))
+		RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(dropped))
 
 /datum/component/pact_weapon/proc/attack_right(obj/item/source, mob/user)
 	var/mob/living/target = user
@@ -59,13 +60,15 @@
 		to_chat(weapon_owner, span_warning("[target] tried to activate [weapon]!"))
 		weapon.say("You are not my master...")
 
+/* If we'd rather the weapon isn't allowed to be picked up by someone else. Uncomment this, delete the code after.
 /datum/component/pact_weapon/proc/equipped(obj/item/source, mob/user, slot)
 	var/mob/living/target = user
 	if(target != weapon_owner) //you dont own the weapon
 		to_chat(weapon_owner, span_warning("[target] tried to equip [weapon]!")) //message the rightful owner 
 		to_chat(target, span_danger("[weapon] slips from your grasp!")) //message the wielder
 		target.dropItemToGround(source) //this is not yours, drop it
-/*
+*/
+
 /datum/component/pact_weapon/proc/dropped(obj/item/source, mob/user)
 	var/mob/living/target = user
 	if(target != weapon_owner) //you dont own the weapon
@@ -88,4 +91,3 @@
 	name = "Cursed Item"
 	desc = "An item I have equipped burns me periodically."
 	icon_state = "debuff"
-*/

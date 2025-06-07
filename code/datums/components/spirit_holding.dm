@@ -59,12 +59,7 @@
 		return
 	attempting_awakening = TRUE
 	to_chat(user, span_notice("channeling..."))
-	var/list/L = pollCandidatesForMob(
-		Question = "Do you want to play as [span_notice("Spirit of [span_danger("[user.real_name]'s")] weapon")]?",
-		jobbanType = ROLE_PAI,
-		poll_time = 20 SECONDS,
-		ignore_category = POLL_IGNORE_POSSESSED_BLADE,
-	)
+	var/list/L = pollCandidatesForMob("Do you want to play as [span_notice("Spirit of [span_danger("[user.real_name]'s")] weapon")]?", ROLE_PAI, null, FALSE, 100, POLL_IGNORE_POSSESSED_BLADE)
 	if(L.len > 0)
 		var/mob/chosen_one =  pick(L)
 		affix_spirit(user, chosen_one)

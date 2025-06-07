@@ -17,7 +17,7 @@
 
 	H.adjust_blindness(-3)
 	if(H.mind)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/eldritchblast5e)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/eldritchblast)
 		H.mind.adjust_spellpoints(1) // all warlocks get at least 3 points to spend
 		H.mind.adjust_skillrank_up_to(/datum/skill/misc/medicine, 1, TRUE)
 		H.mind.adjust_skillrank_up_to(/datum/skill/misc/reading, 2, TRUE)
@@ -88,11 +88,11 @@
 			H.put_in_hands(givebook(patronchoice), FALSE)
 			H.change_stat("intelligence", 1)
 			H.mind.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/guidance5e)
-			ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC) // Goo-locks and book pacts can actually be a mage
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/guidance)
+			ADD_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC) // Goo-locks and book pacts can actually be a mage
 		if("power") //empowered eldritch blast
-			H.mind.RemoveSpell(/obj/effect/proc_holder/spell/invoked/projectile/eldritchblast5e)
-			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/eldritchblast5e/empowered)
+			H.mind.RemoveSpell(/obj/effect/proc_holder/spell/invoked/projectile/eldritchblast)
+			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/eldritchblast/empowered)
 			H.change_stat("intelligence", 1)
 			H.mind.adjust_spellpoints(1)
 		if("love") //ring of soulbinding
@@ -143,11 +143,16 @@
 
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/seelie_dust)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/archfey_warlock_strip)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/archfey_warlock_seelie_kiss)
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/archfey_warlock_seelie_kiss)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/summon_rat)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/roustame)
 
 	ADD_TRAIT(H, TRAIT_WILDMAGIC, TRAIT_GENERIC)
+	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) // If we took boon of knowledge, our arcane level gets bumped by one.
+		REMOVE_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_ARCANE_T4, TRAIT_GENERIC)
+	else
+		ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
 
 	H.visible_message(span_info("I made a deal with an archseelie from the wild."))
 
@@ -174,6 +179,11 @@
 	H.mind.adjust_spellpoints(2) // general arcane power, less total gain than other trees, 4 points total (it's hard to give "celestial" a real spell theme)
 
 	givehealing(H, patronchoice, TRUE)
+	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) // If we took boon of knowledge, our arcane level gets bumped by one.
+		REMOVE_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_ARCANE_T4, TRAIT_GENERIC)
+	else
+		ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
 
 	H.visible_message(span_info("I made a deal with a celestial being from the heavens."))
 
@@ -211,12 +221,17 @@
 	H.change_stat("endurance", 1)
 	H.change_stat("speed", -1)
 
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/acidsplash5e)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/frostbite5e) // "water" and ice magic, less arcane power because armor and dodge training
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/acidsplash)
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/frostbite) // "water" and ice magic, less arcane power because armor and dodge training
 
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_WATERBREATHING, TRAIT_GENERIC)
+	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) // If we took boon of knowledge, our arcane level gets bumped by one.
+		REMOVE_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
+	else
+		ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
 
 	H.visible_message(span_info("I made a deal with a fathomless creecher of the sea."))
 
@@ -245,6 +260,11 @@
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fireball) // fireball is a very strong spell, fiendkiss makes it even stronger
 	ADD_TRAIT(H, TRAIT_NOFIRE, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_FIENDKISS, TRAIT_GENERIC)
+	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) // If we took boon of knowledge, our arcane level gets bumped by one.
+		REMOVE_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_ARCANE_T4, TRAIT_GENERIC)
+	else
+		ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
 
 	H.visible_message(span_info("I made a deal with a fiend from the hells."))
 
@@ -271,9 +291,14 @@
 	H.change_stat("fortune", 2)
 
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/haste)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/push_spell) // going with wind theme, speed and airblast, possibly eventual picker for "which type of genie did you make a deal with"
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/repulse) // going with wind theme, speed and airblast, possibly eventual picker for "which type of genie did you make a deal with"
 
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) // If we took boon of knowledge, our arcane level gets bumped by one.
+		REMOVE_TRAIT(H, TRAIT_ARCANE_T1, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
+	else
+		ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
 
 	H.visible_message(span_info("I made a deal with a djinn from a magic lamptern."))
 
@@ -283,8 +308,6 @@
 	H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 2, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
 	H.mind.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
-
-	ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 
 	head = /obj/item/clothing/head/roguetown/roguehood/mage
 	shoes = /obj/item/clothing/shoes/roguetown/simpleshoes
@@ -302,6 +325,13 @@
 	H.change_stat("intelligence", 2)
 	H.change_stat("perception", 2)
 	H.change_stat("constitution", 1)
+
+	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) // If we took boon of knowledge we get some spellpoints since we'd be T4 without it.
+		REMOVE_TRAIT(H, TRAIT_ARCANE_T1)
+		ADD_TRAIT(H, TRAIT_ARCANE_T4, TRAIT_GENERIC)
+		H.mind.adjust_spellpoints(3)
+	else
+		ADD_TRAIT(H, TRAIT_ARCANE_T4, TRAIT_GENERIC)
 
 	H.mind.adjust_spellpoints(3) // 6 total spell points after arcane adjust; forbidden eldritch knowledge to build your own spellbook, but you get nothing else
 
@@ -321,7 +351,7 @@
 	gloves = /obj/item/clothing/gloves/roguetown/leather
 	belt = /obj/item/storage/belt/rogue/leather
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/random
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
+	armor = /obj/item/clothing/suit/roguetown/armor/gambeson
 	beltl = /obj/item/rogueweapon/huntingknife
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
 
@@ -334,11 +364,16 @@
 	H.change_stat("endurance", 1)
 	H.change_stat("speed", -1)
 
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/greenflameblade5e) // put that new weapon to work! martial focus means less magic
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mending5e)
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/greenflameblade) // put that new weapon to work! martial focus means less magic
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mending)
 
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) // If we took boon of knowledge, our arcane level gets bumped by one.
+		REMOVE_TRAIT(H, TRAIT_ARCANE_T1)
+		ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
+	else
+		ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
 
 	H.visible_message(span_info("I made a deal with a sentient weapon."))
 
@@ -370,12 +405,17 @@
 	H.change_stat("constitution", 2)
 
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/cloakofflies)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/infestation5e)
-	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/chilltouch5e) // decay-themed magic and a skeletal hand to attack people with
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/infestation)
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/chilltouch) // decay-themed magic and a skeletal hand to attack people with
 
 	// ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC) // Unnecessary with the heavy armor trait
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
+	if(HAS_TRAIT(H, TRAIT_ARCANE_T1)) // If we took boon of knowledge, our arcane level gets bumped by one.
+		REMOVE_TRAIT(H, TRAIT_ARCANE_T1)
+		ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
+	else
+		ADD_TRAIT(H, TRAIT_ARCANE_T2, TRAIT_GENERIC)
 
 	H.visible_message(span_info("I made a deal with a horror from the grave."))
 
@@ -464,10 +504,40 @@
 /obj/item/book/rogue/eldritch/Initialize()
 	. = ..()
 	// TODO: GLOBAL LISTS OF SPELLS, THIS IS PAINFUL
-	//removed eldritch blast and infestation
-	spell1 = pick(/obj/effect/proc_holder/spell/invoked/projectile/fireball,/obj/effect/proc_holder/spell/invoked/projectile/lightningbolt,/obj/effect/proc_holder/spell/invoked/projectile/fetch,/obj/effect/proc_holder/spell/invoked/projectile/spitfire,/obj/effect/proc_holder/spell/invoked/projectile/firebolt5e,/obj/effect/proc_holder/spell/invoked/projectile/rayoffrost5e,/obj/effect/proc_holder/spell/invoked/projectile/acidsplash5e,/obj/effect/proc_holder/spell/invoked/blade_burst,/obj/effect/proc_holder/spell/invoked/frostbite5e,/obj/effect/proc_holder/spell/invoked/poisonspray5e,/obj/effect/proc_holder/spell/invoked/arcane_storm,/obj/effect/proc_holder/spell/invoked/chilltouch5e,/obj/effect/proc_holder/spell/invoked/mindsliver5e,/obj/effect/proc_holder/spell/targeted/lightninglure5e,/obj/effect/proc_holder/spell/invoked/greenflameblade5e,)
-	spell2 = pick(/obj/effect/proc_holder/spell/invoked/forcewall_weak,/obj/effect/proc_holder/spell/self/bladeward5e,)
-	spell3 = pick(/obj/effect/proc_holder/spell/invoked/slowdown_spell_aoe,/obj/effect/proc_holder/spell/self/message,/obj/effect/proc_holder/spell/invoked/push_spell,/obj/effect/proc_holder/spell/invoked/leap,/obj/effect/proc_holder/spell/aoe_turf/conjure/Wolf,/obj/effect/proc_holder/spell/invoked/guidance5e,/obj/effect/proc_holder/spell/targeted/encodethoughts5e,/obj/effect/proc_holder/spell/invoked/magicstone5e,/obj/effect/proc_holder/spell/invoked/mending5e,/obj/effect/proc_holder/spell/self/light5e,/obj/effect/proc_holder/spell/aoe_turf/conjure/createbonfire5e,/obj/effect/proc_holder/spell/targeted/touch/prestidigitation,)
+	spell1 = pick(
+		/obj/effect/proc_holder/spell/invoked/projectile/fireball,
+		/obj/effect/proc_holder/spell/invoked/projectile/lightningbolt,
+		/obj/effect/proc_holder/spell/invoked/projectile/fetch,
+		/obj/effect/proc_holder/spell/invoked/projectile/spitfire,
+		/obj/effect/proc_holder/spell/invoked/projectile/firebolt,
+		/obj/effect/proc_holder/spell/invoked/projectile/frostbolt,
+		/obj/effect/proc_holder/spell/invoked/projectile/acidsplash,
+		/obj/effect/proc_holder/spell/invoked/blade_burst,
+		/obj/effect/proc_holder/spell/invoked/frostbite,
+		/obj/effect/proc_holder/spell/invoked/arcane_storm,
+		/obj/effect/proc_holder/spell/invoked/chilltouch,
+		/obj/effect/proc_holder/spell/invoked/mindsliver,
+		/obj/effect/proc_holder/spell/invoked/lightninglure,
+		/obj/effect/proc_holder/spell/invoked/greenflameblade,
+	)
+	spell2 = pick(
+		/obj/effect/proc_holder/spell/invoked/forcewall/greater,
+		/obj/effect/proc_holder/spell/self/bladeward,
+	)
+	spell3 = pick(
+		/obj/effect/proc_holder/spell/invoked/snap_freeze,
+		/obj/effect/proc_holder/spell/self/message,
+		/obj/effect/proc_holder/spell/invoked/repulse,
+		/obj/effect/proc_holder/spell/invoked/leap,
+		/obj/effect/proc_holder/spell/aoe_turf/conjure/Wolf,
+		/obj/effect/proc_holder/spell/invoked/guidance,
+		/obj/effect/proc_holder/spell/targeted/encodethoughts,
+		/obj/effect/proc_holder/spell/invoked/magicstone,
+		/obj/effect/proc_holder/spell/invoked/mending,
+		/obj/effect/proc_holder/spell/self/light,
+		/obj/effect/proc_holder/spell/invoked/create_campfire,
+		/obj/effect/proc_holder/spell/targeted/touch/prestidigitation,
+	)
 
 
 /obj/item/book/rogue/eldritch/equipped(mob/living/user)

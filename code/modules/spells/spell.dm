@@ -518,7 +518,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		
 	if(!ignore_fiendkiss && HAS_TRAIT(user, TRAIT_FIENDKISS))
 		sleep(0.5 SECONDS)
-		var/obj/effect/proc_holder/spell/invoked/projectile/firebolt5e/kiss = new /obj/effect/proc_holder/spell/invoked/projectile/firebolt5e
+		var/obj/effect/proc_holder/spell/invoked/projectile/firebolt/kiss = new /obj/effect/proc_holder/spell/invoked/projectile/firebolt
 		kiss.perform(targets, FALSE, user)
 
 /obj/effect/proc_holder/spell/proc/view_or_range(distance = world.view, center=usr, type="view")
@@ -760,7 +760,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 			user.log_message(span_danger("Wild Magic Surge - Whispers of the Grove"))
 		if(7)
 			user.visible_message(span_notice("A shimmering feylight surrounds [user] protectively."))
-			user.apply_status_effect(/datum/status_effect/buff/bladeward5e)
+			user.apply_status_effect(/datum/status_effect/buff/bladeward)
 			user.log_message(span_danger("Wild Magic Surge - Feylight Shield"))
 		if(8)
 			user.visible_message(span_notice("Vines gently wrap [user], grounding them."))

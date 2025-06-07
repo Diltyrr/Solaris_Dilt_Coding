@@ -95,6 +95,9 @@
 	remains_type = /obj/effect/decal/remains/crow
 	fly_time = 3 SECONDS // slowing down crow for witches
 
+/mob/living/simple_animal/hostile/retaliate/bat/familiar
+	fly_time = 3 SECONDS
+
 /obj/effect/decal/remains/crow
 	name = "crow remains"
 	gender = PLURAL
