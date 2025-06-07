@@ -21,7 +21,7 @@
 	invocation = "Sear!"
 	invocation_type = "shout"
 	xp_gain = TRUE
-	spell_tier = 1
+	spell_tier = 2
 
 /obj/projectile/magic/aoe/fireball/firebolt
 	name = "Fireball"

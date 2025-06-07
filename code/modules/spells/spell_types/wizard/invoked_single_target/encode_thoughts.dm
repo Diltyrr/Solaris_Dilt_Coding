@@ -25,7 +25,7 @@
 	invocation_type = "whisper"
 	include_user = FALSE
 
-	spell_tier = 1
+	spell_tier = 2
 
 /obj/effect/proc_holder/spell/targeted/encodethoughts/cast(list/targets, mob/user)
 	. = ..()

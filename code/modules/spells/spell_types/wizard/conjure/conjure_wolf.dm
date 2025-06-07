@@ -10,6 +10,7 @@
 	range = 1
 	cost = 1
 	xp_gain = TRUE
+	spell_tier = 2
 
 	summon_type = list(/mob/living/simple_animal/hostile/retaliate/rogue/wolf/familiar )
 	cast_sound = 'sound/blank.ogg'

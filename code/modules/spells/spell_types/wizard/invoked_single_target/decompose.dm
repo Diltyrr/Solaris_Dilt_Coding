@@ -17,7 +17,7 @@
 	associated_skill = /datum/skill/magic/blood
 	cost = 1
 
-	spell_tier = 1
+	spell_tier = 3
 
 	xp_gain = TRUE
 	miracle = FALSE

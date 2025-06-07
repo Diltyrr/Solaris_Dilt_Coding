@@ -20,11 +20,11 @@
 	associated_skill = /datum/skill/magic/arcane
 	cost = 1
 
-	spell_tier = 1
+	spell_tier = 2
 	miracle = FALSE
 	xp_gain = TRUE
 
-	invocation = "Blades, be dulled!"
+	invocation = "Gladii Molliti!"
 	invocation_type = "shout"
 
 /obj/effect/proc_holder/spell/self/bladeward/cast(mob/user = usr)
