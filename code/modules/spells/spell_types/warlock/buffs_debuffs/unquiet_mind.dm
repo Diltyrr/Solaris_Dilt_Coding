@@ -26,6 +26,7 @@
 	id = "unquiet_mind"
 	tick_interval = 2 SECONDS
 	duration = -1
+	alert_type = /atom/movable/screen/alert/status_effect/buff/unquiet_mind
 
 /atom/movable/screen/alert/status_effect/buff/unquiet_mind
 	name = "Unquiet Mind"
@@ -41,6 +42,7 @@
 	id = "psionic_scramble"
 	effectedstats = list("perception" = -2, "intelligence" = -2)
 	duration = 4 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/psionic_scramble
 
 /atom/movable/screen/alert/status_effect/debuff/psionic_scramble
 	name = "Psionic Scramble"

@@ -19,15 +19,6 @@
 	human.adjust_blindness(-3)
 	if(human.mind)
 		human.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/eldritchblast)
-		human.mind.adjust_spellpoints(1) // all warlocks get at least 3 points to spend
-		human.mind.adjust_skillrank_up_to(/datum/skill/misc/medicine, 1, TRUE)
-		human.mind.adjust_skillrank_up_to(/datum/skill/misc/reading, 2, TRUE)
-		human.mind.adjust_skillrank_up_to(/datum/skill/craft/alchemy, 1, TRUE)
-		human.mind.adjust_skillrank_up_to(/datum/skill/magic/arcane, 2, TRUE)
-		human.mind.adjust_skillrank_up_to(/datum/skill/craft/cooking, 1, TRUE)
-		human.mind.adjust_skillrank_up_to(/datum/skill/craft/crafting, 3 , TRUE)
-		human.mind.adjust_skillrank(/datum/skill/labor/butchering, 1, TRUE)
-		human.mind.adjust_skillrank(/datum/skill/misc/tracking, 1, TRUE)
 		ADD_TRAIT(human, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 	backr = /obj/item/storage/backpack/rogue/satchel
 	neck = null
@@ -145,7 +136,8 @@
 	human.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mischievous_whispers)
 	
 	ADD_TRAIT(human, TRAIT_WILDMAGIC, TRAIT_GENERIC)
-	ADD_TRAIT(human, TRAIT_ARCANE_T3, TRAIT_GENERIC)
+	ADD_TRAIT(human, TRAIT_ARCANE_T3, TRAIT_GENERIC) //Caster Subclass
+	human.mind.adjust_spellpoints(2) //Caster subclass
 
 	human.visible_message(span_info("I brushed against the glimmering court beneath leaf and moon, and it whispered secrets into my soul."))
 
@@ -169,10 +161,9 @@
 	human.change_stat("perception", 2)
 	human.change_stat("constitution", 1)
 
-	human.mind.adjust_spellpoints(2) // general arcane power, less total gain than other trees, 4 points total (it's hard to give "celestial" a real spell theme)
-
 	givehealing(human, patronchoice, TRUE)
-	ADD_TRAIT(human, TRAIT_ARCANE_T3, TRAIT_GENERIC)
+	ADD_TRAIT(human, TRAIT_ARCANE_T3, TRAIT_GENERIC) //Caster subclass
+	human.mind.adjust_spellpoints(2) //Caster subclass
 
 	human.visible_message(span_info("Something bright found me in the dark. It left a spark that hasn't gone out."))
 
@@ -216,7 +207,7 @@
 	ADD_TRAIT(human, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 	ADD_TRAIT(human, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(human, TRAIT_WATERBREATHING, TRAIT_GENERIC)
-	ADD_TRAIT(human, TRAIT_ARCANE_T2, TRAIT_GENERIC)
+	ADD_TRAIT(human, TRAIT_ARCANE_T2, TRAIT_GENERIC) //Melee subclass
 
 	human.visible_message(span_info("The sea sang to me once. I haven't been able to stop hearing it since."))
 
@@ -245,7 +236,8 @@
 	human.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fireball) // fireball is a very strong spell, fiendkiss makes it even stronger
 	ADD_TRAIT(human, TRAIT_NOFIRE, TRAIT_GENERIC)
 	ADD_TRAIT(human, TRAIT_FIENDKISS, TRAIT_GENERIC)
-	ADD_TRAIT(human, TRAIT_ARCANE_T3, TRAIT_GENERIC)
+	ADD_TRAIT(human, TRAIT_ARCANE_T3, TRAIT_GENERIC) //Caster subclass
+	human.mind.adjust_spellpoints(2) //Caster subclass
 
 	human.visible_message(span_info("I reached into a cold fire that never dies. It remembers me now."))
 
@@ -275,7 +267,7 @@
 	human.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/repulse) // going with wind theme, speed and airblast, possibly eventual picker for "which type of genie did you make a deal with"
 
 	ADD_TRAIT(human, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
-	ADD_TRAIT(human, TRAIT_ARCANE_T2, TRAIT_GENERIC)
+	ADD_TRAIT(human, TRAIT_ARCANE_T2, TRAIT_GENERIC) //Melee Subclass
 
 
 	human.visible_message(span_info("There was a voice in a jar, a bottle, a name. I let it out. Or it let me in."))
@@ -308,9 +300,8 @@
 	human.change_stat("perception", 2)
 	human.change_stat("constitution", 1)
 
-	ADD_TRAIT(human, TRAIT_ARCANE_T3, TRAIT_GENERIC)
-
-	human.mind.adjust_spellpoints(3) // 6 total spell points after arcane adjust; forbidden eldritch knowledge to build your own spellbook, but you get nothing else
+	ADD_TRAIT(human, TRAIT_ARCANE_T3, TRAIT_GENERIC) //Caster subclass
+	human.mind.adjust_spellpoints(2) //Caster subclass
 
 	human.visible_message(span_info("I heard a silence too loud to bear. Now it's inside me, humming."))
 
@@ -346,7 +337,7 @@
 
 	ADD_TRAIT(human, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 	ADD_TRAIT(human, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
-	ADD_TRAIT(human, TRAIT_ARCANE_T2, TRAIT_GENERIC)
+	ADD_TRAIT(human, TRAIT_ARCANE_T2, TRAIT_GENERIC) //Melee Subclass
 
 	human.visible_message(span_info("The weapon spoke first. I only answered. Now it never leaves."))
 
