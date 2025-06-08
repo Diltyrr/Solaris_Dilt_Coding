@@ -73,7 +73,7 @@
 		
 /*
 	Familiar list and buffs below. 
-	They probably need dedicated sprites at some point.
+	I ain't a spriter so the sprite they use are more of a "while we wait for someone that's actually good" thing.
 	Quick AI pictures idea for each of them : https://imgbox.com/g/MvanomKazA
 */
 
@@ -102,6 +102,7 @@
 	response_harm_continuous = "kicks"
 	response_harm_simple = "kick"
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 1)
+	icon = 'icons/roguetown/mob/monster/familiar.dmi'
 
 /datum/status_effect/buff/familiar
 	duration = -1
@@ -126,10 +127,9 @@
 	emote_hear = list("croaks lowly.", "lets out a bubbling sound.")
 	emote_see = list("shudders like stone.", "thumps softly in place.")
 
-	icon = 'icons/mob/pets.dmi'
-	icon_state = "cat2"
-	icon_living = "cat2"
-	icon_dead = "cat2_dead"
+	icon_state = "pondstone"
+	icon_living = "pondstone"
+	icon_dead = "pondstone_dead"
 	
 /datum/status_effect/buff/familiar/settled_weight
 	id = "settled_weight"
@@ -145,6 +145,11 @@
 	desc = "A ghostlike lynx, its eyes gleaming like twin moons. It never seems to blink, even when you're not looking."
 	summoning_emote = "Mist coils into feline shape, resolving into a lynx with pale fur and unblinking silver eyes."
 	buff_given = /datum/status_effect/buff/familiar/silver_glance
+
+	alpha = 125
+	icon_state = "mist"
+	icon_living = "mist"
+	icon_dead = "mist_dead"
 
 	speak = list("...") // mostly silent
 	speak_emote = list("purrs softly", "whispers")
@@ -166,6 +171,10 @@
 	summoning_emote = "A faint spark dances through the air. A rat with a softly glowing tail scampers into existence."
 	buff_given = /datum/status_effect/buff/familiar/threaded_thoughts
 
+	icon_state = "runerat"
+	icon_living = "runerat"
+	icon_dead = "runerat_dead"
+
 	speak = list("Skrii!", "Tik-tik.", "Chrr.")
 	speak_emote = list("squeaks", "chatters")
 	emote_hear = list("squeaks thoughtfully.", "sniffs the air.")
@@ -186,10 +195,18 @@
 	summoning_emote = "A swirl of silvery mist gathers, coalescing into a small wisp of vaporroot."
 	buff_given = /datum/status_effect/buff/familiar/quiet_resilience
 
+	alpha = 125
+	icon_state = "vaporoot"
+	icon_living = "vaporoot"
+
 	speak = list("Fffff...", "Whuuuh.")
 	speak_emote = list("whispers", "murmurs")
 	emote_hear = list("hums softly.", "emits a calming mist.")
 	emote_see = list("swirls in place.", "dissolves briefly.")
+
+/mob/living/simple_animal/pet/familiar/vaporroot_wisp/death()
+	. = ..()
+	qdel(src)
 
 /datum/status_effect/buff/familiar/quiet_resilience
 	id = "quiet_resilience"
@@ -205,6 +222,10 @@
 	desc = "This long-bodied snake coils slowly, like a heated rope. Its breath carries a faint scent of burnt herbs."
 	summoning_emote = "Dust rises and circles before coiling into a gray-scaled creature that radiates dry, residual warmth."
 	buff_given = /datum/status_effect/buff/familiar/desert_bred_tenacity
+
+	icon_state = "ashcoiler"
+	icon_living = "ashcoiler"
+	icon_dead = "ashcoiler_dead"
 
 	speak = list("Ssshh...", "Hhsss.", "Ffff.")
 	speak_emote = list("hisses", "rasps")
@@ -225,6 +246,11 @@
 	desc = "A quick, nervy creature. Light bends strangely around its translucent body."
 	summoning_emote = "The air glints, and a translucent hare twitches into existence."
 	buff_given = /datum/status_effect/buff/familiar/lightstep
+
+	alpha = 125
+	icon_state = "glimmer"
+	icon_living = "glimmer"
+	icon_dead = "glimmer_dead"
 	
 	speak = list("Tik!", "Tch!", "Hah!")
 	speak_emote = list("chatters quickly", "chirps")
