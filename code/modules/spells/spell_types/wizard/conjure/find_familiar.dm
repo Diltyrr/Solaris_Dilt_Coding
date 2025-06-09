@@ -190,7 +190,7 @@
 	desc = "Your thoughts gather more easily, like threads pulled into a tidy weave."
 
 /mob/living/simple_animal/pet/familiar/vaporroot_wisp
-	name = "Vaporroot_wisp"
+	name = "Vaporroot Wisp"
 	desc = "This vaporroot wisp shimmers and shifts like smoke but feels solid enough to lean on."
 	summoning_emote = "A swirl of silvery mist gathers, coalescing into a small wisp of vaporroot."
 	buff_given = /datum/status_effect/buff/familiar/quiet_resilience
@@ -268,7 +268,7 @@
 
 /mob/living/simple_animal/pet/familiar/hollow_antlerling
 	name = "Hollow Antlerling"
-	desc = "A dog-sized deer with gleaming hollow antlers. It seems unaware of danger, yet avoids it perfectly."
+	desc = "A dog-sized deer with gleaming hollow antlers that emit flute-like sounds."
 	summoning_emote = "A musical chime sounds. A tiny deer with antlers like bone flutes steps gently into view."
 	buff_given = /datum/status_effect/buff/familiar/soft_favor
 
