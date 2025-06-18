@@ -1791,6 +1791,7 @@
 #include "code\modules\roguetown\roguestock\import.dm"
 #include "code\modules\roguetown\roguestock\stockpile.dm"
 #include "code\modules\spells\spell.dm"
+#include "code\modules\spells\wild_magic.dm"
 #include "code\modules\spells\components\conjured_item.dm"
 #include "code\modules\spells\components\enchanted_weapon.dm"
 #include "code\modules\spells\roguetown\_roguetown.dm"
