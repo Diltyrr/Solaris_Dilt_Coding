@@ -73,7 +73,7 @@
 			human.change_stat("strength", 1)
 			human.set_blindness(0)
 		if("A voice that answers") //Pact of the Chain
-			human.mind.AddSpell(new /obj/effect/proc_holder/spell/self/findfamiliar)
+			//human.mind.AddSpell(new /obj/effect/proc_holder/spell/self/findfamiliar) (will readd once find familiar is merged)
 			human.change_stat("perception", 1)
 			human.set_blindness(0)
 		if("Secrets best left buried") //Pact of the Tome
@@ -375,7 +375,7 @@
 	// ADD_TRAIT(human, TRAIT_MEDIUMARMOR, TRAIT_GENERIC) // Unnecessary with the heavy armor trait
 	ADD_TRAIT(human, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(human, TRAIT_NOSTINK, TRAIT_GENERIC)
-	ADD_TRAIT(human, TRAIT_ARCANE_T2, TRAIT_GENERIC)
+	ADD_TRAIT(human, TRAIT_ARCANE_T2, TRAIT_GENERIC) //Melee subclass
 
 	human.visible_message(span_info("I stepped into a place no longer remembered, and something followed me out."))
 
@@ -678,11 +678,12 @@
 		active_item = TRUE
 
 		var/obj/item/organ/eyes/eyes = user.getorganslot(ORGAN_SLOT_EYES)
-		eyes.see_in_dark = 8
-		eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-		eyes.sight_flags = initial(eyes.sight_flags)
-		eyes.sight_flags &= ~SEE_BLACKNESS
-		eyes.owner.update_sight()
+		if(eyes)
+			eyes.see_in_dark = 8
+			eyes.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+			eyes.sight_flags = initial(eyes.sight_flags)
+			eyes.sight_flags &= ~SEE_BLACKNESS
+			eyes.owner.update_sight()
 
 		to_chat(user, span_notice("Your purpose seems clearer now"))
 		user.change_stat("intelligence", 1)

@@ -116,8 +116,8 @@
 */
 
 /obj/structure/flora/roguetree/burnt
-	name = "burnt tree"
-	desc = "Maybe lightning, maybe war took the life of this once lively tree."
+	name = "young tree"
+	desc = "A young, growing tree. Past its time as a sapling, but not yet worth climbing."
 	icon = 'icons/roguetown/misc/96x96.dmi'
 	icon_state = "t1"
 	stump_type = /obj/structure/flora/roguetree/stump/burnt
@@ -129,7 +129,7 @@
 
 /obj/structure/flora/roguetree/stump/burnt
 	name = "tree stump"
-	desc = "This stump is burnt. Maybe someone was trying to get coal the easy way."
+	desc = "Youth cut away before it could reach its prime."
 	icon_state = "st1"
 	icon = 'icons/roguetown/misc/96x96.dmi'
 	stump_type = null
@@ -534,7 +534,7 @@
 
 /obj/structure/flora/roguegrass/pyroclasticflowers/update_icon()
 	icon_state = "pyroflower[rand(1,3)]"
-	
+
 /obj/structure/flora/roguegrass/pyroclasticflowers/Initialize()
 	. = ..()
 	if(prob(88))
