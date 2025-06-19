@@ -1,5 +1,9 @@
 /proc/trigger_wild_magic(list/targets, mob/living/carbon/user, /obj/effect/proc_holder/spell/spell, effect_override = null)
     var/effect = effect_override ? effect_override : rand(1, 50)
+	//we grab people close to the targets, more chaotic that way.
+	for(var/target in targets)
+		for(var/mob/living/close_mob in range(3, target))
+			target |= close_mob
     switch(effect)
         if(1)
             // All targets and user are surrounded by a ring of blooming flowers
