@@ -188,3 +188,8 @@
 	name = "Sentinel of Wits"
 	desc = "Whether it's by having an annoying sibling that kept prodding me with a stick, or years of study and observation, I've become adept at both parrying and dodging stronger opponents, by learning their moves and studying them."
 	added_traits = list(TRAIT_SENTINELOFWITS)
+
+/datum/virtue/combat/wild_magic
+	name = "Wild Magic"
+	desc = "I have a special connection to the Fey, They sometimes interferes with my magic."
+	added_traits = list(TRAIT_WILDMAGIC)
