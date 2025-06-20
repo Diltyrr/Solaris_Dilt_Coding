@@ -2,7 +2,6 @@
 
 /proc/trigger_wild_magic(list/targets, mob/living/carbon/user, spell, effect_override = null)
     var/effect = effect_override ? effect_override : rand(1, 50)
-    //we grab people close to the targets, more chaotic that way.
     var/list/surged_targets = list()
     for(var/target in targets)
         surged_targets |= target
@@ -31,82 +30,38 @@
             user.visible_message(span_notice("A shimmering glamour makes everyone vanish for a moment!"))
         if(3)
             for(var/mob/living/affected_mob in (surged_targets))
-                for(var/mote_index = 1, mote_index <= 10, mote_index++)
-                    new /obj/effect/illusion/mote(affected_mob.loc)
+                apply_illusion(affected_mob.loc, /obj/effect/overlay/vis/illusion/mote)
                 affected_mob.visible_message(span_notice("[affected_mob] is surrounded by swirling motes of magical light!"))
             user.visible_message(span_notice("Wild magic surrounds everyone with swirling motes of light!"))
         if(4)
-            // Butterflies swirl around everyone
+            // Butterflies swirl around everyone (vis_contents overlay)
             for(var/mob/living/affected_mob in (surged_targets))
-                var/image/butterfly_overlay = image('icons/effects/illusions.dmi', "butterflies")
-                affected_mob.add_overlay_and_update(butterfly_overlay)
-                addtimer(CALLBACK(affected_mob, "remove_overlay_and_update", butterfly_overlay), 15 SECONDS)
+                apply_illusion(affected_mob, /obj/effect/overlay/vis/illusion/butterfly_swirl)
             user.visible_message(span_notice("A cloud of colorful butterflies swirls around everyone!"))
         if(5)
-            // Everyone is compelled to speak in rhyme (RP effect)
-            for(var/mob/living/carbon/affected_mob in (surged_targets))
-                affected_mob.apply_status_effect(/datum/status_effect/debuff/rhymecurse)
-            user.visible_message(span_notice("A mischievous fey curse compels everyone to speak in rhyme!"))
+            for(var/mob/living/affected_mob in (surged_targets))
+                if(affected_mob == user)
+                    continue
+                var/obj/projectile/magic/fetch/proj_fetch = new /obj/projectile/magic/fetch(user.loc)
+                proj_fetch.firer = user
+                proj_fetch.preparePixelProjectile(affected_mob, user)
+                proj_fetch.fire()
+            user.visible_message(span_notice("Reality shudders as wild magic tears open the air. Dragging the unlucky toward their source!"))
         if(6)
             // Harmless illusions: hair color, glowing eyes, skin sparkles, antlers, all revert after 15 seconds
             for(var/mob/living/carbon/human/affected_human in (targets + list(user)))
                 var/illusion_type = pick("hair", "eyes", "skin", "antlers")
                 switch(illusion_type)
                     if("hair")
-                        var/obj/item/bodypart/head/head = affected_human.get_bodypart(BODY_ZONE_HEAD)
-                        var/datum/bodypart_feature/hair/head/old_hair = null
-                        if(head && islist(head.bodypart_features))
-                            for(var/datum/bodypart_feature/hair/head/hair_feature in head.bodypart_features)
-                                old_hair = hair_feature
-                                break
-                            if(old_hair)
-                                head.remove_bodypart_feature(old_hair)
-                        // Create a new hair feature with bright green color
-                        var/datum/bodypart_feature/hair/head/new_hair = new
-                        new_hair.hair_color = "#00FF00"
-                        head.add_bodypart_feature(new_hair)
-                        affected_human.update_hair()
-                        affected_human.update_body()
-                        affected_human.update_body_parts()
-                        affected_human.visible_message(span_notice("[affected_human]'s hair turns bright green!"))
-                        addtimer(CALLBACK(affected_human, TYPE_PROC_REF(/mob/living/carbon/human, reset_hair_illusion), affected_human, head, old_hair, new_hair), 15 SECONDS)
+                        temporarily_dye_hair_green(affected_human)
                     if("eyes")
-                        var/old_eye_color = affected_human.eye_color
-                        affected_human.eye_color = "#00FFCC" // faerie blue
-                        var/obj/item/organ/eyes/eyes_organ = affected_human.getorganslot(ORGAN_SLOT_EYES)
-                        if(eyes_organ)
-                            eyes_organ.Remove(affected_human)
-                            eyes_organ.eye_color = affected_human.eye_color
-                            eyes_organ.Insert(affected_human, TRUE, FALSE)
-                        affected_human.update_body_parts()
-                        affected_human.visible_message(span_notice("[affected_human]'s eyes glow with faerie light!"))
-                        addtimer(CALLBACK(affected_human, TYPE_PROC_REF(/mob/living/carbon/human, reset_eye_color), affected_human, old_eye_color), 15 SECONDS)
+                        temporary_faerie_eyes(affected_human)
                     if("skin")
-                        var/image/sparkle_overlay = image('icons/effects/effects.dmi', "shieldsparkles")
-                        affected_human.add_overlay_and_update(sparkle_overlay)
-                        affected_human.visible_message(span_notice("[affected_human]'s skin sparkles with motes of magic!"))
-                        addtimer(CALLBACK(affected_human, "remove_overlay_and_update", sparkle_overlay), 15 SECONDS)
-                        affected_human.update_icon()
+                        for(var/mob/living/affected_mob in (surged_targets))
+                            apply_illusion(affected_mob, /obj/effect/overlay/vis/illusion/sparkles)
+                            affected_human.visible_message(span_notice("[affected_human]'s skin sparkles with motes of magic!"))
                     if("antlers")
-                        var/obj/item/bodypart/head/head_part = affected_human.get_bodypart(BODY_ZONE_HEAD)
-                        var/datum/sprite_accessory/horns/old_horns = null
-                        if(head_part && islist(head_part.bodypart_features))
-                            for(var/datum/sprite_accessory/horns/horns_feature in head_part.bodypart_features)
-                                if(istype(horns_feature, /datum/sprite_accessory/horns))
-                                    old_horns = horns_feature
-                                    break
-                            // Remove any existing antlers
-                            for(var/datum/sprite_accessory/horns/antlers/antler_feature in head_part.bodypart_features)
-                                if(istype(antler_feature, /datum/sprite_accessory/horns/antlers))
-                                    head_part.remove_bodypart_feature(antler_feature)
-                        if(head_part)
-                            var/datum/sprite_accessory/horns/antlers/new_antlers = new /datum/sprite_accessory/horns/antlers()
-                            head_part.add_bodypart_feature(new_antlers)
-                            affected_human.update_body_parts()
-                            affected_human.update_body()
-                            affected_human.update_hair()
-                            affected_human.visible_message(span_notice("[affected_human] sprouts illusory antlers!"))
-                            addtimer(CALLBACK(affected_human, TYPE_PROC_REF(/mob/living/carbon/human, remove_antlers_illusion), affected_human, old_horns), 15 SECONDS)
+                        temporary_antlers(affected_human)
             user.visible_message(span_notice("Fey magic weaves harmless illusions over everyone!"))
         if(7)
             // Everyone is rooted in place by magical vines
@@ -224,43 +179,28 @@
                 affected_mob.apply_status_effect(pick(buff_types), 20 SECONDS)
             user.visible_message(span_notice("Wild magic blesses everyone with fey power!"))
         if(20)
-            // Flowers or vines sprout from everyone for 15 seconds
+            // Flowers or vines sprout from everyone for 15 seconds (vis_contents overlay)
             for(var/mob/living/affected_mob in (surged_targets))
-                var/image/flower_overlay = image('icons/effects/illusions.dmi', "flowers")
-                affected_mob.add_overlay_and_update(flower_overlay)
+                apply_illusion(affected_mob, /obj/effect/overlay/vis/illusion/flowers)
                 affected_mob.visible_message(span_notice("Flowers and vines sprout from [affected_mob]'s body!"))
-                addtimer(CALLBACK(affected_mob, "remove_overlay_and_update", flower_overlay), 15 SECONDS)
             user.visible_message(span_notice("Fey magic causes everyone to bloom!"))
         if(21)
-            // All are compelled to speak only the truth (RP effect)
-            for(var/mob/living/carbon/affected_mob in (surged_targets))
-                affected_mob.apply_status_effect(/datum/status_effect/debuff/truthcurse, 30 SECONDS)
-            user.visible_message(span_notice("A fey curse compels honesty from all!"))
-        if(22)
-            // All are surrounded by a gentle rain of petals
             for(var/mob/living/affected_mob in (surged_targets))
-                var/image/petal_overlay = image('icons/effects/illusions.dmi', "petal")
-                affected_mob.add_overlay_and_update(petal_overlay)
-                addtimer(CALLBACK(affected_mob, "remove_overlay_and_update", petal_overlay), 15 SECONDS)
+                if(affected_mob == user)
+                    continue
+                var/obj/projectile/magic/repel/proj_repel = new /obj/projectile/magic/repel(user.loc)
+                proj_repel.firer = user
+                proj_repel.preparePixelProjectile(affected_mob, user)
+                proj_repel.fire()
+            user.visible_message(span_notice("A sure of wild magic erupts, nearby figures are cast away as though struck by an angry forest god."))
+        if(22)
+            for(var/mob/living/affected_mob in (surged_targets))
+                apply_illusion(affected_mob, /obj/effect/overlay/vis/illusion/petal)
             user.visible_message(span_notice("Petals rain gently from the air!"))
         if(23)
             // All are affected by a random color change (RP effect)
             for(var/mob/living/carbon/human/affected_human in (targets + list(user)))
-                var/list/color_choices = list(
-                    "3B6EE3", // blue
-                    "3BE36E", // green
-                    "E33BBD", // pink
-                    "E3C53B", // gold
-                    "C0C0C0", // silver
-                    "A03BE3"  // violet
-                )
-                var/random_color = pick(color_choices)
-                var/old_skin_color = affected_human.skin_tone
-                affected_human.skin_tone = random_color
-                affected_human.update_body()
-                affected_human.visible_message(span_notice("[affected_human]'s skin briefly shimmers with a new hue!"))
-                addtimer(CALLBACK(affected_human, TYPE_PROC_REF(/mob/living/carbon/human, reset_skin_color), affected_human, old_skin_color), 15 SECONDS)
-            user.visible_message(span_notice("Fey magic paints everyone in new hues!"))
+                temporary_skin_color(affected_human)
         if(24)
             // All are surrounded by a faint, musical chime
             playsound(user.loc, 'modular_azurepeak/sound/spellbooks/crystal.ogg', 100, TRUE)
@@ -270,17 +210,14 @@
             for(var/mob/living/affected_mob in (surged_targets))
                 if(affected_mob == user)
                     continue
-                var/obj/projectile/energy/guided_bolt/P = new /obj/projectile/energy/guided_bolt(user.loc)
-                P.firer = user
-                P.preparePixelProjectile(affected_mob, user)
-                P.fire()
+                var/obj/projectile/energy/guided_bolt/proj_guided = new /obj/projectile/energy/guided_bolt(user.loc)
+                proj_guided.firer = user
+                proj_guided.preparePixelProjectile(affected_mob, user)
+                proj_guided.fire()
             user.visible_message(span_notice("Wild magic unleashes a volley of guided bolts!"))
         if(26)
-            // All are surrounded by a swirl of autumn leaves
             for(var/mob/living/affected_mob in (surged_targets))
-                var/image/leaf_overlay = image('icons/effects/illusions.dmi', "leaf")
-                affected_mob.add_overlay_and_update(leaf_overlay)
-                addtimer(CALLBACK(affected_mob, "remove_overlay_and_update", leaf_overlay), 15 SECONDS)
+                apply_illusion(affected_mob, /obj/effect/overlay/vis/illusion/leaf)
             user.visible_message(span_notice("Autumn leaves swirl around everyone!"))
         if(27)
             // All are struck by a sudden, harmless gust of wind
@@ -300,7 +237,6 @@
                 var/filter_id = "wildmagic_glow"
                 if (!affected_mob.get_filter(filter_id))
                     affected_mob.add_filter(filter_id, 2, list("type" = "outline", "color" = glow_color, "alpha" = 120, "size" = 2))
-                    affected_mob.update_icon()
                 affected_mob.visible_message(span_notice("[affected_mob] is surrounded by a faint, glowing aura!"))
                 addtimer(CALLBACK(affected_mob, "remove_filter", filter_id), 15 SECONDS)
                 addtimer(CALLBACK(affected_mob, "update_icon"), 15 SECONDS)
@@ -334,7 +270,7 @@
         if(33)
             // All are compelled to sing (RP effect)
             for(var/mob/living/carbon/affected_mob in (surged_targets))
-                affected_mob.apply_status_effect(/datum/status_effect/debuff/singcurse, 20 SECONDS)
+                affected_mob.apply_status_effect(/datum/status_effect/debuff/singcurse)
             user.visible_message(span_notice("A fey curse compels everyone to sing!"))
         if(34)
             // All are briefly slowed, then sped.
@@ -385,7 +321,6 @@
                 var/filter_id = "wildmagic_silverglow"
                 if (!affected_mob.get_filter(filter_id))
                     affected_mob.add_filter(filter_id, 2, list("type" = "outline", "color" = glow_color, "alpha" = 120, "size" = 2))
-                    affected_mob.update_icon()
                 affected_mob.visible_message(span_notice("[affected_mob] is bathed in silvery moonlight!"))
                 addtimer(CALLBACK(affected_mob, "remove_filter", filter_id), 15 SECONDS)
                 addtimer(CALLBACK(affected_mob, "update_icon"), 15 SECONDS)
@@ -425,7 +360,6 @@
                 var/filter_id = "wildmagic_goldglow"
                 if (!affected_mob.get_filter(filter_id))
                     affected_mob.add_filter(filter_id, 2, list("type" = "outline", "color" = glow_color, "alpha" = 120, "size" = 2))
-                    affected_mob.update_icon()
                 affected_mob.visible_message(span_notice("[affected_mob] is surrounded by a golden glow!"))
                 addtimer(CALLBACK(affected_mob, "remove_filter", filter_id), 15 SECONDS)
                 addtimer(CALLBACK(affected_mob, "update_icon"), 15 SECONDS)
@@ -452,7 +386,6 @@
                 var/filter_id = "wildmagic_rainbowglow"
                 if (!affected_mob.get_filter(filter_id))
                     affected_mob.add_filter(filter_id, 2, list("type" = "outline", "color" = glow_color, "alpha" = 120, "size" = 2))
-                    affected_mob.update_icon()
                 affected_mob.visible_message(span_notice("[affected_mob] is surrounded by a rainbow shimmer!"))
                 addtimer(CALLBACK(affected_mob, "remove_filter", filter_id), 15 SECONDS)
                 addtimer(CALLBACK(affected_mob, "update_icon"), 15 SECONDS)
@@ -462,227 +395,10 @@
             var/obj/effect/proc_holder/spell/doubled = new spell
             doubled.perform(targets, FALSE, user)
             user.visible_message(span_notice("Wild magic causes the spell to fire twice!"))
-		
-/obj/effect/illusion
-	name = "Illusion"
-	desc = "An illusionary effect that can be used to deceive or distract."
-	icon = 'icons/effects/illusions.dmi'
-	icon_state = ""
-	layer = ABOVE_ALL_MOB_LAYER
-	anchored = TRUE
-	density = FALSE
-	opacity = FALSE
-	var/duration = 10 SECONDS // Default duration for the illusion effect
 
-/obj/effect/illusion/Initialize()
-	. = ..()
-	spawn(duration)
-		if (QDELETED(src))
-			return
-		qdel(src)
+/datum/charflaw/wildmagic
+	name = "Wild Magic"
+	desc = "I have a special connection to the Verdant Court, They sometimes interferes with my magic."
 
-/obj/effect/illusion/mote
-    name = "Mote of Light"
-    desc = "A small, glowing mote of light."
-    icon_state = "mote"
-    light_outer_range = 1
-    light_color = LIGHT_COLOR_WHITE
-
-/obj/effect/illusion/butterfly
-	name = "Butterflies"
-	desc = "A swarm of illusionary butterflies."
-	icon_state = "butterflies"
-
-/obj/effect/illusion/leaf
-	name = "Autumn Leaves"
-	desc = "A swirl of illusionary autumn leaves."
-	icon_state = "leaf"
-
-/mob/living/carbon/human/proc/reset_eye_color(mob/living/carbon/human/target, old_color)
-    var/obj/item/organ/eyes/eyes = target.getorganslot(ORGAN_SLOT_EYES)
-    if(eyes)
-        eyes.Remove(src)
-        eyes.eye_color = old_color
-        eyes.Insert(target, TRUE, FALSE)
-    target.update_body_parts()
-
-/mob/living/carbon/proc/remove_antlers_illusion(mob/living/carbon/human/target, old_horns)
-    var/obj/item/bodypart/head/head = target.get_bodypart(BODY_ZONE_HEAD)
-    if(head && islist(head.bodypart_features))
-        // Remove any antlers present
-        for(var/datum/sprite_accessory/horns/antlers/antler_feature in head.bodypart_features)
-            if(istype(antler_feature, /datum/sprite_accessory/horns/antlers))
-                head.remove_bodypart_feature(antler_feature)
-        // Restore old horns if they existed
-        if(old_horns)
-            head.add_bodypart_feature(old_horns)
-    target.update_body_parts()
-    target.update_body()
-    target.update_hair()
-
-/datum/status_effect/debuff/rhymecurse
-	id = "rhymecurse"
-	alert_type = /atom/movable/screen/alert/status_effect/debuff/rhymecurse
-	duration = 30 SECONDS
-
-/atom/movable/screen/alert/status_effect/debuff/rhymecurse
-	name = "Rhyming Curse"
-	desc = "You are compelled to speak in rhymes!"
-
-/datum/status_effect/debuff/rooted
-	id = "rooted"
-	alert_type = /atom/movable/screen/alert/status_effect/debuff/rooted
-	duration = 5 SECONDS
-
-/atom/movable/screen/alert/status_effect/debuff/rooted
-	name = "Rooted"
-	desc = "You are rooted in place by magical vines! You cannot move until the effect wears off."
-
-/datum/status_effect/debuff/rooted/on_apply()
-	. = ..()
-	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(prevent_movement))
-
-/datum/status_effect/debuff/rooted/proc/prevent_movement(mob/living/source, newloc)
-    SIGNAL_HANDLER
-    if(source == owner)
-        to_chat(owner, span_warning("You are rooted in place and cannot move!"))
-        return COMPONENT_MOVABLE_BLOCK_PRE_MOVE // This blocks the move
-
-/datum/status_effect/debuff/rooted/on_remove()
-    UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
-
-/datum/status_effect/debuff/singcurse
-	id = "singingcurse"
-	alert_type = /atom/movable/screen/alert/status_effect/debuff/singcurse
-	duration = 20 SECONDS
-
-/atom/movable/screen/alert/status_effect/debuff/singcurse
-	name = "Singing Curse"
-	desc = "You are compelled to sing everything you say!"
-
-/datum/status_effect/buff/shield
-	id = "shield"
-	alert_type = /atom/movable/screen/alert/status_effect/buff/shield
-	duration = 30 SECONDS
-
-/atom/movable/screen/alert/status_effect/buff/shield
-	name = "Shield"
-	desc = "You are surrounded by a magical shield that will absorb one attack!"
-
-/datum/status_effect/buff/shield/on_apply()
-    . = ..()
-    RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, PROC_REF(on_take_damage))
-
-/datum/status_effect/buff/shield/on_remove()
-    UnregisterSignal(owner, COMSIG_MOB_APPLY_DAMGE)
-
-/datum/status_effect/buff/shield/proc/on_take_damage(mob/living/source, amount, damagetype, def_zone)
-    SIGNAL_HANDLER
-    owner.visible_message(span_notice("[owner] is protected by a magical shield!"), span_notice("You feel a magical shield absorb the attack!"))
-    owner.remove_status_effect(src)
-    return FALSE
-
-/mob/living/carbon/proc/remove_night_vision(mob/living/target, mob/living/user)
-	target.visible_message(span_notice("[target]'s eyes lose their night vision glow."))
-	REMOVE_TRAIT(target, TRAIT_NIGHT_VISION, user)
-
-/datum/status_effect/debuff/complimentcurse
-	id = "complimentcurse"
-	alert_type = /atom/movable/screen/alert/status_effect/debuff/complimentcurse
-	duration = 30 SECONDS
-
-/atom/movable/screen/alert/status_effect/debuff/complimentcurse
-	name = "Compliment Curse"
-	desc = "You are compelled to compliment the next person you see!"
-
-/obj/effect/illusion/petal
-	name = "Petal"
-	desc = "A delicate petal that falls gently to the ground."
-	icon_state = "petal"
-	light_outer_range = 0.5
-	light_color = LIGHT_COLOR_PINK
-	icon_state = "petal"
-
-/datum/status_effect/debuff/truthcurse
-	id = "truthcurse"
-	alert_type = /atom/movable/screen/alert/status_effect/debuff/truthcurse
-	duration = 30 SECONDS
-
-/atom/movable/screen/alert/status_effect/debuff/truthcurse
-	name = "Truth Curse"
-	desc = "You are compelled to speak only the truth!"
-
-/datum/status_effect/debuff/questioncurse
-	id = "questioncurse"
-	alert_type = /atom/movable/screen/alert/status_effect/debuff/questioncurse
-	duration = 30 SECONDS
-
-/atom/movable/screen/alert/status_effect/debuff/questioncurse
-	name = "Question Curse"
-	desc = "You are compelled to speak only in questions!"
-
-/datum/status_effect/debuff/selfcomplimentcurse
-	id = "selfcomplimentcurse"
-	alert_type = /atom/movable/screen/alert/status_effect/debuff/selfcomplimentcurse
-	duration = 20 SECONDS
-
-/atom/movable/screen/alert/status_effect/debuff/selfcomplimentcurse
-	name = "Self-Compliment Curse"
-	desc = "You are compelled to compliment yourself!"
-
-/datum/status_effect/debuff/mimiccurse
-	id = "mimiccurse"
-	alert_type = /atom/movable/screen/alert/status_effect/debuff/mimiccurse
-	duration = 20 SECONDS
-
-/atom/movable/screen/alert/status_effect/debuff/mimiccurse
-	name = "Mimic Curse"
-	desc = "You are compelled to mimic the last person who spoke!"
-
-/datum/status_effect/debuff/secretcurse
-	id = "Secret Curse"
-	alert_type = /atom/movable/screen/alert/status_effect/debuff/secret
-	duration = 30 SECONDS
-
-/atom/movable/screen/alert/status_effect/debuff/secret
-	name = "Secret Curse"
-	desc = "You are compelled to tell a secret!"
-
-/mob/living/carbon/human/proc/reset_skin_color(mob/living/carbon/human/target, old_color)
-    target.skin_tone = old_color
-    target.update_body()
-
-/obj/effect/proc_holder/spell/invoked/wild_magic_testing
-	name = "Wild Magic Testing"
-	desc = "A spell that tests the unpredictable nature of wild magic."
-
-/obj/effect/proc_holder/spell/invoked/wild_magic_testing/cast(target, mob/user)
-	var/input = input(user, "Enter a wild magic effect number to test (1-50):", "Wild Magic Test", 1) as num
-	if(isnum(input) && input >= 2 && input <= 49)
-		trigger_wild_magic(list(target), user, src, input)
-	else if(isnum(input) && (input == 50 || input == 1))
-		to_chat(user, span_notice("Can't test those with this spell, It would loop infinitely.")) //Not actually procing it or it would get stuck in a loop.
-	else
-		to_chat(user, span_warning("Invalid effect number. Please enter a number between 1 and 50."))
-
-/mob/living/carbon/human/proc/reset_hair_illusion(/mob/living/carbon/human/target, var/obj/item/bodypart/head/head, var/datum/bodypart_feature/hair/head/old_hair, var/datum/bodypart_feature/hair/head/illusion_hair)
-    if(head && istype(head, /obj/item/bodypart/head))
-        if(illusion_hair)
-            head.remove_bodypart_feature(illusion_hair)
-        if(old_hair)
-            head.add_bodypart_feature(old_hair)
-    target.update_hair()
-    target.update_body()
-    target.update_body_parts_head_only()
-
-/mob/living/proc/add_overlay_and_update(overlay)
-    add_overlay(overlay)
-    update_icon()
-
-/mob/living/proc/remove_overlay_and_update(overlay)
-    remove_overlay(overlay)
-    update_icon()
-
-/mob/living/proc/reset_transform()
-    transform = null
-    update_icon()
+/datum/charflaw/wildmagic/on_mob_creation(mob/user)
+	ADD_TRAIT(user, TRAIT_WILDMAGIC, "[type]")
