@@ -907,6 +907,7 @@
 	slot_flags = ITEM_SLOT_ARMOR
 	name = "dragonscale armor"
 	desc = "Armor crafted from the hardened scales of a dragon."
+	icon_state = "dragonarmor"
 	body_parts_covered = CHEST|GROIN|VITALS
 	color = "#9e5761"
 	icon_state = "carapace"
@@ -918,9 +919,9 @@
 /obj/item/clothing/suit/roguetown/armor/carapace/dragon/cuirass
 	slot_flags = ITEM_SLOT_ARMOR
 	name = "dragonscale cuirass"
+	icon_state = "dragoncuirasse"
 	desc = "Vest styled dragonscale chest armor sewn in layers."
 	body_parts_covered = CHEST|GROIN|VITALS
-	color = "#9e5761"
 	icon_state = "carapacecuirass"
 	item_state = "carapacecuirass"
 	flags_inv = HIDEBOOB

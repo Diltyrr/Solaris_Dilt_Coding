@@ -188,6 +188,6 @@
 /obj/item/clothing/gloves/roguetown/carapace/dragon
 	name = "dragonscale gauntlets"
 	desc = "Strong dragonscale plated gauntlets."
-	color = "#9e5761"
+	icon_state = "dragon_gauntlets"
 	armor = list("blunt" = 80, "slash" = 100, "stab" = 80, "piercing" = 100, "fire" = 60, "acid" = 0) //Sidegrade to blacksteel
 	max_integrity = 275

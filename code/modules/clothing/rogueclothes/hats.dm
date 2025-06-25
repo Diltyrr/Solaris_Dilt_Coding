@@ -1862,8 +1862,8 @@
 	drop_sound = 'sound/foley/dropsound/chain_drop.ogg'
 /obj/item/clothing/head/roguetown/helmet/carapacecap/dragon
 	name = "dragonscale cap"
+	icon_state = "dragonscalecap"
 	desc = "Fiery armored plates sown together to protect your head."
-	color = "#9e5761"
 	armor = list("blunt" = 55, "slash" = 50, "stab" = 55, "piercing" = 45, "fire" = 50, "acid" = 0)
 	max_integrity = 200
 

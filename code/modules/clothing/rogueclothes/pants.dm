@@ -397,13 +397,13 @@
 /obj/item/clothing/under/roguetown/carapacelegs/dragon
 	name = "dragonscale platelegs"
 	desc = "Dragonscale armor to protect the legs."
+	icon_state = "dragon_legs"
 	armor = list("blunt" = 80, "slash" = 100, "stab" = 80, "piercing" = 50, "fire" = 60, "acid" = 0) //Sidegrade to Blacksteel
 	max_integrity = 325
-	color = "#9e5761"
 	sellprice = 50
 
 /obj/item/clothing/under/roguetown/carapacelegs/dragon/skirt
 	name = "dragonscale plated skirt"
-	icon_state = "carapace_skirt"
+	icon_state = "dragon_skirt"
 	item_state = "carapace_skirt"
 	sellprice = 50

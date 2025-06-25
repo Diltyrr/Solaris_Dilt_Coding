@@ -156,7 +156,7 @@
 	name = "dragonscale"
 	icon_state = "carapace"
 	desc = "Carapace from a fiery creature."
-	color = "red"
+	icon_state = "dragonscale"
 	force = 0
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL

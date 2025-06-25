@@ -132,6 +132,6 @@
 /obj/item/clothing/wrists/roguetown/bracers/carapace/dragon
 	name = "dragonscale bracers"
 	desc = "Fiber bracers lined with dragonscale to protect your wrists"
-	color = "#9e5761"
+	icon_state = "dragon_bracers"
 	armor = list("blunt" = 80, "slash" = 100, "stab" = 80, "piercing" = 100, "fire" = 60, "acid" = 0) //Should be okay for a dragon drop ?
 	max_integrity = 200
