@@ -909,7 +909,6 @@
 	desc = "Armor crafted from the hardened scales of a dragon."
 	icon_state = "dragonarmor"
 	body_parts_covered = CHEST|GROIN|VITALS
-	color = "#9e5761"
 	icon_state = "carapace"
 	item_state = "carapace"
 	armor = list("blunt" = 80, "slash" = 100, "stab" = 80, "piercing" = 70, "fire" = 60, "acid" = 0) //Sidegrade to Blacksteel Plate

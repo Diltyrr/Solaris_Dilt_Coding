@@ -1893,7 +1893,6 @@
 	body_parts_covered = HEAD|HAIR|EARS|NOSE|NECK
 	icon_state = "dragonscalehelm"
 	item_state = "dragonscalehelm"
-	color = "#693a41"
 	armor = list("blunt" = 85, "slash" = 100, "stab" = 85, "piercing" = 80, "fire" = 70, "acid" = 0)
 	max_integrity = 350
 	sellprice = 50
