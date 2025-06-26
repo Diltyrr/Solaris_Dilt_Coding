@@ -134,6 +134,14 @@
 /obj/effect/mapping_helpers/access/peasant/stableii
 	our_lockid = /obj/item/roguekey/apartments/stable2::lockid
 
+/// RASURA ///
+/obj/effect/mapping_helpers/access/rasura
+	color = JCOLOR_SLOP
+	our_lockid = /obj/item/roguekey/rasura
+
+/obj/effect/mapping_helpers/access/rasura/noble
+	our_lockid = /obj/item/roguekey/rasura/noble
+
 /// YEOMEN ///
 /obj/effect/mapping_helpers/access/yeomen
 	color = JCOLOR_YEOMAN

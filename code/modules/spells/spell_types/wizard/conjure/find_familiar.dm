@@ -192,8 +192,10 @@
 		var/mob/living/simple_animal/pet/familiar/fam = new familiar_type(spawn_turf)
 		fam.familiar_summoner = user
 		user.visible_message(span_notice("[fam.summoning_emote]"))
-		fam.fully_replace_character_name(null, "[user]'s familiar")
+		fam.fully_replace_character_name(null, "[user.real_name]'s familiar")
 		user.apply_status_effect(fam.buff_given)
+		for (var/faction_to_add in user.faction) //Should stop necromancer's skellies from murdering the necromancer's pet.
+			fam.faction |= faction_to_add
 		log_game("[key_name(user)] summoned non-sentient familiar of type [familiar_type]")
 		user.busy_summoning_familiar = FALSE
 		return TRUE
@@ -340,6 +342,9 @@
 	awakener.stop_automated_movement = TRUE
 	awakener.stop_automated_movement_when_pulled = TRUE
 	awakener.wander = FALSE
+
+	for (var/faction_to_add in user.mind.summons_additional_factions) //Should stop necromancer's skellies from murdering the necromancer's pet.
+		awakener.faction |= faction_to_add
 
 	// Admin/game logging
 	log_game("[key_name(user)] has summoned [key_name(chosen_one)] as familiar '[awakener.name]' ([awakener.type]).")

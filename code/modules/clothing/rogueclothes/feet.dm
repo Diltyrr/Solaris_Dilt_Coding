@@ -264,3 +264,24 @@
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/race_armor.dmi'
 	icon_state = "welfshoes"
 	item_state = "welfshoes"
+
+/obj/item/clothing/shoes/roguetown/boots/carapace
+	name = "carapace boots"
+	desc = "Boots made from carapace for added protection."
+	body_parts_covered = FEET
+	icon_state = "carapaceboots"
+	item_state = "carapaceboots"
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
+	color = null
+	blocksound = PLATEHIT
+	drop_sound = 'sound/foley/dropsound/chain_drop.ogg'
+	armor = list("blunt" = 60, "slash" = 90, "stab" = 60, "piercing" = 60, "fire" = 30, "acid" = 0) //Sidegrade to plated boots. (Worse for most situation, better against fire or pierce.)
+	max_integrity = 225
+	anvilrepair = null
+	smeltresult = /obj/item/ash
+	sewrepair = TRUE
+/obj/item/clothing/shoes/roguetown/boots/carapace/dragon
+	name = "dragonscale boots"
+	desc = "Boots made from dragonscale for added protection."
+	color = "#9e5761"
+	armor = list("blunt" = 80, "slash" = 100, "stab" = 80, "piercing" = 100, "fire" = 60, "acid" = 0) //Sidegrade to Blacksteel

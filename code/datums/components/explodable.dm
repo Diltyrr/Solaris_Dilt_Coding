@@ -46,20 +46,28 @@
 	check_if_detonate(target)
 
 ///Called when you attack a specific body part of the thing this is equipped on. Useful for exploding pants.
-/datum/component/explodable/proc/explodable_attack_zone(datum/source, damage, damagetype, def_zone)
-	if(!def_zone)
-		return
-	if(damagetype != BURN) //Don't bother if it's not fire.
-		return
-	if(!is_hitting_zone(def_zone)) //You didn't hit us! ha!
-		return
-	detonate()
+/datum/component/explodable/proc/explodable_attack_zone(datum/source, datum/signal_damage/signal_data)
+    SIGNAL_HANDLER
+
+    var/damagetype = signal_data.damagetype
+    var/def_zone = signal_data.def_zone
+
+    if (!def_zone)
+        return
+
+    if (damagetype != BURN)
+        return
+
+    if (!is_hitting_zone(def_zone))
+        return
+
+    detonate()
 
 /datum/component/explodable/proc/on_equip(datum/source, mob/equipper, slot)
-	RegisterSignal(equipper, COMSIG_MOB_APPLY_DAMGE,  PROC_REF(explodable_attack_zone), TRUE)
+	RegisterSignal(equipper, COMSIG_MOB_APPLY_DAMAGE,  PROC_REF(explodable_attack_zone), TRUE)
 
 /datum/component/explodable/proc/on_drop(datum/source, mob/user)
-	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)
+	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMAGE)
 
 /// Checks if we're hitting the zone this component is covering
 /datum/component/explodable/proc/is_hitting_zone(def_zone)

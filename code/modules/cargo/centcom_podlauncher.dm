@@ -47,8 +47,8 @@
 	else
 		var/mob/M = H
 		holder = M.client //if its a mob, assign the mob's client to holder
-	bay =  locate(/area/centcom/supplypod/loading/one) in GLOB.sortedAreas //Locate the default bay (one) from the centcom map
-	temp_pod = new(locate(/area/centcom/supplypod/podStorage) in GLOB.sortedAreas) //Create a new temp_pod in the podStorage area on centcom (so users are free to look at it and change other variables if needed)
+	bay =  locate(/area/rasurian_heartland/indoors/artificacy_launchbay/bay_one) in GLOB.sortedAreas //Locate the default bay (one) from the centcom map
+	temp_pod = new(locate(/area/rasurian_heartland/indoors/artificacy_launchbay/podStorage) in GLOB.sortedAreas) //Create a new temp_pod in the podStorage area on centcom (so users are free to look at it and change other variables if needed)
 	orderedArea = createOrderedArea(bay) //Order all the turfs in the selected bay (top left to bottom right) to a single list. Used for the "ordered" mode (launchChoice = 1)
 
 /datum/centcom_podlauncher/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, \
@@ -61,7 +61,7 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 
 /datum/centcom_podlauncher/ui_data(mob/user) //Sends info about the pod to the UI.
 	var/list/data = list() //*****NOTE*****: Many of these comments are similarly described in supplypod.dm. If you change them here, please consider doing so in the supplypod code as well!
-	var/B = (istype(bay, /area/centcom/supplypod/loading/one)) ? 1 : (istype(bay, /area/centcom/supplypod/loading/two)) ? 2 : (istype(bay, /area/centcom/supplypod/loading/three)) ? 3 : (istype(bay, /area/centcom/supplypod/loading/four)) ? 4 : (istype(bay, /area/centcom/supplypod/loading/ert)) ? 5 : 0 //top ten THICCEST FUCKING TERNARY CONDITIONALS OF 2036
+	var/B = (istype(bay, /area/rasurian_heartland/indoors/artificacy_launchbay/bay_one)) ? 1 : (istype(bay, /area/rasurian_heartland/indoors/artificacy_launchbay/bay_two)) ? 2 : (istype(bay, /area/rasurian_heartland/indoors/artificacy_launchbay/bay_three)) ? 3 : (istype(bay, /area/rasurian_heartland/indoors/artificacy_launchbay/bay_four)) ? 4 : (istype(bay, /area/rasurian_heartland/indoors/artificacy_launchbay/aetherial_road)) ? 5 : 0 //top ten THICCEST FUCKING TERNARY CONDITIONALS OF 2036
 	data["bay"] = bay //Holds the current bay the user is launching objects from. Bays are specific rooms on the centcom map.
 	data["bayNumber"] = B //Holds the bay as a number. Useful for comparisons in centcom_podlauncher.ract
 	data["oldArea"] = (oldTurf ? get_area(oldTurf) : null) //Holds the name of the area that the user was in before using the teleportCentcom action
@@ -102,23 +102,23 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 	switch(action)
 		////////////////////////////UTILITIES//////////////////
 		if("bay1")
-			bay =  locate(/area/centcom/supplypod/loading/one) in GLOB.sortedAreas //set the "bay" variable to the corresponding room in centcom
+			bay =  locate(/area/rasurian_heartland/indoors/artificacy_launchbay/bay_one) in GLOB.sortedAreas //set the "bay" variable to the corresponding room in centcom
 			refreshBay() //calls refreshBay() which "recounts" the bay to see what items we can launch (among other things).
 			. = TRUE
 		if("bay2")
-			bay =  locate(/area/centcom/supplypod/loading/two) in GLOB.sortedAreas
+			bay =  locate(/area/rasurian_heartland/indoors/artificacy_launchbay/bay_two) in GLOB.sortedAreas
 			refreshBay()
 			. = TRUE
 		if("bay3")
-			bay =  locate(/area/centcom/supplypod/loading/three) in GLOB.sortedAreas
+			bay =  locate(/area/rasurian_heartland/indoors/artificacy_launchbay/bay_three) in GLOB.sortedAreas
 			refreshBay()
 			. = TRUE
 		if("bay4")
-			bay =  locate(/area/centcom/supplypod/loading/four) in GLOB.sortedAreas
+			bay =  locate(/area/rasurian_heartland/indoors/artificacy_launchbay/bay_four) in GLOB.sortedAreas
 			refreshBay()
 			. = TRUE
 		if("bay5")
-			bay =  locate(/area/centcom/supplypod/loading/ert) in GLOB.sortedAreas
+			bay =  locate(/area/rasurian_heartland/indoors/artificacy_launchbay/aetherial_road) in GLOB.sortedAreas
 			refreshBay()
 			. = TRUE
 		if("teleportCentcom") //Teleports the user to the centcom supply loading facility.
@@ -497,8 +497,8 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 
 /datum/centcom_podlauncher/proc/createOrderedArea(area/A) //This assumes the area passed in is a continuous square
 	if (isnull(A)) //If theres no supplypod bay mapped into centcom, throw an error
-		to_chat(holder.mob, "No /area/centcom/supplypod/loading/one (or /two or /three or /four) in the world! You can make one yourself (then refresh) for now, but yell at a mapper to fix this, today!")
-		CRASH("No /area/centcom/supplypod/loading/one (or /two or /three or /four) has been mapped into the centcom z-level!")
+		to_chat(holder.mob, "No /area/rasurian_heartland/indoors/artificacy_launchbay/bay_one (or /two or /three or /four) in the world! You can make one yourself (then refresh) for now, but yell at a mapper to fix this, today!")
+		CRASH("No /area/rasurian_heartland/indoors/artificacy_launchbay/bay_one (or /two or /three or /four) has been mapped into the centcom z-level!")
 	orderedArea = list()
 	if (!isemptylist(A.contents)) //Go through the area passed into the proc, and figure out the top left and bottom right corners by calculating max and min values
 		var/startX = A.contents[1].x //Create the four values (we do it off a.contents[1] so they have some sort of arbitrary initial value. They should be overwritten in a few moments)
@@ -549,7 +549,7 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 	var/obj/structure/closet/supplypod/centcompod/toLaunch = DuplicateObject(temp_pod) //Duplicate the temp_pod (which we have been varediting or configuring with the UI) and store the result
 	toLaunch.bay = bay //Bay is currently a nonstatic expression, so it cant go into toLaunch using DuplicateObject
 	toLaunch.update_icon()//we update_icon() here so that the door doesnt "flicker on" right after it lands
-	var/shippingLane = GLOB.areas_by_type[/area/centcom/supplypod/flyMeToTheMoon]
+	var/shippingLane = GLOB.areas_by_type[/area/rasurian_heartland/outdoors/supplypod_active_transit]
 	toLaunch.forceMove(shippingLane)
 	if (launchClone) //We arent launching the actual items from the bay, rather we are creating clones and launching those
 		for (var/atom/movable/O in launchList)

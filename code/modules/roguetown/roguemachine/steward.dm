@@ -214,7 +214,7 @@
 	testing("number1 is [number]")
 	if(!number)
 		number = 1
-	var/area/A = GLOB.areas_by_type[/area/rogue/indoors/town/warehouse]
+	var/area/A = GLOB.areas_by_type[/area/provincial/indoors/town/steward/import_platform]
 	if(!A)
 		return
 	var/obj/item/I = new D.item_type()

@@ -24,7 +24,7 @@
 							/obj/structure/closet/dirthole/closed/loot=3,
 							/obj/structure/flora/roguegrass/pyroclasticflowers = 3)
 	spawnableTurfs = list(/turf/open/floor/rogue/dirt/road=5)
-	allowed_areas = list(/area/rogue/outdoors/rtfield)
+	allowed_areas = list(/area/provincial/outdoors/field)
 
 /datum/mapGeneratorModule/roguetownfield/road
 	clusterCheckFlags = CLUSTER_CHECK_DIFFERENT_ATOMS
@@ -32,7 +32,7 @@
 	excluded_turfs = list()
 	spawnableAtoms = list(/obj/item/natural/stone = 18,
 							/obj/item/grown/log/tree/stick = 3)
-	allowed_areas = list(/area/rogue/outdoors/rtfield)
+	allowed_areas = list(/area/provincial/outdoors/field)
 
 /datum/mapGeneratorModule/roguetownfield/grass
 	clusterCheckFlags = CLUSTER_CHECK_NONE
@@ -40,7 +40,7 @@
 	excluded_turfs = list(/turf/open/floor/rogue/dirt/road)
 	spawnableTurfs = list(/turf/open/floor/rogue/grass = 15)
 	spawnableAtoms = list()
-	allowed_areas = list(/area/rogue/outdoors/rtfield)
+	allowed_areas = list(/area/provincial/outdoors/field)
 
 /datum/mapGeneratorModule/roguetowngrass
 	clusterCheckFlags = CLUSTER_CHECK_DIFFERENT_ATOMS
@@ -50,4 +50,4 @@
 						/obj/structure/flora/roguegrass/maneater = 7,
 							/obj/item/natural/stone = 18,
 							/obj/item/grown/log/tree/stick = 3)
-	allowed_areas = list(/area/rogue/outdoors/town,/area/rogue/outdoors/rtfield)
+	allowed_areas = list(/area/provincial/outdoors/town,/area/provincial/outdoors/field)

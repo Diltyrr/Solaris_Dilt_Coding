@@ -41,7 +41,7 @@
 		))
 	// Ignore these areas and dont let people expand them. They can expand into them though
 	var/static/blacklisted_areas = typecacheof(list(
-		/area/space,
+		/area/rasurian_heartland/indoors,
 		))
 	var/list/turfs = detect_room(get_turf(creator), area_or_turf_fail_types, BP_MAX_ROOM_SIZE*2)
 	if(!turfs)

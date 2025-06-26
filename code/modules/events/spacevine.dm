@@ -10,7 +10,7 @@
 
 	var/obj/structure/spacevine/SV = new()
 
-	for(var/area/rogue/outdoors/town/A in world)
+	for(var/area/provincial/outdoors/town/A in world)
 		for(var/turf/open/F in A)
 			if(F.Enter(SV))
 				if(!istype(F, /turf/open/transparent/openspace))

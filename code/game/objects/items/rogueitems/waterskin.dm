@@ -9,7 +9,7 @@
 	sellprice = 5
 	closed = FALSE
 	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_NECK
-	obj_flags = CAN_BE_HIT
+	obj_flags = CAN_BE_HIT | UNIQUE_RENAME
 	reagent_flags = OPENCONTAINER
 	w_class =  WEIGHT_CLASS_NORMAL
 	drinksounds = list('sound/items/drink_bottle (1).ogg','sound/items/drink_bottle (2).ogg')

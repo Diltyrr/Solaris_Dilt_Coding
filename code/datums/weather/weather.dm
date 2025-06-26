@@ -22,7 +22,7 @@
 	var/end_sound
 	var/end_overlay
 
-	var/area_type = /area/space //Types of area to affect
+	var/area_type = /area/provincial/outdoors //Types of area to affect
 	var/list/impacted_areas = list() //Areas to be affected by the weather, calculated when the weather begins
 	var/list/protected_areas = list()//Areas that are protected and excluded from the affected areas.
 	var/impacted_z_levels = list() // The list of z-levels that this weather is actively affecting

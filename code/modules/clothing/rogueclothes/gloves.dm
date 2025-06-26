@@ -169,3 +169,25 @@
 	resistance_flags = FIRE_PROOF
 	blocksound = SOFTHIT
 	max_integrity = 200
+
+/obj/item/clothing/gloves/roguetown/carapace
+	name = "carapace gauntlets"
+	desc = "Strong carapace plated gauntlets to sink your pincers into."
+	icon_state = "carapace_gauntlets"
+	armor = list("blunt" = 60, "slash" = 80, "stab" = 60, "piercing" = 60, "fire" = 30, "acid" = 0) //Around chain level
+	max_integrity = 225
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT)
+	resistance_flags = null
+	blocksound = PLATEHIT
+	blade_dulling = DULLING_BASHCHOP
+	break_sound = 'sound/foley/cloth_rip.ogg'
+	drop_sound = 'sound/foley/dropsound/chain_drop.ogg'
+	smeltresult = /obj/item/ash
+	anvilrepair = null
+	sewrepair = TRUE
+/obj/item/clothing/gloves/roguetown/carapace/dragon
+	name = "dragonscale gauntlets"
+	desc = "Strong dragonscale plated gauntlets."
+	color = "#9e5761"
+	armor = list("blunt" = 80, "slash" = 100, "stab" = 80, "piercing" = 100, "fire" = 60, "acid" = 0) //Sidegrade to blacksteel
+	max_integrity = 275

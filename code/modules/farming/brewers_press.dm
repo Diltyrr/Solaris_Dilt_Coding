@@ -27,11 +27,11 @@
 
 /obj/structure/brewers_press/attackby(obj/item/I, mob/user, params)
 	if(istype(I,/obj/item/storage/roguebag) && I.contents.len)
-		var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+		var/datum/component/storage/STR = I.GetComponent(/datum/component/storage)
 		for(var/obj/item/reagent_containers/food/snacks/grown/bagged_fruit in I.contents)
 			//If you can press it, transfer the fruit from the bag to the press' storage
 			if(bagged_fruit.can_press)
-				STR.remove_from_storage(bagged_fruit, get_turf(user))
+				STR.remove_from_storage(bagged_fruit, src)
 				if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, bagged_fruit, null, TRUE, TRUE))
 					bagged_fruit.inventory_flip(null, TRUE)
 					if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, bagged_fruit, null, TRUE, TRUE))
@@ -50,7 +50,7 @@
 				to_chat(user, span_warning("I can't press [honeyitem] in [src]."))
 				return FALSE
 		to_chat(user, span_info("I dump the contents of [I] into [src]."))
-		I.update_icon()	
+		I.update_icon()
 		return TRUE
 	if(user.used_intent)
 		if(user.used_intent.type in list(/datum/intent/fill,/datum/intent/pour,/datum/intent/splash))
@@ -92,7 +92,7 @@
 			food.reagents.remove_reagent(/datum/reagent/water, food.reagents.total_volume)
 		if(food.press_reagent)
 			reagents.add_reagent(food.press_reagent, food.press_amt)
-		
+
 	qdel(food)
 	playsound(src, "bubbles", 100, TRUE)
 	return TRUE

@@ -283,6 +283,8 @@
 				chance = 6
 			if(C.m_intent == MOVE_INTENT_SNEAK)
 				chance = 1
+			if(HAS_TRAIT(C,TRAIT_LEECHIMMUNE))
+				return
 			if(!prob(chance))
 				return
 			if(C.blood_volume <= 0)

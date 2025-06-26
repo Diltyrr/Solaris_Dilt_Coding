@@ -284,16 +284,21 @@
 			if(!looty.len && (world.time > res_replenish))
 				loot_replenish()
 #endif
-			if(prob(50) && looty.len)
+			if(looty.len)
 				if(looty.len == 1)
 					res_replenish = world.time + 8 MINUTES
-				var/obj/item/B = pick_n_take(looty)
-				if(B)
-					B = new B(user.loc)
+				var/obj/item/loot = pick_n_take(looty)
+				if(loot)
+					var/obj/item/B = new loot.type(user.loc)
 					user.put_in_hands(B)
-					user.visible_message(span_notice("[user] finds [B] in [src]."))
+					if(HAS_TRAIT(user, TRAIT_WOODWALKER))
+						var/obj/item/C = new loot.type(user.loc)
+						user.put_in_hands(C)
+					user.visible_message(span_notice("[user] finds [HAS_TRAIT(user, TRAIT_WOODWALKER) ? "two " : ""][loot.name] in [src]."))
 					return
 			user.visible_message(span_warning("[user] searches through [src]."))
+			if((looty.len) && do_after(user, CLICK_CD_MELEE))
+				attack_hand(user)
 #ifdef MATURESERVER
 			if(!looty.len)
 				to_chat(user, span_warning("Picked clean."))

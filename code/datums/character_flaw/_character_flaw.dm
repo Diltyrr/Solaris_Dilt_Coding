@@ -19,6 +19,7 @@ GLOBAL_LIST_INIT(character_flaws, list(
 	"Wood Arm (R)"=/datum/charflaw/limbloss/arm_r,
 	"Wood Arm (L)"=/datum/charflaw/limbloss/arm_l,
 	"Sleepless"=/datum/charflaw/sleepless,
+	"Wild Magic" =/datum/charflaw/wildmagic,
 	"Random or No Flaw"=/datum/charflaw/randflaw,
 	"No Flaw"=/datum/charflaw/eznoflaw,
 	))

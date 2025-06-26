@@ -640,3 +640,42 @@
 			qdel(item)
 			user.mind.add_sleep_experience(/datum/skill/misc/sewing, (user.STAINT))
 	return ..()
+
+/obj/item/rogueweapon/armknife
+	force = 13
+	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/thrust, /datum/intent/dagger/chop, /datum/intent/dagger/sucker_punch)
+	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_MOUTH
+	name = "Bronze Field Knife"
+	desc = "A magitek field knife fabricated by a Trick Arm. It can be recalled and reconstructed at will by its owner."
+	icon_state = "armknife"
+	icon = 'icons/roguetown/weapons/32.dmi'
+	item_state = "crysknife"
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	gripsprite = FALSE
+	//dropshrink = 0.75
+	wlength = WLENGTH_SHORT
+	w_class = WEIGHT_CLASS_SMALL
+	parrysound = list('sound/combat/parry/bladed/bladedsmall (1).ogg','sound/combat/parry/bladed/bladedsmall (2).ogg','sound/combat/parry/bladed/bladedsmall (3).ogg')
+	max_blade_int = 75
+	max_integrity = 125
+	swingsound = list('sound/combat/wooshes/bladed/wooshsmall (1).ogg','sound/combat/wooshes/bladed/wooshsmall (2).ogg','sound/combat/wooshes/bladed/wooshsmall (3).ogg')
+	associated_skill = /datum/skill/combat/knives
+	pickup_sound = 'sound/foley/equip/swordsmall2.ogg'
+	throwforce = 6
+	wdefense = 3
+	wbalance = 1
+	thrown_bclass = BCLASS_CUT
+	anvilrepair = /datum/skill/craft/engineering
+
+	grid_height = 64
+	grid_width = 32
+
+/obj/item/rogueweapon/huntingknife/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.4,"sx" = -10,"sy" = 0,"nx" = 11,"ny" = 0,"wx" = -4,"wy" = 0,"ex" = 2,"ey" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
+			if("onbelt")
+				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)

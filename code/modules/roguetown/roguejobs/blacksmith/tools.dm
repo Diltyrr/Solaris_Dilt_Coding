@@ -72,7 +72,7 @@
 
 		if(blacksmith_mind.get_skill_level(attacked_item.anvilrepair) <= 0)
 			if(HAS_TRAIT(user, TRAIT_SQUIRE_REPAIR) && locate(/obj/machinery/anvil) in attacked_object.loc)
-				repair_percent = 0.035
+				repair_percent = 0.1
 			else if(prob(30))
 				repair_percent = 0.1
 			else

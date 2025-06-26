@@ -47,6 +47,18 @@
 	cost = 125
 	contains = list(/obj/item/rogueore/silver)
 
+/datum/supply_pack/rogue/rawmats/fiber
+	name = "Fiber"
+	cost = 35
+	contains = list(/obj/item/natural/fibers,
+	/obj/item/natural/fibers,
+	/obj/item/natural/fibers,
+	/obj/item/natural/fibers,
+	/obj/item/natural/fibers,
+	/obj/item/natural/fibers,
+	/obj/item/natural/fibers,
+	/obj/item/natural/fibers)
+
 /datum/supply_pack/rogue/rawmats/cloth
 	name = "Cloth"
 	cost = 60

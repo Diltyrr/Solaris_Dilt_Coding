@@ -76,31 +76,31 @@
 	if(istype(examined_datum, /datum/antagonist/skeleton))
 		return span_boldnotice("Another deadite.")
 
-//Housekeeping/saving variables from pre-zombie 
+//Housekeeping/saving variables from pre-zombie
 
 /*Death transformation process goes:
-	death -> 
-	/mob/living/carbon/human/death(gibbed) -> 
-	zombie_check_can_convert() -> 
-	zombie.on_gain() -> 
-	rotting.dm process -> 
-	time passes -> 
-	zombie.wake_zombie() -> 
+	death ->
+	/mob/living/carbon/human/death(gibbed) ->
+	zombie_check_can_convert() ->
+	zombie.on_gain() ->
+	rotting.dm process ->
+	time passes ->
+	zombie.wake_zombie() ->
 	transform
 */
 /*
 	Deadite transformation is 2 ways. First is on the initial bite (low chance) and second is on being chewed on.
 
 	Initial bite is: other_mobs.dm, /mob/living/carbon/onbite(mob/living/carbon/human/user) ->
-	bite_victim.zombie_infect_attempt() -> 
+	bite_victim.zombie_infect_attempt() ->
 	attempt_zombie_infection(src, "bite", ZOMBIE_BITE_CONVERSION_TIME) -> rng check here
 	time passes ->
 	wake_zombie.
 
 	Wound transformation goes: grabbing.dm, /obj/item/grabbing/bite/proc/bitelimb(mob/living/carbon/human/user) ->
-	/datum/wound/proc/zombie_infect_attempt() -> 
+	/datum/wound/proc/zombie_infect_attempt() ->
 	human_owner.attempt_zombie_infection(src, "wound", zombie_infection_time) ->
-	time passes -> 
+	time passes ->
 	wake_zombie
 
 	Infection transformation process goes -> infection -> timered transform in zombie_infect_attempt() [drink red/holy water and kill timer?] -> /datum/antagonist/zombie/proc/wake_zombie -> zombietransform
@@ -132,7 +132,7 @@
 	src.STAEND = zombie.STAEND
 	cmode_music = zombie.cmode_music
 
-	//Special because deadite status is latent as opposed to the others. 
+	//Special because deadite status is latent as opposed to the others.
 	if(admin_granted)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(wake_zombie), zombie, FALSE, TRUE), 5 SECONDS, TIMER_STOPPABLE)
 	return ..()
@@ -148,7 +148,7 @@
 		zombie.verbs -= /mob/living/carbon/human/proc/zombie_seek
 		zombie.mind?.special_role = special_role
 		zombie.ambushable = ambushable
-		
+
 		if(zombie.dna?.species)
 			zombie.dna.species.soundpack_m = soundpack_m
 			zombie.dna.species.soundpack_f = soundpack_f
@@ -170,7 +170,7 @@
 
 		GLOB.dead_mob_list -= zombie // Remove it from global dead/alive mob list here here, if they're a zombie they probably died.
 									 // There is a better way to maintain it but needs overhaul. Will cover the two methods of zombie
-		GLOB.alive_mob_list += zombie// in both cure rot and medicine. 
+		GLOB.alive_mob_list += zombie// in both cure rot and medicine.
 
 		zombie.cmode_music = cmode_music
 
@@ -184,7 +184,7 @@
 			zombie.STAINT = max(zombie.STAINT - 3, 1)
 			for(var/trait in traits_rotman)
 				ADD_TRAIT(zombie, trait, "[type]")
-			to_chat(zombie, span_green("I no longer crave for flesh... <i>But I still feel ill.</i>"))
+			to_chat(zombie, span_green("I no longer feel lost... <i>But I still feel ill.</i>"))
 		else
 			if(!was_i_undead)
 				zombie.mob_biotypes &= ~MOB_UNDEAD
@@ -193,7 +193,7 @@
 			zombie.faction += "neutral"
 			zombie.regenerate_organs()
 			if(has_turned)
-				to_chat(zombie, span_green("I no longer crave for flesh..."))
+				to_chat(zombie, span_green("I no longer feel lost..."))
 
 		for(var/obj/item/bodypart/zombie_part as anything in zombie.bodyparts) //Cure all limbs
 			zombie_part.rotted = FALSE
@@ -219,7 +219,7 @@
 		return
 
 	revived = TRUE //so we can die for real later
-	
+
 	for(var/trait_applied in traits_zombie)
 		ADD_TRAIT(zombie, trait_applied, "[type]")
 	if(zombie.mind)
@@ -267,7 +267,7 @@
 //Add claws here if wanted.
 
 	zombie.update_body()
-	to_chat(zombie, span_narsiesmall("Hungry... so hungry... I CRAVE FLESH!"))
+	to_chat(zombie, span_narsiesmall("What has happened to me...? Where... where should I go...?"))
 	zombie.cmode_music = 'sound/music/combat_weird.ogg'
 
 
@@ -347,7 +347,7 @@
 	Proc for our newly infected to wake up as a zombie
 */
 /proc/wake_zombie(mob/living/carbon/zombie, infected_wake = FALSE, converted = FALSE)
-	if (!zombie || QDELETED(zombie)) 
+	if (!zombie || QDELETED(zombie))
 		return
 
 	if (!istype(zombie, /mob/living/carbon/human)) // Ensure the zombie is human
@@ -375,7 +375,7 @@
 		zombie.adjustBruteLoss(-INFINITY, updating_health = FALSE, forced = TRUE)
 		zombie.adjustFireLoss(-INFINITY, updating_health = FALSE, forced = TRUE)
 		zombie.heal_wounds(INFINITY) // Heal all non-permanent wounds
-		to_chat(zombie, span_userdanger("Your bones snap back into place and your flesh knits itself back together as you rise again in undeath."))
+		to_chat(zombie, span_userdanger("Your bones snap back into place, your flesh knits itself back together - you rise once again in Undeath."))
 
 	zombie.stat = UNCONSCIOUS // Start unconscious
 	zombie.updatehealth() // Then check if the mob should wake up

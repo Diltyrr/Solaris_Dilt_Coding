@@ -1,83 +1,83 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/closed/mineral/rogue,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "b" = (
 /obj/structure/spider/stickyweb,
 /turf/open/floor/rogue/greenstone,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "f" = (
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /turf/open/water/swamp/deep,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "i" = (
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /turf/open/floor/rogue/greenstone,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "j" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/spawner/lootdrop/roguetown/sewers,
 /turf/open/water/swamp/deep,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "o" = (
 /obj/structure/glowshroom,
 /turf/open/floor/rogue/greenstone,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "p" = (
 /obj/structure/glowshroom,
 /turf/open/water/swamp/deep,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "t" = (
 /turf/open/water/swamp/deep,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "v" = (
 /obj/structure/spider/stickyweb,
 /turf/open/water/swamp/deep,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "x" = (
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /turf/open/water/sewer,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "y" = (
 /obj/structure/spider/stickyweb,
 /turf/open/water/swamp,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "z" = (
 /obj/machinery/light/rogue/torchholder,
 /turf/closed/wall/mineral/rogue/stonebrick,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "E" = (
 /obj/structure/bars,
 /turf/open/water/sewer,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "F" = (
 /turf/closed/wall/mineral/rogue/stonebrick,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "H" = (
 /obj/effect/spawner/lootdrop/roguetown/sewers,
 /turf/open/water/swamp/deep,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "J" = (
 /obj/structure/spider/stickyweb,
 /turf/open/water/sewer,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "K" = (
 /turf/open/floor/rogue/greenstone,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "L" = (
 /obj/structure/bars,
 /turf/open/water/swamp,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "M" = (
 /turf/open/water/sewer,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "P" = (
 /obj/effect/decal/cleanable/ash/large,
 /turf/closed/mineral/rogue,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "Q" = (
 /turf/open/water/swamp,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 
 (1,1,1) = {"
 F

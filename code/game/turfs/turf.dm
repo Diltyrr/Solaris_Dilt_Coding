@@ -178,7 +178,7 @@
 	var/area/A = get_area(src)
 	if(can)
 		if(!A.outdoors)
-			var/area2new = /area/rogue/outdoors
+			var/area2new = /area/provincial/outdoors
 			if(A.converted_type)
 				area2new = A.converted_type
 			var/area/nuarea
@@ -195,7 +195,7 @@
 				change_area(A, nuarea)
 	else
 		if(A.outdoors)
-			var/area2new = /area/rogue/indoors/shelter
+			var/area2new = /area/provincial/indoors/custom_shelter
 			if(A.converted_type)
 				area2new = A.converted_type
 			var/area/nuarea

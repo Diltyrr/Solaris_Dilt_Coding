@@ -18,7 +18,8 @@
 	maxbodytemp = INFINITY
 	damage_coeff = list(BRUTE = 1, BURN = 0.2, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 20,
-						/obj/item/natural/hide = 10, /obj/item/natural/bundle/bone/full = 4)
+						/obj/item/natural/hide = 10, /obj/item/natural/bundle/bone/full = 4, 
+						/obj/item/natural/carapace/dragon = 12, /obj/item/natural/dragon_head =1) // 12 Scales, enough for a full set.
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	health = DRAGON_HEALTH
 	maxHealth = DRAGON_HEALTH
@@ -202,6 +203,9 @@
 	name = "dragon broodmother"
 	ranged_cooldown_time = 20 SECONDS
 	var/datum/action/cooldown/mob_cooldown/fire_breath/cone/fire_breath
+	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 20,
+						/obj/item/natural/hide = 10, /obj/item/natural/bundle/bone/full = 4, 
+						/obj/item/natural/carapace/dragon = 12, /obj/item/natural/dragon_head/brood =1) // 12 scales => Enough for a full set of armor.
 
 
 /mob/living/simple_animal/hostile/retaliate/rogue/dragon/broodmother/Initialize()

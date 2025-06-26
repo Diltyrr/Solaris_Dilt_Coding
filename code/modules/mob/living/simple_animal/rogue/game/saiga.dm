@@ -204,23 +204,24 @@
 
 /// If we're a mount and are hit while sprinting, throw our rider off
 /// Also called if the rider is hit
-/mob/living/simple_animal/hostile/retaliate/rogue/saiga/proc/check_sprint_dismount()
+/mob/living/simple_animal/hostile/retaliate/rogue/saiga/proc/check_sprint_dismount(datum/source, datum/signal_damage/signal)
 	SIGNAL_HANDLER
-	for(var/mob/living/carbon/human/rider in buckled_mobs)
-		if(rider.m_intent == MOVE_INTENT_RUN)
+
+	for (var/mob/living/carbon/human/rider in buckled_mobs)
+		if (rider.m_intent == MOVE_INTENT_RUN)
 			violent_dismount(rider)
 
 /mob/living/simple_animal/hostile/retaliate/rogue/saiga/post_buckle_mob(mob/living/M)
 	. = ..()
-	RegisterSignal(M, COMSIG_MOB_APPLY_DAMGE, PROC_REF(check_sprint_dismount))
+	RegisterSignal(M, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(check_sprint_dismount))
 	if(!has_buckled_mobs())
-		RegisterSignal(src, COMSIG_MOB_APPLY_DAMGE, PROC_REF(check_sprint_dismount))
+		RegisterSignal(src, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(check_sprint_dismount))
 	
 /mob/living/simple_animal/hostile/retaliate/rogue/saiga/post_unbuckle_mob(mob/living/M)
 	. = ..()
-	UnregisterSignal(M, COMSIG_MOB_APPLY_DAMGE, PROC_REF(check_sprint_dismount))
+	UnregisterSignal(M, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(check_sprint_dismount))
 	if(!has_buckled_mobs())
-		UnregisterSignal(src, COMSIG_MOB_APPLY_DAMGE, PROC_REF(check_sprint_dismount))
+		UnregisterSignal(src, COMSIG_MOB_APPLY_DAMAGE, PROC_REF(check_sprint_dismount))
 
 /mob/living/simple_animal/hostile/retaliate/rogue/saiga/saigabuck/taunted(mob/user)
 	emote("aggro")

@@ -25,14 +25,14 @@
 	var/list/indoor_areas = list()
 	var/list/outdoor_areas = list()
 	
-	for(var/area/rogue/A in world)
+	for(var/area/provincial/A in world)
 		// Only allow ground-level town areas, no roofs or underground
-		if(!istype(A, /area/rogue/under) && !istype(A, /area/rogue/outdoors/town/roofs))
-			if(istype(A, /area/rogue/indoors/town/tavern) || \
-			   istype(A, /area/rogue/indoors/town/church/chapel) || \
-			   istype(A, /area/rogue/indoors/town/manor))
+		if(!istype(A, /area/provincial/underground) && !istype(A, /area/provincial/outdoors/town/roofs))
+			if(istype(A, /area/provincial/indoors/town/tavern) || \
+			   istype(A, /area/provincial/indoors/town/church) || \
+			   istype(A, /area/provincial/indoors/town/province_keep))
 				indoor_areas += A
-			else if(istype(A, /area/rogue/outdoors/town))
+			else if(istype(A, /area/provincial/outdoors/town))
 				outdoor_areas += A
 			
 	if(!LAZYLEN(indoor_areas) && !LAZYLEN(outdoor_areas))
@@ -46,13 +46,13 @@
 	
 	// First, pick an outdoor area
 	if(LAZYLEN(outdoor_areas))
-		var/area/rogue/chosen_outdoor = pick_n_take(outdoor_areas)
+		var/area/provincial/chosen_outdoor = pick_n_take(outdoor_areas)
 		chosen_areas += chosen_outdoor
 	
 	// Then fill remaining slots with random areas
 	var/list/remaining_areas = indoor_areas + outdoor_areas
 	while(length(chosen_areas) < 3 && LAZYLEN(remaining_areas))
-		var/area/rogue/chosen = pick_n_take(remaining_areas)
+		var/area/provincial/chosen = pick_n_take(remaining_areas)
 		chosen_areas += chosen
 		
 	message_admins("Chosen [length(chosen_areas)] areas for skeleton spawns")
@@ -61,7 +61,7 @@
 	for(var/wave in 1 to waves)
 		message_admins("Spawning wave [wave] of skeletons")
 		
-		for(var/area/rogue/A in chosen_areas)
+		for(var/area/provincial/A in chosen_areas)
 			var/list/valid_turfs = list()
 			
 			// Get all valid floor turfs in the area

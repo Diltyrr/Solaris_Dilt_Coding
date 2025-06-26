@@ -139,7 +139,7 @@
 	for(var/name in GLOB.outlawed_players)
 		if(user.real_name == name)
 			GLOB.outlawed_players -= user.real_name
-			priority_announce("[user.real_name] has completed their penance. Justice has been served in the eyes of Carthus.", "PENANCE", 'sound/misc/bell.ogg', "Captain")
+			priority_announce("[user.real_name] has completed their penance. Justice has been served in the eyes of Carthus.", "PENANCE", 'sound/misc/bell.ogg', sender = user)
 	playsound(src.loc, pick('sound/items/pickgood1.ogg','sound/items/pickgood2.ogg'), 5, TRUE)
 	if(QDELETED(src))
 		return

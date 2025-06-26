@@ -361,4 +361,4 @@ GLOBAL_LIST_INIT(stone_personality_descs, list(
 	mineralType = /obj/item/reagent_containers/powder/salt
 
 /obj/item/natural/rock/gem
-	mineralType = /obj/item/roguegem/random
+	mineralType = /obj/effect/spawner/lootdrop/roguetown/gems

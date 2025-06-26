@@ -13,7 +13,7 @@
 /world
 	mob = /mob/dead/new_player
 	turf = /turf/closed
-	area = /area/rogue
+	area = /area/provincial
 	view = "15x15"
 	hub = "Exadv1.spacestation13"
 	name = "SOLARIS RIDGE"

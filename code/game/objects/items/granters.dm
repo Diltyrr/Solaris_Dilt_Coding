@@ -144,7 +144,7 @@
 		to_chat(user,span_notice("I learned how to make [initial(R.name)]."))
 
 //! --BLACKSTONE SCROLLS-- !/
-/obj/item/book/granter/spell/blackstone/
+/obj/item/book/granter/spell/blackstone
     desc = "A scroll of potential known only to those that can decipher its secrets."
     icon = 'icons/roguetown/items/misc.dmi'
     oneuse = TRUE

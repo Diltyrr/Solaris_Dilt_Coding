@@ -465,3 +465,147 @@
 	tools = list(/obj/item/needle)
 	craftdiff = 5
 	sellprice = 24
+
+/datum/crafting_recipe/roguetown/hunting/carapacecuirass
+	name = "carapace cuirass"
+	result = list(/obj/item/clothing/suit/roguetown/armor/carapace/cuirass)
+	reqs = list(/obj/item/natural/carapace = 2,
+				/obj/item/natural/fibers = 4)
+	craftdiff = 3
+	sellprice = 22
+
+/datum/crafting_recipe/roguetown/hunting/carapacearmor
+	name = "carapace armor"
+	result = list(/obj/item/clothing/suit/roguetown/armor/carapace)
+	reqs = list(/obj/item/natural/carapace = 4,
+				/obj/item/natural/fibers = 6)
+	craftdiff = 3
+	sellprice = 42
+
+/datum/crafting_recipe/roguetown/hunting/carapacelegs
+	name = "carapace chausses"
+	result = list(/obj/item/clothing/under/roguetown/carapacelegs)
+	reqs = list(/obj/item/natural/carapace = 1,
+				/obj/item/natural/fibers = 2)
+	craftdiff = 3
+	sellprice = 10
+
+/datum/crafting_recipe/roguetown/hunting/carapaceskirt
+	name = "carapace skirt"
+	result = list(/obj/item/clothing/under/roguetown/carapacelegs/skirt)
+	reqs = list(/obj/item/natural/carapace = 1,
+				/obj/item/natural/fibers = 2)
+	craftdiff = 3
+	sellprice = 10
+
+/datum/crafting_recipe/roguetown/hunting/carapacecap
+	name = "carapace cap"
+	result = list(/obj/item/clothing/head/roguetown/helmet/carapacecap)
+	reqs = list(/obj/item/natural/carapace = 1,
+				/obj/item/natural/fibers = 2)
+	craftdiff = 3
+	sellprice = 10
+
+/datum/crafting_recipe/roguetown/hunting/carapacehelm
+	name = "carapace helmet"
+	result = list(/obj/item/clothing/head/roguetown/helmet/carapacehelm)
+	reqs = list(/obj/item/natural/carapace = 2,
+				/obj/item/natural/fibers = 4)
+	craftdiff = 3
+	sellprice = 22
+
+/datum/crafting_recipe/roguetown/hunting/carapaceboots
+	name = "carapace boots"
+	result = list(/obj/item/clothing/shoes/roguetown/boots/carapace)
+	reqs = list(/obj/item/natural/carapace = 2,
+				/obj/item/natural/fibers = 2)
+	craftdiff = 3
+	sellprice = 20
+
+/datum/crafting_recipe/roguetown/hunting/carapacegloves
+	name = "carapace gauntlets"
+	result = list(/obj/item/clothing/gloves/roguetown/carapace)
+	reqs = list(/obj/item/natural/carapace = 2,
+				/obj/item/natural/fibers = 2)
+	craftdiff = 3
+	sellprice = 20
+
+/datum/crafting_recipe/roguetown/hunting/carapacebracers
+	name = "carapace bracers"
+	result = list(/obj/item/clothing/wrists/roguetown/bracers/carapace)
+	reqs = list(/obj/item/natural/carapace = 2,
+				/obj/item/natural/fibers = 2)
+	craftdiff = 3
+	sellprice = 20
+
+/datum/crafting_recipe/roguetown/hunting/carapacecuirass/dragon
+	name = "dragon cuirass"
+	result = list(/obj/item/clothing/suit/roguetown/armor/carapace/dragon/cuirass)
+	reqs = list(/obj/item/natural/carapace/dragon = 2,
+				/obj/item/natural/fibers = 4)
+	craftdiff = 6
+	sellprice = 22
+
+/datum/crafting_recipe/roguetown/hunting/carapacearmor/dragon
+	name = "dragon armor"
+	result = list(/obj/item/clothing/suit/roguetown/armor/carapace/dragon)
+	reqs = list(/obj/item/natural/carapace/dragon = 4,
+				/obj/item/natural/fibers = 6)
+	craftdiff = 6
+	sellprice = 42
+
+/datum/crafting_recipe/roguetown/hunting/carapacelegs/dragon
+	name = "dragon chausses"
+	result = list(/obj/item/clothing/under/roguetown/carapacelegs/dragon)
+	reqs = list(/obj/item/natural/carapace/dragon = 1,
+				/obj/item/natural/fibers = 2)
+	craftdiff = 6
+	sellprice = 10
+
+/datum/crafting_recipe/roguetown/hunting/carapaceskirt/dragon
+	name = "dragon skirt"
+	result = list(/obj/item/clothing/under/roguetown/carapacelegs/dragon/skirt)
+	reqs = list(/obj/item/natural/carapace/dragon = 1,
+				/obj/item/natural/fibers = 2)
+	craftdiff = 6
+	sellprice = 10
+
+/datum/crafting_recipe/roguetown/hunting/carapacecap/dragon
+	name = "dragon cap"
+	result = list(/obj/item/clothing/head/roguetown/helmet/carapacecap/dragon)
+	reqs = list(/obj/item/natural/carapace/dragon = 1,
+				/obj/item/natural/fibers = 2)
+	craftdiff = 6
+	sellprice = 10
+
+/datum/crafting_recipe/roguetown/hunting/carapacehelm/dragon
+	name = "dragon helmet"
+	result = list(/obj/item/clothing/head/roguetown/helmet/carapacehelm/dragon)
+	reqs = list(/obj/item/natural/dragon_head = 1,
+				/obj/item/natural/fibers = 4)
+	craftdiff = 6
+	sellprice = 22
+
+/datum/crafting_recipe/roguetown/hunting/carapaceboots/dragon
+	name = "dragon boots"
+	result = list(/obj/item/clothing/shoes/roguetown/boots/carapace/dragon)
+	reqs = list(/obj/item/natural/carapace/dragon = 2,
+				/obj/item/natural/fibers = 2)
+	craftdiff = 6
+	sellprice = 20
+
+/datum/crafting_recipe/roguetown/hunting/carapacegloves/dragon
+	name = "dragon gauntlets"
+	result = list(/obj/item/clothing/gloves/roguetown/carapace/dragon)
+	reqs = list(/obj/item/natural/carapace/dragon = 2,
+				/obj/item/natural/fibers = 2)
+	craftdiff = 6
+	sellprice = 20
+
+/datum/crafting_recipe/roguetown/hunting/carapacebracers/dragon
+	name = "dragon bracers"
+	result = list(/obj/item/clothing/wrists/roguetown/bracers/carapace/dragon)
+	reqs = list(/obj/item/natural/carapace/dragon = 2,
+				/obj/item/natural/fibers = 2)
+	craftdiff = 6
+	sellprice = 20

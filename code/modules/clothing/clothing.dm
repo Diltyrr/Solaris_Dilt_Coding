@@ -37,7 +37,7 @@
 	var/clothing_flags = NONE
 
 	salvage_result = /obj/item/natural/cloth
-	salvage_amount = 2
+	salvage_amount = 1
 	fiber_salvage = TRUE
 
 	var/toggle_icon_state = TRUE //appends _t to our icon state when toggled

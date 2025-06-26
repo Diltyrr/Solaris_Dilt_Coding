@@ -1,5 +1,3 @@
-// Define the signals needed for the flagellant spells
-#define COMSIG_MOB_APPLY_DAMAGE "mob_apply_damage"
 // Define the signals that aren't defined elsewhere in this context
 #define COMSIG_HUMAN_ATTACKED "human_attacked"
 #define COMSIG_ATTACK_LANDED "attack_landed"
@@ -159,61 +157,58 @@
 	return
 
 // This is called when the target takes damage
-/obj/effect/proc_holder/spell/invoked/damage_transfer/proc/on_target_damaged(datum/source, damage, damagetype, def_zone)
-	if(!isliving(source) || !linked_caster || !linked_target)
+/obj/effect/proc_holder/spell/invoked/damage_transfer/proc/on_target_damaged(datum/source, datum/signal_damage/signal)
+	SIGNAL_HANDLER
+
+	if (!isliving(source) || !linked_caster || !linked_target)
 		return
-	
+
 	var/mob/living/L = source
 	var/mob/living/carbon/human/H = linked_caster
-	
-	if(L && H && iscarbon(L))
-		// Prevent the target from taking damage
-		L.adjustBruteLoss(-damage)
-		
-		// Apply the damage to the caster instead
-		if(damagetype == BRUTE)
+	if (!(L && H && iscarbon(L)))
+		return
+
+	// Cancel original damage
+	signal.cancel = TRUE
+
+	// Apply damage to the caster instead
+	var/damage = signal.damage
+	switch(signal.damagetype)
+		if (BRUTE)
 			H.adjustBruteLoss(damage)
-		else if(damagetype == BURN)
+		if (BURN)
 			H.adjustFireLoss(damage)
-		else if(damagetype == TOX)
+		if (TOX)
 			H.adjustToxLoss(damage)
-		else if(damagetype == OXY)
+		if (OXY)
 			H.adjustOxyLoss(damage)
-		else if(damagetype == CLONE)
+		if (CLONE)
 			H.adjustCloneLoss(damage)
-		else if(damagetype == STAMINA)
+		if (STAMINA)
 			H.adjustStaminaLoss(damage)
-		
-		// Handle bleeding transfer
-		if(iscarbon(L) && iscarbon(H))
-			var/mob/living/carbon/C_target = L
-			var/mob/living/carbon/C_caster = H
-			
-			// Get the bodypart that was hit
-			var/obj/item/bodypart/target_part = C_target.get_bodypart(def_zone)
-			var/obj/item/bodypart/caster_part = C_caster.get_bodypart(def_zone)
-			
-			if(target_part && caster_part)
-				// Transfer bleeding status
-				if(target_part.status & BODYPART_BLEEDING)
-					target_part.status &= ~BODYPART_BLEEDING
-					caster_part.status |= BODYPART_BLEEDING
-				
-				// Transfer bleeding status using mob's bleed_rate instead of bodypart
-				if(C_target.bleed_rate > 0)
-					var/bleed_amount = C_target.bleed_rate
-					C_target.bleed_rate = 0
-					C_caster.bleed_rate += bleed_amount
-					C_target.update_damage_overlays()
-					C_caster.update_damage_overlays()
-		
-		// Visual effects
-		new /obj/effect/temp_visual/heal(get_turf(L), "#FF0000")
-		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(H), get_dir(L, H))
-		
-		return TRUE
-	
-	return FALSE
+
+	// Transfer bleeding
+	var/mob/living/carbon/C_target = L
+	var/mob/living/carbon/C_caster = H
+
+	var/obj/item/bodypart/target_part = C_target.get_bodypart(signal.def_zone)
+	var/obj/item/bodypart/caster_part = C_caster.get_bodypart(signal.def_zone)
+
+	if (target_part && caster_part)
+		if (target_part.status & BODYPART_BLEEDING)
+			target_part.status &= ~BODYPART_BLEEDING
+			caster_part.status |= BODYPART_BLEEDING
+
+	if (C_target.bleed_rate > 0)
+		var/bleed_amount = C_target.bleed_rate
+		C_target.bleed_rate = 0
+		C_caster.bleed_rate += bleed_amount
+		C_target.update_damage_overlays()
+		C_caster.update_damage_overlays()
+
+	// Visual effects
+	new /obj/effect/temp_visual/heal(get_turf(L), "#FF0000")
+	new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(H), get_dir(L, H))
 
 /obj/effect/proc_holder/spell/invoked/affliction_transfer
 	name = "Penitent's Absolution"

@@ -1,83 +1,83 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/open/floor/rogue/greenstone,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "b" = (
 /obj/structure/spider/stickyweb,
 /turf/open/floor/rogue/greenstone,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "d" = (
 /obj/machinery/light/rogue/torchholder,
 /turf/closed/wall/mineral/rogue/stonebrick,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "g" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/rogue/greenstone,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "h" = (
 /obj/structure/closet/crate/chest,
 /obj/effect/spawner/lootdrop/roguetown/sewers,
 /turf/open/floor/rogue/greenstone,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "l" = (
 /obj/structure/glowshroom,
 /turf/open/water/sewer,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "p" = (
 /turf/closed/mineral/rogue,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "q" = (
 /obj/structure/closet/crate/chest,
 /obj/effect/spawner/lootdrop/roguetown/sewers,
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/rogue/greenstone,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "t" = (
 /obj/structure/glowshroom,
 /obj/structure/glowshroom,
 /turf/open/floor/rogue/greenstone,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "v" = (
 /obj/structure/spider/stickyweb,
 /turf/open/water/sewer,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "C" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/tracks,
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/closed/mineral/rogue,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "H" = (
 /obj/structure/glowshroom,
 /turf/open/floor/rogue/greenstone,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "I" = (
 /turf/open/water/sewer,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "K" = (
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/closed/mineral/rogue,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "N" = (
 /turf/closed/wall/mineral/rogue/stonebrick,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "R" = (
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/rogue/greenstone,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "S" = (
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/closed/wall/mineral/rogue/stonebrick,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "V" = (
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /turf/open/floor/rogue/greenstone,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "W" = (
 /mob/living/carbon/human/species/skeleton/npc,
 /turf/open/floor/rogue/greenstone,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 
 (1,1,1) = {"
 p

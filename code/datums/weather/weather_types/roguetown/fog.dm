@@ -18,8 +18,8 @@
 	end_message = ""
 	end_sound = 'sound/blank.ogg'
 
-	area_type = /area/rogue/outdoors
-	protected_areas = list(/area/rogue/indoors,/area/rogue/under)
+	area_type = /area/provincial/outdoors
+	protected_areas = list(/area/provincial/indoors)
 	impacted_z_levels = list()
 	var/lastlightning = 0
 

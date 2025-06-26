@@ -9,36 +9,45 @@
 	standard 0 if fail
 */
 /mob/living/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, forced = FALSE, spread_damage = FALSE)
-	SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone)
+	// Create a signal datum
+	var/datum/signal_damage/signal = new
+	signal.damage = damage
+	signal.damagetype = damagetype
+	signal.def_zone = def_zone
+	signal.blocked = blocked
+	signal.forced = forced
+	signal.spread_damage = spread_damage
+
+	// Emit the signal
+	SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMAGE, signal)
+
+	// Check if signal handler requested to cancel
+	if (signal.cancel)
+		return 0
+
+	// Apply modified damage (if any)
+	damage = signal.damage
+
 	var/hit_percent = 1
-	damage = max(damage-blocked,0)
-//	var/hit_percent = (100-blocked)/100
-	if(!damage || (!forced && hit_percent <= 0))
-		testing("faildam")
+	damage = max(damage - blocked, 0)
+	if (!damage || (!forced && hit_percent <= 0))
 		return 0
 	clear_typing_indicator()
 	var/damage_amount =  forced ? damage : damage * hit_percent
 	switch(damagetype)
-		if(BRUTE)
-//			if(HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS))
-//				if(stat != DEAD && def_zone)
-//					testing("def_zone check [def_zone] [src]")
-//					if((health - damage_amount) <= 0)
-//						var/list/acceptable_death_zones = list("body", "chest", "stomach", "belly", "head", "torso")
-//						if(!(def_zone in acceptable_death_zones))
-//							testing("[def_zone] is not an acceptable death zone for [src]")
-//							return 1
+		if (BRUTE)
 			adjustBruteLoss(damage_amount, forced = forced)
-		if(BURN)
+		if (BURN)
 			adjustFireLoss(damage_amount, forced = forced)
-		if(TOX)
+		if (TOX)
 			adjustToxLoss(damage_amount, forced = forced)
-		if(OXY)
+		if (OXY)
 			adjustOxyLoss(damage_amount, forced = forced)
-		if(CLONE)
+		if (CLONE)
 			adjustCloneLoss(damage_amount, forced = forced)
-		if(STAMINA)
+		if (STAMINA)
 			adjustStaminaLoss(damage_amount, forced = forced)
+
 	update_damage_overlays()
 	return 1
 

@@ -1182,9 +1182,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 
 		if(!target.apply_damage(damage, user.dna.species.attack_type, affecting, armor_block))
 			nodmg = TRUE
-			target.next_attack_msg += " <span class='warning'>Armor stops the damage.</span>"
-		else
-			affecting.bodypart_attacked_by(user.used_intent.blade_class, damage, user, selzone, crit_message = TRUE)
+			if(armor_block > 0)
+				target.next_attack_msg += " <span class='warning'>Armor absorbs the blow.</span>"
+			else
+				target.next_attack_msg += " <span class='warning'>The attack has no effect.</span>"
+
 		log_combat(user, target, "punched")
 
 		if(!nodmg)
@@ -1656,91 +1658,118 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	return TRUE
 
 /datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE)
-	SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone)
+	// Construct a signal_damage datum
+	var/datum/signal_damage/signal = new
+	signal.damage = damage
+	signal.damagetype = damagetype
+	signal.def_zone = def_zone
+	signal.blocked = blocked
+	signal.forced = forced
+	signal.spread_damage = spread_damage
+
+	// Send it to the human mob
+	SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMAGE, signal)
+
+	// Check cancel or overrides
+	if (signal.cancel)
+		return 0
+
+	damage = signal.damage
+	def_zone = signal.def_zone
+	blocked = signal.blocked
+
 	var/hit_percent = 1
-	damage = max(damage-blocked+armor,0)
-//	var/hit_percent =  (100-(blocked+armor))/100
-	hit_percent = (hit_percent * (100-H.physiology.damage_resistance))/100
-	if(!damage || (!forced && hit_percent <= 0))
+	damage = max(damage - blocked + armor, 0)
+	hit_percent = (hit_percent * (100 - H.physiology.damage_resistance)) / 100
+
+	if (!damage || (!forced && hit_percent <= 0))
 		return 0
 
 	var/obj/item/bodypart/BP = null
-	if(!spread_damage)
-		if(isbodypart(def_zone))
+	if (!spread_damage)
+		if (isbodypart(def_zone))
 			BP = def_zone
 		else
-			if(!def_zone)
+			if (!def_zone)
 				def_zone = ran_zone(def_zone)
 			BP = H.get_bodypart(check_zone(def_zone))
-			if(!BP)
+			if (!BP)
 				BP = H.bodyparts[1]
 
-	switch(damagetype)
-		if(BRUTE)
+	switch (damagetype)
+		if (BRUTE)
 			H.damageoverlaytemp = 20
 			var/damage_amount = forced ? damage : damage * hit_percent * brutemod * H.physiology.brute_mod
-			if(!HAS_TRAIT(H, TRAIT_NOPAIN))
-				if(damage_amount > 5)
+			if (!HAS_TRAIT(H, TRAIT_NOPAIN))
+				if (damage_amount > 5)
 					H.AdjustSleeping(-50)
-					if(prob(damage_amount * 3))
-						if(damage_amount > ((H.STACON*10) / 3))
+					if (prob(damage_amount * 3))
+						if (damage_amount > ((H.STACON * 10) / 3))
 							H.emote("painscream")
 						else
 							H.emote("pain")
-				if(damage_amount > ((H.STACON*10) / 3) && !HAS_TRAIT(H, TRAIT_NOPAINSTUN))
+				if (damage_amount > ((H.STACON * 10) / 3) && !HAS_TRAIT(H, TRAIT_NOPAINSTUN))
 					H.Immobilize(8)
 					shake_camera(H, 2, 2)
 					H.stuttering += 5
-				if(damage_amount > 10 && !HAS_TRAIT(H, TRAIT_NOPAINSTUN))
-					H.Slowdown(clamp(damage_amount/10, 1, 5))
+				if (damage_amount > 10 && !HAS_TRAIT(H, TRAIT_NOPAINSTUN))
+					H.Slowdown(clamp(damage_amount / 10, 1, 5))
 					shake_camera(H, 1, 1)
-				if(damage_amount < 10)
+				if (damage_amount < 10)
 					H.flash_fullscreen("redflash1")
-				else if(damage_amount < 20)
+				else if (damage_amount < 20)
 					H.flash_fullscreen("redflash2")
-				else if(damage_amount >= 20)
+				else
 					H.flash_fullscreen("redflash3")
-			if(BP)
-				if(BP.receive_damage(damage_amount, 0))
+			if (BP)
+				if (BP.receive_damage(damage_amount, 0))
 					H.update_damage_overlays()
-			else//no bodypart, we deal damage with a more general method.
+			else
 				H.adjustBruteLoss(damage_amount)
-		if(BURN)
+
+		if (BURN)
 			H.damageoverlaytemp = 20
 			var/damage_amount = forced ? damage : damage * hit_percent * burnmod * H.physiology.burn_mod
-			if(damage_amount > 10 && prob(damage_amount))
+			if (damage_amount > 10 && prob(damage_amount))
 				H.emote("pain")
-			if(damage_amount < 10)
+			if (damage_amount < 10)
 				H.flash_fullscreen("redflash1")
-			else if(damage_amount < 20)
+			else if (damage_amount < 20)
 				H.flash_fullscreen("redflash2")
-			else if(damage_amount >= 20)
+			else
 				H.flash_fullscreen("redflash3")
-			if(BP)
-				if(BP.receive_damage(0, damage_amount))
+			if (BP)
+				if (BP.receive_damage(0, damage_amount))
 					H.update_damage_overlays()
 			else
 				H.adjustFireLoss(damage_amount)
-		if(TOX)
+
+		if (TOX)
 			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.tox_mod
 			H.adjustToxLoss(damage_amount)
-		if(OXY)
+
+		if (OXY)
 			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.oxy_mod
 			H.adjustOxyLoss(damage_amount)
-		if(CLONE)
+
+		if (CLONE)
 			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.clone_mod
 			H.adjustCloneLoss(damage_amount)
-		if(STAMINA)
+
+		if (STAMINA)
 			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.stamina_mod
-			if(BP)
-				if(BP.receive_damage(0, 0, damage_amount))
+			if (BP)
+				if (BP.receive_damage(0, 0, damage_amount))
 					H.update_stamina()
 			else
 				H.adjustStaminaLoss(damage_amount)
-		if(BRAIN)
+
+		if (BRAIN)
 			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.brain_mod
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, damage_amount)
+
 	return 1
+
 
 /datum/species/proc/on_hit(obj/projectile/P, mob/living/carbon/human/H)
 

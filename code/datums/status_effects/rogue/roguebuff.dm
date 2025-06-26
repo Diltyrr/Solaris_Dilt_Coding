@@ -365,14 +365,14 @@
 /datum/status_effect/buff/guardbuffone/process()
 
 	.=..()
-	var/area/rogue/our_area = get_area(owner)
+	var/area/provincial/our_area = get_area(owner)
 	if(!(our_area.town_area))
 		owner.remove_status_effect(/datum/status_effect/buff/guardbuffone)
 
 /datum/status_effect/buff/wardenbuff/process()
 
 	.=..()
-	var/area/rogue/our_area = get_area(owner)
+	var/area/provincial/our_area = get_area(owner)
 	if(!(our_area.warden_area))
 		owner.remove_status_effect(/datum/status_effect/buff/wardenbuff)
 
@@ -387,7 +387,7 @@
 /datum/status_effect/buff/knightbuff/process()
 
 	.=..()
-	var/area/rogue/our_area = get_area(owner)
+	var/area/provincial/our_area = get_area(owner)
 	if(!(our_area.keep_area))
 		owner.remove_status_effect(/datum/status_effect/buff/knightbuff)
 

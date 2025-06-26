@@ -1,29 +1,29 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/open/floor/rogue/grass,
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "b" = (
 /turf/open/floor/rogue/dirt,
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "c" = (
 /obj/item/natural/stone,
 /turf/open/floor/rogue/grass,
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "d" = (
 /obj/effect/decal/remains/saiga,
 /turf/open/floor/rogue/grass,
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "e" = (
 /obj/structure/flora/roguegrass/bush,
 /turf/open/floor/rogue/dirt,
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "f" = (
 /turf/closed/wall/mineral/rogue/wood,
-/area/rogue/indoors/shelter/bog)
+/area/provincial/indoors)
 "g" = (
 /obj/machinery/light/rogue/campfire,
 /turf/open/floor/rogue/grass,
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "h" = (
 /obj/structure/table/wood{
 	icon_state = "tablewood1"
@@ -32,7 +32,7 @@
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
-/area/rogue/indoors/shelter/bog)
+/area/provincial/indoors)
 "i" = (
 /obj/structure/chair/wood/rogue/chair3{
 	dir = 8
@@ -40,7 +40,7 @@
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
-/area/rogue/indoors/shelter/bog)
+/area/provincial/indoors)
 "j" = (
 /obj/structure/chair/wood/rogue/chair3{
 	dir = 1
@@ -48,12 +48,12 @@
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
-/area/rogue/indoors/shelter/bog)
+/area/provincial/indoors)
 "k" = (
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
-/area/rogue/indoors/shelter/bog)
+/area/provincial/indoors)
 "l" = (
 /obj/structure/mineral_door/wood{
 	locked = 1;
@@ -62,23 +62,23 @@
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
-/area/rogue/indoors/shelter/bog)
+/area/provincial/indoors)
 "m" = (
 /obj/structure/flora/roguegrass,
 /turf/open/floor/rogue/dirt,
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "n" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
-/area/rogue/indoors/shelter/bog)
+/area/provincial/indoors)
 "o" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
-/area/rogue/indoors/shelter/bog)
+/area/provincial/indoors)
 "p" = (
 /obj/machinery/light/rogue/hearth,
 /obj/effect/decal/cleanable/cobweb{
@@ -87,7 +87,7 @@
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
-/area/rogue/indoors/shelter/bog)
+/area/provincial/indoors)
 "q" = (
 /obj/structure/closet/crate/roguecloset,
 /obj/item/natural/bundle/fibers,
@@ -95,49 +95,49 @@
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
-/area/rogue/indoors/shelter/bog)
+/area/provincial/indoors)
 "r" = (
 /obj/structure/closet/crate/chest,
 /obj/item/reagent_containers/food/snacks/rogue/crackerscooked,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
-/area/rogue/indoors/shelter/bog)
+/area/provincial/indoors)
 "s" = (
 /obj/structure/bed/rogue/shit,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "weird1"
 	},
-/area/rogue/indoors/shelter/bog)
+/area/provincial/indoors)
 "t" = (
 /turf/open/transparent/openspace,
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "u" = (
 /turf/open/transparent/openspace,
 /turf/open/transparent/openspace,
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "v" = (
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "vertw"
 	},
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "w" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "vertw"
 	},
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "x" = (
 /obj/effect/decal/cleanable/vomit/old,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "vertw"
 	},
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "y" = (
 /turf/open/floor/rogue/metal{
 	icon_state = "plating2"
 	},
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 
 (1,1,1) = {"
 a

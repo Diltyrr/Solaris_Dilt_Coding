@@ -862,3 +862,69 @@
 /obj/item/clothing/suit/roguetown/armor/plate/elven_plate/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/item_equipped_movement_rustle, SFX_WOOD_ARMOR)
+
+/obj/item/clothing/suit/roguetown/armor/carapace
+	slot_flags = ITEM_SLOT_ARMOR
+	name = "carapace armor"
+	desc = "Full carapace plate. Includes leg protecting tassets, groin cup, and armored vambraces."
+	body_parts_covered = CHEST|GROIN|VITALS|LEGS|ARMS
+	icon_state = "carapace"
+	item_state = "carapace"
+	blocksound = PLATEHIT
+	drop_sound = 'sound/foley/dropsound/chain_drop.ogg'
+	armor = list("blunt" = 75, "slash" = 95, "stab" = 60, "piercing" = 60, "fire" = 25, "acid" = 0) //Slightly above carapace cuirass
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
+	max_integrity = 275
+	allowed_sex = list(MALE, FEMALE)
+	var/do_sound = TRUE
+	max_integrity = 400
+	sewrepair = TRUE
+	smeltresult = /obj/item/ash
+	equip_delay_self = 60
+	nodismemsleeves = TRUE
+	armor_class = ARMOR_CLASS_MEDIUM
+
+/obj/item/clothing/suit/roguetown/armor/carapace/Initialize()
+	. = ..()
+	if(do_sound)
+		AddComponent(/datum/component/squeak, list('sound/foley/footsteps/armor/chain (1).ogg',\
+													'sound/foley/footsteps/armor/chain (2).ogg',\
+													'sound/foley/footsteps/armor/chain (3).ogg'), 70)
+
+/obj/item/clothing/suit/roguetown/armor/carapace/cuirass
+	slot_flags = ITEM_SLOT_ARMOR
+	name = "carapace cuirass"
+	desc = "Vest styled watery shell chest armor sewn in layers."
+	armor = list("blunt" = 70, "slash" = 90, "stab" = 60, "piercing" = 50, "fire" = 20, "acid" = 0) //Below Brigandine, Above Hardened Leather
+	body_parts_covered = CHEST|GROIN|VITALS
+	icon_state = "carapacecuirass"
+	item_state = "carapacecuirass"
+	flags_inv = HIDEBOOB
+	max_integrity = 250
+	equip_delay_self = 30
+
+/obj/item/clothing/suit/roguetown/armor/carapace/dragon
+	slot_flags = ITEM_SLOT_ARMOR
+	name = "dragonscale armor"
+	desc = "Armor crafted from the hardened scales of a dragon."
+	body_parts_covered = CHEST|GROIN|VITALS
+	color = "#9e5761"
+	icon_state = "carapace"
+	item_state = "carapace"
+	armor = list("blunt" = 80, "slash" = 100, "stab" = 80, "piercing" = 70, "fire" = 60, "acid" = 0) //Sidegrade to Blacksteel Plate
+	max_integrity = 400
+	sellprice = 50
+
+/obj/item/clothing/suit/roguetown/armor/carapace/dragon/cuirass
+	slot_flags = ITEM_SLOT_ARMOR
+	name = "dragonscale cuirass"
+	desc = "Vest styled dragonscale chest armor sewn in layers."
+	body_parts_covered = CHEST|GROIN|VITALS
+	color = "#9e5761"
+	icon_state = "carapacecuirass"
+	item_state = "carapacecuirass"
+	flags_inv = HIDEBOOB
+	armor = list("blunt" = 75, "slash" = 95, "stab" = 80, "piercing" = 60, "fire" = 60, "acid" = 0) //Sidegrade to Blacksteel Cuirass
+	max_integrity = 350
+	equip_delay_self = 30
+	sellprice = 50

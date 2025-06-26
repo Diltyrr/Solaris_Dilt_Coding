@@ -69,6 +69,11 @@
 	probby = 50
 	spawned = list(/obj/item/restraints/legcuffs/beartrap/armed/camouflage)
 
+/obj/effect/spawner/lootdrop
+	fan_out_items = TRUE
+	var/probby = 100
+	var/list/spawned
+
 /obj/effect/spawner/lootdrop/Initialize(mapload)
 	..()
 	do_spawn()
@@ -82,13 +87,8 @@
 		var/obj/new_type = pick(spawned)
 		new new_type(get_turf(src))
 
-/obj/effect/spawner/lootdrop
-	fan_out_items = TRUE
-	icon = 'icons/obj/lootdrop.dmi'
-	var/probby = 100
-	var/list/spawned
-
 /obj/effect/spawner/lootdrop/potion_vitals
+	icon = 'icons/obj/lootdrop.dmi'
 	icon_state = "lootpotion"
 	spawned = list(
 		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 10,
@@ -100,6 +100,7 @@
 	)
 
 /obj/effect/spawner/lootdrop/potion_poisons
+	icon = 'icons/obj/lootdrop.dmi'
 	icon_state = "lootpoison"
 	spawned = list(
 		/obj/item/reagent_containers/glass/bottle/rogue/poison = 10,
@@ -111,6 +112,7 @@
 	)
 
 /obj/effect/spawner/lootdrop/potion_ingredient
+	icon = 'icons/obj/lootdrop.dmi'
 	icon_state = "lootpotioning"
 	var/static/list/all_potion_ings = list()
 	spawned = list()
@@ -123,6 +125,7 @@
 	return ..()
 
 /obj/effect/spawner/lootdrop/potion_ingredient/herb
+	icon = 'icons/obj/lootdrop.dmi'
 	icon_state = "lootpotionherb"
 	spawned = list(
 		/obj/item/alch/atropa = 5,
@@ -142,6 +145,7 @@
 		/obj/item/alch/rosa = 5
 	)
 /obj/effect/spawner/lootdrop/potion_stats
+	icon = 'icons/obj/lootdrop.dmi'
 	icon_state = "lootstatpot"
 	spawned = list(
 		/obj/item/reagent_containers/glass/alchemical/strpot = 10,

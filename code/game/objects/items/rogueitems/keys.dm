@@ -80,6 +80,18 @@
 		if(D.masterkey)
 			lockhash = D.lockhash
 
+/obj/item/roguekey/rasura
+	name = "rasurian commons key"
+	desc = "A key straight from the heartlands. You probably shouldn't have this."
+	icon_state = "rustkey"
+	lockid = "rasura_commons"
+
+/obj/item/roguekey/rasura/noble
+	name = "rasurian noble key"
+	desc = "A distinguished key straight from the heartlands. You probably shouldn't have this."
+	icon_state = "cheesekey"
+	lockid = "rasura_noble"
+
 /obj/item/roguekey/royal
 	name = "Royal Key"
 	desc = "The Key to the royal chambers. It even feels pretentious."

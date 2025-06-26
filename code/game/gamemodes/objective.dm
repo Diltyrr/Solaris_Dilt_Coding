@@ -55,7 +55,7 @@ GLOBAL_LIST(admin_objective_list) //Prefilled admin assignable objective list
 	if(M.force_escaped)
 		return TRUE
 	var/area/A = get_area(M.current)
-	if(istype(A, /area/rogue/indoors/town/cell))
+	if(istype(A, /area/provincial/indoors/town/province_keep/garrison/dungeon/cell))
 		return FALSE
 	return TRUE
 
@@ -501,37 +501,6 @@ GLOBAL_LIST_EMPTY(possible_items)
 					return TRUE
 	return FALSE
 
-/datum/objective/capture
-	name = "capture"
-
-/datum/objective/capture/proc/gen_amount_goal()
-	target_amount = rand(5,10)
-	update_explanation_text()
-	return target_amount
-
-/datum/objective/capture/update_explanation_text()
-	. = ..()
-	explanation_text = "Capture [target_amount] lifeform\s with an energy net. Live, rare specimens are worth more."
-
-/datum/objective/capture/check_completion()//Basically runs through all the mobs in the area to determine how much they are worth.
-	var/captured_amount = 0
-	var/area/centcom/holding/A = GLOB.areas_by_type[/area/centcom/holding]
-	for(var/mob/living/carbon/human/M in A)//Humans.
-		if(M.stat == DEAD)//Dead folks are worth less.
-			captured_amount+=0.5
-			continue
-		captured_amount+=1
-	for(var/mob/living/carbon/monkey/M in A)//Monkeys are almost worthless, you failure.
-		captured_amount+=0.1
-
-	return captured_amount >= target_amount
-
-/datum/objective/capture/admin_edit(mob/admin)
-	var/count = input(admin,"How many mobs to capture ?","capture",target_amount) as num|null
-	if(count)
-		target_amount = count
-	update_explanation_text()
-
 /datum/objective/protect_object
 	name = "protect object"
 	var/obj/protect_target
@@ -610,7 +579,6 @@ GLOBAL_LIST_EMPTY(possible_items)
 		/datum/objective/survive,
 		/datum/objective/martyr,
 		/datum/objective/steal,
-		/datum/objective/capture,
 		/datum/objective/custom
 	),/proc/cmp_typepaths_asc)
 

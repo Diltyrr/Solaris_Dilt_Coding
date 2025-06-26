@@ -29,7 +29,7 @@
 		if(msg)
 			L.whisper(msg)
 			L.roguepray(msg)
-			if(istype(C, /area/rogue/underworld))
+			if(istype(C, /area/underworld))
 				L.check_prayer_underworld(L,msg)
 				return
 			L.check_prayer(L,msg)
@@ -71,7 +71,7 @@
 	for(var/T in bannedwords)
 		var/list/turfs = list()
 		if(findtext(message, T))
-			for(var/turf/U in /area/rogue/underworld)
+			for(var/turf/U in /area/underworld)
 				if(U.density)
 					continue
 				turfs.Add(U)
@@ -1757,7 +1757,6 @@
 	message = "looks like they need help."
 	emote_type = EMOTE_VISIBLE
 	show_runechat = FALSE
-	var/toggled = FALSE
 	var/static/mutable_appearance/quest_marker
 
 /datum/emote/living/quest/run_emote(mob/living/user, params, type_override, intentional, targetted, animal)
@@ -1765,20 +1764,18 @@
 	if(!quest_marker)
 		quest_marker = mutable_appearance('icons/mob/overhead_effects.dmi', "questmarker", OBJ_LAYER, EMISSIVE_PLANE)
 		quest_marker.pixel_y = 34
-	if(!toggled)
+	// Toggle based on whether the marker is present
+	if(user.overlays_standing[OBJ_LAYER] != quest_marker)
 		user.overlays_standing[OBJ_LAYER] = quest_marker
 		user.apply_overlay(OBJ_LAYER)
 		playsound(user, 'sound/magic/inspire_02.ogg', 100, FALSE, 9)
 		key_third_person = "no longer needs help."
 		message = "no longer needs help."
-		toggled = TRUE
 	else
 		user.remove_overlay(OBJ_LAYER)
 		playsound(user, 'sound/misc/portal_enter.ogg', 100, FALSE, 9)
 		key_third_person = initial(key_third_person)
 		message = initial(message)
-		sound = initial(sound)
-		toggled = FALSE
 
 /mob/living/carbon/human/verb/emote_quest()
 	set name = "Quest Marker"

@@ -59,6 +59,16 @@
 	createditem_num = 2
 	craftdiff = 1
 
+/datum/anvil_recipe/engineering/bronze/wrench
+	name = "Engineering Wrench (+1 cog)"
+	req_bar = /obj/item/ingot/bronze
+	created_item = /obj/item/contraption/linker
+	additional_items = list(/obj/item/roguegear)
+	createditem_num = 1
+	craftdiff = 0
+
+
+
 /datum/anvil_recipe/engineering/bronze/cog
 	name = "Cog 2x"
 	req_bar = /obj/item/ingot/bronze
@@ -96,7 +106,7 @@
 	craftdiff = 3
 
 /datum/anvil_recipe/engineering/bronze/grappler
-	name = "Grappler"
+	name = "Grappler (+Pick, +Chain, +3 Cog)"
 	req_bar = /obj/item/ingot/bronze
 	created_item = /obj/item/grapplinghook
 	additional_items = list(/obj/item/rogueweapon/pick, /obj/item/roguegear, /obj/item/roguegear, /obj/item/roguegear, /obj/item/rope/chain)

@@ -1844,3 +1844,56 @@
 					var/mob/living/carbon/H = user
 					H.update_inv_head()
 		user.update_fov_angles()
+
+/obj/item/clothing/head/roguetown/helmet/carapacecap
+	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_HIP
+	name = "carapace cap"
+	desc = "Watery armored plates sown together to protect your head."
+	body_parts_covered = HEAD|HAIR
+	icon_state = "carapacecap"
+	item_state = "carapacecap"
+	armor = list("blunt" = 50, "slash" = 40, "stab" = 45, "piercing" = 30, "fire" = 10, "acid" = 0) //Around Leather level
+	prevent_crits = list(BCLASS_CUT, BCLASS_CHOP, BCLASS_BLUNT)
+	max_integrity = 150
+	anvilrepair = null
+	sewrepair = TRUE
+	blocksound = PLATEHIT
+	smeltresult = /obj/item/ash
+	drop_sound = 'sound/foley/dropsound/chain_drop.ogg'
+/obj/item/clothing/head/roguetown/helmet/carapacecap/dragon
+	name = "dragonscale cap"
+	desc = "Fiery armored plates sown together to protect your head."
+	color = "#9e5761"
+	armor = list("blunt" = 55, "slash" = 50, "stab" = 55, "piercing" = 45, "fire" = 50, "acid" = 0)
+	max_integrity = 200
+
+/obj/item/clothing/head/roguetown/helmet/carapacehelm
+	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_HIP
+	name = "carapace helmet"
+	desc = "Tightly sealed plates of aquatic armor."
+	body_parts_covered = HEAD|HAIR|EARS|NOSE
+	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR
+	flags_cover = HEADCOVERSEYES | HEADCOVERSMOUTH
+	block2add = FOV_BEHIND
+	icon_state = "carapacehelm"
+	item_state = "carapacehelm"
+	armor = list("blunt" = 70, "slash" = 80, "stab" = 60, "piercing" = 50, "fire" = 15, "acid" = 0) //Around Hardened Leather level.
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_SMASH, BCLASS_TWIST)
+	max_integrity = 200
+	anvilrepair = null
+	sewrepair = TRUE
+	blocksound = PLATEHIT
+	smeltresult = /obj/item/ash
+	drop_sound = 'sound/foley/dropsound/chain_drop.ogg'
+
+/obj/item/clothing/head/roguetown/helmet/carapacehelm/dragon
+	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_HIP
+	name = "dragonslayer full helm"
+	desc = "Helmet crafted from the head of a dragon."
+	body_parts_covered = HEAD|HAIR|EARS|NOSE|NECK
+	icon_state = "dragonscalehelm"
+	item_state = "dragonscalehelm"
+	color = "#693a41"
+	armor = list("blunt" = 85, "slash" = 100, "stab" = 85, "piercing" = 80, "fire" = 70, "acid" = 0)
+	max_integrity = 350
+	sellprice = 50

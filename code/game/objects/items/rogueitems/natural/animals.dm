@@ -96,6 +96,30 @@
 	sellprice = 7
 	bundletype = /obj/item/natural/bundle/curred_hide
 
+/obj/item/natural/hide/cured/attack_right(mob/user)
+	var/is_legendary = FALSE
+	if(user.mind.get_skill_level(/datum/skill/craft/tanning) == SKILL_LEVEL_LEGENDARY) //check if the user has legendary farming skill
+		is_legendary = TRUE //they do
+	var/work_time = 1 SECONDS //time to gather fibers
+	if(is_legendary)
+		work_time = 2 //if legendary skill, the move_after is fast, 0.2 seconds
+	to_chat(user, span_warning("I start to collect [src]..."))
+	if(move_after(user, work_time, target = src))
+		var/cured_hidecount = 0
+		for(var/obj/item/natural/hide/cured/F in get_turf(src))
+			cured_hidecount++
+		while(cured_hidecount > 0)
+			if(cured_hidecount == 1)
+				new /obj/item/natural/hide/cured(get_turf(user))
+				cured_hidecount--
+			else if(cured_hidecount >= 2)
+				var/obj/item/natural/bundle/curred_hide/B = new(get_turf(user))
+				B.amount = clamp(cured_hidecount, 2, 10)
+				B.update_bundle()
+				cured_hidecount -= clamp(cured_hidecount, 2, 10)
+		for(var/obj/item/natural/hide/cured/F in get_turf(src))
+			qdel(F)
+
 /obj/item/natural/bundle/curred_hide
 	name = "bundle of cured leather"
 	desc = "A bunch of cured leather pieces bundled together."
@@ -116,3 +140,44 @@
 	resistance_flags = FLAMMABLE
 	w_class = WEIGHT_CLASS_SMALL
 	sellprice = 20
+
+/obj/item/natural/carapace
+	name = "carapace"
+	icon_state = "carapace"
+	desc = "Carapace from a watery creature."
+	force = 0
+	throwforce = 0
+	w_class = WEIGHT_CLASS_SMALL
+	resistance_flags = FLAMMABLE
+	drop_sound = 'sound/foley/dropsound/food_drop.ogg'
+	sellprice = 14
+
+/obj/item/natural/carapace/dragon
+	name = "dragonscale"
+	icon_state = "carapace"
+	desc = "Carapace from a fiery creature."
+	color = "red"
+	force = 0
+	throwforce = 0
+	w_class = WEIGHT_CLASS_SMALL
+	resistance_flags = FLAMMABLE
+	drop_sound = 'sound/foley/dropsound/food_drop.ogg'
+	sellprice = 14
+
+/obj/item/natural/dragon_head
+	name = "dragon head"
+	icon_state = "dragon_head"
+	desc = "Dismembered head of a dragon."
+	dropshrink = 0.90
+	force = 0
+	throwforce = 0
+	w_class = WEIGHT_CLASS_SMALL
+	resistance_flags = FLAMMABLE
+	drop_sound = 'sound/foley/dropsound/gen_drop.ogg'
+	sellprice = 100
+
+/obj/item/natural/dragon_head/brood
+	name = "Broodmother head"
+	desc = "Dismembered head of a big dragon."
+	w_class = WEIGHT_CLASS_SMALL
+	sellprice = 200

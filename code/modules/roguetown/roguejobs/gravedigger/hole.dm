@@ -108,7 +108,7 @@
 		if(stage == 3)
 			var/turf/underT = get_step_multiz(src, DOWN)
 			if(underT && isopenturf(underT) && mastert)
-				var/area/rogue/underA = underT.loc
+				var/area/provincial/underground/underA = underT.loc
 				if((underA && !underA.ceiling_protected) || !underA)
 					attacking_shovel.heldclod = new(attacking_shovel)
 					attacking_shovel.update_icon()

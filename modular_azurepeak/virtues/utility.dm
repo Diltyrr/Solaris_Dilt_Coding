@@ -52,7 +52,7 @@
 		// Find tavern area for spawning
 		var/area/spawn_area
 		for(var/area/A in world)
-			if(istype(A, /area/rogue/indoors/town/tavern))
+			if(istype(A, /area/provincial/indoors/town/tavern))
 				spawn_area = A
 				break
 		
@@ -299,7 +299,7 @@
 /datum/virtue/utility/bronzearm_r
 	name = "Bronze Arm (R)"
 	desc = "Through connections or wealth, my arm had been replaced by one of bronze and gears, that can grip and hold onto things. I've learned just a bit of Engineering as a result."
-	custom_text = "Replaces your Right arm with a prosthetic Bronze one. Incompatible with Wood Arm (R) vice"
+	custom_text = "Replaces your Right arm with a prosthetic Bronze one. Grants the Trick Arm ability. Incompatible with Wood Arm (R) vice"
 	added_skills = list(list(/datum/skill/craft/engineering, 1, 6))
 
 /datum/virtue/utility/bronzearm_r/apply_to_human(mob/living/carbon/human/recipient)
@@ -314,11 +314,13 @@
 		else
 			var/obj/item/bodypart/r_arm/prosthetic/bronzeright/L = new()
 			L.attach_limb(recipient)
+	if (!recipient.mind?.has_spell(/obj/effect/proc_holder/spell/self/trickarm))
+		recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/self/trickarm)
 
 /datum/virtue/utility/bronzearm_l
 	name = "Bronze Arm (L)"
 	desc = "Through connections or wealth, my arm had been replaced by one of bronze and gears, that can grip and hold onto things. I've learned just a bit of Engineering as a result."
-	custom_text = "Replaces your Left arm with a prosthetic Bronze one. Incompatible with Wood Arm (L) vice"
+	custom_text = "Replaces your Left arm with a prosthetic Bronze one. Grants the Trick Arm ability. Incompatible with Wood Arm (L) vice"
 	added_skills = list(list(/datum/skill/craft/engineering, 1, 6))
 
 /datum/virtue/utility/bronzearm_l/apply_to_human(mob/living/carbon/human/recipient)
@@ -333,6 +335,8 @@
 		else
 			var/obj/item/bodypart/l_arm/prosthetic/bronzeleft/L = new()
 			L.attach_limb(recipient)
+	if (!recipient.mind?.has_spell(/obj/effect/proc_holder/spell/self/trickarm))
+		recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/self/trickarm)
 
 /datum/virtue/utility/woodwalker
 	name = "Woodwalker"

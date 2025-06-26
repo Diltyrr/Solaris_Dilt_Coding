@@ -1,55 +1,81 @@
-
+/datum/signal_damage
+    var/damage
+    var/damagetype
+    var/def_zone
+    var/blocked
+    var/forced
+    var/spread_damage
+    var/cancel = FALSE
 
 /mob/living/carbon/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE)
-	SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone)
+	// Let signals modify or cancel the damage entirely
+	var/datum/signal_damage/signal_data = new
+	signal_data.damage = damage
+	signal_data.damagetype = damagetype
+	signal_data.def_zone = def_zone
+	signal_data.blocked = blocked
+	signal_data.forced = forced
+	signal_data.spread_damage = spread_damage
+
+	var/datum/signal/signal = SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMAGE, signal_data)
+
+	if (signal?.data && istype(signal.data, /datum/signal_damage))
+		signal_data = signal.data
+		if (signal_data.cancel)
+			return 0
+		if (signal_data.damage)
+			damage = signal_data.damage
+
+
 	var/hit_percent = 1
-	damage = max(damage-blocked,0)
-//	var/hit_percent = (100-blocked)/100
-	if(!damage || (!forced && hit_percent <= 0))
+	damage = max(damage - blocked, 0)
+	if (!damage || (!forced && hit_percent <= 0))
 		return 0
 
 	var/obj/item/bodypart/BP = null
-	if(!spread_damage)
-		if(isbodypart(def_zone)) //we specified a bodypart object
+	if (!spread_damage)
+		if (isbodypart(def_zone))
 			BP = def_zone
 		else
-			if(!def_zone)
+			if (!def_zone)
 				def_zone = ran_zone(def_zone)
 			BP = get_bodypart(check_zone(def_zone))
-			if(!BP)
+			if (!BP)
 				BP = bodyparts[1]
 
 	var/damage_amount = forced ? damage : damage * hit_percent
+
 	switch(damagetype)
-		if(BRUTE)
-			if(BP)
-				if(BP.receive_damage(damage_amount, 0))
+		if (BRUTE)
+			if (BP)
+				if (BP.receive_damage(damage_amount, 0))
 					update_damage_overlays()
-			else //no bodypart, we deal damage with a more general method.
+			else
 				adjustBruteLoss(damage_amount, forced = forced)
-		if(BURN)
-			if(BP)
-				if(BP.receive_damage(0, damage_amount))
+
+		if (BURN)
+			if (BP)
+				if (BP.receive_damage(0, damage_amount))
 					update_damage_overlays()
 			else
 				adjustFireLoss(damage_amount, forced = forced)
-		if(TOX)
+
+		if (TOX)
 			adjustToxLoss(damage_amount, forced = forced)
-		if(OXY)
+		if (OXY)
 			adjustOxyLoss(damage_amount, forced = forced)
-		if(CLONE)
+		if (CLONE)
 			adjustCloneLoss(damage_amount, forced = forced)
-		if(STAMINA)
-			if(BP)
-				if(BP.receive_damage(0, 0, damage_amount))
+		if (STAMINA)
+			if (BP)
+				if (BP.receive_damage(0, 0, damage_amount))
 					update_damage_overlays()
 			else
 				adjustStaminaLoss(damage_amount, forced = forced)
-	if(damage_amount)
-		return damage_amount
-	else
-		return TRUE
 
+	if (damage_amount)
+		return damage_amount
+	return TRUE
 
 //These procs fetch a cumulative total damage from all bodyparts
 /mob/living/carbon/getBruteLoss()

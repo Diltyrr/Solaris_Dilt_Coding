@@ -173,6 +173,16 @@
 	cost = 10
 	contains = list(/obj/item/rogueweapon/pitchfork,)
 
+/datum/supply_pack/rogue/tools/spade
+	name = "Wooden spade"
+	cost = 5
+	contains = list(/obj/item/rogueweapon/shovel/small)
+
+/datum/supply_pack/rogue/tools/shovel
+	name = "Shovel"
+	cost = 20 //That's a 21 force weapon, shovels are no joke.
+	contains = list(/obj/item/rogueweapon/shovel)
+
 /datum/supply_pack/rogue/tools/plough
 	name = "Plough"
 	cost = 50

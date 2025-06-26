@@ -110,7 +110,7 @@
 			qdel(src)
 			if (L.alpha == 0 && L.rogue_sneaking) // not anymore you're not
 				L.update_sneak_invis(TRUE)
-			if(!HAS_TRAIT(L, TRAIT_WOODWALKER))	
+			if(!HAS_TRAIT(L, TRAIT_WOODWALKER))
 				L.consider_ambush()
 
 /obj/item/grown/log/tree/stick/Initialize()
@@ -154,6 +154,30 @@
 			else
 				to_chat(user, "I can't add any more sticks to the bundle without it falling apart.")
 			return
+
+/obj/item/grown/log/tree/stick/attack_right(mob/user)
+	var/is_legendary = FALSE
+	if(user.mind.get_skill_level(/datum/skill/labor/lumberjacking) == SKILL_LEVEL_LEGENDARY) //check if the user has legendary farming skill
+		is_legendary = TRUE //they do
+	var/work_time = 1 SECONDS //time to gather fibers
+	if(is_legendary)
+		work_time = 2 //if legendary skill, the move_after is fast, 0.2 seconds
+	to_chat(user, span_warning("I start to collect [src]..."))
+	if(move_after(user, work_time, target = src))
+		var/stickcount = 0
+		for(var/obj/item/grown/log/tree/stick/F in get_turf(src))
+			stickcount++
+		while(stickcount > 0)
+			if(stickcount == 1)
+				new /obj/item/grown/log/tree/stick(get_turf(user))
+				stickcount--
+			else if(stickcount >= 2)
+				var/obj/item/natural/bundle/stick/B = new(get_turf(user))
+				B.amount = clamp(stickcount, 2, 10)
+				B.update_bundle()
+				stickcount -= clamp(stickcount, 2, 10)
+		for(var/obj/item/grown/log/tree/stick/F in get_turf(src))
+			qdel(F)
 
 /obj/item/grown/log/tree/stake
 	name = "stake"

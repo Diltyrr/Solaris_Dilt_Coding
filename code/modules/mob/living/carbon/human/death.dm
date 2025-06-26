@@ -79,7 +79,7 @@
 	if(!mob_timers["deathdied"])
 		mob_timers["deathdied"] = world.time
 		var/tris2take = 0
-		if(istype(A, /area/rogue/indoors/town/cell))
+		if(istype(A, /area/provincial/indoors/town/province_keep/garrison/dungeon/cell))
 			tris2take += -2
 //		else
 //			if(get_triumphs() > 0)

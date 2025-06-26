@@ -1,6 +1,6 @@
 /obj/effect/spawner/lootdrop
-	icon = 'icons/effects/landmarks_static.dmi'
-	icon_state = "random_loot"
+	icon = 'icons/effects/random_spawners.dmi'
+	icon_state = "generic_loot"
 	layer = OBJ_LAYER
 	var/lootcount = 1		//how many items will be spawned
 	var/lootdoubles = TRUE	//if the same item can be spawned twice

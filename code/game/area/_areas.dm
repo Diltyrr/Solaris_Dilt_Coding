@@ -272,13 +272,6 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 	return
 
 /**
-  * Update the icon of the area (overridden to always be null for space
-  */
-/area/space/update_icon_state()
-	icon_state = null
-
-
-/**
   * Returns int 1 or 0 if the area has power for the given channel
   *
   * evalutes a mixture of variables mappers can set, requires_power, always_unpowered and then
@@ -298,12 +291,6 @@ GLOBAL_LIST_EMPTY(teleportlocs)
 		if(ENVIRON)
 			return power_environ
 
-	return 0
-
-/**
-  * Space is not powered ever, so this returns 0
-  */
-/area/space/powered(chan) //Nope.avi
 	return 0
 
 /**

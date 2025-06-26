@@ -57,7 +57,8 @@
 	backpack_contents = list(
 						/obj/item/rogueweapon/hammer/claw = 1,
 						/obj/item/lockpickring/mundane = 1,
-						/obj/item/clothing/cloak/apron/blacksmith = 1
+						/obj/item/clothing/cloak/apron/blacksmith = 1,
+						/obj/item/contraption/linker = 1
 						)
 	H.change_stat("strength", 1)
 	H.change_stat("intelligence", 3) //Nerd

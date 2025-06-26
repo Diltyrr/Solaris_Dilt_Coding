@@ -19,6 +19,7 @@
 	l_sleeve_status = SLEEVE_NORMAL
 	flags_inv = HIDECROTCH
 	experimental_inhand = FALSE
+	salvage_amount = 2
 
 /obj/item/clothing/under/roguetown/AdjustClothes(mob/user)
 #ifdef MATURESERVER
@@ -369,3 +370,40 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/blacksteel
 	smelt_bar_num = 2
+
+/obj/item/clothing/under/roguetown/carapacelegs
+	name = "carapace chausses"
+	desc = "Aquatic plated armor to protect the legs."
+	gender = PLURAL
+	icon_state = "carapace_legs"
+	item_state = "carapace_legs"
+	smeltresult = /obj/item/ash
+	sewrepair = TRUE
+	anvilrepair = null
+	armor = list("blunt" = 70, "slash" = 80, "stab" = 60, "piercing" = 30, "fire" = 30, "acid" = 0) //Around Hardened leather
+	max_integrity = 225
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT)
+	blocksound = PLATEHIT
+	var/do_sound = FALSE
+	drop_sound = 'sound/foley/dropsound/chain_drop.ogg'
+	r_sleeve_status = SLEEVE_NOMOD
+	l_sleeve_status = SLEEVE_NOMOD
+
+/obj/item/clothing/under/roguetown/carapacelegs/skirt
+	name = "carapace plated skirt"
+	icon_state = "carapace_skirt"
+	item_state = "carapace_skirt"
+
+/obj/item/clothing/under/roguetown/carapacelegs/dragon
+	name = "dragonscale platelegs"
+	desc = "Dragonscale armor to protect the legs."
+	armor = list("blunt" = 80, "slash" = 100, "stab" = 80, "piercing" = 50, "fire" = 60, "acid" = 0) //Sidegrade to Blacksteel
+	max_integrity = 325
+	color = "#9e5761"
+	sellprice = 50
+
+/obj/item/clothing/under/roguetown/carapacelegs/dragon/skirt
+	name = "dragonscale plated skirt"
+	icon_state = "carapace_skirt"
+	item_state = "carapace_skirt"
+	sellprice = 50

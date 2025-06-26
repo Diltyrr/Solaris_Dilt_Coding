@@ -1,64 +1,64 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/open/floor/rogue/dirt,
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "b" = (
 /turf/open/floor/rogue/grass,
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "c" = (
 /obj/structure/flora/newtree,
 /turf/open/floor/rogue/grass,
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "d" = (
 /obj/structure/flora/roguegrass/bush,
 /turf/open/floor/rogue/dirt,
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "e" = (
 /obj/machinery/light/rogue/campfire,
 /turf/open/floor/rogue/dirt,
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "f" = (
 /turf/closed/wall/mineral/rogue/wooddark,
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "g" = (
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "wooden_floort"
 	},
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "h" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/effect/decal/remains/human,
 /turf/open/floor/rogue/dirt,
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "i" = (
 /obj/effect/decal/remains/bigrat,
 /turf/open/floor/rogue/dirt,
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "j" = (
 /turf/open/floor/rogue/ruinedwood{
 	icon_state = "wooden_floort"
 	},
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "k" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/rogue/dirt,
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "l" = (
 /obj/effect/decal/cleanable/blood/footprints,
 /turf/open/floor/rogue/dirt,
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "m" = (
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /turf/open/floor/rogue/ruinedwood,
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "n" = (
 /obj/structure/well,
 /turf/open/floor/rogue/grass,
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 "o" = (
 /turf/open/floor/rogue/ruinedwood,
-/area/rogue/outdoors/bog)
+/area/provincial/outdoors/bog)
 
 (1,1,1) = {"
 a

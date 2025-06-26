@@ -1,32 +1,32 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/closed/mineral/rogue,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "n" = (
 /obj/structure/glowshroom,
 /turf/open/floor/rogue/greenstone,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "x" = (
 /turf/open/floor/rogue/greenstone,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "J" = (
 /turf/open/water/sewer,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "O" = (
 /turf/closed/wall/mineral/rogue/stonebrick,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "S" = (
 /mob/living/simple_animal/hostile/retaliate/rogue/bigrat,
 /turf/open/floor/rogue/greenstone,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "T" = (
 /obj/machinery/light/rogue/torchholder,
 /turf/closed/wall/mineral/rogue/stonebrick,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 "Y" = (
 /obj/structure/glowshroom,
 /turf/open/water/sewer,
-/area/rogue/under/town/sewer)
+/area/provincial/indoors/town/sewer)
 
 (1,1,1) = {"
 T

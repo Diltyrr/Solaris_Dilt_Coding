@@ -20,8 +20,7 @@
 	end_message = ""
 	end_sound = 'sound/blank.ogg'
 
-	area_type = /area/rogue/outdoors
-	protected_areas = list(/area/rogue/indoors,/area/rogue/under)
+	protected_areas = list(/area/provincial/indoors)
 	impacted_z_levels = list()
 	var/lastlightning = 0
 
@@ -98,13 +97,13 @@
 	lastlightning = world.time
 	for(var/mob/living/carbon/M in GLOB.player_list)
 		var/area/A = get_area(M)
-		if(istype(A, /area/rogue/outdoors))
+		if(istype(A, /area/provincial/outdoors))
 			M.playsound_local(M, pick('sound/ambience/noises/thunout (1).ogg','sound/ambience/noises/thunout (2).ogg','sound/ambience/noises/thunout (3).ogg','sound/ambience/noises/thunout (4).ogg'), 100, FALSE)
 			M.lightning_flashing = TRUE
 			M.update_sight()
 			addtimer(CALLBACK(M, TYPE_PROC_REF(/mob/living/carbon, reset_lightning)), 1)
 			continue
-		if(istype(A, /area/rogue/indoors))
+		if(istype(A, /area/provincial/indoors))
 			M.playsound_local(M, pick('sound/ambience/noises/thunin (1).ogg','sound/ambience/noises/thunin (2).ogg','sound/ambience/noises/thunin (3).ogg','sound/ambience/noises/thunin (4).ogg'), 100, FALSE)
 			continue
 //	testing("dolightingflash")

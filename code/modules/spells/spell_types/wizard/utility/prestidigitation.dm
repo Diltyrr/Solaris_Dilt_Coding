@@ -16,6 +16,7 @@
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
 	hand_path = /obj/item/melee/touch_attack/prestidigitation
+	ignore_wild_magic = TRUE
 
 /obj/item/melee/touch_attack/prestidigitation
 	name = "\improper prestidigitating touch"

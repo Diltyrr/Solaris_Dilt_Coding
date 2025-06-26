@@ -15,7 +15,7 @@
 	base_intents = list(/datum/intent/simple/bite, /datum/intent/simple/claw)
 	butcher_results = list(/obj/item/reagent_containers/food/snacks/rogue/meat/steak = 1,
 						/obj/item/reagent_containers/food/snacks/fat = 2,
-						/obj/item/alch/sinew = 2,
+						/obj/item/alch/sinew = 2, /obj/item/natural/carapace = 2,
 						/obj/item/alch/bone = 1)
 	faction = list("orcs")
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST|MOB_REPTILE
