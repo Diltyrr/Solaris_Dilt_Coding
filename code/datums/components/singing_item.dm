@@ -4,7 +4,7 @@
 		var/json_text = file2text(file_path)
 		GLOB.weapon_personality_dialog = json_decode(json_text)
 	else
-		log_world("ERROR: Could not load weapon_dialogue.json")
+		log_world("ERROR: Could not load singing_weapon_replies.json")
 
 /datum/component/singing_item
 	var/obj/item/rogueweapon/weapon
@@ -68,13 +68,12 @@
 		say_weapon_line("attack", user, source)
 
 /datum/component/singing_item/proc/say_weapon_line(action, mob/user, obj/item/source)
-	// Suppress speech if a spirit is dwelling in the weapon
 	if(!personality || !GLOB.weapon_personality_dialog[personality])
 		return
 
-	var/list/dialogue_pool
+	var/list/dialogue_pool = list()
 
-	if(user.real_name == weapon_owner.real_name)
+	if(user.real_name == weapon_owner)
 		dialogue_pool = GLOB.weapon_personality_dialog[personality][action]
 	else
 		dialogue_pool = GLOB.weapon_personality_dialog[personality]["[action]_other"]
