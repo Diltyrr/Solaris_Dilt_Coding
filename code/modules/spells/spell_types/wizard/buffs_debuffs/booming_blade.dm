@@ -26,13 +26,13 @@
 /obj/effect/proc_holder/spell/invoked/boomingblade/cast(mob/living/user)
 	var/obj/item/held_item = user.get_active_held_item()
 	if(!held_item)
-		user.visible_message(span_warning("You need a weapon to cast Booming Blade!"))
+		to_chat(user, span_warning("You need a weapon to cast Booming Blade!"))
 		return FALSE
 
 	// Apply the weapon buff effect to the caster with the held weapon
 	user.apply_status_effect(/datum/status_effect/buff/boomingblade_weapon, held_item)
 
-	user.visible_message(span_info("You infuse your [held_item.name] with volatile booming energy."))
+	to_chat(user, span_info("You infuse your [held_item.name] with volatile booming energy."))
 	return TRUE
 
 /datum/status_effect/buff/boomingblade_weapon
