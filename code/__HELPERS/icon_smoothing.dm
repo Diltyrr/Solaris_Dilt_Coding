@@ -39,6 +39,8 @@
 #define SMOOTH_DIAGONAL	(1<<2)	//if atom should smooth diagonally, this should be present in 'smooth' var
 #define SMOOTH_BORDER	(1<<3)	//atom will smooth with the borders of the map
 #define SMOOTH_QUEUED	(1<<4)	//atom is currently queued to smooth.
+/// Makes it so the smoothing only causes an underlay to be added to the turf.
+#define SMOOTH_UNDERLAY_ONLY (1<<5)
 
 #define NULLTURF_BORDER 123456789
 
@@ -124,6 +126,8 @@
 
 		if(A.smooth & SMOOTH_DIAGONAL)
 			A.diagonal_smooth(adjacencies)
+		else if (A.smooth & SMOOTH_UNDERLAY_ONLY)
+			A.underlay_smooth(adjacencies)
 		else
 			A.cardinal_smooth(adjacencies)
 
@@ -180,6 +184,35 @@
 				underlay_appearance.icon = DEFAULT_UNDERLAY_ICON
 				underlay_appearance.icon_state = DEFAULT_UNDERLAY_ICON_STATE
 		underlays = U
+
+/atom/proc/underlay_smooth(adjacencies)
+	return adjacencies
+
+/turf/underlay_smooth(adjacencies)
+	adjacencies = reverse_ndir(adjacencies)
+	if(adjacencies)
+		var/mutable_appearance/underlay_appearance = mutable_appearance(layer = TURF_LAYER, plane = FLOOR_PLANE)
+		var/list/new_underlay = list(underlay_appearance)
+		if(fixed_underlay)
+			if(fixed_underlay["space"])
+				underlay_appearance.icon = 'icons/turf/space.dmi'
+				underlay_appearance.icon_state = SPACE_ICON_STATE
+				underlay_appearance.plane = PLANE_SPACE
+			else
+				underlay_appearance.icon = fixed_underlay["icon"]
+				underlay_appearance.icon_state = fixed_underlay["icon_state"]
+		else
+			var/turned_adjacency = turn(adjacencies, 180)
+			var/turf/adjacent_turf = get_step(src, turned_adjacency)
+			if(!adjacent_turf.get_smooth_underlay_icon(underlay_appearance, src, turned_adjacency))
+				adjacent_turf = get_step(src, turn(adjacencies, 135))
+				if(!adjacent_turf.get_smooth_underlay_icon(underlay_appearance, src, turned_adjacency))
+					adjacent_turf = get_step(src, turn(adjacencies, 225))
+			//if all else fails, ask our own turf
+			if(!adjacent_turf.get_smooth_underlay_icon(underlay_appearance, src, turned_adjacency) && !get_smooth_underlay_icon(underlay_appearance, src, turned_adjacency))
+				underlay_appearance.icon = DEFAULT_UNDERLAY_ICON
+				underlay_appearance.icon_state = DEFAULT_UNDERLAY_ICON_STATE
+		underlays = new_underlay
 
 /atom/proc/cardinal_smooth(adjacencies)
 	//NW CORNER

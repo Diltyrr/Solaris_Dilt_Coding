@@ -10,7 +10,7 @@
 	brief_descriptor = "inside the walls of Solaris Ridge"
 	general_location = "From Solaris Ridge!"
 
-/area/provincial/outdoors/shop
+/area/provincial/outdoors/town/shop
 	name = /area/provincial/indoors/town/shop::name
 	icon_state = /area/provincial/indoors/town/shop::icon_state
 	droning_sound = /area/provincial/indoors/town/shop::droning_sound
@@ -18,7 +18,7 @@
 	droning_sound_night = /area/provincial/indoors/town/shop::droning_sound_night
 	converted_type = /area/provincial/indoors/town/shop
 
-/area/provincial/outdoors/tavern
+/area/provincial/outdoors/town/tavern
 	name = /area/provincial/indoors/town/tavern::name
 	icon_state = /area/provincial/indoors/town/tavern::icon_state
 	droning_sound = /area/provincial/indoors/town/tavern::droning_sound
@@ -36,7 +36,7 @@
 /// ROOFS ///
 
 /area/provincial/outdoors/town/roofs
-	name = "Rooftops"
+	name = "Solaris Ridge - Rooftops"
 	icon_state = "roofs"
 	ambientsounds = AMB_MOUNTAIN
 	ambientnight = AMB_MOUNTAIN

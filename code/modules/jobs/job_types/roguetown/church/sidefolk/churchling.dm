@@ -23,6 +23,13 @@
 	max_pq = null
 	round_contrib_points = 2
 
+/datum/job/roguetown/churchling/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+	..()
+	for(var/obj/structure/roguemachine/teleport_beacon/main/town_beacon in SSroguemachine.teleport_beacons)
+		var/mob/living/carbon/human/H = L
+		if(!(H.real_name in town_beacon.granted_list))
+			town_beacon.granted_list += H.real_name
+
 /datum/outfit/job/roguetown/churchling/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)

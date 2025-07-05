@@ -211,7 +211,7 @@
 	swingdelay = 5
 	misscost = 20
 	unarmed = TRUE
-	animname = "cut"
+	animname = "kick"
 	pointer = 'icons/effects/mousemice/human_kick.dmi'
 
 /datum/intent/bite
@@ -222,7 +222,8 @@
 	chargetime = 0
 	swingdelay = 0
 	unarmed = TRUE
-	noaa = TRUE
+	noaa = FALSE
+	animname = "bite"
 	attack_verb = list("bites")
 
 /datum/intent/jump
@@ -231,7 +232,8 @@
 	canparry = FALSE
 	chargedrain = 0
 	chargetime = 0
-	noaa = TRUE
+	noaa = FALSE
+	animname = "bite"
 	pointer = 'icons/effects/mousemice/human_jump.dmi'
 
 /datum/intent/steal

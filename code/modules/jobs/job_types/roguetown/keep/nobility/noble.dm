@@ -21,10 +21,14 @@
 	round_contrib_points = 3
 	cmode_music = 'sound/music/combat_noble.ogg'
 
-/datum/job/roguetown/nobleman/after_spawn(mob/living/H, mob/M, latejoin)
+/datum/job/roguetown/nobleman/after_spawn(mob/living/L, mob/M, latejoin)
 	. = ..()
-	if(ishuman(H))
-		var/mob/living/carbon/human/Q = H
+	for(var/obj/structure/roguemachine/teleport_beacon/main/town_beacon in SSroguemachine.teleport_beacons)
+		var/mob/living/carbon/human/H = L
+		if(!(H.real_name in town_beacon.granted_list))
+			town_beacon.granted_list += H.real_name
+	if(ishuman(L))
+		var/mob/living/carbon/human/Q = L
 		Q.advsetup = 1
 		Q.invisibility = INVISIBILITY_MAXIMUM
 		Q.become_blind("advsetup")

@@ -22,6 +22,12 @@
 	var/buildstackamount = 2
 	var/bolts = TRUE
 	buckleverb = "lay"
+	/// The base amount by which the buckled mob's pixel_y is offset when buckled.
+	var/buckle_y_offset_base = 5
+	/// The amount of additional pixel_y offset to add to the mob if it's not the first mob to buckle to the bed.
+	var/additional_buckle_y_offset = 6
+	/// The mob who buckled to this bed second (if applicable), to avoid other mobs getting pixel-shifted before he unbuckles.
+	var/mob/living/goldilocks
 
 /obj/structure/bed/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
@@ -39,10 +45,22 @@
 	else
 		return ..()
 
-/obj/strucutre/bed/post_buckle_mob(mob/living/M)
+/obj/structure/bed/post_buckle_mob(mob/living/target)
 	. = ..()
-	M.update_cone_show()
+	var/buckle_y_offset = buckle_y_offset_base
 
-/obj/structure/bed/post_unbuckle_mob(mob/living/M)
+	if(buckled_mobs.len > 1 && !goldilocks) // Push the second buckled mob a bit higher from the normal lying position
+		buckle_y_offset += 12
+		goldilocks = target
+
+	target.set_mob_offsets("bed_buckle", _x = 0, _y = buckle_y_offset)
+	target.update_cone_show()
+
+/obj/structure/bed/post_unbuckle_mob(mob/living/target)
 	. = ..()
-	M.update_cone_show()
+
+	target.reset_offsets("bed_buckle")
+	target.update_cone_show()
+
+	if(target == goldilocks)
+		goldilocks = null

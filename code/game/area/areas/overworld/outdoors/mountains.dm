@@ -1,5 +1,5 @@
 /area/provincial/outdoors/mountains
-	name = "Scordris Mountains"
+	name = "\proper Scordris Mountains"
 	icon_state = "mountains"
 	ambientsounds = AMB_MOUNTAIN
 	ambientnight = AMB_MOUNTAIN
@@ -27,7 +27,7 @@
 	droning_sound_night = null
 	first_time_text = "UNDERKING'S MAW"
 	ambush_times = list("night","dawn","dusk","day")
-	converted_type = /area/provincial/underground/underkings_maw
+	converted_type = /area/provincial/underground/mountains/underkings_maw
 	brief_descriptor = "in a land of magma and arid air"
 	general_location = "High above, in the mountaintops!"
 

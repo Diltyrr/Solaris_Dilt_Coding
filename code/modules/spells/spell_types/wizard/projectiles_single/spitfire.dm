@@ -25,6 +25,8 @@
 	cost = 1
 	xp_gain = TRUE
 
+	ignore_fiendkiss = FALSE
+
 /obj/projectile/magic/aoe/fireball/rogue2
 	name = "spitfire"
 	exp_heavy = 0

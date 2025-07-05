@@ -21,6 +21,13 @@
 	give_bank_account = 16
 	round_contrib_points = 3 // You never realize how important someone keeping the place from looking like a shithole is until they're gone.
 
+/datum/job/roguetown/janitor/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+	. = ..()
+	for(var/obj/structure/roguemachine/teleport_beacon/main/town_beacon in SSroguemachine.teleport_beacons)
+		var/mob/living/carbon/human/H = L
+		if(!(H.real_name in town_beacon.granted_list))
+			town_beacon.granted_list += H.real_name
+
 /*
 	Philosphy: Merged version of Legendary Carpenter + Legendary Mason, forgoing combat-related stats asides from axes + traps - favoring better stats
 	You are effectively playing the equivalent of a combined janitor + drone in normal SS13, except you can actually talk and interact and not be a player reference

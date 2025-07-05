@@ -1,5 +1,5 @@
 /area/provincial/outdoors/bog
-	name = "The Synod Of Willows"
+	name = "\proper Synod Of Willows"
 	icon_state = "bog"
 	warden_area = TRUE
 	ambientsounds = AMB_BOGDAY

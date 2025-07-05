@@ -174,10 +174,36 @@
 
 /obj/item/rogueweapon/surgery/cautery/proc/update_heated(new_heated)
 	heated = new_heated
-	if(heated)
-		damtype = BURN
-		tool_behaviour = TOOL_CAUTERY
+	if(src == /obj/item/rogueweapon/surgery/cautery/purging)
+		if(heated)
+			damtype = BURN
+			tool_behaviour = TOOL_WELDER
+		else
+			damtype = BRUTE
+			tool_behaviour = TOOL_SAW
 	else
-		damtype = BRUTE
-		tool_behaviour = null
+		if(heated)
+			damtype = BURN
+			tool_behaviour = TOOL_CAUTERY
+		else
+			damtype = BRUTE
+			tool_behaviour = null
 	update_icon()
+
+/obj/item/rogueweapon/surgery/cautery/purging //mix between a scalpel and a cautery. Isn't as good as either but takes up less space
+	name = "Purging Knife"
+	desc = "A rather gruesome looking piece of Warden kit- its purpose is little more than to desperately still deadites whom have given in to death."
+	icon_state = "purgingknife"
+	possible_item_intents = list(/datum/intent/dagger/cut, /datum/intent/dagger/chop/cleaver, /datum/intent/use)
+	slot_flags = ITEM_SLOT_HIP|ITEM_SLOT_MOUTH
+	parrysound = list('sound/combat/parry/bladed/bladedsmall (1).ogg','sound/combat/parry/bladed/bladedsmall (2).ogg','sound/combat/parry/bladed/bladedsmall (3).ogg')
+	swingsound = list('sound/combat/wooshes/bladed/wooshsmall (1).ogg','sound/combat/wooshes/bladed/wooshsmall (2).ogg','sound/combat/wooshes/bladed/wooshsmall (3).ogg')
+	pickup_sound = 'sound/foley/equip/swordsmall2.ogg'
+	force = 16
+	throwforce = 16
+	wdefense = 3
+	wbalance = 1
+	w_class = WEIGHT_CLASS_NORMAL
+	thrown_bclass = BCLASS_CHOP
+	tool_behaviour = TOOL_SAW
+	smeltresult = null

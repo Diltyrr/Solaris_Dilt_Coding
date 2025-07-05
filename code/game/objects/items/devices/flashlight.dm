@@ -368,3 +368,78 @@
 				return list("shrink" = 0.4,"sx" = -2,"sy" = -4,"nx" = 9,"ny" = -4,"wx" = -3,"wy" = -4,"ex" = 2,"ey" = -4,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0)
 			if("onbelt")
 				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
+
+//Wisp Lantern
+/obj/item/wisp_lantern
+	name = "magic lantern"
+	desc = "A magical lantern with a dancing spirit."
+	icon = 'icons/roguetown/items/lighting.dmi'
+	icon_state = "lamp"
+	item_state = "lantern"
+	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
+	slot_flags = ITEM_SLOT_HIP
+	var/obj/effect/wisp/wisp
+
+/obj/item/wisp_lantern/attack_self(mob/user)
+	if(!wisp)
+		to_chat(user, span_warning("The spirit has gone missing!"))
+		icon_state = "lantern_wisp-on"
+		return
+
+	if(wisp.loc == src)
+		to_chat(user, span_notice("I release the spirit. It dances around me and guides my path."))
+		icon_state = "lantern_wisp-on"
+		wisp.orbit(user, 20)
+		SSblackbox.record_feedback("tally", "wisp_lantern", 1, "Freed")
+
+	else
+		to_chat(user, span_notice("I return the spirit to it's cage."))
+		icon_state = "lantern_wisp"
+		wisp.forceMove(src)
+		SSblackbox.record_feedback("tally", "wisp_lantern", 1, "Returned")
+
+/obj/item/wisp_lantern/Initialize()
+	. = ..()
+	wisp = new(src)
+
+/obj/item/wisp_lantern/Destroy()
+	if(wisp)
+		if(wisp.loc == src)
+			qdel(wisp)
+		else
+			wisp.visible_message(span_notice("[wisp] weeps for a time, then it passes."))
+	return ..()
+
+/obj/effect/wisp
+	name = "wisp"
+	desc = "These seelie spirits often appear in magical forests.."
+	icon = 'icons/obj/projectiles.dmi'
+	icon_state = "spark"
+	color = GLOW_COLOR_ICE
+	light_system = MOVABLE_LIGHT
+	light_outer_range = 7
+	pixel_x = 20
+	light_flags = LIGHT_ATTACHED
+	layer = ABOVE_ALL_MOB_LAYER
+	var/sight_flags = SEE_MOBS
+	var/lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+
+/obj/effect/wisp/orbit(atom/thing)
+	. = ..()
+	if(ismob(thing))
+		RegisterSignal(thing, COMSIG_MOB_UPDATE_SIGHT, PROC_REF(update_user_sight))
+		var/mob/being = thing
+		being.update_sight()
+		to_chat(thing, span_notice("The wisp enhances my vision."))
+
+/obj/effect/wisp/stop_orbit(datum/component/orbiter/orbits)
+	. = ..()
+	if(ismob(orbits.parent))
+		UnregisterSignal(orbits.parent, COMSIG_MOB_UPDATE_SIGHT)
+		to_chat(orbits.parent, span_notice("Darkness consumes me once more."))
+
+/obj/effect/wisp/proc/update_user_sight(mob/user)
+	user.sight |= sight_flags
+	if(!isnull(lighting_alpha))
+		user.lighting_alpha = min(user.lighting_alpha, lighting_alpha)

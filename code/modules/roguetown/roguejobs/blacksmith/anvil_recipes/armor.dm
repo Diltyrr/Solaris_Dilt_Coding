@@ -538,3 +538,10 @@
 	req_bar = /obj/item/ingot/iron
 	additional_items = list(/obj/item/natural/cloth)
 	created_item = /obj/item/clothing/under/roguetown/splintlegs
+
+/datum/anvil_recipe/armor/vambraces
+	name = "Iron Bracers"
+	req_bar = /obj/item/ingot/iron
+	created_item = /obj/item/clothing/wrists/roguetown/vambraces
+	craftdiff = 1
+	i_type = "Armor"

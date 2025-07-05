@@ -1,0 +1,128 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/wall/mineral/rogue/roofwall/treewall,
+/area/provincial/indoors/custom_shelter)
+"c" = (
+/obj/structure/roguewindow/openclose/tree{
+	dir = 4
+	},
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/provincial/indoors/custom_shelter)
+"e" = (
+/turf/closed/wall/mineral/rogue/roofwall/treewall{
+	dir = 1
+	},
+/area/provincial/indoors/custom_shelter)
+"i" = (
+/obj/structure/chair/wood/rogue/tree,
+/obj/structure/rack/rogue/shelf/tree,
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/provincial/indoors/custom_shelter)
+"l" = (
+/turf/closed/wall/mineral/rogue/roofwall/treewall/outercorner{
+	dir = 1
+	},
+/area/provincial/indoors/custom_shelter)
+"p" = (
+/obj/structure/chair/wood/rogue/tree{
+	dir = 1
+	},
+/obj/machinery/light/rogue/wallfire/candle/tree/directional/south,
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/provincial/indoors/custom_shelter)
+"s" = (
+/obj/structure/mineral_door/wood/deadbolt{
+	dir = 1
+	},
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/provincial/indoors/custom_shelter)
+"u" = (
+/obj/machinery/light/rogue/oven/tree/south,
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/provincial/indoors/custom_shelter)
+"y" = (
+/turf/closed/wall/mineral/rogue/roofwall/treewall{
+	dir = 4
+	},
+/area/provincial/indoors/custom_shelter)
+"z" = (
+/obj/structure/rack/rogue/shelf/big/tree,
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/provincial/indoors/custom_shelter)
+"C" = (
+/obj/structure/closet/crate/chest/crate/tree,
+/obj/machinery/light/rogue/wallfire/candle/tree/directional/south,
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/provincial/indoors/custom_shelter)
+"D" = (
+/turf/closed/wall/mineral/rogue/roofwall/treewall/outercorner{
+	dir = 4
+	},
+/area/provincial/indoors/custom_shelter)
+"H" = (
+/turf/closed/wall/mineral/rogue/roofwall/treewall/outercorner,
+/area/provincial/indoors/custom_shelter)
+"K" = (
+/obj/structure/bed/rogue/double/tree,
+/obj/item/bedsheet/rogue/tree_double,
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/provincial/indoors/custom_shelter)
+"M" = (
+/obj/structure/roguewindow/openclose/tree{
+	dir = 8
+	},
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/provincial/indoors/custom_shelter)
+"P" = (
+/obj/structure/table/wood/tree,
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/provincial/indoors/custom_shelter)
+"Q" = (
+/turf/open/floor/rogue/ruinedwood/herringbone,
+/area/provincial/indoors/custom_shelter)
+"R" = (
+/turf/closed/wall/mineral/rogue/roofwall/treewall/outercorner{
+	dir = 8
+	},
+/area/provincial/indoors/custom_shelter)
+"Y" = (
+/turf/closed/wall/mineral/rogue/roofwall/treewall{
+	dir = 8
+	},
+/area/provincial/indoors/custom_shelter)
+
+(1,1,1) = {"
+l
+Y
+c
+Y
+R
+"}
+(2,1,1) = {"
+e
+i
+P
+p
+a
+"}
+(3,1,1) = {"
+e
+u
+Q
+Q
+s
+"}
+(4,1,1) = {"
+e
+z
+K
+C
+a
+"}
+(5,1,1) = {"
+D
+y
+M
+y
+H
+"}

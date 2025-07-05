@@ -220,18 +220,43 @@
 			move_delay = world.time + 10
 			to_chat(src, span_warning("I can't move!"))
 			return TRUE
-		else if(mob.incapacitated(ignore_restraints = 1))
+		if(mob.incapacitated(ignore_restraints = 1))
 			move_delay = world.time + 10
 			to_chat(src, span_warning("I can't move!"))
 			return TRUE
-		else if(mob.restrained(ignore_grab = 1))
+		if(mob.restrained(ignore_grab = 1))
 			move_delay = world.time + 10
 			to_chat(src, span_warning("I'm restrained! I can't move!"))
 			return TRUE
-		else
-//			return mob.resist_grab(1)
-			move_delay = world.time + 10
-			to_chat(src, span_warning("I can't move!"))
+		move_delay = world.time + 10
+		to_chat(src, span_warning("I can't move!"))
+		return TRUE
+	if(mob.pulling && isliving(mob.pulling))
+		if (issimple(mob.pulling))
+			return FALSE
+		var/mob/living/L = mob.pulling
+		var/mob/living/M = mob
+		if(!L.cmode)
+			return FALSE
+		if (L.resting)
+			return FALSE
+		if (L.incapacitated())
+			return FALSE
+		if (M.grab_state > GRAB_PASSIVE)
+			return FALSE
+		move_delay = world.time + 10
+		to_chat(src, span_warning("[L] still has footing! I need a stronger grip!"))
+		return TRUE
+
+// similar to the above, but for NPCs mostly
+/mob/proc/is_move_blocked_by_grab()
+	if(pulledby && pulledby != src)
+		return TRUE
+	if(isliving(pulling))
+		var/mob/living/L = pulling
+		if(L.cmode && !L.resting && !L.incapacitated() && grab_state < GRAB_AGGRESSIVE)
+			return TRUE
+		if(buckled)
 			return TRUE
 
 /**
@@ -821,3 +846,8 @@
 /// Can this mob move between z levels
 /mob/proc/canZMove(direction, turf/target)
 	return FALSE
+
+// Ageneral-purpose proc used to centralize checks to skip turf, movement, step, etc. effects 
+// for mobs that are floating, flying, intangible, etc.
+/mob/proc/is_floor_hazard_immune()
+	return throwing || (movement_type & (FLYING|FLOATING))

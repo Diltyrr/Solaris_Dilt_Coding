@@ -103,11 +103,12 @@
 
 // Copy pasted from berry poison, but stew metabolizes much faster so it is less deadly. You CAN use it as a source of hydration / nutrition if you are desperate enough???
 /datum/reagent/consumable/soup/stew/berry_poisoned/on_mob_life(mob/living/carbon/M)
-	if(volume > 0.09)
-		if(isdwarf(M))
-			M.add_nausea(1)
-			M.adjustToxLoss(0.5)
-		else
-			M.add_nausea(3) // so one berry or one dose (one clunk of extracted poison, 5u) will make you really sick and a hair away from crit.
-			M.adjustToxLoss(2)
+	if(!HAS_TRAIT(M, TRAIT_NASTY_EATER))
+		if(volume > 0.09)
+			if(isdwarf(M))
+				M.add_nausea(1)
+				M.adjustToxLoss(0.5)
+			else
+				M.add_nausea(3) // so one berry or one dose (one clunk of extracted poison, 5u) will make you really sick and a hair away from crit.
+				M.adjustToxLoss(2)
 	return ..()

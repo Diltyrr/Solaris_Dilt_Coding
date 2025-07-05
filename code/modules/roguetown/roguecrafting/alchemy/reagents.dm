@@ -314,13 +314,14 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 	metabolization_rate = 0.1 * REAGENTS_METABOLISM
 
 /datum/reagent/berrypoison/on_mob_life(mob/living/carbon/M)
-	if(volume > 0.09)
-		if(isdwarf(M))
-			M.add_nausea(1)
-			M.adjustToxLoss(0.5)
-		else
-			M.add_nausea(3) // so one berry or one dose (one clunk of extracted poison, 5u) will make you really sick and a hair away from crit.
-			M.adjustToxLoss(2)
+	if(!HAS_TRAIT(M, TRAIT_NASTY_EATER))	
+		if(volume > 0.09)
+			if(isdwarf(M))
+				M.add_nausea(1)
+				M.adjustToxLoss(0.5)
+			else
+				M.add_nausea(3) // so one berry or one dose (one clunk of extracted poison, 5u) will make you really sick and a hair away from crit.
+				M.adjustToxLoss(2)
 	return ..()
 
 

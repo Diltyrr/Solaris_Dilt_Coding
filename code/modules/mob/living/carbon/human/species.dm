@@ -1186,6 +1186,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				target.next_attack_msg += " <span class='warning'>Armor absorbs the blow.</span>"
 			else
 				target.next_attack_msg += " <span class='warning'>The attack has no effect.</span>"
+		else
+			affecting.bodypart_attacked_by(user.used_intent.blade_class, damage, user, selzone, crit_message = TRUE)
 
 		log_combat(user, target, "punched")
 
@@ -1876,6 +1878,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		H.remove_movespeed_modifier(MOVESPEED_ID_COLD)
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "cold")
 		SEND_SIGNAL(H, COMSIG_CLEAR_MOOD_EVENT, "hot")
+
+// A general-purpose proc used to centralise checks to skip turf, movement, step, etc. 
+// For if a mob is floating, flying, intangible, etc.
+/datum/species/proc/is_floor_hazard_immune(mob/living/carbon/human/owner)
+	return FALSE
 
 //////////
 // FIRE //

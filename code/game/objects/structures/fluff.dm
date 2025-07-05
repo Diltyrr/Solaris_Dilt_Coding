@@ -518,6 +518,11 @@
 //			if(SSshuttle.emergency.timeLeft() < 30 MINUTES)
 //				. += span_warning("The last boat will leave in [round(SSshuttle.emergency.timeLeft()/600)] minutes.")
 
+/obj/structure/fluff/clock/CanAStarPass(ID, to_dir, caller)
+	if(to_dir == dir)
+		return FALSE // don't even bother climbing over it
+	return ..()
+
 /obj/structure/fluff/clock/CanPass(atom/movable/mover, turf/target)
 	if(get_dir(loc, mover) == dir)
 		return 0
@@ -544,6 +549,8 @@
 	destroy_sound = 'sound/combat/hits/onwood/destroyfurniture.ogg'
 	attacked_sound = 'sound/combat/hits/onglass/glasshit.ogg'
 	var/broke = FALSE
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/wallclock, 32)
 
 /obj/structure/fluff/wallclock/Destroy()
 	if(soundloop)
@@ -592,8 +599,6 @@
 			soundloop.stop()
 		attacked_sound = list('sound/combat/hits/onwood/woodimpact (1).ogg','sound/combat/hits/onwood/woodimpact (2).ogg')
 	..()
-
-MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/wallclock, 32)
 
 //vampire
 /obj/structure/fluff/wallclock/vampire
@@ -733,6 +738,10 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/wallclock/vampire, 32)
 						user.put_in_hands(I)
 			return
 
+/obj/structure/fluff/statue/CanAStarPass(ID, to_dir, caller)
+	if(to_dir == dir)
+		return FALSE // don't even bother climbing over it
+	return ..()
 
 /obj/structure/fluff/statue/CanPass(atom/movable/mover, turf/target)
 	if(get_dir(loc, mover) == dir)
@@ -936,6 +945,11 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/wallclock/vampire, 32)
 	if(get_dir(loc, mover) == dir)
 		return 0
 	return !density
+
+/obj/structure/fluff/psycross/CanAStarPass(ID, to_dir, caller)
+	if(to_dir == dir)
+		return FALSE // don't even bother climbing over it
+	return ..()
 
 /obj/structure/fluff/psycross/CheckExit(atom/movable/O, turf/target)
 	if(get_dir(O.loc, target) == dir)

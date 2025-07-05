@@ -132,6 +132,11 @@
 	base_icon_state = "woodchest"
 	icon_state = "woodchest"
 
+/obj/structure/closet/crate/chest/crate/tree
+	name = "wooden chest"
+	base_icon_state = "woodchest_tree"
+	icon_state = "woodchest_tree"
+
 /obj/structure/closet/crate/chest/wicker
 	name = "wicker basket"
 	desc = "Fibers interwoven to make a cheap storage bin."

@@ -135,3 +135,17 @@
 	color = "#9e5761"
 	armor = list("blunt" = 80, "slash" = 100, "stab" = 80, "piercing" = 100, "fire" = 60, "acid" = 0) //Should be okay for a dragon drop ?
 	max_integrity = 200
+
+/obj/item/clothing/wrists/roguetown/vambraces
+	name = "iron couter"
+	desc = "Protection mainly focused around the elbows."
+	body_parts_covered = ARMS
+	icon_state = "vambrace"
+	item_state = "vambrace"
+	armor = list("blunt" = 65, "slash" = 85, "stab" = 55, "piercing" = 45, "fire" = 0, "acid" = 0)
+	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_CHOP, BCLASS_BLUNT, BCLASS_TWIST)
+	blocksound = PLATEHIT
+	max_integrity = 200
+	anvilrepair = /datum/skill/craft/blacksmithing
+	smeltresult = /obj/item/ingot/iron
+	sewrepair = FALSE

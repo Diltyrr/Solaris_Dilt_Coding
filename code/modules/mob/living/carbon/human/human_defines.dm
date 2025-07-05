@@ -129,3 +129,4 @@
 	var/datum/statpack/statpack = null // Lethalstone Port - statpacks for greater customization
 	var/second_voice	// Virtue-specific. Can be swapped to / from and changed.
 	var/original_voice
+	var/patronchoice = null //Saves the Warlock's patron if any.

@@ -355,7 +355,6 @@
 		/obj/item/book/granter/spell/blackstone/guidance = 4,
 		/obj/item/book/granter/spell/blackstone/fortitude = 4,
 		/obj/item/book/granter/spell/blackstone/leap = 4,
-		/obj/item/book/granter/spell/blackstone/enlarge = 4,
 		/obj/item/book/granter/spell/blackstone/repel = 3,
 		/obj/item/book/granter/spell/blackstone/fetch = 3,
 		/obj/item/book/granter/spell/blackstone/fireball = 3,

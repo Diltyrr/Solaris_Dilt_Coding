@@ -1,5 +1,5 @@
 /area/provincial/outdoors/field
-	name = "Solara Vie"
+	name = "\proper Solara Vie"
 	icon_state = "rtfield"
 	soundenv = 19
 	first_time_text = "SOLARA VIE"

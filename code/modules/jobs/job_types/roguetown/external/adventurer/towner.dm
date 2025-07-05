@@ -30,6 +30,10 @@
 		H.advsetup = 1
 		H.invisibility = INVISIBILITY_MAXIMUM
 		H.become_blind("advsetup")
+	for(var/obj/structure/roguemachine/teleport_beacon/main/town_beacon in SSroguemachine.teleport_beacons)
+		var/mob/living/carbon/human/H = L
+		if(!(H.real_name in town_beacon.granted_list))
+			town_beacon.granted_list += H.real_name
 
 /*
 /datum/job/roguetown/adventurer/villager/New()

@@ -30,6 +30,11 @@
 /obj/structure/fluff/canopy/booth/booth_green02
 	icon_state = "canopyg-booth-2"
 
+/obj/structure/fluff/canopy/booth/CanAStarPass(ID, to_dir, caller)
+	if(to_dir == dir)
+		return FALSE // don't even bother climbing over it
+	return ..()
+
 /obj/structure/fluff/canopy/booth/CanPass(atom/movable/mover, turf/target)
 	if(get_dir(loc, mover) == dir)
 		return 0

@@ -32,6 +32,7 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	give_bank_account = 1000
 	required = TRUE
 	cmode_music = 'sound/music/combat_noble.ogg'
+	advclass_cat_rolls = list (CTAG_LORD = 20)
 
 /datum/job/roguetown/exlord //just used to change the lords title
 	title = "Marquis Emeritus"
@@ -44,19 +45,6 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	display_order = JDO_LORD
 	give_bank_account = TRUE
 
-
-/datum/job/roguetown/lord/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
-	..()
-	if(L)
-		SSticker.rulermob = L
-		if(should_wear_femme_clothes(L))
-			SSticker.rulertype = "Marquess"
-		else
-			SSticker.rulertype = "Marquis"
-		to_chat(world, "<b><span class='notice'><span class='big'>[L.real_name] is [SSticker.rulertype] of Sunmarch.</span></span></b>")
-		if(STATION_TIME_PASSED() <= 10 MINUTES) //Late to the party? Stuck with default colors, sorry!
-			addtimer(CALLBACK(L, TYPE_PROC_REF(/mob, lord_color_choice)), 50)
-
 /datum/outfit/job/roguetown/lord/pre_equip(mob/living/carbon/human/H)
 	..()
 	head = /obj/item/clothing/head/roguetown/crown/serpcrown
@@ -68,25 +56,11 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1)
 	id = /obj/item/clothing/ring/active/nomag
 	if(H.mind)
-		H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/swords, 4, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE)
-		if(H.age == AGE_OLD)
-			H.mind.adjust_skillrank(/datum/skill/combat/swords, 1, TRUE)
-		H.change_stat("strength", 1)
-		H.change_stat("intelligence", 3)
-		H.change_stat("endurance", 3)
-		H.change_stat("speed", 1)
-		H.change_stat("perception", 2)
 		H.change_stat("fortune", 5)
 	if(should_wear_femme_clothes(H))
 		pants = /obj/item/clothing/under/roguetown/tights/black
@@ -110,8 +84,101 @@ GLOBAL_LIST_EMPTY(lord_titles)
 
 	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_NOSEGRAB, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 //	SSticker.rulermob = H
+
+/datum/job/roguetown/lord/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+	..()
+	for(var/obj/structure/roguemachine/teleport_beacon/main/town_beacon in SSroguemachine.teleport_beacons)
+		var/mob/living/carbon/human/H = L
+		if(!(H.real_name in town_beacon.granted_list))
+			town_beacon.granted_list += H.real_name
+	if(L)
+		SSticker.rulermob = L
+		if(should_wear_femme_clothes(L))
+			SSticker.rulertype = "Marquess"
+		else
+			SSticker.rulertype = "Marquis"
+		to_chat(world, "<b><span class='notice'><span class='big'>[L.real_name] is [SSticker.rulertype] of Sunmarch.</span></span></b>")
+		if(STATION_TIME_PASSED() <= 10 MINUTES) //Late to the party? Stuck with default colors, sorry!
+			addtimer(CALLBACK(L, TYPE_PROC_REF(/mob, lord_color_choice)), 50)
+
+
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		H.advsetup = 1
+		H.invisibility = INVISIBILITY_MAXIMUM
+		H.become_blind("advsetup")
+
+/datum/advclass/lord/classic
+	name = "Traditional Lord"
+	tutorial = "You are the end of the line when it comes to matters of state, you know how to handle a sword, but more than that you know how to handle matters of state above all (Default)"
+	outfit = /datum/outfit/job/roguetown/lord/classic
+
+	category_tags = list(CTAG_LORD)	
+
+/datum/outfit/job/roguetown/lord/classic/pre_equip(mob/living/carbon/human/H)
+	if(H.mind)
+		H.mind.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/swords, 5, TRUE) // removed old  modifer for normalization purposes.
+		H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
+		H.change_stat("strength", 1)
+		H.change_stat("intelligence", 3)
+		H.change_stat("endurance", 3)
+		H.change_stat("speed", 1)
+		H.change_stat("perception", 2)
+		ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
+
+/datum/advclass/lord/fisted
+	name = "Iron Fisted Lord"
+	tutorial = "Your journey to the top was far from easy or without strife. Every pit of power you've earned was carved out with your barehands. Litteraly."
+	outfit = /datum/outfit/job/roguetown/lord/fisted
+	
+	category_tags = list(CTAG_LORD)
+
+/datum/outfit/job/roguetown/lord/fisted/pre_equip(mob/living/carbon/human/H)
+	if(H.mind)
+		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 5, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/swords, 5, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/knives, 5, TRUE) //beware the hidden SHANK
+		H.change_stat("strength", 1)
+		H.change_stat("intelligence", 1)
+		H.change_stat("endurance", 5)
+		H.change_stat("speed", 2)
+		ADD_TRAIT(H, TRAIT_NUTCRACKER, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC)
+
+/datum/advclass/lord/mage
+	name = "Mage Overlord"
+	tutorial = "Your knowledge of the arcane arts have assisted you with your ascent to the throne of the Sunmarch, while others toil on the ground you see it bent to your will. "
+	outfit = /datum/outfit/job/roguetown/lord/mage
+	
+	category_tags = list(CTAG_LORD)
+
+/datum/outfit/job/roguetown/lord/mage/pre_equip(mob/living/carbon/human/H)
+	beltr = /obj/item/book/spellbook
+	if(H.mind)
+		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/magic/arcane, 5, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/bows, 4, TRUE)
+		H.change_stat("perception", 3)
+		H.change_stat("intelligence", 5)
+		H.change_stat("speed", 2)
+		H.mind.adjust_spellpoints(5)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/message)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mindlink)
+		ADD_TRAIT(H, TRAIT_ARCANE_T3, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_MAGIC_TUTOR, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_INTELLECTUAL, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_SENTINELOFWITS, TRAIT_GENERIC)
+
 
 /datum/outfit/job/roguetown/lord/visuals/pre_equip(mob/living/carbon/human/H)
 	..()

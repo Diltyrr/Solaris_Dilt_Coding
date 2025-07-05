@@ -257,7 +257,7 @@
 	spellname = "Aerosolize"
 	icon_state ="scrolldarkred"
 	remarks = list("Lapides corrodunt..", "Spuma venenosa..", "Guttae flavescentes..")
-	
+
 
 /obj/item/book/granter/spell/blackstone/guidance
 	name = "Scroll of Guidance"
@@ -307,13 +307,6 @@
 	spellname = "Featherfall"
 	icon_state ="scrolldarkred"
 	remarks = list("In silentio cadit..", "Alis levitas..", "Plumis taciti dolores..")
-
-/obj/item/book/granter/spell/blackstone/enlarge
-	name = "Scroll of Enlarge"
-	spell = /obj/effect/proc_holder/spell/invoked/enlarge
-	spellname = "Enlarge"
-	icon_state ="scrolldarkred"
-	remarks = list("Immensum agitur..", "Montes tremunt..", "Quantitas expanditur..")
 
 /obj/item/book/granter/spell/blackstone/leap
 	name = "Scroll of Leap"

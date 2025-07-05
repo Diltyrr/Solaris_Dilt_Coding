@@ -2,12 +2,11 @@ GLOBAL_LIST_INIT(toyjester_aggro, world.file2list("strings/rt/toyjesteraggroline
 
 /mob/living/carbon/human/species/construct/metal/toyjester
 	aggressive=1
-	mode = AI_IDLE
+	mode = NPC_AI_IDLE
 	faction = list("toybox")
 	ambushable = FALSE
 	dodgetime = 30
 	flee_in_pain = TRUE
-	stand_attempts = 6
 	possible_rmb_intents = list(/datum/rmb_intent/feint, /datum/rmb_intent/aimed, /datum/rmb_intent/strong, /datum/rmb_intent/weak)
 	var/is_silent = FALSE /// Determines whether or not we will scream our funny lines at people.
 
@@ -108,7 +107,7 @@ GLOBAL_LIST_INIT(toyjester_aggro, world.file2list("strings/rt/toyjesteraggroline
 		face_atom(get_step(src,pick(GLOB.cardinals)))
 
 /mob/living/carbon/human/species/construct/metal/toyjester/handle_combat()
-	if(mode == AI_HUNT)
+	if(mode == NPC_AI_HUNT)
 		if(prob(5))
 			emote("laugh")
 		if(prob(5))
@@ -121,58 +120,73 @@ GLOBAL_LIST_INIT(toyjester_aggro, world.file2list("strings/rt/toyjesteraggroline
 	var/toyclass = rand(1,3)
 	switch(toyclass)
 		if(1) //Jester
+			armor = /obj/item/clothing/suit/roguetown/armor/leather
 			shirt = /obj/item/clothing/suit/roguetown/shirt/jester
 			pants = /obj/item/clothing/under/roguetown/tights/jester
+			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 			mask = /obj/item/clothing/mask/rogue/facemask
 			if(prob(50))
 				mask = /obj/item/clothing/mask/rogue/ragmask/black
 			head = /obj/item/clothing/head/roguetown/jester
+			if(prob(50))
+				head = /obj/item/clothing/head/roguetown/helmet/leather
+			neck = /obj/item/clothing/neck/roguetown/leather
+			if(prob(50))
+				neck = /obj/item/clothing/neck/roguetown/gorget
+			gloves = /obj/item/clothing/gloves/roguetown/angle
 			shoes = /obj/item/clothing/shoes/roguetown/jester
-			H.STASTR = rand(12,16)
-			H.STASPD = rand(10,16)
-			H.STACON = rand(12,16)
-			H.STAEND = rand(12,16)
-			H.STAPER = rand(10,16)
-			H.STAINT = rand(8,10)
+			H.STASTR = rand(10,12)
+			H.STASPD = rand(10,12)
+			H.STACON = rand(12,14)
+			H.STAEND = rand(12,14)
+			H.STAPER = rand(10,12)
+			H.STAINT = rand(10,12)
 			if(prob(50))
 				r_hand = /obj/item/rogueweapon/knuckles/bronzeknuckles
 				l_hand = /obj/item/rogueweapon/knuckles/bronzeknuckles
 			else
 				r_hand = /obj/item/rogueweapon/eaglebeak/lucerne
 		if(2) //Toy Arquebusier
+			armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
 			shirt = /obj/item/clothing/suit/roguetown/shirt/jester
 			pants = /obj/item/clothing/under/roguetown/tights/jester
 			cloak = /obj/item/clothing/cloak/cape
+			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 			mask = /obj/item/clothing/mask/rogue/facemask
 			if(prob(50))
 				mask = /obj/item/clothing/mask/rogue/ragmask/black
 			head = /obj/item/clothing/head/roguetown/helmet/tricorn
 			if(prob(1))
 				head = /obj/item/clothing/head/roguetown/helmet/tricorn/lucky
+			neck = /obj/item/clothing/neck/roguetown/leather
+			if(prob(50))
+				neck = /obj/item/clothing/neck/roguetown/gorget
+			gloves = /obj/item/clothing/gloves/roguetown/angle
 			shoes = /obj/item/clothing/shoes/roguetown/jester
-			H.STASTR = rand(12,16)
-			H.STASPD = rand(10,16)
-			H.STACON = rand(12,16)
-			H.STAEND = rand(12,16)
-			H.STAPER = rand(10,16)
-			H.STAINT = rand(8,10)
+			H.STASTR = rand(10,12)
+			H.STASPD = rand(12,14)
+			H.STACON = rand(10,12)
+			H.STAEND = rand(12,14)
+			H.STAPER = rand(10,12)
+			H.STAINT = rand(10,12)
 			r_hand = /obj/item/rogueweapon/halberd/toyarquebus
+			beltl = /obj/item/ammopouch/bullets
 		if(3) //Toy Knight
+			armor = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
 			shirt = /obj/item/clothing/suit/roguetown/shirt/jester
-			pants = /obj/item/clothing/under/roguetown/tights/jester
+			pants = /obj/item/clothing/under/roguetown/chainlegs/iron
+			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 			mask = /obj/item/clothing/mask/rogue/facemask
-			if(prob(50))
-				mask = /obj/item/clothing/mask/rogue/ragmask/black
-			head = /obj/item/clothing/head/roguetown/jester
-			if(prob(50))
-				head = /obj/item/clothing/head/roguetown/helmet/skullcap
+			head = /obj/item/clothing/head/roguetown/helmet/skullcap
+			neck = /obj/item/clothing/neck/roguetown/gorget
+			gloves = /obj/item/clothing/gloves/roguetown/chain/iron
 			shoes = /obj/item/clothing/shoes/roguetown/jester
-			H.STASTR = rand(12,16)
-			H.STASPD = rand(10,16)
-			H.STACON = rand(12,16)
-			H.STAEND = rand(12,16)
-			H.STAPER = rand(10,16)
-			H.STAINT = rand(8,10)
+			H.STASTR = rand(12,14)
+			H.STASPD = rand(10,12)
+			H.STACON = rand(12,14)
+			H.STAEND = rand(10,12)
+			H.STAPER = rand(10,12)
+			H.STAINT = rand(10,12)
 			if(prob(50))
 				r_hand = /obj/item/rogueweapon/sword/iron
 				l_hand = /obj/item/rogueweapon/shield/heater

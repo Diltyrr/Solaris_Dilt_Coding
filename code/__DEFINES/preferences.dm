@@ -120,6 +120,10 @@
 #define MIN_VOICE_PITCH		0.8
 #define MAX_VOICE_PITCH		1.35
 
+//Size Ranges
+#define MIN_SIZE_RANGE		80
+#define MAX_SIZE_RANGE		150
+
 // Pronouns (LETHALSTONE)
 #define HE_HIM			"he/him"
 #define SHE_HER			"she/her"

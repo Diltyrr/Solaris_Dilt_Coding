@@ -25,12 +25,21 @@
 	xp_gain = TRUE
 	miracle = FALSE
 
-	invocation = ""
-	invocation_type = "shout" //can be none, whisper, emote and shout
-
 /obj/effect/proc_holder/spell/invoked/frostbite/cast(list/targets, mob/living/user)
-	if(isliving(targets[1]))
-		var/mob/living/carbon/target = targets[1]
-		target.apply_status_effect(/datum/status_effect/buff/frostbite/) //apply debuff
-		target.adjustFireLoss(12) //damage
-		target.adjustBruteLoss(12)
+	if(!isliving(targets[1]))
+		to_chat(user, span_warning("You need to target a living thing."))
+		revert_cast()
+		return FALSE
+
+	var/mob/living/carbon/target = targets[1]
+
+	new /obj/effect/temp_visual/trapice(target.loc)
+
+	// Apply effects
+	target.apply_status_effect(/datum/status_effect/debuff/frostbite/)
+	target.adjustFireLoss(12)
+	target.adjustBruteLoss(12)
+
+	// Messaging
+	to_chat(user, span_info("You unleash a blast of frost at [target] — ice crackles around them!"))
+	target.visible_message(span_notice("[target] is struck by a freezing blast from [user]!"), span_danger("A wave of cold slams into you! Your limbs grow numb..."))

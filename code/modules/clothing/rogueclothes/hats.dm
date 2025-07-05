@@ -26,7 +26,7 @@
 
 /obj/item/clothing/head/roguetown/antlerhood
 	name = "antlerhood"
-	desc = "A hood suited for druids and shamans."
+	desc = "A hood showing ones allegance to the wood."
 	color = null
 	flags_inv = HIDEEARS|HIDEHAIR
 	icon_state = "antlerhood"

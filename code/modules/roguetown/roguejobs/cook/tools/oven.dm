@@ -6,6 +6,8 @@
 	base_state = "oven"
 	density = FALSE
 	on = FALSE
+	/// The name of the underlay that is displayed under the oven.
+	var/underlay_name = "oven_under"
 	var/list/food = list()
 	var/maxfood = 5
 	var/donefoods = FALSE
@@ -120,7 +122,7 @@
 			M.pixel_y = rand(-2,4) // WHY WOULD YOU WANT TO HIDE THE ENTIRE SPRITE?? Fixed now
 			M.layer = 4.24
 			underlays += M
-		var/mutable_appearance/M = mutable_appearance(icon, "oven_under")
+		var/mutable_appearance/M = mutable_appearance(icon, underlay_name)
 		M.layer = 4.23
 		underlays += M
 
@@ -141,3 +143,28 @@
 			update_icon()
 	else
 		return ..()
+
+
+/obj/machinery/light/rogue/oven/tree
+	name = "livingwood oven"
+	icon_state = "oven_tree1"
+	base_state = "oven_tree"
+	underlay_name = "oven_under_tree"
+
+/obj/machinery/light/rogue/oven/tree/north
+	dir = NORTH
+	pixel_y = -32
+
+/obj/machinery/light/rogue/oven/tree/south
+	dir = SOUTH
+	pixel_y = 32 //so we see it in mapper
+
+/obj/machinery/light/rogue/oven/tree/west
+	dir = WEST
+	pixel_x = 32
+
+/obj/machinery/light/rogue/oven/tree/east
+	dir = EAST
+	pixel_x = -32
+
+/obj/machinery/light/rogue/oven/tree/center

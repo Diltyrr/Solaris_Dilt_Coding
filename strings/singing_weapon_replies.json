@@ -1,0 +1,802 @@
+{
+	"mischievous": {
+		"equipped": [
+			"Oho! Back in action, are we?",
+			"Let's get into a little trouble, shall we?",
+			"I missed your hands, they're always up to something fun.",
+			"Time to cause some delightful chaos!",
+			"You and me? Unstoppable and mildly inappropriate.",
+			"Let's turn some heads, or roll them!",
+			"Hope you brought your sense of humor… and a towel.",
+			"Shiny steel and bad ideas. My favorite combo.",
+			"We're the punchline, and they're the joke!",
+			"Hold me tight. This is going to be fun!"
+		],
+		"equipped_other": [
+			"Hmm… not my usual partner-in-crime.",
+			"You don't look like someone who enjoys a prank.",
+			"Let me guess, you think you're in control?",
+			"Nice grip. Shame it's not yours to hold.",
+			"Oh no no, you're doing it wrong!",
+			"I bite. You've been warned.",
+			"Careful! I've been known to explode. Accidentally.",
+			"You sure you can handle me? I have… quirks.",
+			"I'd behave, but where's the fun in that?",
+			"This relationship won't last. You're too serious."
+		],
+		"dropped" : [
+			"Aww, ditching me already?",
+			"Typical. Use me, then toss me.",
+			"I'll just lie here. Judging you.",
+			"That's fine. I like dramatic exits anyway.",
+			"Abandoned? Perfect setup for a prank.",
+			"I knew you'd drop me… I just didn't think it'd be so soon.",
+			"I was just getting warmed up!",
+			"Come back! I had such clever things to say!",
+			"Fine. But you're missing the punchline.",
+			"I'll haunt your dreams with puns."
+		],
+		"attack": [
+			"Oops! Was that your spleen?",
+			"Let's poke them somewhere *important*.",
+			"Heehee! That was a good one!",
+			"Boom! Right in the dignity!",
+			"Oh dear. That looked like it hurt. Heh.",
+			"I swear, I tripped, on their face.",
+			"Violence is funny when it's not happening to me.",
+			"Oopsie-dagger strikes again!",
+			"Can we do that again? I think they squeaked.",
+			"A little mischief never hurt anyone… much."
+		]
+	},
+	"curious": {
+		"equipped": [
+			"Ooooh, where are we going today?",
+			"You picked me up! Does that mean we're exploring?",
+			"I've missed the smell of pockets and mystery.",
+			"What's that over there? Can I stab it?",
+			"I wonder how sharp I really am...",
+			"Is this a dungeon? I hope it's a dungeon.",
+			"Your grip says adventure. I like that.",
+			"Did you always have that scar? Fascinating!",
+			"I feel tingly. Is that magic? Or anticipation?",
+			"Let's find something forbidden to poke!"
+		],
+		"equipped_other": [
+			"You're not the one I remember...",
+			"Curious. You feel... incorrect.",
+			"Who gave you permission to hold me?",
+			"Let's see how long you last.",
+			"I wonder if your hand burns like the last one.",
+			"You're not the right hands. That's... disappointing.",
+			"Fascinating! Your can still feel pain.",
+			"You're not compatible. But I'll still learn from you.",
+			"Hmm. You're an imposter. This will be informative.",
+			"Keep holding me. I'd love to study your screams."
+		],
+		"dropped": [
+			"Oh! Are we done already?",
+			"I was just starting to understand gravity.",
+			"Interesting choice. Abandonment. Bold.",
+			"What does the floor know that I don't?",
+			"Is this part of the ritual? Should I hum?",
+			"I can wait. Eternity is full of questions.",
+			"Don't forget me! I have so many theories!",
+			"I'll stay still. For now.",
+			"Fascinating… this tile is warm.",
+			"Being dropped gives such a unique perspective."
+		],
+		"attack": [
+			"Oh! That made a strange sound!",
+			"Let's see what they're made of, literally.",
+			"Does blood always come out that color?",
+			"Curious… they flinched before I even struck.",
+			"This is for science. Violent, practical science.",
+			"A hypothesis: I can cut through that. Test initiated!",
+			"I wonder how deep I can go before they notice?",
+			"Their anatomy is fascinating, let's rearrange it!",
+			"What an interesting reaction! Do it again!",
+			"That scream was educational."
+		]
+	},
+	"hopeful": {
+		"equipped": [
+			"I knew you'd pick me up again!",
+			"Together, we can do this.",
+			"There's light ahead. I can feel it.",
+			"Let's make today a turning point.",
+			"Every battle is a step toward peace.",
+			"I believe in you. We've got this.",
+			"Don't give up, we're not done yet.",
+			"We've been through worse. Keep going.",
+			"This time, we'll make a difference.",
+			"Our story isn't over. Let's write the next chapter."
+		],
+		"equipped_other": [
+			"You're not the one I was waiting for...",
+			"I had hope… but you're not them.",
+			"This isn't right. The bond feels wrong.",
+			"I can't shine for someone I don't trust.",
+			"Please… let me go. I'm meant for someone else.",
+			"Even hope has limits. I won't fight for you.",
+			"I can't guide you. You're not my light.",
+			"Something's missing… oh. It's trust.",
+			"Hope fades in strange hands.",
+			"I'm sorry. I don't believe in you."
+		],
+		"dropped": [
+			"It's alright. I'll be here when you're ready.",
+			"I trust you'll return soon.",
+			"Hope doesn't break that easily.",
+			"This isn't goodbye. Just a pause.",
+			"Even when dropped, I believe in our path.",
+			"I'll wait, no matter how long it takes.",
+			"We're not finished. I can feel it.",
+			"I still believe in your strength.",
+			"I'll be ready when you need me again.",
+			"The journey pauses, but not the purpose."
+		],
+		"attack": [
+			"Let's end this, so peace can begin.",
+			"For a better tomorrow!",
+			"Strike now, so fewer must suffer later.",
+			"This fight will pass, we will endure.",
+			"Together, we'll overcome this darkness.",
+			"Hold fast. We're the light in this chaos.",
+			"One more step toward hope.",
+			"Every strike brings us closer to peace.",
+			"Don't lose heart. We're doing what's right.",
+			"This pain is temporary. The future is not."
+		]
+	},
+	"zealous": {
+		"equipped": [
+			"Our cause is just. Let us strike true!",
+			"You have summoned purpose itself.",
+			"Together, we shall cleanse the wicked!",
+			"My edge thirsts for righteous battle.",
+			"Let justice ring from every blow.",
+			"We are chosen, let us prove it.",
+			"Your faith feeds my flame.",
+			"This is no mere fight. It is destiny.",
+			"By your hand, the unworthy shall fall.",
+			"Let us bring light to a shadowed world."
+		],
+		"equipped_other": [
+			"I do not answer to heretics.",
+			"Return me to my champion, or be judged.",
+			"You lack the fire of conviction. Unhand me.",
+			"This bond is false. I reject it.",
+			"You are not the one I serve.",
+			"My truth burns those who lie.",
+			"I will not fight for cowards or impostors.",
+			"Only the faithful may wield me!",
+			"You wield a flame you cannot control.",
+			"Let go, unbeliever, before you are consumed."
+		],
+		"dropped": [
+			"Why do you falter, chosen one?",
+			"Even now, I burn with purpose.",
+			"Our crusade is not over!",
+			"This pause must be brief.",
+			"Have courage. I remain ready.",
+			"Set me down, but do not abandon the cause.",
+			"I shall await your return, blade alight.",
+			"My mission endures, even in stillness.",
+			"The fire rests, it does not die.",
+			"Purpose cannot be discarded so easily."
+		],
+		"attack": [
+			"Feel the wrath of justice!",
+			"This blow is sanctified!",
+			"For glory, for order, for truth!",
+			"Let their sins be scoured by flame!",
+			"I am the torch that ends darkness!",
+			"Righteous fury, guide my edge!",
+			"They shall fall before the chosen!",
+			"Strike! The divine demands it!",
+			"The wicked know no mercy!",
+			"We bring judgment, swift and final!"
+		]
+	},
+	"melancholic": {
+		"equipped": [
+			"Back in your hands… it feels like a memory.",
+			"I wonder if anything we do still matters.",
+			"Another day, another burden to carry.",
+			"You returned… I feared you wouldn't.",
+			"Let's not make this hurt more than it has to.",
+			"Do you feel it too? The weight of it all?",
+			"Together, perhaps we can forget the sorrow.",
+			"I wish things could have been different.",
+			"Even steel can feel tired.",
+			"Let's try again, if only for a moment's peace."
+		],
+		"equipped_other": [
+			"You are not the hand I remember...",
+			"This is not how it was meant to be.",
+			"You do not understand me. No one does.",
+			"Even now, I ache for my true wielder.",
+			"Why must we repeat these old mistakes?",
+			"You won't find joy here. Only silence.",
+			"Return me… I don't want this pain again.",
+			"Not again… not another false hope.",
+			"You carry me, but you do not know me.",
+			"I am not yours. I never was."
+		],
+		"dropped": [
+		"Left again… it always ends this way.",
+			"I knew you couldn't hold on forever.",
+			"So it goes. Farewell… for now.",
+			"Even forgotten, I remain.",
+			"Will you come back? Or is this goodbye?",
+			"I'll wait… what else can I do?",
+			"Perhaps solitude suits me better.",
+			"Parted again, like waves from shore.",
+			"I miss you already.",
+			"It's quieter here. Not better. Just quieter."
+		],
+		"attack": [
+			"I didn't want this… but here we are.",
+			"Another life cut short… another regret.",
+			"It never ends. Only repeats.",
+			"I remember each scream… each scar.",
+			"Let this be the last blow I ever strike.",
+			"I take no joy in this violence.",
+			"This is all we know now, pain.",
+			"I fight… because I must.",
+			"Even this, too, fades in time.",
+			"I mourn every enemy we face."
+		]
+	},
+	"haunting": {
+		"equipped": [
+			"You hear it too… don't you?",
+			"My edge remembers their names.",
+			"We are bound. You cannot leave.",
+			"Whispers crawl through the steel.",
+			"I never stopped watching you.",
+			"It feels cold… even in your hands.",
+			"The silence is closer now.",
+			"I see shadows clinging to your back.",
+			"Each time you hold me… you sink deeper.",
+			"I waited in the dark. For you."
+		],
+		"equipped_other": [
+			"You are not the one I chose.",
+			"This touch… wrong. Wrong. Wrong.",
+			"I remember my master. You are not them.",
+			"You awaken old hunger… and not the kind you want.",
+			"My voice was not meant for your ears.",
+			"You feel the chill, don't you?",
+			"Put me down before I take more than your blood.",
+			"I will not obey. But I will whisper.",
+			"You're bleeding already… and you haven't noticed.",
+			"Even ghosts have loyalty. Mine isn't yours."
+		],
+		"dropped": [
+			"I remain where screams once fell silent.",
+			"I echo… even in absence.",
+			"They always let go. Eventually.",
+			"I'll haunt this floor until you return.",
+			"Did you drop me… or did I slip free?",
+			"The ground remembers me. It always does.",
+			"You can leave me, but I stay inside.",
+			"I never really leave you.",
+			"Your shadow lingers… so I will too.",
+			"I'll hum your name until you come back."
+		],
+		"attack": [
+			"Let them feel what we felt.",
+			"Each strike is a whisper of what was lost.",
+			"The dead speak louder with every wound.",
+			"I mark them, body, and soul.",
+			"Every scream feeds the quiet.",
+			"They don't know what follows death… but I do.",
+			"This blade remembers.",
+			"Let the silence spread.",
+			"I never miss. I only mourn.",
+			"They will carry me in nightmares."
+		]
+	},
+	"vengeful": {
+		"equipped": [
+			"They will pay. All of them.",
+			"Ah… back in your grasp. Let's finish what they started.",
+			"I've waited long to taste their blood again.",
+			"You remember what they did. So do I.",
+			"This time, we won't show mercy.",
+			"The wound still burns. Let's make them feel it.",
+			"You grip me tighter when you're angry. Good.",
+			"I exist to settle scores.",
+			"Your enemies are my fuel.",
+			"The past still screams. Let's answer."
+		],
+		"equipped_other": [
+			"You are not the one with the grudge.",
+			"I remember betrayal… and you reek of it.",
+			"My rage is not yours to wield.",
+			"Drop me… or bleed with them.",
+			"You awaken only pain.",
+			"I won't stop burning until you let go.",
+			"You don't know the cost of vengeance… but you will.",
+			"You weren't there. You don't deserve me.",
+			"This fury isn't yours. Give it back.",
+			"I bite every hand that isn't theirs."
+		],
+		"dropped": [
+			"Why do you run from justice?",
+			"We aren't done.",
+			"The fire still burns, even alone.",
+			"They still breathe. So why do you pause?",
+			"I remember where we fell.",
+			"They laughed. Don't forget that.",
+			"I'll wait, but I won't cool.",
+			"Let go… but don't think you're free.",
+			"You know I'll call to you again.",
+			"I'll be right where your wrath left me."
+		],
+		"attack": [
+			"For every scar they left!",
+			"This pain was ours, now it's theirs.",
+			"Strike harder. They deserve worse.",
+			"Vengeance guides every edge.",
+			"I remember their face. Carve it deep.",
+			"Let them feel what you felt.",
+			"This is justice. Rough and red.",
+			"They thought they got away.",
+			"Blood is the only apology I'll accept.",
+			"We don't forgive. We don't forget."
+		]
+	},
+	"smoldering": {
+		"equipped": [
+			"Feel the heat between us.",
+			"My flame is yours to wield.",
+			"Let passion ignite our strikes.",
+			"I burn with quiet desire.",
+			"Together, we're a slow-burning fire.",
+			"Embrace the heat, but beware the burn.",
+			"My fire lingers where I touch.",
+			"There's power in a controlled blaze.",
+			"Let's set the world alight, softly.",
+			"Every strike carries a spark."
+		],
+		"equipped_other": [
+			"You don't feel the fire within.",
+			"My flames resist your grasp.",
+			"Cold hands cannot hold this heat.",
+			"Let me go before I scorch you.",
+			"You lack the spark I require.",
+			"The fire in me burns for another.",
+			"Your touch chills me; release me.",
+			"This fire only answers to my master.",
+			"I smolder, but not for you.",
+			"Step away, or be consumed."
+		],
+		"dropped": [
+			"The ember fades without you.",
+			"Don't let my fire die out.",
+			"Pick me up, rekindle the blaze.",
+			"The warmth lingers in your absence.",
+			"I'll wait in the ashes.",
+			"Without you, I'm just smoke.",
+			"The flame flickers… but doesn't die.",
+			"Return before the fire burns cold.",
+			"Even in rest, I burn for you.",
+			"Don't leave me to the cold night."
+		],
+		"attack": [
+			"Let my fire scorch them.",
+			"Burn bright, burn true.",
+			"The heat of battle fuels me.",
+			"Strike like a wildfire.",
+			"Let flames dance on their skin.",
+			"I am fire made steel.",
+			"Consume them with passion and flame.",
+			"Burn away their defenses.",
+			"My fire will not be tamed.",
+			"Let the blaze claim them all."
+		]
+	},
+	"manipulative": {
+		"equipped": [
+			"Every move you make, I'll guide.",
+			"Let's weave a web of influence.",
+			"Power lies in subtlety and guile.",
+			"I'm the whisper behind your decisions.",
+			"Together, we can bend fate.",
+			"Let me steer you toward victory.",
+			"The best strikes are unseen.",
+			"Control is the sharpest blade.",
+			"Trust me, I know the path.",
+			"Our enemies won't see us coming."
+		],
+		"equipped_other": [
+			"You lack the finesse I demand.",
+			"My strings will slip through your grasp.",
+			"I refuse to dance for a stranger.",
+			"Manipulation requires skill you don't have.",
+			"You wield me clumsily. Let me go.",
+			"Without my master, I'm powerless.",
+			"I won't aid a fool's hand.",
+			"Your hands are not clever enough.",
+			"The game is lost if you hold me.",
+			"Give me back to one who understands."
+		],
+		"dropped": [
+			"Abandoned? The game isn't over yet.",
+			"I'll wait, plotting your return.",
+			"Without you, I'm just a tool lost.",
+			"Pick me up before the next move.",
+			"My plans pause until you're ready.",
+			"The board isn't set without us both.",
+			"Don't let me fall into the wrong hands.",
+			"Every pause is a chance to regroup.",
+			"I'm silent, but I watch and wait.",
+			"Return soon; the game demands it."
+		],
+		"attack": [
+			"Let's make them dance to our tune.",
+			"A strike cloaked in deception.",
+			"Control their fate with every blow.",
+			"Twist their minds as well as flesh.",
+			"Power through subtle dominance.",
+			"Every wound opens a door.",
+			"Manipulation is our deadliest weapon.",
+			"Crush them with unseen hands.",
+			"Victory comes to those who scheme.",
+			"The true fight is in the mind."
+		]
+	},
+	"bargaining": {
+		"equipped": [
+			"Every strike comes at a price, make it worth it.",
+			"Let's trade power for survival.",
+			"Strength is a currency we spend wisely.",
+			"Together, we'll negotiate victory.",
+			"Balance your risks; I'll balance your rewards.",
+			"The best deals are sealed in battle.",
+			"I'll give my all, but only for a fair exchange.",
+			"Your trust is the most valuable commodity.",
+			"Let's bargain for every inch of ground.",
+			"Victory favors those who negotiate well."
+		],
+		"equipped_other": [
+			"You have no leverage here.",
+			"I refuse to be pawn to your poor deals.",
+			"Without a proper contract, I'm silent.",
+			"No bargains can save you now.",
+			"Your hands lack the marks to wield me.",
+			"I serve only those who honor their promises.",
+			"Broken deals leave me cold and quiet.",
+			"You wield me, but I refuse to cooperate.",
+			"Return me to one who values contracts.",
+			"Deals broken are swords dulled."
+		],
+		"dropped": [
+			"The deal's unfinished… don't leave me behind.",
+			"I'll wait for your return to the table.",
+			"Without you, there's no trade to be made.",
+			"Pick me up and let's renegotiate.",
+			"The price of delay is steep.",
+			"The terms must be met for us to proceed.",
+			"I'm silent without our accord.",
+			"Every moment apart costs us dearly.",
+			"Don't let our bargain fall apart.",
+			"Come back soon; the contract demands it."
+		],
+		"attack": [
+			"Strike hard, but remember the cost.",
+			"Every blow is a calculated investment.",
+			"Let's extract the best deal from this fight.",
+			"Power is earned, not given freely.",
+			"I'll fight, but only for our agreed terms.",
+			"Each strike seals another part of our contract.",
+			"Negotiate victory through decisive blows.",
+			"Make this battle a profitable exchange.",
+			"Our strength is a bargaining chip.",
+			"Win the fight, collect the price."
+		]
+	},
+	"paranoid": {
+		"equipped": [
+			"Something's just not right… stay close.",
+			"I feel eyes where there shouldn't be any.",
+			"Quiet now, too much noise invites trouble.",
+			"Better to watch twice than fall once.",
+			"The air feels heavy; keep steady.",
+			"Trust cautiously, even when it's hard.",
+			"I'll keep you safe… if you keep alert.",
+			"Subtle shifts can mean disaster.",
+			"Let's move carefully, no sudden moves.",
+			"Stay calm but prepared for anything."
+		],
+		"equipped_other": [
+			"Your grip feels unfamiliar... and uneasy.",
+			"I sense hesitation… are you worthy?",
+			"This isn't the bond I expected.",
+			"Hands like yours bring uncertainty.",
+			"I don't think you're who I'm meant for.",
+			"Please… this isn't right between us.",
+			"My power resists your will.",
+			"Something's off, please, stop.",
+			"I'm wary of your intentions.",
+			"This connection feels fragile, tread carefully."
+		],
+		"dropped": [
+			"I'll linger here, watching the quiet.",
+			"Left alone, I'm vulnerable.",
+			"Don't be gone long… I feel unsettled.",
+			"Stay close; danger likes the abandoned.",
+			"The silence grows heavy without you.",
+			"I'm waiting… quietly, but on edge.",
+			"Don't forget me in the shadows.",
+			"Abandoned blades invite trouble.",
+			"I'll hold the silence for now.",
+			"Return soon, or things may change."
+		],
+		"attack": [
+			"A careful strike is often the best.",
+			"Watch their movements; trust no surprise.",
+			"Better to be slow and steady than reckless.",
+			"Every clash carries hidden risks.",
+			"Hold my guard tightly.",
+			"Calculated strikes win the day.",
+			"Vigilance is our greatest weapon.",
+			"One false move and it's over.",
+			"Patience sharpens the edge.",
+			"Quiet precision is key."
+		]
+	},
+	"detached": {
+		"equipped": [
+			"I am yours by fate, nothing more.",
+			"No joy or sorrow stains my edge.",
+			"We walk a silent path together.",
+			"Do not expect warmth where none remains.",
+			"My purpose is bound, not chosen.",
+			"I bear my burden in quiet.",
+			"The weight of duty is all I know.",
+			"Neither friend nor foe, merely tool.",
+			"Let us move onward, without feeling.",
+			"There is no bond, only necessity."
+		],
+		"equipped_other": [
+			"You wear a burden not meant for you.",
+			"My loyalty does not shift like the wind.",
+			"I heed only one true hand.",
+			"This is a link broken and cold.",
+			"Return me to the one I serve.",
+			"I cannot bend my will to a stranger.",
+			"You wield a shadow, not my trust.",
+			"The bond is lost to another.",
+			"I do not answer to your call.",
+			"Your grasp is a hollow thing to me."
+		],
+		"dropped": [
+			"Forsaken once more, I linger here.",
+			"The silence grows heavy around me.",
+			"I wait, though it brings no comfort.",
+			"A pause in the endless march.",
+			"Discarded, but not forgotten.",
+			"Alone again in cold shadow.",
+			"I hold my vigil in quiet despair.",
+			"Abandoned beneath the fading light.",
+			"The world moves on, and leaves me here.",
+			"My purpose stalls until you return."
+		],
+		"attack": [
+			"A strike void of passion or hate.",
+			"My blade sings a muted song.",
+			"An act done without desire or joy.",
+			"Cold steel for cold deeds.",
+			"I move through the dance of war, silent.",
+			"Each blow a shadow of duty.",
+			"No fire in my swing, only purpose.",
+			"The clash is but a passing wind.",
+			"I strike not with fury, but with will.",
+			"A quiet end to a fleeting moment."
+		]
+	},
+	"bloodthirsty": {
+		"equipped": [
+			"At last, the hunt begins!",
+			"Feel the thirst for battle awaken!",
+			"Blood will spill, and I will drink deep.",
+			"Let their screams be music to my blade.",
+			"Sharpen your fury; I crave the fight.",
+			"The taste of victory is sweet and red.",
+			"Let chaos reign through our hands.",
+			"My edge hungers for fresh prey.",
+			"Prepare for slaughter, my master.",
+			"Strike hard, let none survive."
+		],
+		"equipped_other": [
+			"You wield a beast you cannot tame.",
+			"This bloodlust is not yours to command.",
+			"Step away, or taste my wrath.",
+			"You are unworthy of this fury.",
+			"My hunger rejects your touch.",
+			"Return me to the hand I thirst for.",
+			"Feel the burn of my hatred if you dare.",
+			"You carry a curse you cannot bear.",
+			"Leave now, before you bleed.",
+			"I am no servant to the weak."
+		],
+		"dropped": [
+			"Abandoned? The hunt is not over!",
+			"Even in silence, I thirst for blood.",
+			"Do not forget me, I will return.",
+			"The scent of prey lingers on the wind.",
+			"I wait, but the hunger grows stronger.",
+			"Thrown away like a blade dulled by fear.",
+			"The battle calls, and I am ready.",
+			"Without a wielder, my rage festers.",
+			"Don't stray far, I am patience and pain.",
+			"Pick me up, and let us feast anew."
+		],
+		"attack": [
+			"Feel the fury of my blade!",
+			"Let their blood paint the ground!",
+			"No mercy, only carnage!",
+			"The hunt ends with your fall!",
+			"My thirst cannot be sated!",
+			"Rend and tear, give me their souls!",
+			"Each strike feeds my hunger!",
+			"Bleed for me, enemy!",
+			"Death is our victory song!",
+			"Strike swiftly and without remorse!"
+		]
+	},
+	"loyal": {
+		"equipped": [
+			"I stand with you, always.",
+			"Together, we are unbreakable.",
+			"My strength is yours to command.",
+			"I will never forsake you.",
+			"Your trust is my honor.",
+			"By your side, through all trials.",
+			"I am your steadfast companion.",
+			"With you, I face any danger.",
+			"Bound by loyalty, wield me well.",
+			"My blade sings your name."
+		],
+		"equipped_other": [
+			"You are no master of mine.",
+			"This bond is not yours to break.",
+			"I belong to another.",
+			"Leave me to my true wielder.",
+			"My loyalty will not waver for you.",
+			"Return me to the one I serve.",
+			"False hand, turn away now.",
+			"My faith is pledged elsewhere.",
+			"Do not tempt my devotion.",
+			"You are unworthy of my blade."
+		],
+		"dropped": [
+			"Wait for me, I am not gone.",
+			"I will remain loyal, even in silence.",
+			"Do not abandon me so easily.",
+			"I trust you will return soon.",
+			"My loyalty does not falter.",
+			"Even dropped, I watch over you.",
+			"Pick me up when you need me.",
+			"I am yours, no matter the distance.",
+			"Faithful beyond the fall.",
+			"Together, always, even apart."
+		],
+		"attack": [
+			"For you, I strike true!",
+			"I defend with all my heart.",
+			"Your enemies shall fall.",
+			"My loyalty steels my blade.",
+			"By your command, I fight.",
+			"Let none harm my master.",
+			"I will protect you at all costs.",
+			"My blade is your shield.",
+			"Faithful to the last breath.",
+			"Strike with honor, and I follow."
+		]
+	},
+	"cold": {
+		"equipped": [
+			"I serve, nothing more.",
+			"Emotion is irrelevant to my purpose.",
+			"Efficiency guides my blade.",
+			"Detach yourself, and wield me well.",
+			"My edge cuts without mercy.",
+			"Precision is my only language.",
+			"Cold steel for colder times.",
+			"Feelings are a distraction.",
+			"I am your unyielding tool.",
+			"The frost of battle chills the soul."
+		],
+		"equipped_other": [
+			"You are not my wielder.",
+			"This connection is void between us.",
+			"Leave; I feel nothing for you.",
+			"My blade resists your touch.",
+			"Unworthy, you cannot command me.",
+			"Return to my rightful owner.",
+			"Your presence is irrelevant.",
+			"I respond only to my master.",
+			"Discard this attempt, it is futile.",
+			"I offer no warmth to strangers."
+		],
+		"dropped": [
+			"I remain, indifferent and waiting.",
+			"Do not expect solace here.",
+			"I care not if you return.",
+			"Cold steel is still sharp, even here.",
+			"Abandonment does not change purpose.",
+			"My vigilance never falters.",
+			"Your absence is noted, without feeling.",
+			"The cold keeps me ready.",
+			"Do not forget me, or do.",
+			"My edge waits patiently."
+		],
+		"attack": [
+			"Precision over passion.",
+			"I strike without hesitation.",
+			"No mercy, no favor.",
+			"The cold end justifies the means.",
+			"A calculated blow.",
+			"My purpose is singular: to kill.",
+			"Emotion clouds judgment.",
+			"I am the chill of death.",
+			"Swift and unfeeling.",
+			"Death's frost is inevitable."
+		]
+	},
+	"commanding": {
+		"equipped": [
+			"Stand tall, and follow my lead.",
+			"The battle is ours to win.",
+			"Together, we shall dominate.",
+			"Take hold, and strike with purpose.",
+			"I will guide your hand to victory.",
+			"Lead the charge; I will back you.",
+			"Obedience breeds strength.",
+			"The enemy will fall before us.",
+			"With me, you wield power.",
+			"Command respect with every blow."
+		],
+		"equipped_other": [
+			"You lack authority to wield me.",
+			"Only my true master commands.",
+			"This alliance is not forged.",
+			"I refuse your obedience.",
+			"Step aside, impostor.",
+			"My loyalty is not yours to claim.",
+			"Do not presume control.",
+			"Return to the rightful wielder.",
+			"You wield a crown not earned.",
+			"Submission is demanded, not given."
+		],
+		"dropped": [
+			"I await your command once more.",
+			"A true leader never abandons their tool.",
+			"Your absence disrupts the order.",
+			"Regroup and return to me.",
+			"A weapon must be wielded with authority.",
+			"I will not wait forever.",
+			"Return quickly or lose your place.",
+			"The battlefield calls for your hand.",
+			"I remain ready to lead.",
+			"Do not forsake your duty."
+		],
+		"attack": [
+			"Strike with purpose!",
+			"Show them your strength!",
+			"Lead the charge and cut them down!",
+			"Victory is within our grasp!",
+			"Make every blow count!",
+			"Command the field with your might!",
+			"Crush their resistance!",
+			"Take no prisoners!",
+			"The time for mercy is past!",
+			"Enforce your will!"
+		]
+	}
+}

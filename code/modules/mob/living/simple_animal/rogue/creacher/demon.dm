@@ -23,7 +23,6 @@
 	speed = 1
 	move_to_delay = 5 //delay for the automated movement.
 	harm_intent_damage = 1
-	obj_damage = 1
 	melee_damage_lower = 25
 	melee_damage_upper = 35
 	attack_same = FALSE

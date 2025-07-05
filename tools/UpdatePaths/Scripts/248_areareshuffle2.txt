@@ -1,0 +1,3 @@
+/area/provincial/outdoors/church : /area/provincial/outdoors/town/church{@OLD}
+/area/provincial/outdoors/shop : /area/provincial/outdoors/town/shop{@OLD}
+/area/provincial/outdoors/tavern : /area/provincial/outdoors/town/tavern{@OLD}

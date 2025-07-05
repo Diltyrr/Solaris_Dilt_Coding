@@ -4,7 +4,8 @@
 	icon_living = "dragger"
 	icon_dead = "dragger_dead"
 	name = "dragger"
-	desc = ""
+	desc = "A husk of the once-dead."
+	pixel_x = -8
 	mob_biotypes = MOB_UNDEAD|MOB_HUMANOID
 	movement_type = GROUND
 	environment_smash = ENVIRONMENT_SMASH_NONE
@@ -23,7 +24,6 @@
 	speed = 1
 	move_to_delay = 5 //delay for the automated movement.
 	harm_intent_damage = 1
-	obj_damage = 1
 	melee_damage_lower = 30
 	melee_damage_upper = 45
 	attack_same = FALSE

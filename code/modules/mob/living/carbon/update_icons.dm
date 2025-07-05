@@ -40,6 +40,16 @@
 /mob/living
 	var/list/overlays_standing[TOTAL_LAYERS]
 
+/mob/living/proc/update_bodysize()
+	var/matrix/ntransform = matrix()
+	if(base_body_size != body_size)
+		var/bs = (body_size * 0.01)
+		ntransform.Scale(bs)
+		ntransform.Translate(0, ((bs-1) * 16))
+		base_body_size = body_size
+		animate(src, transform = ntransform, time = (lying_prev == 0 || !lying) ? 2 : 0, easing = (EASE_IN|EASE_OUT))
+		transform = ntransform
+
 /mob/living/proc/apply_overlay(cache_index)
 	if((. = overlays_standing[cache_index]))
 		add_overlay(.)
@@ -396,6 +406,7 @@
 
 /mob/living/carbon/update_body()
 	update_body_parts()
+	update_bodysize()
 
 /mob/living/carbon/proc/update_body_parts()
 	//CHECK FOR UPDATE

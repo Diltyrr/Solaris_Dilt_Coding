@@ -227,12 +227,21 @@
 	desc = "The trunk of a massive tree."
 	icon = 'icons/roguetown/misc/tree.dmi'
 	icon_state = "walltree"
+	above_floor = null
 
 /turf/closed/wall/mineral/rogue/roofwall/treewall/innercorner
 	icon_state = "walltree_innercorner"
 
 /turf/closed/wall/mineral/rogue/roofwall/treewall/outercorner
 	icon_state = "walltree_outercorner"
+	smooth = SMOOTH_TRUE|SMOOTH_UNDERLAY_ONLY
+	canSmoothWith = list(
+		/turf/closed/wall/mineral/rogue/roofwall/treewall,
+		/turf/closed/wall/mineral/rogue/roofwall/treewall/innercorner,
+		/turf/closed/wall/mineral/rogue/roofwall/treewall/outercorner,
+		/turf/closed/wall/mineral/rogue/roofwall/treewall/outercorner/ground,
+		/turf/closed/wall/mineral/rogue/roofwall/treewall/outercorner/tree,
+	)
 
 /turf/closed/wall/mineral/rogue/roofwall/treewall/outercorner/ground
 	icon_state = "walltree_outercorner_ground"

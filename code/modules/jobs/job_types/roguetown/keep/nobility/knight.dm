@@ -25,6 +25,10 @@
 
 /datum/job/roguetown/knight/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()
+	for(var/obj/structure/roguemachine/teleport_beacon/main/town_beacon in SSroguemachine.teleport_beacons)
+		var/mob/living/carbon/human/H = L
+		if(!(H.real_name in town_beacon.granted_list))
+			town_beacon.granted_list += H.real_name
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		H.advsetup = 1
@@ -433,3 +437,93 @@
 	H.change_stat("fortune", 1) // brings in line with the other knights total of 9 (weighted), reason:Lucky for this thing to not blow your hand off
 
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+
+/datum/advclass/knight/arcane
+	name = "Arcane Knight"
+	tutorial = "Someone who has braved many of the dangers of the world to knighthood, now on the precipe of swearing their being to the unknown to protect the sunmarch"
+	outfit = /datum/outfit/job/roguetown/knight/arcane
+	category_tags = list(CTAG_ROYALGUARD)
+
+/datum/outfit/job/roguetown/knight/arcane/pre_equip(mob/living/carbon/human/H)
+	..()
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
+	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
+	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
+	if(H.mind)
+		H.mind.adjust_skillrank(/datum/skill/magic/arcane, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/shields, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/riding, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/tracking, 4, TRUE)
+		H.change_stat("perception", 2)
+		H.change_stat("intelligence", 3)
+		H.change_stat("Speed", 2)	
+		ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+
+
+	H.mind.capped_arcane_melee = SKILL_LEVEL_CAPPED_ARCANE_MELEE
+	H.verbs |= list(/mob/living/carbon/human/proc/request_outlaw, /mob/proc/haltyell, /mob/living/carbon/human/mind/proc/setorders)
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/greenflameblade)
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/warlock/summon_weapon)
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/boomingblade)
+	H.put_in_hands(giveweapon(H,"Sunmarch"), FALSE)
+
+	var/helmets = list(
+		"Pigface Bascinet" 		= /obj/item/clothing/head/roguetown/helmet/bascinet/pigface,
+		"Bascinet"				= /obj/item/clothing/head/roguetown/helmet/bascinet,
+		"Sallet"				= /obj/item/clothing/head/roguetown/helmet/sallet,
+		"Visored Sallet"		= /obj/item/clothing/head/roguetown/helmet/sallet/visored,
+		"Hounskull Bascinet" 	= /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull,
+		"Etruscan Bascinet" 	= /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan,
+		"None"
+	)
+
+	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
+	if(helmchoice != "None")
+		head = helmets[helmchoice]
+
+/datum/outfit/job/roguetown/knight/arcane/proc/giveweapon(mob/living/carbon/human/human, patronchoice)
+	var/weapons_choice = list(
+		"Axe", "Battleaxe", "Cleaver", "Dagger", "Flail", "Goden",
+		"Greatsword", "Halberd", "Longsword", "Mace", "Peasant war flail",
+		"Rapier", "Scythe", "Spear", "Whip"
+	)
+
+	var/weapon_chosen = input("Choose your sentient weapon", "Available weapons") as anything in weapons_choice
+	var/item_type
+
+	switch(weapon_chosen)
+		if("Axe") item_type = /obj/item/rogueweapon/stoneaxe/woodcut/steel
+		if("Battleaxe") item_type = /obj/item/rogueweapon/stoneaxe/battle
+		if("Cleaver") item_type = /obj/item/rogueweapon/huntingknife/cleaver
+		if("Dagger") item_type = /obj/item/rogueweapon/huntingknife/idagger/steel
+		if("Flail") item_type = /obj/item/rogueweapon/flail/sflail
+		if("Goden") item_type = /obj/item/rogueweapon/mace/goden/steel
+		if("Greatsword") item_type = /obj/item/rogueweapon/greatsword
+		if("Halberd") item_type = /obj/item/rogueweapon/halberd
+		if("Longsword") item_type = /obj/item/rogueweapon/sword/long
+		if("Mace") item_type = /obj/item/rogueweapon/mace/steel
+		if("Peasant war flail") item_type = /obj/item/rogueweapon/flail/peasantwarflail
+		if("Rapier") item_type = /obj/item/rogueweapon/sword/rapier
+		if("Scythe") item_type = /obj/item/rogueweapon/sickle/scythe
+		if("Spear") item_type = /obj/item/rogueweapon/spear
+		if("Whip") item_type = /obj/item/rogueweapon/whip
+
+	var/obj/item/item = new item_type
+	item.AddComponent(/datum/component/pact_weapon, human, patronchoice)
+
+	// Make sure the lists exist
+	if(!islist(human.mind.warlock_weapons))
+		human.mind.warlock_weapons = list()
+	if(!islist(human.mind.warlock_weapon_types))
+		human.mind.warlock_weapon_types = list()
+
+	human.mind.warlock_weapons += item
+	human.mind.warlock_weapon_types += item_type
+
+

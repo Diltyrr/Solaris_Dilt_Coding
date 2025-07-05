@@ -21,7 +21,7 @@
 		chance2hit += 10
 
 	if(user.mind)
-		chance2hit += (user.mind.get_skill_level(associated_skill) * 8)
+		chance2hit += (user.mind.get_skill_level_capped(associated_skill) * 8)
 
 	if(used_intent)
 		if(used_intent.blade_class == BCLASS_STAB)
@@ -154,11 +154,11 @@
 
 			if(mainhand)
 				if(mainhand.can_parry)
-					mainhand_defense += (H.mind ? (H.mind.get_skill_level(mainhand.associated_skill) * 20) : 20)
+					mainhand_defense += (H.mind ? (H.mind.get_skill_level_capped(mainhand.associated_skill) * 20) : 20)
 					mainhand_defense += (mainhand.wdefense * 10)
 			if(offhand)
 				if(offhand.can_parry)
-					offhand_defense += (H.mind ? (H.mind.get_skill_level(offhand.associated_skill) * 20) : 20)
+					offhand_defense += (H.mind ? (H.mind.get_skill_level_capped(offhand.associated_skill) * 20) : 20)
 					offhand_defense += (offhand.wdefense * 10)
 
 			if(mainhand_defense >= offhand_defense)
@@ -175,13 +175,13 @@
 				prob2defend += (defender_skill * 20)
 				weapon_parry = FALSE
 			else
-				defender_skill = H.mind?.get_skill_level(used_weapon.associated_skill)
+				defender_skill = H.mind?.get_skill_level_capped(used_weapon.associated_skill)
 				prob2defend += highest_defense
 				weapon_parry = TRUE
 
 			if(U.mind)
 				if(intenty.masteritem)
-					attacker_skill = U.mind.get_skill_level(intenty.masteritem.associated_skill)
+					attacker_skill = U.mind.get_skill_level_capped(intenty.masteritem.associated_skill)
 					prob2defend -= (attacker_skill * 20)
 					if((intenty.masteritem.wbalance > 0) && (user.STASPD > src.STASPD)) //enemy weapon is quick, so get a bonus based on spddiff
 						prob2defend -= ( intenty.masteritem.wbalance * ((user.STASPD - src.STASPD) * 10) )
@@ -191,6 +191,10 @@
 
 			if(HAS_TRAIT(src, TRAIT_GUIDANCE))
 				prob2defend += 15
+
+			if(user.has_status_effect(/datum/status_effect/buff/chargedriposte)) // one-time use attack
+				prob2defend -= 200
+				remove_status_effect(/datum/status_effect/buff/chargedriposte)
 
 			if(HAS_TRAIT(user, TRAIT_GUIDANCE))
 				prob2defend -= 15
@@ -209,6 +213,22 @@
 			if(HAS_TRAIT(user, TRAIT_HARDSHELL) && H.client)	//Dwarf-merc specific limitation w/ their armor on in pvp
 				prob2defend = clamp(prob2defend, 5, 70)
 
+			if(src.dodgecharges > 0 && has_status_effect(/datum/status_effect/buff/carthusgrace)) //fullblock hits until you run out of charges, with flourish
+				prob2defend = 100
+				src.dodgecharges--
+				src.visible_message(span_info("[src] moves with unnatural grace, effortlessly fending off [user]'s attack"))
+
+			if(src.dodgecharges > 0 && !has_status_effect(/datum/status_effect/buff/carthusgrace)) //fullblock hits until you run out of charges
+				prob2defend = 100
+				src.dodgecharges--
+				src.visible_message(span_info("[src]'s arm snaps out, fending off [user] at the last second"))
+
+			if(src.dodgecharges == 0 && has_status_effect(/datum/status_effect/buff/carthusinstinct)) //if you have the buff and use all your charges, gain a riposte
+				src.remove_status_effect(/datum/status_effect/buff/carthusinstinct)
+				src.remove_status_effect(/datum/status_effect/buff/carthusgrace)
+				src.visible_message(span_info("[src]'s arms glow with the vestiges of their divine boon, while the rest of them slows down"))
+				src.apply_status_effect(/datum/status_effect/buff/chargedriposte)
+				
 			//Dual Wielding
 			var/attacker_dualw
 			var/defender_dualw
@@ -236,8 +256,8 @@
 					else//If we're defending against or as a dual wielder, we roll disadv. But if we're both dual wielding it cancels out.
 						text += " Twice! Disadvantage! ([(prob2defend / 100) * (prob2defend / 100) * 100]%)"
 				to_chat(src, span_info("[text]"))
-			
-			var/attacker_feedback 
+
+			var/attacker_feedback
 			if(user.client?.prefs.showrolls && (attacker_dualw || defender_dualw))
 				attacker_feedback = "Attacking with advantage. ([100 - ((prob2defend / 100) * (prob2defend / 100) * 100)]%)"
 
@@ -416,6 +436,30 @@
 			else
 				return FALSE
 
+// origin is used for multi-step dodges like jukes
+/mob/living/proc/get_dodge_destinations(mob/living/attacker, atom/origin = src)
+	var/dodge_dir = get_dir(attacker, origin)
+	if(!dodge_dir)
+		return null
+	var/list/dirry = list()
+	// pick a random dir
+	var/list/turf/dodge_candidates = list()
+	for(var/dir_to_check in dirry)
+		var/turf/dodge_candidate = get_step(origin, dir_to_check)
+		if(!dodge_candidate)
+			continue
+		if(dodge_candidate.density)
+			continue
+		var/has_impassable_atom = FALSE
+		for(var/atom/movable/AM in dodge_candidate)
+			if(!AM.CanPass(src, dodge_candidate))
+				has_impassable_atom = TRUE
+				break
+		if(has_impassable_atom)
+			continue
+		dodge_candidates += dodge_candidate
+	return dodge_candidates
+
 /mob/proc/do_parry(obj/item/W, parrydrain as num, mob/living/user)
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
@@ -480,7 +524,7 @@
 		if(I.wbalance < 0 && L.STASPD > U.STASPD) //nme weapon is slow, so its easier to dodge if we're faster
 			prob2defend = prob2defend + ( I.wbalance * ((U.STASPD - L.STASPD) * 10) )
 		if(UH?.mind)
-			prob2defend = prob2defend - (UH.mind.get_skill_level(I.associated_skill) * 10)
+			prob2defend = prob2defend - (UH.mind.get_skill_level_capped(I.associated_skill) * 10)
 	if(H)
 		if(!H?.check_armor_skill() || H?.legcuffed)
 			H.Knockdown(1)
@@ -498,7 +542,7 @@
 				prob2defend = prob2defend + 10
 			else
 				if(H.mind)
-					prob2defend = prob2defend + (H.mind.get_skill_level(I.associated_skill) * 10)
+					prob2defend = prob2defend + (H.mind.get_skill_level_capped(I.associated_skill) * 10)
 				/* Commented out due to encumbrance being seemingly broken and nonfunctional
 				var/thing = H.encumbrance
 				if(thing > 0)
@@ -518,6 +562,10 @@
 		if(HAS_TRAIT(U, TRAIT_GUIDANCE))
 			prob2defend -= 15
 
+		if(U.has_status_effect(/datum/status_effect/buff/chargedriposte)) // one-time use attack
+			prob2defend -= 200
+			U.remove_status_effect(/datum/status_effect/buff/chargedriposte)
+
 		// dodging while knocked down sucks ass
 		if(!(L.mobility_flags & MOBILITY_STAND))
 			prob2defend *= 0.25
@@ -528,6 +576,22 @@
 
 		prob2defend = clamp(prob2defend, 5, 90)
 
+		if(L.dodgecharges > 0 && L.has_status_effect(/datum/status_effect/buff/carthusgrace)) //fullblock hits until you run out of charges, with flourish
+			prob2defend = 100
+			L.dodgecharges--
+			L.visible_message(span_info("[L] moves with unnatural grace, effortlessly dancing around [U]'s attack"))
+
+		if(L.dodgecharges > 0 && !L.has_status_effect(/datum/status_effect/buff/carthusgrace)) //fullblock hits until you run out of charges
+			prob2defend = 100
+			L.dodgecharges--
+			L.visible_message(span_info("[L]'s suddenly sidesteps, dodging [U]'s blow"))
+
+		if(L.dodgecharges == 0 && L.has_status_effect(/datum/status_effect/buff/carthusinstinct)) //if you have the buff and use all your charges, gain a riposte
+			L.remove_status_effect(/datum/status_effect/buff/carthusinstinct)
+			L.remove_status_effect(/datum/status_effect/buff/carthusgrace)
+			L.visible_message(span_info("[L]'s arms glow with the vestiges of their divine boon, while the rest of them slows down"))
+			L.apply_status_effect(/datum/status_effect/buff/chargedriposte)
+			
 		//------------Dual Wielding Checks------------
 		var/attacker_dualw
 		var/defender_dualw
@@ -551,7 +615,7 @@
 				attacker_dualw = TRUE
 		//----------Dual Wielding check end---------
 
-		var/attacker_feedback 
+		var/attacker_feedback
 		if(user.client?.prefs.showrolls && (attacker_dualw || defender_dualw))
 			attacker_feedback = "Attacking with advantage. ([100 - ((prob2defend / 100) * (prob2defend / 100) * 100)]%)"
 

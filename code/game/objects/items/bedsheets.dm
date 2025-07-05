@@ -111,6 +111,12 @@ LINEN BINS
 	icon_state = "double_fabric_bedsheet"
 	item_state = "double_fabric_bedsheet"
 
+/obj/item/bedsheet/rogue/tree_double
+	desc = "A layer of surprisingly soft bark on top, and a layer of even softer leaves underneath."
+	icon = 'icons/roguetown/misc/structure.dmi'
+	icon_state = "double_tree_bedsheet"
+	item_state = "double_tree_bedsheet"
+
 /obj/item/bedsheet/random
 	icon_state = "random_bedsheet"
 	name = "random bedsheet"

@@ -2,27 +2,27 @@
 /datum/statpack/mental/scholarly
 	name = "Studious"
 	desc = "Your understanding of the world avails you, more often than not."
-	stat_array =  list(STAT_INTELLIGENCE = 2, STAT_PERCEPTION = 1, STAT_STRENGTH = -1, STAT_ENDURANCE = -1)
+	stat_array =  list(STAT_INTELLIGENCE = 3, STAT_PERCEPTION = 1, STAT_STRENGTH = -1) //changed to be +2 from + 0
 
 /datum/statpack/mental/faithdriven
 	name = "Resolute"
 	desc = "Look ever to the Gods for guidance in these trying times - and so you have, to the exclusion of the world around you."
-	stat_array = list(STAT_INTELLIGENCE = 1, STAT_CONSTITUTION = 1, STAT_ENDURANCE = 1, STAT_PERCEPTION = -2)
+	stat_array = list(STAT_INTELLIGENCE = 1, STAT_CONSTITUTION = 1, STAT_ENDURANCE = 1, STAT_PERCEPTION = -1) // changed to +2 from +1
 
 /datum/statpack/mental/zealous
 	name = "Zealous"
 	desc = "Faith in something drives your body and mind to match what neither can see."
-	stat_array = list(STAT_STRENGTH = 1, STAT_INTELLIGENCE = 1, STAT_ENDURANCE = 1, STAT_PERCEPTION = -1, STAT_SPEED = -1)
+	stat_array = list(STAT_STRENGTH = 1, STAT_INTELLIGENCE = 1, STAT_ENDURANCE = 2, STAT_PERCEPTION = -1, STAT_SPEED = -1) // changed to be +2 from +0
 
 /datum/statpack/mental/augury
 	name = "Foresighted"
 	desc = "You see what is and what will sometimes be."
-	stat_array = list(STAT_PERCEPTION = 2, STAT_INTELLIGENCE = 1, STAT_STRENGTH = -1, STAT_ENDURANCE = -1)
+	stat_array = list(STAT_PERCEPTION = 2, STAT_INTELLIGENCE = 1, STAT_FORTUNE = 2, STAT_STRENGTH = -1, STAT_ENDURANCE = -1) // changed to be +2 from +0
 
 /datum/statpack/mental/adept
 	name = "Adept"
 	desc = "Your will leads the way."
-	stat_array = list(STAT_PERCEPTION = 1, STAT_INTELLIGENCE = 1, STAT_SPEED = 1, STAT_STRENGTH = -1, STAT_CONSTITUTION = -1)
+	stat_array = list(STAT_PERCEPTION = 1, STAT_INTELLIGENCE = 1, STAT_SPEED = 2, STAT_STRENGTH = -1, STAT_CONSTITUTION = -2)
 
 /datum/statpack/mental/aware
 	name = "Aware"
@@ -37,7 +37,7 @@
 /datum/statpack/mental/diligent
 	name = "Diligent"
 	desc = "You take your time, but you have a lot of it to spare."
-	stat_array =  list(STAT_INTELLIGENCE = 2, STAT_ENDURANCE = 1, STAT_SPEED = -1)
+	stat_array =  list(STAT_INTELLIGENCE = 2, STAT_ENDURANCE = 2, STAT_SPEED = -1)
 
 /datum/statpack/mental/industrious
 	name = "Industrious"

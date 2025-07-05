@@ -52,6 +52,7 @@
 	LoadMOTD()
 	LoadPolicy()
 	LoadChatFilter()
+	LoadWeaponDialog()
 
 /datum/controller/configuration/proc/full_wipe()
 	if(IsAdminAdvancedProcCall())

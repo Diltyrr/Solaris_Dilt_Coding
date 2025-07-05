@@ -70,7 +70,7 @@
 
 /turf/open/lava/process()
 	if(!burn_stuff())
-		STOP_PROCESSING(SSobj, src)
+		STOP_PROCESSING(SSobj, src) // try to burn everything in our contents, stop once nothing left can burn
 
 /turf/open/lava/get_smooth_underlay_icon(mutable_appearance/underlay_appearance, turf/asking_turf, adjacency_dir)
 	underlay_appearance.icon = 'icons/turf/floors.dmi'
@@ -86,9 +86,31 @@
 			LAZYREMOVE(found_safeties, S)
 	return LAZYLEN(found_safeties)
 
+/turf/open/lava/can_traverse_safely(atom/movable/traveler)
+	return ..() && !will_burn(traveler) // can traverse safely if you won't burn in it
+
+/turf/open/lava/proc/will_burn(atom/movable/thing)
+	if(isobj(thing))
+		var/obj/O = thing
+		if((O.resistance_flags & (LAVA_PROOF|INDESTRUCTIBLE)) || O.throwing)
+			return FALSE
+		return TRUE
+	else if (isliving(thing))
+		var/mob/living/L = thing
+		if(L.movement_type & FLYING)
+			return FALSE //YOU'RE FLYING OVER IT
+		if("lava" in L.weather_immunities) // just flat-out immune. is this even used in RT?
+			return FALSE
+		var/buckle_check = L.buckling
+		if(!buckle_check)
+			buckle_check = L.buckled
+		if(buckle_check && !will_burn(buckle_check))
+			return FALSE // buckled to something lavaproof
+		return TRUE
+	return FALSE // no handling for this type burning, obj or living only
 
 /turf/open/lava/proc/burn_stuff(AM)
-	. = 0
+	. = FALSE
 
 	if(is_safe())
 		return FALSE
@@ -97,12 +119,12 @@
 	if (AM)
 		thing_to_check = list(AM)
 	for(var/thing in thing_to_check)
+		if(!will_burn(thing))
+			continue
 		if(isobj(thing))
 			var/obj/O = thing
-			if((O.resistance_flags & (LAVA_PROOF|INDESTRUCTIBLE)) || O.throwing)
-				continue
-			. = 1
-			if((O.resistance_flags & (ON_FIRE)))
+			. = TRUE
+			if((O.resistance_flags & (ON_FIRE))) // already on fire, don't bother. why do we do this exactly...? is this bad copypasta?
 				continue
 			if(!(O.resistance_flags & FLAMMABLE))
 				O.resistance_flags |= FLAMMABLE //Even fireproof things burn up in lava
@@ -113,21 +135,8 @@
 			qdel(O)
 
 		else if (isliving(thing))
-			. = 1
+			. = TRUE
 			var/mob/living/L = thing
-			if(L.movement_type & FLYING)
-				continue	//YOU'RE FLYING OVER IT
-			var/buckle_check = L.buckling
-			if(!buckle_check)
-				buckle_check = L.buckled
-			if(isobj(buckle_check))
-				var/obj/O = buckle_check
-				if(O.resistance_flags & LAVA_PROOF)
-					continue
-			else if(isliving(buckle_check))
-				var/mob/living/live = buckle_check
-				if("lava" in live.weather_immunities)
-					continue
 
 			if(!L.on_fire)
 				L.update_fire()
@@ -137,8 +146,10 @@
 				var/obj/item/clothing/S = C.get_item_by_slot(SLOT_ARMOR)
 				var/obj/item/clothing/H = C.get_item_by_slot(SLOT_HEAD)
 
+				// we still catch fire if wearing lavaproof armor, but we don't get dusted when dead
+				// is this really the intended behaviour, or was it just badly coded? idk /// SOLARIS NOTE: it wasn't intended /tg/side; iunno if rogue had a different philosphy or this is 2019 /tg/code techdebt
 				if(S && H && S.clothing_flags & LAVAPROTECT && H.clothing_flags & LAVAPROTECT)
-					return
+					continue
 
 				if(C.health <= 0)
 					C.dust(drop_items = TRUE)

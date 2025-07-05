@@ -746,3 +746,51 @@
 	name = "Faith Fortune"
 	icon_state = "buff"
 	desc = "The Nine see you. The priest’s faith wraps your path in fortune."
+
+/datum/status_effect/buff/carthusinstinct
+	id = "Heightened Instincts"
+	alert_type = /atom/movable/screen/alert/status_effect/carthusinstinct
+	duration = 20 MINUTES
+	examine_text = "They move with unnatural deftness"
+
+/atom/movable/screen/alert/status_effect/carthusinstinct
+	name = "Heightened Instincts"
+	icon_state = "buff"
+	desc = "Divine grace quickens my reflexes"
+
+/datum/status_effect/buff/carthusgrace
+	id = "Heightened Grace"
+	alert_type = null
+	duration = 20 MINUTES
+
+#define CHARGEDRIPOSTE_FILTER "grey_glow"
+/datum/status_effect/buff/chargedriposte
+	id = "chargedriposte"
+	alert_type = /atom/movable/screen/alert/status_effect/chargedriposte
+	duration = 7 SECONDS
+	examine_text = "They are preparing a skilled attack"
+	var/obj/effect/dummy/lighting_obj/moblight/mob_light_obj
+	var/outline_colour = "#999DA0"
+
+/atom/movable/screen/alert/status_effect/chargedriposte
+	name = "Enhanced Riposte"
+	icon_state = "buff"
+	desc = "Make it count"
+
+/datum/status_effect/buff/chargedriposte/on_apply()
+	. = ..()
+	if (!.)
+		return
+	var/filter = owner.get_filter(CHARGEDRIPOSTE_FILTER)
+	if (!filter)
+		owner.add_filter(CHARGEDRIPOSTE_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 60, "size" = 1))
+	mob_light_obj = owner.mob_light("#999DA0", 10, 10)
+	return TRUE
+
+/datum/status_effect/buff/chargedriposte/on_remove()
+	. = ..()
+	playsound(owner, 'sound/items/firesnuff.ogg', 75, FALSE)
+	owner.remove_filter(CHARGEDRIPOSTE_FILTER)
+	QDEL_NULL(mob_light_obj)
+
+#undef CHARGEDRIPOSTE_FILTER

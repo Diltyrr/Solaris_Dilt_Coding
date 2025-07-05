@@ -47,6 +47,8 @@
 		return -1
 	if(user.temporarilyRemoveItemFromInventory(src))
 		attach_limb(H)
+		if (!H.mind?.has_spell(/obj/effect/proc_holder/spell/self/overclock_arm))
+			H.mind?.AddSpell(new /obj/effect/proc_holder/spell/self/overclock_arm)
 		user.visible_message(span_notice("[user] attaches [src] to [H]."))
 		return 1
 
@@ -97,6 +99,8 @@
 		return -1
 	if(user.temporarilyRemoveItemFromInventory(src))
 		attach_limb(H)
+		if (!H.mind?.has_spell(/obj/effect/proc_holder/spell/self/overclock_arm))
+			H.mind?.AddSpell(new /obj/effect/proc_holder/spell/self/overclock_arm)
 		user.visible_message(span_notice("[user] attaches [src] to [H]."))
 		return 1
 

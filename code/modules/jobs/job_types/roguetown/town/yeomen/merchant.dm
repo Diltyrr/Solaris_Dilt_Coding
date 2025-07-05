@@ -23,6 +23,13 @@
 	round_contrib_points = 3
 	cmode_music = 'sound/music/combat_noble.ogg'
 
+/datum/job/roguetown/merchant/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+	. = ..()
+	for(var/obj/structure/roguemachine/teleport_beacon/main/town_beacon in SSroguemachine.teleport_beacons)
+		var/mob/living/carbon/human/H = L
+		if(!(H.real_name in town_beacon.granted_list))
+			town_beacon.granted_list += H.real_name
+
 /datum/outfit/job/roguetown/merchant/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)

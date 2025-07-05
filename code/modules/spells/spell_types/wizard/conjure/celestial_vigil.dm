@@ -112,7 +112,7 @@
 				if(fam_target.familiar_summoner == user.real_name) continue
 
 			// Skip other friendly summons
-			if(mob.summoner == user) continue
+			if(mob.summoner == user.real_name) continue
 
 			enemies += mob
 

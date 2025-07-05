@@ -13,13 +13,13 @@
 	clusterCheckFlags = CLUSTER_CHECK_DIFFERENT_ATOMS
 	allowed_turfs = list(/turf/open/floor/rogue/dirt/road,/turf/open/water,/turf/open/floor/rogue/volcanic)
 	spawnableAtoms = list(/obj/item/natural/stone = 19,/obj/structure/roguerock=5,/obj/item/natural/rock = 3, /obj/structure/glowshroom = 4)
-	allowed_areas = list(/area/provincial/underground/spider_cave,/area/provincial/underground,/area/provincial/underground/underdark/undersea,/area/provincial/underground,/area/provincial/underground/underkings_maw)
+	allowed_areas = list(/area/provincial/underground/spider_cave,/area/provincial/underground,/area/provincial/underground/underdark/undersea,/area/provincial/underground,/area/provincial/underground/mountains/underkings_maw)
 
 /datum/mapGeneratorModule/cavedirt
 	clusterCheckFlags = CLUSTER_CHECK_DIFFERENT_ATOMS
 	allowed_turfs = list(/turf/open/floor/rogue/dirt)
 	spawnableAtoms = list(/obj/structure/flora/rogueshroom=20,/obj/structure/roguerock=20,/obj/structure/flora/roguegrass = 14,/obj/structure/closet/dirthole/closed/loot=6,/obj/item/natural/stone = 24,/obj/item/natural/rock = 8, /obj/structure/glowshroom = 3)
-	allowed_areas = list(/area/provincial/underground/spider_cave,/area/provincial/underground,/area/provincial/underground/underdark/undersea,/area/provincial/underground,/area/provincial/underground/underkings_maw)
+	allowed_areas = list(/area/provincial/underground/spider_cave,/area/provincial/underground,/area/provincial/underground/underdark/undersea,/area/provincial/underground,/area/provincial/underground/mountains/underkings_maw)
 
 /datum/mapGeneratorModule/cavebeach
 	clusterCheckFlags = CLUSTER_CHECK_DIFFERENT_ATOMS

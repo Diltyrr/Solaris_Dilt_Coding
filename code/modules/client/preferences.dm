@@ -85,6 +85,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/eye_color = "000"				//Eye color
 	var/voice_color = "a0a0a0"
 	var/voice_pitch = 1
+	var/body_size = 1
 	var/detail_color = "000"
 	var/datum/species/pref_species = new /datum/species/human/northern()	//Mutant race
 	var/static/datum/species/default_species = new /datum/species/human/northern()
@@ -429,6 +430,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "<b>Voice Color: </b><a href='?_src_=prefs;preference=voice;task=input'>Change</a>"
 			dat += "<br><b>Nickname Color: </b> </b><a href='?_src_=prefs;preference=highlight_color;task=input'>Change</a>"
 			dat += "<br><b>Voice Pitch: </b><a href='?_src_=prefs;preference=voice_pitch;task=input'>[voice_pitch]</a>"
+			dat += "<br><b>Body Size: </b><a href='?_src_=prefs;preference=body_size;task=input'>[body_size]</a>"
 			dat += "<br><b>Features:</b> <a href='?_src_=prefs;preference=customizers;task=menu'>Change</a>"
 			dat += "<br><b>Markings:</b> <a href='?_src_=prefs;preference=markings;task=menu'>Change</a>"
 			dat += "<br><b>Descriptors:</b> <a href='?_src_=prefs;preference=descriptors;task=menu'>Change</a>"
@@ -1552,6 +1554,14 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 							return
 						voice_pitch = new_voice_pitch
 
+				if("body_size")
+					var/new_body_size = input(user, "Choose your character's body size ([MIN_SIZE_RANGE] to [MAX_SIZE_RANGE], smaller to bigger):", "Body Size") as null|num
+					if(new_body_size)
+						if(new_body_size < MIN_SIZE_RANGE || new_body_size > MAX_SIZE_RANGE)
+							to_chat(user, "<font color='red'>Value must be between [MIN_SIZE_RANGE] and [MAX_SIZE_RANGE].</font>")
+							return
+						body_size = new_body_size
+
 				if("highlight_color")
 					var/new_color = input(user, "Choose your character's nickname highlight color:", "Character Preference","#"+highlight_color) as color|null
 					if(new_color)
@@ -2365,6 +2375,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 	character.eye_color = eye_color
 	character.voice_color = voice_color
 	character.voice_pitch = voice_pitch
+	character.body_size = body_size
 	var/obj/item/organ/eyes/organ_eyes = character.getorgan(/obj/item/organ/eyes)
 	if(organ_eyes)
 		if(!initial(organ_eyes.eye_color))

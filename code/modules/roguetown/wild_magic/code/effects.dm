@@ -108,3 +108,13 @@
 /atom/movable/screen/alert/status_effect/debuff/secret
 	name = "Secret Curse"
 	desc = "You are compelled to tell a secret!"
+
+/datum/status_effect/buff/verdant_wild_gift
+	id = "Verdant Wild Gift"
+	effectedstats = list("intelligence" = 4)
+	duration = 30 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/buff/verdant_wild_gift
+
+/atom/movable/screen/alert/status_effect/buff/verdant_wild_gift
+	name = "Verdant Wild Gift"
+	desc = "Your mind is momentarily sharpened by fey magic. Everything feels brighter, faster, and more clever."

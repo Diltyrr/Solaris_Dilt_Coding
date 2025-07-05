@@ -2,6 +2,8 @@
 
 /proc/trigger_wild_magic(list/targets, mob/living/carbon/user, spell_typepath, effect_override = null)
     playsound(user.loc, 'sound/misc/sudden noise.ogg', 100, TRUE)
+    if(HAS_TRAIT(user, TRAIT_WILDMAGIC_BENEFIC))
+        user.apply_status_effect(/datum/status_effect/buff/verdant_wild_gift)
     var/effect = effect_override ? effect_override : rand(1, 50)
     var/list/surged_targets = list()
     for(var/target in targets)

@@ -316,6 +316,8 @@
 			L.attach_limb(recipient)
 	if (!recipient.mind?.has_spell(/obj/effect/proc_holder/spell/self/trickarm))
 		recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/self/trickarm)
+	if (!recipient.mind?.has_spell(/obj/effect/proc_holder/spell/self/overclock_arm))
+		recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/self/overclock_arm)
 
 /datum/virtue/utility/bronzearm_l
 	name = "Bronze Arm (L)"
@@ -337,6 +339,8 @@
 			L.attach_limb(recipient)
 	if (!recipient.mind?.has_spell(/obj/effect/proc_holder/spell/self/trickarm))
 		recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/self/trickarm)
+	if (!recipient.mind?.has_spell(/obj/effect/proc_holder/spell/self/overclock_arm))
+		recipient.mind?.AddSpell(new /obj/effect/proc_holder/spell/self/overclock_arm)
 
 /datum/virtue/utility/woodwalker
 	name = "Woodwalker"

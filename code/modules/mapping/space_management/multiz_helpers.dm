@@ -1,10 +1,11 @@
 /proc/get_step_multiz(ref, dir)
+	var/turf/us = get_turf(ref)
 	if(dir & UP)
 		dir &= ~UP
-		return get_step(GET_TURF_ABOVE(get_turf(ref)), dir)
+		return get_step(GET_TURF_ABOVE(us), dir)
 	if(dir & DOWN)
 		dir &= ~DOWN
-		return get_step(GET_TURF_BELOW(get_turf(ref)), dir)
+		return get_step(GET_TURF_BELOW(us), dir)
 	return get_step(ref, dir)
 
 /proc/get_multiz_accessible_levels(center_z)

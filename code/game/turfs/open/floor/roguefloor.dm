@@ -305,6 +305,28 @@
 /turf/open/floor/rogue/grass/cardinal_smooth(adjacencies)
 	roguesmooth(adjacencies)
 
+/turf/open/floor/rogue/leaves
+	name = "leaves"
+	desc = "Leaves, they look lovely this time of year."
+	icon = 'icons/roguetown/misc/tree.dmi'
+	icon_state = "center-leaf1"
+	layer = MID_TURF_LAYER
+	footstep = FOOTSTEP_GRASS
+	barefootstep = FOOTSTEP_SOFT_BAREFOOT
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	tiled_dirt = FALSE
+	landsound = 'sound/foley/jumpland/grassland.wav'
+	slowdown = 0
+	// smooth = SMOOTH_TRUE
+	canSmoothWith = list(
+		/turf/open/floor/rogue/leaves,
+		/turf/closed/wall/mineral/rogue/roofwall/treewall,
+		/turf/closed/wall/mineral/rogue/roofwall/treewall/innercorner,
+		/turf/closed/wall/mineral/rogue/roofwall/treewall/outercorner,
+		/turf/closed/wall/mineral/rogue/roofwall/treewall/outercorner/ground,
+		/turf/closed/wall/mineral/rogue/roofwall/treewall/outercorner/tree,
+	)
+
 /turf/open/floor/rogue/dirt/ambush
 	name = "dirt"
 	desc = "The dirt is pocked with the scars of countless wars."
@@ -353,23 +375,20 @@
 	var/dirt_amt = 3
 
 /turf/open/floor/rogue/dirt/get_slowdown(mob/user)
-	var/returned = slowdown
+	. = ..()
 	var/negate_slowdown = FALSE
 
-	for(var/obj/item/I in user.held_items)
-		if(I.walking_stick)
-			if(!I.wielded)
-				var/mob/living/L = user
-				if(!L.cmode)
-					negate_slowdown = TRUE
+	for(var/obj/item/stick in user.held_items)
+		if(stick.walking_stick && !stick.wielded && !user.cmode)
+			negate_slowdown = TRUE
+			break
 
 	if(HAS_TRAIT(user, TRAIT_LONGSTRIDER))
 		negate_slowdown = TRUE
 
 	if(negate_slowdown)
-		returned = max(returned-2, 0)
-
-	return returned
+		. -= 2
+	return max(., 0)
 
 
 /turf/open/floor/rogue/dirt/attack_right(mob/user)
@@ -909,6 +928,8 @@
 	icon_state = "herringedge"
 	mouse_opacity = 0
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/effect/decal/herringbone, 0)
+
 /obj/effect/decal/wood/herringbone
 	name = ""
 	desc = ""
@@ -916,12 +937,16 @@
 	icon_state = "herringbonewoodedge"
 	mouse_opacity = 0
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/effect/decal/wood/herringbone, 0)
+
 /obj/effect/decal/wood/herringbone2
 	name = ""
 	desc = ""
 	icon = 'icons/turf/roguefloor.dmi'
 	icon_state = "herringbonewood2edge"
 	mouse_opacity = 0
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/effect/decal/wood/herringbone2, 0)
 
 /turf/open/floor/rogue/ruinedwood/herringbone
 	footstep = FOOTSTEP_WOOD
@@ -1027,6 +1052,17 @@
 	icon = 'icons/turf/roguefloor.dmi'
 	icon_state = "cobblestone_edges"
 	mouse_opacity = 0
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/effect/decal/cobbleedge, 0)
+
+/obj/effect/decal/church_line
+	name = ""
+	desc = ""
+	icon = 'icons/turf/roguefloor.dmi'
+	icon_state = "churchslate"
+	mouse_opacity = 0
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/effect/decal/church_line, 0)
 
 /turf/open/floor/rogue/tile
 	icon_state = "chess"

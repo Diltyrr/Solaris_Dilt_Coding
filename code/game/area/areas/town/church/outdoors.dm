@@ -1,4 +1,4 @@
-/area/provincial/outdoors/church
+/area/provincial/outdoors/town/church
 	name = "Chapel Gardens"
 	icon_state = "church"
 	droning_sound = 'sound/music/area/church.ogg'

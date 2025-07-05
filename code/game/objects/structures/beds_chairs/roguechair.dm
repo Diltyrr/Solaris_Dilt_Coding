@@ -42,6 +42,10 @@
 //	M.pixel_x = M.get_standard_pixel_x_offset(M.lying)
 //	M.pixel_y = M.get_standard_pixel_y_offset(M.lying)
 
+/obj/structure/chair/bench/CanAStarPass(ID, travel_dir, caller)
+	if(travel_dir == dir)
+		return FALSE // don't even bother climbing over it
+	return ..()
 
 /obj/structure/chair/bench/CanPass(atom/movable/mover, turf/target)
 	if(get_dir(mover,loc) == dir)
@@ -109,10 +113,14 @@
 /obj/structure/chair/wood/rogue/chair3
 	icon_state = "chair3"
 	icon = 'icons/roguetown/misc/structure.dmi'
-	item_chair = /obj/item/chair/rogue
+	item_chair = /obj/item/chair/rogue/wood
 	blade_dulling = DULLING_BASHCHOP
 	destroy_sound = 'sound/combat/hits/onwood/destroyfurniture.ogg'
 	attacked_sound = "woodimpact"
+
+/obj/structure/chair/wood/rogue/tree
+	icon_state = "chair_tree"
+	item_chair = /obj/item/chair/rogue/wood/tree
 
 /obj/structure/chair/wood/rogue/throne
 	icon_state = "thronechair"
@@ -145,6 +153,14 @@
 			if("wielded")
 				return list("shrink" = 0.7,"sx" = 2,"sy" = 1,"nx" = -17,"ny" = 0,"wx" = -11,"wy" = 0,"ex" = 2,"ey" = 0,"westabove" = 1,"eastbehind" = 0,"nturn" = 9,"sturn" = -42,"wturn" = 21,"eturn" = -27,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,)
 	..()
+
+/obj/item/chair/rogue/wood
+	icon_state = "chair3"
+	origin_type = /obj/structure/chair/wood/rogue/chair3
+
+/obj/item/chair/rogue/wood/tree
+	icon_state = "chair_tree"
+	origin_type = /obj/structure/chair/wood/rogue/tree
 
 /obj/structure/chair/wood/rogue/CanPass(atom/movable/mover, turf/target)
 	if(isliving(mover))
@@ -273,14 +289,6 @@
 	icon_state = "shitbed"
 	sleepy = 1
 
-/obj/structure/bed/rogue/post_buckle_mob(mob/living/M)
-	..()
-	M.set_mob_offsets("bed_buckle", _x = 0, _y = 5)
-
-/obj/structure/bed/rogue/post_unbuckle_mob(mob/living/M)
-	..()
-	M.reset_offsets("bed_buckle")
-
 /obj/structure/bed/rogue/bedroll
 	name = "bedroll"
 	desc = "So you can sleep on the ground in relative peace."
@@ -339,6 +347,7 @@
 	icon = 'icons/roguetown/misc/structure.dmi'
 	anchored = TRUE
 	can_buckle = TRUE
+	max_buckled_mobs = 2
 	buckle_lying = 90
 	pixel_y = 0
 	sleepy = 3
@@ -349,32 +358,12 @@
 	icon = 'icons/roguetown/misc/structure.dmi'
 	anchored = TRUE
 	can_buckle = TRUE
+	max_buckled_mobs = 2
 	buckle_lying = 90
 	pixel_y = 0
 	sleepy = 3
 	debris = list(/obj/item/grown/log/tree/small = 2)
-/*            ///////WIP  This will essentially allow for multiple mobs to buckle, just needs to change mousedrop function
-/obj/structure/bed/rogue/inn/double
-	var/list/buckled_mobs = list()
 
-/obj/structure/bed/rogue/inn/double/post_buckle_mob(mob/living/M)
-	. = ..()
-	if(!buckled_mobs)
-		buckled_mobs = list()
-	buckled_mobs += M
-	M.set_mob_offsets("bed_buckle", _x = buckled_mobs.len * 10, _y = 5)
-
-/obj/structure/bed/rogue/inn/double/post_unbuckle_mob(mob/living/M)
-	. = ..()
-	if(M in buckled_mobs)
-		buckled_mobs -= M
-	M.reset_offsets("bed_buckle")
-
-	var/x_offset = 0
-	for(var/mob/living/buckled_mob in buckled_mobs)
-		buckled_mob.set_mob_offsets("bed_buckle", _x = x_offset, _y = 5)
-		x_offset += 10
-*/
 /obj/structure/bed/rogue/inn/hay
 	icon_state = "haybed"
 	icon = 'icons/roguetown/misc/structure.dmi'
@@ -400,3 +389,8 @@
 	can_buckle = TRUE
 	buckle_lying = 90
 	sleepy = 3
+
+/obj/structure/bed/rogue/double/tree
+	name = "bed"
+	desc = "This one doesn't seem man-made... Wait, are those leaves?"
+	icon_state = "double_tree"

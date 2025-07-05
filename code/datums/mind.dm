@@ -100,6 +100,10 @@
 	var/list/summons_list = list() //List of summons, used to quickly update their factions in case of a faction change.
 	var/list/summons_additional_factions = list() //saves any factions added by the "Mark of the Gravebound" spell so future summons get those added too.
 
+	var/capped_arcane_melee = SKILL_LEVEL_CAPPED_ARCANE_CASTER //Numeral, used to cap arcane using melee weapon on some classes. Well on Warlock.
+	var/obj/item/warlock_weapons = list() // Saves the warlock summoned weapon if any.
+	var/warlock_weapon_types = list() // Saves the selected weapontype if replacement needed.
+
 /datum/mind/New(key)
 	src.key = key
 	soulOwner = src
@@ -357,6 +361,16 @@
 		return
 	adjust_skillrank(skill, -proper_amt, silent)
 
+/datum/mind/proc/adjust_skillrank_by_up_to(skill, amount, max_rank, silent = FALSE)
+	var/current = get_skill_level(skill)
+	var/target = min(current + amount, max_rank)
+	adjust_skillrank_up_to(skill, target, silent)
+
+/datum/mind/proc/adjust_skillrank_down_by_up_to(skill, amount, min_rank, silent = FALSE)
+	var/current = get_skill_level(skill)
+	var/target = max(current - amount, min_rank)
+	adjust_skillrank_down_to(skill, target, silent)
+
 /datum/mind/proc/adjust_skillrank(skill, amt, silent = FALSE)
 	var/datum/skill/S = GetSkillRef(skill)
 	var/amt2gain = 0
@@ -424,6 +438,19 @@
 /datum/mind/proc/get_skill_level(skill)
 	var/datum/skill/S = GetSkillRef(skill)
 	return known_skills[S] || SKILL_LEVEL_NONE
+
+///Helper proc that lets us manually cap skill level taken into account for weapon checks.
+/datum/mind/proc/get_skill_level_capped(skill)
+	var/datum/skill/checked_skill = GetSkillRef(skill)
+	if(!checked_skill)
+		return SKILL_LEVEL_NONE
+
+	var/level = known_skills[checked_skill] || SKILL_LEVEL_NONE
+
+	if(istype(checked_skill, /datum/skill/magic/arcane) && isnum(src.capped_arcane_melee))
+		return min(level, capped_arcane_melee)
+
+	return level
 
 /datum/mind/proc/print_levels(user)
 	var/list/shown_skills = list()

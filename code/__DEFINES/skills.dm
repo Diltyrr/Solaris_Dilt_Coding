@@ -37,3 +37,8 @@
 #define SMELTERY_LEVEL_GOOD 4
 #define SMELTERY_LEVEL_GREAT 5
 #define SMELTERY_LEVEL_EXCELLENT 6
+
+//Capped skill level, currently used to limit the skill level max on warlock pact weapons depending on subclass
+#define SKILL_LEVEL_CAPPED_ARCANE_CASTER 3
+#define SKILL_LEVEL_CAPPED_ARCANE_MELEE 4
+#define SKILL_LEVEL_CAPPED_ARCANE_ELITE 5

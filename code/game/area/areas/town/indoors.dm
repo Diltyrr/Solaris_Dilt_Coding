@@ -13,6 +13,9 @@
 
 /area/provincial/indoors/town/adventurers_guild
 	name = "Adventurer's Guild"
+	droning_sound = 'sound/music/area/newbiemelody.ogg'
+	droning_sound_dusk = 'sound/music/area/newbiemelody.ogg'
+	droning_sound_night = 'sound/music/area/newbiemelody.ogg'
 
 /area/provincial/indoors/town/adventurers_guild/handlers_office
 	name = "Guild Handler's Office"
@@ -179,7 +182,7 @@
 	droning_sound = 'sound/music/area/shop.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
-	converted_type = /area/provincial/outdoors/shop
+	converted_type = /area/provincial/outdoors/town/shop
 
 /// STABLES ///
 
@@ -199,7 +202,7 @@
 	droning_sound = 'sound/silence.ogg'
 	droning_sound_dusk = null
 	droning_sound_night = null
-	converted_type = /area/provincial/outdoors/tavern
+	converted_type = /area/provincial/outdoors/town/tavern
 	brief_descriptor = "where merriment sparks and bards play"
 
 /area/provincial/indoors/town/tavern/arena

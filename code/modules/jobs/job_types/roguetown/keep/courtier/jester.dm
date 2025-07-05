@@ -23,6 +23,13 @@
 	max_pq = null
 	round_contrib_points = 2
 
+/datum/job/roguetown/jester/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+	..()
+	for(var/obj/structure/roguemachine/teleport_beacon/main/town_beacon in SSroguemachine.teleport_beacons)
+		var/mob/living/carbon/human/H = L
+		if(!(H.real_name in town_beacon.granted_list))
+			town_beacon.granted_list += H.real_name
+
 /datum/outfit/job/roguetown/jester/pre_equip(mob/living/carbon/human/H)
 	..()
 	shoes = /obj/item/clothing/shoes/roguetown/jester
@@ -33,7 +40,6 @@
 	beltl = /obj/item/storage/belt/rogue/pouch
 	head = /obj/item/clothing/head/roguetown/jester
 	neck = /obj/item/clothing/neck/roguetown/coif
-
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
@@ -59,3 +65,23 @@
 	else
 		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC) // Joker >:(
 
+	var/weapons = list("Flute", "Hurdy Gurdy", "Accordian", "Harp", "Viola", "Guitar", "Vocals", "Drum")
+	var/weapon_choice = input("What will we play today?", "Make your choice!") as anything in weapons
+	H.set_blindness(0)
+	switch(weapon_choice)
+		if ("Flute")
+			r_hand = /obj/item/rogue/instrument/flute
+		if ("Hurdy Gurdy")
+			r_hand = /obj/item/rogue/instrument/hurdygurdy
+		if ("Accordian")
+			r_hand = /obj/item/rogue/instrument/accord
+		if ("Harp")
+			r_hand = /obj/item/rogue/instrument/harp
+		if ("Viola")
+			r_hand = /obj/item/rogue/instrument/viola
+		if ("Guitar")
+			r_hand = /obj/item/rogue/instrument/guitar
+		if ("Vocals")
+			r_hand = /obj/item/rogue/instrument/vocals
+		if ("Drum")
+			r_hand = /obj/item/rogue/instrument/drum

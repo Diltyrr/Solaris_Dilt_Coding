@@ -30,14 +30,8 @@
 	desc = ""
 	icon_state = "wanted1"
 	layer = BELOW_MOB_LAYER
-	pixel_y = 32
 
-/obj/structure/fluff/walldeco/wantedposter/r
-	pixel_y = 0
-	pixel_x = 32
-/obj/structure/fluff/walldeco/wantedposter/l
-	pixel_y = 0
-	pixel_x = -32
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/wantedposter, 32)
 
 /obj/structure/fluff/walldeco/wantedposter/Initialize()
 	. = ..()
@@ -59,7 +53,9 @@
 	icon_state = "bar"
 	layer = ABOVE_MOB_LAYER
 
-/obj/structure/fluff/walldeco/steward
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/innsign, 32)
+
+/obj/structure/fluff/walldeco/steward // not actually traditional walldeco; this typepath STINKS
 	name = "sign"
 	desc = ""
 	icon_state = "steward"
@@ -98,39 +94,46 @@
 	desc = ""
 	icon_state = "sparrow"
 
-/obj/structure/fluff/walldeco/xavo
-	name = "xavo flag"
-	desc = ""
-	icon_state = "xavo"
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/sparrowflag, 32)
 
 /obj/structure/fluff/walldeco/serpflag
 	name = "serpent flag"
 	desc = ""
 	icon_state = "serpent"
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/serpflag, 32)
+
 /obj/structure/fluff/walldeco/artificerflag
-	name = "Artificer's Guild"
+	name = "Artificer's Creed"
 	desc = ""
 	icon_state = "artificer"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/artificerflag, 32)
 
 /obj/structure/fluff/walldeco/maidendrape
 	name = "black drape"
 	desc = "A drape of fabric."
 	icon_state = "black_drape"
-	dir = SOUTH
-	pixel_y = 32
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/maidendrape, 32)
 
 /obj/structure/fluff/walldeco/wallshield
 	name = ""
 	desc = ""
 	icon_state = "wallshield"
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/wallshield, 32)
+
 /obj/structure/fluff/walldeco/psybanner
 	name = "banner"
 	icon_state = "Psybanner-PURPLE"
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/psybanner, 32)
+
 /obj/structure/fluff/walldeco/psybanner/red
 	icon_state = "Psybanner-RED"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/psybanner/red, 32)
 
 /obj/structure/fluff/walldeco/stone
 	name = ""
@@ -138,12 +141,7 @@
 	icon_state = "walldec1"
 	mouse_opacity = 0
 
-/obj/structure/fluff/walldeco/church/line
-	name = ""
-	desc = ""
-	icon_state = "churchslate"
-	mouse_opacity = 0
-	layer = BELOW_MOB_LAYER+0.1
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/stone, 32)
 
 /obj/structure/fluff/walldeco/stone/Initialize()
 	icon_state = "walldec[rand(1,6)]"
@@ -154,12 +152,8 @@
 	desc = ""
 	icon_state = "maidensigil"
 	mouse_opacity = 0
-	dir = SOUTH
-	pixel_y = 32
 
-/obj/structure/fluff/walldeco/maidensigil/r
-	dir = WEST
-	pixel_x = 16
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/maidensigil, 32)
 
 /obj/structure/fluff/walldeco/bigpainting
 	name = "painting"
@@ -175,7 +169,8 @@
 	name = "painting"
 	icon = 'icons/roguetown/misc/tallstructure.dmi'
 	icon_state = "mona"
-	pixel_y = 32
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/mona, 32)
 
 /obj/structure/fluff/walldeco/chains
 	name = "hanging chains"
@@ -193,9 +188,11 @@
 	..()
 
 /obj/structure/fluff/walldeco/customflag
-	name = "Solaris flag"
-	desc = ""
+	name = "Flag of Sunmarch"
+	desc = "The flag of Sunmarch; proud province of Rasura."
 	icon_state = "wallflag"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/customflag, 32)
 
 /obj/structure/fluff/walldeco/customflag/Initialize()
 	. = ..()
@@ -221,47 +218,69 @@
 	name = "banner"
 	icon_state = "moon"
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/moon, 32)
+
 /obj/structure/fluff/walldeco/rpainting
 	name = "painting"
 	icon_state = "painting_1"
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/rpainting, 32)
+
 /obj/structure/fluff/walldeco/rpainting/forest
 	icon_state = "painting_2"
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/rpainting/forest, 32)
+
 /obj/structure/fluff/walldeco/rpainting/crown
 	icon_state = "painting_3"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/rpainting/crown, 32)
 
 /obj/structure/fluff/walldeco/med
 	name = "diagram"
 	icon_state = "medposter"
 
-/obj/structure/fluff/walldeco/med2
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/med, 32)
+
+/obj/structure/fluff/walldeco/med/two
 	name = "diagram"
 	icon_state = "medposter2"
 
-/obj/structure/fluff/walldeco/med3
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/med/two, 32)
+
+/obj/structure/fluff/walldeco/med/three
 	name = "diagram"
 	icon_state = "medposter3"
 
-/obj/structure/fluff/walldeco/med4
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/med/three, 32)
+
+/obj/structure/fluff/walldeco/med/four
 	name = "diagram"
 	icon_state = "medposter4"
 
-/obj/structure/fluff/walldeco/med5
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/med/four, 32)
+
+/obj/structure/fluff/walldeco/med/five
 	name = "diagram"
 	icon_state = "medposter5"
 
-/obj/structure/fluff/walldeco/med6
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/med/five, 32)
+
+/obj/structure/fluff/walldeco/med/six
 	name = "diagram"
 	icon_state = "medposter6"
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/med/six, 32)
+
+/// This isn't even decoration; man, fuck's sake
 /obj/structure/fluff/walldeco/alarm
-	name = "le réveil murmure"
+	name = "visage of heart"
 	icon_state = "alarm"
-	desc = "This est un wall-mounted système d'alarme, designed dans les ."
-	pixel_y = 32
+	desc = "An alarm system for the upper caste of Rasurian society. It would probably be best to avoid it's gaze; lest you be pre-approved..."
 	var/next_yap = 0
 	var/onoff = 1 //Init on
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/alarm, 32)
 
 /obj/structure/fluff/walldeco/alarm/attack_hand(mob/living/user)
 
@@ -269,20 +288,20 @@
 
 	if(!(HAS_TRAIT(user, TRAIT_NOBLE)))
 		playsound(src, 'sound/misc/machineno.ogg', 100, TRUE, -1)
-		say("REMOVE THINE HAND FROM THE ALARM, CREATURE!")
+		say("YOU HAVE NO RIGHT TO TINKER! BEGONE!")
 		return
 
 	playsound(src, 'sound/misc/bug.ogg', 100, FALSE, -1)
 	if(onoff == 0)
 		onoff = 1
 		icon_state = "alarm"
-		say("Bonjour, le sentinelle est active.")
+		say("ACTIVE.")
 		next_yap = 0 //They won't believe us unless we yap again
 		return
 	if(onoff == 1)
 		onoff = 0
 		icon_state = "face"
-		say("A moment's rest, merci! Bonne nuit.")
+		say("INACTIVE.")
 		return
 	else //failsafe
 		onoff = 1
@@ -304,27 +323,27 @@
 
 		if(!(HU in SStreasury.bank_accounts)) //first off- do we not have an account? we'll ALWAYS scream if that's the case
 			playsound(loc, 'sound/misc/gold_license.ogg', 100, TRUE, -1)
-			say("UNKNOWN PERSON IN SECURE AREA- ARRETZ-VOUZ!!")
+			say("UNKNOWN PERSON IN SECURE AREA - HALT!!")
 			next_yap = world.time + 6 SECONDS
 			return
 
 		if(HAS_TRAIT(user, TRAIT_NOBLE))
-			say("Salut, [user.real_name] de Sommet. Thirty-breths silence period active por votre grace.")
+			say("Hail, [user.real_name]. A thirty-breaths silence in your wake.")
 			playsound(loc, 'sound/misc/gold_menu.ogg', 100, TRUE, -1)
 			next_yap = world.time + 30 SECONDS
 			return
 
-		if((HU in SStreasury.bank_accounts)) //do we not have an account?
+		if((HU in SStreasury.bank_accounts)) //do we have an account?
 			playsound(loc, 'sound/misc/gold_menu.ogg', 100, TRUE, -1)
-			say("Yeoman [user.real_name] logged entering zone securisee.")
+			say("Greetings; [user.real_name]. Persist only with oversight.")
 			return
 
 		else //?????
 			playsound(loc, 'sound/misc/gold_license.ogg', 100, TRUE, -1)
-			say("UNAUTHORIZED PERSON IN SECURE AREA- ARRETZ-VOUZ!!")
+			say("UNKNOWN PERSON IN SECURE AREA - HALT!!")
 			next_yap = world.time + 6 SECONDS
 
 	else
 		playsound(loc, 'sound/misc/gold_license.ogg', 100, TRUE, -1)
-		say("UNKNOWN CREATURE IN SECURE AREA- ARRETZ-VOUS!!")
+		say("UNKNOWN CREATURE IN SECURE AREA - DESIST AT ONCE!!") // what're you gonna do; tell it to stop?
 		next_yap = world.time + 6 SECONDS

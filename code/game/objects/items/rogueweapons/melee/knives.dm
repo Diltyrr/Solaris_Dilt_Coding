@@ -665,6 +665,7 @@
 	throwforce = 6
 	wdefense = 3
 	wbalance = 1
+	sellprice = 0
 	thrown_bclass = BCLASS_CUT
 	anvilrepair = /datum/skill/craft/engineering
 

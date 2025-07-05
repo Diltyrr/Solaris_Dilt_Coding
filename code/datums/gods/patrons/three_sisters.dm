@@ -14,7 +14,7 @@
 	t1 = /obj/effect/proc_holder/spell/self/tamari_shapeshift
 	t2 = /obj/effect/proc_holder/spell/targeted/conjure_glowshroom
 	t3 = /obj/effect/proc_holder/spell/self/howl/call_of_the_moon
-	t4 = null
+	t4 = /obj/effect/proc_holder/spell/self/invoke_shelter
 
 /datum/patron/three_sisters/nunos
 	name = "Nunos"

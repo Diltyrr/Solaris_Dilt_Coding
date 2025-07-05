@@ -1,7 +1,7 @@
 /datum/ai_controller/fretensis
 	movement_delay = RAT_MOVEMENT_SPEED
 
-	ai_movement = /datum/ai_movement/basic_avoidance
+	ai_movement = /datum/ai_movement/astar
 
 	blackboard = list(
 		BB_TARGETTING_DATUM = new /datum/targetting_datum/basic/allow_items()
@@ -11,6 +11,7 @@
 	planning_subtrees = list(
 		/datum/ai_planning_subtree/flee_target,
 		/datum/ai_planning_subtree/simple_find_target/rat,
+		/datum/ai_planning_subtree/attack_obstacle_in_path,
 		/datum/ai_planning_subtree/basic_melee_attack_subtree,
 
 		/datum/ai_planning_subtree/eat_dead_body,

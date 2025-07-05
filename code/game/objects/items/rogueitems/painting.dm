@@ -29,7 +29,7 @@
 
 /obj/structure/fluff/walldeco/painting
 	name = "painting"
-	desc = "The artist is unknown. The subject is unknown. Maybe a memorial to a corpse that was trampled on the trail to this reality."
+	desc = "The artist is unknown. The subject is unknown. Truly; what art is all about."
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "painting_deployed"
 	anchored = TRUE
@@ -37,6 +37,8 @@
 	max_integrity = 0
 	layer = ABOVE_MOB_LAYER
 	var/stolen_painting = /obj/item/rogue/painting
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/painting, 32)
 
 /obj/structure/fluff/walldeco/painting/attack_hand(mob/user)
 	if(do_after(user, 30, target = user))
@@ -47,9 +49,11 @@
 	..()
 
 /obj/structure/fluff/walldeco/painting/queen
-	desc = "It's Queen Samantha I of Enigma. Her late husband would be so proud of what she has accomplished in his realm."
+	desc = "" // removed this description for lorepass
 	icon_state = "queenpainting_deployed"
 	stolen_painting = /obj/item/rogue/painting/queen
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/painting/queen, 32)
 
 /obj/item/rogue/painting/queen
 	icon_state = "queenpainting"
@@ -60,12 +64,14 @@
 
 /obj/item/rogue/painting/seraphina
 	icon_state = "Seraphinapainting"
-	desc = "It's holy priest Seraphina, first of her name, blessed be her name."
+	desc = "" // removed this description for lorepass
 	dropshrink = 0.5
 	sellprice = 40
 	deployed_structure = /obj/structure/fluff/walldeco/painting/seraphina
 
 /obj/structure/fluff/walldeco/painting/seraphina
-	desc = "It's holy priest Seraphina, first of her name, blessed be her name."
+	desc = "" // removed this description for lorepass
 	icon_state = "seraphinapainting_deployed"
 	stolen_painting = /obj/item/rogue/painting/seraphina
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/structure/fluff/walldeco/painting/seraphina, 32)

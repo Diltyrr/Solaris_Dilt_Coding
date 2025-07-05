@@ -302,10 +302,24 @@ GLOBAL_LIST_INIT(pda_styles, sortList(list(MONO, VT, ORBITRON, SHARE)))
 #define DEADCHAT_REGULAR "regular-deadchat"
 
 // Bluespace shelter deploy checks
+/// Shelter spot is allowed
 #define SHELTER_DEPLOY_ALLOWED "allowed"
+/// Shelter spot has turfs that restrict deployment
 #define SHELTER_DEPLOY_BAD_TURFS "bad turfs"
+/// Shelter spot has areas that restrict deployment
 #define SHELTER_DEPLOY_BAD_AREA "bad area"
+/// Shelter spot has anchored objects that restrict deployment
 #define SHELTER_DEPLOY_ANCHORED_OBJECTS "anchored objects"
+/// Sheter spot has banned objects that restrict deployment
+#define SHELTER_DEPLOY_BANNED_OBJECTS "banned objects"
+/// Shelter spot is out of bounds from the maps x/y coordinates
+#define SHELTER_DEPLOY_OUTSIDE_MAP "outside map"
+
+//Flags for survival capsules to ignore some deploy checks
+///Ignore anchored, dense objects in the area
+#define CAPSULE_IGNORE_ANCHORED_OBJECTS (1<<0)
+///Ignore banned objects in the area
+#define CAPSULE_IGNORE_BANNED_OBJECTS (1<<1)
 
 //debug printing macros
 #define debug_world(msg) if (GLOB.Debug2) to_chat(world, "DEBUG: [msg]")

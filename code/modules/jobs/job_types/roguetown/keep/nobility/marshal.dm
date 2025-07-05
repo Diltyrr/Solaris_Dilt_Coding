@@ -47,13 +47,6 @@
 		H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/riding, 2, TRUE)
 		H.mind.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
-		H.change_stat("strength", 2) //important leadership role, but SHOULDN'T be frontlining
-		H.change_stat("perception", 2)
-		H.change_stat("intelligence", 3)
-		H.change_stat("constitution", 1)
-		H.change_stat("endurance", 1)
-		H.change_stat("speed", 1)
-		H.change_stat("fortune", 1)
 	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_PERFECT_TRACKER, TRAIT_GENERIC)
@@ -62,6 +55,10 @@
 
 /datum/job/roguetown/marshal/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()
+	for(var/obj/structure/roguemachine/teleport_beacon/main/town_beacon in SSroguemachine.teleport_beacons)
+		var/mob/living/carbon/human/H = L
+		if(!(H.real_name in town_beacon.granted_list))
+			town_beacon.granted_list += H.real_name
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		H.advsetup = 1
@@ -83,8 +80,14 @@
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
 	beltl = /obj/item/storage/keyring/sheriff
 	if(H.mind)
-		H.mind.adjust_skillrank(/datum/skill/combat/maces, 4, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE) // was told that Marshal should be a rough equivalent to knight captain
+		H.mind.adjust_skillrank(/datum/skill/combat/maces, 5, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/shields, 4, TRUE) // was told that Marshal should be a rough equivalent to knight captain
+		H.change_stat("strength", 2)
+		H.change_stat("perception", 2)
+		H.change_stat("intelligence", 3)
+		H.change_stat("constitution", 2)
+		H.change_stat("endurance", 2)
+		H.change_stat("fortune", 1)
 
 /datum/advclass/marshal/kcommander
 	name = "Knight Commander"
@@ -96,11 +99,117 @@
 /datum/outfit/job/roguetown/marshal/kcommander/pre_equip(mob/living/carbon/human/H)
 	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/sheriff/coat
 	backr = /obj/item/rogueweapon/sword/long/oathkeeper
-	belt = /obj/item/storage/belt/rogue/leather
+	belt = /obj/item/storage/belt/rogue/leather/plaquegold
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
 	beltl = /obj/item/storage/keyring/sheriff
 	if(H.mind)
 		H.mind.adjust_skillrank(/datum/skill/combat/swords, 5, TRUE)
+		H.change_stat("strength", 2)
+		H.change_stat("perception", 1)
+		H.change_stat("intelligence", 1)
+		H.change_stat("constitution", 1)
+		H.change_stat("endurance", 2)
+		H.change_stat("speed", 2)
+		H.change_stat("fortune", 1)
+
+/datum/advclass/marshal/renalla
+	name = "Magic Knight General"
+	tutorial = "Someone who offered his power and devotion to unknown rites, now wields them to command forces at his beck and call in the name of sunmarch"
+	outfit = /datum/outfit/job/roguetown/marshal/renalla
+	category_tags = list(CTAG_MARSHAL)
+
+/datum/outfit/job/roguetown/marshal/renalla/pre_equip(mob/living/carbon/human/H)
+	..()
+	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/sheriff/coat
+	belt = /obj/item/storage/belt/rogue/leather/plaquegold
+	beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
+	beltl = /obj/item/storage/keyring/sheriff
+	if(H.mind)
+		H.mind.adjust_skillrank(/datum/skill/magic/arcane, 5, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/shields, 4, TRUE)
+		H.change_stat("Strength", 2)		// 12 total points to be conservative
+		H.change_stat("constitution", 2)
+		H.change_stat("intelligence", 4)
+		H.change_stat("endurance", 2)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/movemovemove)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/takeaim)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/onfeet)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/hold)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/focustarget)	
+	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
+	H.mind.capped_arcane_melee = SKILL_LEVEL_CAPPED_ARCANE_ELITE
+	H.verbs |= list(/mob/living/carbon/human/proc/request_outlaw, /mob/proc/haltyell, /mob/living/carbon/human/mind/proc/setorders)
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/greenflameblade) 
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mending)
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/warlock/summon_weapon)
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mindlink)
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/enchant_weapon)
+	H.put_in_hands(giveweapon(H,"Sunmarch"), FALSE)
+
+	var/helmets = list(
+		"Pigface Bascinet" 	= /obj/item/clothing/head/roguetown/helmet/bascinet/pigface,
+		"Guard Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/guard,
+		"Barred Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/sheriff,
+		"Bucket Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/bucket,
+		"Knight Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/knight,
+		"Visored Sallet"	= /obj/item/clothing/head/roguetown/helmet/sallet/visored,
+		"Hounskull Bascinet" = /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull,
+		"Etruscan Bascinet" = /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan,
+		"sheriff"				= /obj/item/clothing/head/roguetown/helmet/heavy/sheriff,
+		"wolf"					= /obj/item/clothing/head/roguetown/helmet/heavy/wolfplate,
+		"Armet"					= /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet,
+		"Heavy Knight"			= /obj/item/clothing/head/roguetown/helmet/heavy/knight,
+		"None"
+	)
+	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
+	if(helmchoice != "None")
+		head = helmets[helmchoice]
+	backpack_contents = list(
+		/obj/item/storage/keyring/sheriff = 1,
+		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
+		)
+
+/datum/outfit/job/roguetown/marshal/renalla/proc/giveweapon(mob/living/carbon/human/human, patronchoice)
+	var/weapons_choice = list(
+		"Axe", "Battleaxe", "Cleaver", "Dagger", "Flail", "Goden",
+		"Greatsword", "Halberd", "Longsword", "Mace", "Peasant war flail",
+		"Rapier", "Scythe", "Spear", "Whip"
+	)
+
+	var/weapon_chosen = input("Choose your sentient weapon", "Available weapons") as anything in weapons_choice
+	var/item_type
+
+	switch(weapon_chosen)
+		if("Axe") item_type = /obj/item/rogueweapon/stoneaxe/woodcut/steel
+		if("Battleaxe") item_type = /obj/item/rogueweapon/stoneaxe/battle
+		if("Cleaver") item_type = /obj/item/rogueweapon/huntingknife/cleaver
+		if("Dagger") item_type = /obj/item/rogueweapon/huntingknife/idagger/steel
+		if("Flail") item_type = /obj/item/rogueweapon/flail/sflail
+		if("Goden") item_type = /obj/item/rogueweapon/mace/goden/steel
+		if("Greatsword") item_type = /obj/item/rogueweapon/greatsword
+		if("Halberd") item_type = /obj/item/rogueweapon/halberd
+		if("Longsword") item_type = /obj/item/rogueweapon/sword/long
+		if("Mace") item_type = /obj/item/rogueweapon/mace/steel
+		if("Peasant war flail") item_type = /obj/item/rogueweapon/flail/peasantwarflail
+		if("Rapier") item_type = /obj/item/rogueweapon/sword/rapier
+		if("Scythe") item_type = /obj/item/rogueweapon/sickle/scythe
+		if("Spear") item_type = /obj/item/rogueweapon/spear
+		if("Whip") item_type = /obj/item/rogueweapon/whip
+
+	var/obj/item/item = new item_type
+	item.AddComponent(/datum/component/pact_weapon, human, patronchoice)
+	item.AddComponent(/datum/component/singing_item, human, patronchoice, item)
+
+	// Make sure the lists exist
+	if(!islist(human.mind.warlock_weapons))
+		human.mind.warlock_weapons = list()
+	if(!islist(human.mind.warlock_weapon_types))
+		human.mind.warlock_weapon_types = list()
+
+	human.mind.warlock_weapons += item
+	human.mind.warlock_weapon_types += item_type
+
+
 
 /mob/living/carbon/human/proc/request_law()
 	set name = "Request Law"

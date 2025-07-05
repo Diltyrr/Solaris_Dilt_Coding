@@ -171,7 +171,7 @@
 /obj/get_dumping_location(datum/component/storage/source,mob/user)
 	return get_turf(src)
 
-/obj/proc/CanAStarPass()
+/obj/proc/CanAStarPass(ID, to_dir, our_caller)
 	. = !density
 
 /obj/proc/check_uplink_validity()

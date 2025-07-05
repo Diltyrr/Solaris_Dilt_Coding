@@ -21,6 +21,13 @@
 	cmode_music = 'sound/music/combat_noble.ogg'
 	virtue_restrictions = list(/datum/virtue/utility/outlander)//Command roles probably shouldn't be from Not Here
 
+/datum/job/roguetown/steward/after_spawn(mob/living/L, mob/M, latejoin)
+	. = ..()
+	for(var/obj/structure/roguemachine/teleport_beacon/main/town_beacon in SSroguemachine.teleport_beacons)
+		var/mob/living/carbon/human/H = L
+		if(!(H.real_name in town_beacon.granted_list))
+			town_beacon.granted_list += H.real_name
+
 /datum/outfit/job/roguetown/steward/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(should_wear_femme_clothes(H))

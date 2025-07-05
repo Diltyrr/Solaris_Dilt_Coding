@@ -1,4 +1,8 @@
-/area/provincial/underground/underkings_maw
+/area/provincial/underground/mountains
+	name = "\proper Scordris Mountains' Caverns"
+	icon_state = "mountains"
+
+/area/provincial/underground/mountains/underkings_maw
 	name = /area/provincial/outdoors/mountains/underkings_maw::name
 	icon_state = "cavelava"
 	first_time_text = /area/provincial/outdoors/mountains/underkings_maw::first_time_text

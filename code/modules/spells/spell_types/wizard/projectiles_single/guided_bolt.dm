@@ -25,6 +25,8 @@
 	cost = 1
 	xp_gain = TRUE
 
+	ignore_fiendkiss = FALSE
+
 /obj/projectile/energy/guided_bolt
 	name = "Guided Bolt"
 	icon_state = "arcane_barrage"

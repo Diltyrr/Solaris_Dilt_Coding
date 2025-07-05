@@ -474,6 +474,17 @@
 	skillcraft = /datum/skill/craft/carpentry
 	craftdiff = 2
 
+/datum/crafting_recipe/roguetown/structure/doublebed
+	name = "Double Bed"
+	result = /obj/structure/bed/rogue/inn/wooldouble
+	reqs = list(/obj/item/grown/log/tree/small = 4,
+				/obj/item/natural/cloth = 2)
+	tools = list(/obj/item/needle)
+	verbage_simple = "construct"
+	verbage = "constructs"
+	skillcraft = /datum/skill/craft/carpentry
+	craftdiff = 3
+
 /datum/crafting_recipe/roguetown/structure/table
 	name = "wooden table"
 	result = /obj/structure/table/wood/crafted

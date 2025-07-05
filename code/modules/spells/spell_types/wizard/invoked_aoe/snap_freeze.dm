@@ -73,7 +73,7 @@
 				return 
 			play_cleave = TRUE
 			L.adjustFireLoss(damage)
-			L.apply_status_effect(/datum/status_effect/buff/frostbite/)
+			L.apply_status_effect(/datum/status_effect/debuff/frostbite/)
 			playsound(affected_turf, "genslash", 80, TRUE)
 			to_chat(L, "<span class='userdanger'>The air chills your bones!</span>")
 

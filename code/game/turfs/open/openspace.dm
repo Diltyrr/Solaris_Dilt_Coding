@@ -45,6 +45,9 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 
 /turf/open/transparent/openspace/airless
 
+/// This is here just for some map_template stuff, so that ceilings don't generate inside.
+/turf/open/transparent/openspace/inside
+
 /turf/open/transparent/openspace/debug/update_multiz()
 	..()
 	return TRUE
@@ -57,6 +60,26 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	. = ..()
 	dynamic_lighting = 1
 	vis_contents += GLOB.openspace_backdrop_one_for_all //Special grey square for projecting backdrop darkness filter on it.
+	RegisterSignal(src, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON, PROC_REF(on_atom_created))
+
+/turf/open/transparent/openspace/ChangeTurf(path, list/new_baseturfs, flags)
+	UnregisterSignal(src, COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZED_ON)
+	return ..()
+
+/**
+ * Drops movables spawned on this turf after they are successfully initialized.
+ * so that spawned movables that should fall to gravity, will fall.
+ */
+/turf/open/transparent/openspace/proc/on_atom_created(datum/source, atom/created_atom)
+	SIGNAL_HANDLER
+	if(ismovable(created_atom))
+		zfall_if_on_turf(created_atom)
+
+/turf/open/transparent/openspace/proc/zfall_if_on_turf(atom/movable/movable)
+	if(QDELETED(movable) || movable.loc != src)
+		return
+	zFall(movable)
+
 
 /turf/open/transparent/openspace/zAirIn()
 	return TRUE
@@ -97,6 +120,13 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	return FALSE
 
 /turf/open/transparent/openspace/can_traverse_safely(atom/movable/traveler)
+	var/turf/destination = GET_TURF_BELOW(src)
+	if(!destination)
+		return TRUE // this shouldn't happen, but if it does we can't fall
+	if(!traveler.can_zTravel(destination, DOWN, src)) // something is blocking their fall!
+		return TRUE
+	if(!traveler.can_zFall(src, DOWN, destination)) // they can't fall!
+		return TRUE
 	return FALSE
 
 /turf/open/transparent/openspace/proc/CanCoverUp()

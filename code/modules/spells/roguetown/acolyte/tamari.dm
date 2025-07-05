@@ -86,6 +86,37 @@
 		first_cast = TRUE
 	. = ..()
 
+/obj/effect/proc_holder/spell/self/invoke_shelter
+	name = "Invoke Shelter"
+	desc = "Enchant an acorn into a shelter acorn, which can be planted and will provide natural shelter, the size of which varies based on the size of the acorn used!"
+	overlay_state = "invoke_shelter"
+	recharge_time = 10 SECONDS
+	req_items = list(/obj/item/clothing/neck/roguetown/psicross/tamari)
+	req_inhand = /obj/item/acorn
+	sound = 'sound/misc/jmov (2).ogg'
+	associated_skill = /datum/skill/magic/holy
+	invocation = "Tamari, let your grove grant me shelter."
+	invocation_type = "whisper" //can be none, whisper, emote and shout
+
+/obj/effect/proc_holder/spell/self/invoke_shelter/cast(mob/living/carbon/human/user)
+	if(!user)
+		return FALSE
+
+	var/obj/item/acorn/shelter_to_be = user.get_active_held_item()
+
+	var/obj/item/shelter_pod/result = shelter_to_be.convert_to_shelter_acorn(user)
+
+	if(!result)
+		to_chat(user, span_warning("Looks like this won't turn into anything useful..."))
+		revert_cast()
+		return FALSE
+
+	user.visible_message(
+		span_notice("After glowing green for a moment, \a [result] now rests in [user]'s hand."),
+		span_notice("The Grove responds to your call, causing [shelter_to_be] to glow green for a moment as it transitions into \a [result]."),
+	)
+	return TRUE
+
 /obj/effect/proc_holder/spell/self/tamari_shapeshift
 	name = "Beast Form"
 	desc = "Take on the form of one of Tamari's sacred beasts."

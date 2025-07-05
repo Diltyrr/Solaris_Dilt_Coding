@@ -23,6 +23,13 @@
 
 	cmode_music = 'sound/music/combat_squire.ogg'
 
+/datum/job/roguetown/squire/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
+	..()
+	for(var/obj/structure/roguemachine/teleport_beacon/main/town_beacon in SSroguemachine.teleport_beacons)
+		var/mob/living/carbon/human/H = L
+		if(!(H.real_name in town_beacon.granted_list))
+			town_beacon.granted_list += H.real_name
+
 /datum/outfit/job/roguetown/squire
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/guard
 	shoes = /obj/item/clothing/shoes/roguetown/boots

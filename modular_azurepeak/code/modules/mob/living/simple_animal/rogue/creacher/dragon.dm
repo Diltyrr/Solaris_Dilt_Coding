@@ -4,6 +4,8 @@
 	icon_state = "dragon"
 	icon_living = "dragon"
 	icon_dead = "dragon_dead"
+	pixel_x = -32
+	pixel_y = -16
 	footstep_type = FOOTSTEP_MOB_HEAVY
 	gender = MALE
 	emote_hear = null

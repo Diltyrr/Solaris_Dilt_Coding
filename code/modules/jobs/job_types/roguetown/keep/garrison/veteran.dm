@@ -23,6 +23,10 @@
 
 /datum/job/roguetown/veteran/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	. = ..()
+	for(var/obj/structure/roguemachine/teleport_beacon/main/town_beacon in SSroguemachine.teleport_beacons)
+		var/mob/living/carbon/human/H = L
+		if(!(H.real_name in town_beacon.granted_list))
+			town_beacon.granted_list += H.real_name
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		H.advsetup = 1
@@ -426,6 +430,61 @@
 			H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 2, TRUE)
 			H.change_stat("speed", 1) // You get -2 speed from being old. You are still in the negative stat wise from picking old.
 			H.change_stat("perception", 2) // You get -2 perception from being old. I want you to at least have a positive perception, to represent that you're observant. The highest perception you can get with this is a 13, so I think we'll be okayed.
+	H.verbs |= /mob/proc/haltyell
+	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
+
+/datum/advclass/veteran/bruiser
+	name = "Bruiser"
+	tutorial = "Where many picked up weapons. You threw such down and showed that truely the strongest weapon was your body. The days of your battles is over but you still remember your skills. And it is your duty to teach people the way"
+	outfit = /datum/outfit/job/roguetown/vet/bruiser
+
+	category_tags = list(CTAG_VETERAN)
+
+// I beat thee with mine fist.
+
+/datum/outfit/job/roguetown/vet/bruiser/pre_equip(mob/living/carbon/human/H)
+	armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/white
+	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
+	pants = /obj/item/clothing/under/roguetown/tights/black
+	gloves = /obj/item/clothing/gloves/roguetown/fingerless
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
+	shoes = /obj/item/clothing/shoes/roguetown/boots
+	beltl = /obj/item/rogueweapon/whip
+	beltr = /obj/item/rogueweapon/katar
+	backr = /obj/item/storage/backpack/rogue/satchel/black
+	belt = /obj/item/storage/belt/rogue/leather/knifebelt/iron
+	backpack_contents = list(/obj/item/storage/keyring/guardcastle = 1, /obj/item/flashlight/flare/torch/lantern = 1)
+	if(H.mind)
+		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 5, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/whipsflails, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/knives, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/maces, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/swords, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/shields, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/polearms, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/bows, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/athletics, 5, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
+		H.mind.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
+		H.change_stat("strength", 2)
+		H.change_stat("perception", 1)
+		H.change_stat("endurance", 2)
+		H.change_stat("intelligence", 1)
+		H.change_stat("constitution", 1)
+		if(H.age == AGE_OLD)
+			H.mind.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/combat/bows, 1, TRUE)
+			H.mind.adjust_skillrank(/datum/skill/misc/climbing, 1, TRUE)
+			H.change_stat("speed", 1)
+			H.change_stat("perception", 2)
 	H.verbs |= /mob/proc/haltyell
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)

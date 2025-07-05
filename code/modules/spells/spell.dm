@@ -194,6 +194,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 	var/miracle = FALSE
 	var/devotion_cost = 0
 	var/ignore_cockblock = FALSE //whether or not to ignore TRAIT_SPELLCOCKBLOCK
+	var/ignore_fiendkiss = TRUE //whether or not to ignore TRAIT_FIENDKISS
 
 	action_icon_state = "spell0"
 	action_icon = 'icons/mob/actions/roguespells.dmi'
@@ -516,6 +517,16 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 		to_chat(devotee, "<font color='purple'>I [devotion_cost > 0 ? "lost" : "gained"] [abs(devotion_cost)] devotion.</font>")
 	if(xp_gain && user.mind.get_skill_level(associated_skill) > 0) //We check the spell gives XP AND that the user has at least 1 level.
 		add_sleep_experience(usr, associated_skill, round(get_fatigue_drain() * MAGIC_XP_MULTIPLIER))
+	if(!ignore_fiendkiss && HAS_TRAIT(user, TRAIT_FIENDKISS))
+		sleep(0.5 SECONDS)
+		// Directly fire the firebolt projectile at the target, skipping invocation and chat
+		if(length(targets))
+			var/atom/target = targets[1]
+			var/mob/living/caster = user
+			var/obj/projectile/magic/firebolt/projectile = new /obj/projectile/magic/firebolt(caster.loc)
+			projectile.firer = caster
+			projectile.preparePixelProjectile(target, caster)
+			projectile.fire()
 
 /obj/effect/proc_holder/spell/proc/view_or_range(distance = world.view, center=usr, type="view")
 	switch(type)

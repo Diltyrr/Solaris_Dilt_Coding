@@ -1,5 +1,5 @@
 /area/provincial/outdoors/beach
-	name = "Hallowed Coast"
+	name = "\proper Hallowed Coast"
 	icon_state = "beach"
 	warden_area = TRUE
 	ambientsounds = AMB_BEACH
@@ -12,8 +12,7 @@
 	general_location = "From the coast!"
 
 /area/provincial/outdoors/beach/forest
-	name = "Emerald Coast"
-	icon_state = "beach"
+	name = "\proper Emerald Coast"
 	icon_state = "woods"
 	ambientsounds = AMB_FORESTDAY
 	ambientnight = AMB_FORESTNIGHT

@@ -26,6 +26,8 @@
 	cost = 2
 	xp_gain = TRUE
 
+	ignore_fiendkiss = FALSE
+
 /obj/projectile/energy/rogue3
 	name = "Arcane Bolt"
 	icon_state = "arcane_barrage"

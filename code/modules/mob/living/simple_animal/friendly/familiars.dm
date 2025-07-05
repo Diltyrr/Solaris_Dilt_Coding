@@ -75,9 +75,10 @@
 
 /mob/living/simple_animal/pet/familiar/examine(mob/user)
 	. = ..()
-	var/datum/familiar_prefs/fpref = src.client.prefs.familiar_prefs
-	if(fpref && (fpref.familiar_flavortext || fpref.familiar_headshot_link || fpref.familiar_ooc_notes))
-		. += "<a href='?src=[REF(src)];task=view_fam_headshot;'>Examine closer</a>"
+	if(src.client)
+		var/datum/familiar_prefs/fpref = src.client.prefs.familiar_prefs
+		if(fpref && (fpref.familiar_flavortext || fpref.familiar_headshot_link || fpref.familiar_ooc_notes))
+			. += "<a href='?src=[REF(src)];task=view_fam_headshot;'>Examine closer</a>"
 
 /datum/status_effect/buff/familiar
 	duration = -1

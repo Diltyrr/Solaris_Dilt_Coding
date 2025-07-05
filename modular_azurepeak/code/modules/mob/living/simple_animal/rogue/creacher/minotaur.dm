@@ -4,6 +4,7 @@
 	icon_state = "MinotaurMale"
 	icon_living = "MinotaurMale"
 	icon_dead = "MinotaurMale_dead"
+	pixel_x = -16
 	gender = MALE
 	mob_biotypes = MOB_ORGANIC|MOB_BEAST
 	emote_hear = null
@@ -29,7 +30,6 @@
 	aggro_vision_range = 8
 	limb_destroyer = 0 // seems strong
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
-	obj_damage = 1
 	retreat_distance = 0
 	minimum_distance = 0
 	milkies = FALSE

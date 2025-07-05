@@ -116,6 +116,8 @@
 	crossfire = FALSE
 	cookonme = TRUE
 
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/rogue/wallfire, 32)
+
 /obj/machinery/light/rogue/wallfire/candle
 	name = "candles"
 	icon_state = "wallcandle1"
@@ -153,6 +155,13 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/rogue/wallfire/candle, 32)
 	base_state = "wallcandleb"
 
 MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/rogue/wallfire/candle/blue, 32)
+
+/obj/machinery/light/rogue/wallfire/candle/tree
+	name = "livingwood candles"
+	icon_state = "wallcandle_tree1"
+	base_state = "wallcandle_tree"
+
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/light/rogue/wallfire/candle/tree, 32)
 
 /obj/machinery/light/rogue/wallfire/candle/weak
 	light_power = 0.9

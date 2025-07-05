@@ -1,7 +1,7 @@
 /datum/ai_controller/mudcrab
 	movement_delay = MUDCRAB_MOVEMENT_SPEED
 
-	ai_movement = /datum/ai_movement/basic_avoidance
+	ai_movement = /datum/ai_movement/astar
 
 	blackboard = list(
 		BB_TARGETTING_DATUM = new /datum/targetting_datum/basic()
@@ -12,6 +12,7 @@
 
 		//datum/ai_planning_subtree/simple_find_target,
 		//datum/ai_planning_subtree/target_retaliate,
+		///datum/ai_planning_subtree/attack_obstacle_in_path,
 		//datum/ai_planning_subtree/basic_melee_attack_subtree,
 		//datum/ai_planning_subtree/eat_food,
 	)

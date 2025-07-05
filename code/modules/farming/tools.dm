@@ -280,3 +280,40 @@
 	else
 		icon_state = initial(icon_state)
 	..()
+
+/obj/item/rogueweapon/sickle/scythe
+	force = 15
+	force_wielded = 25
+	possible_item_intents = list(/datum/intent/axe/cut)
+	gripped_intents = list(/datum/intent/axe/cut,/datum/intent/axe/chop/battle/scythe,SPEAR_BASH)
+	name = "scythe"
+	desc = "A curved blade used to sow harvest."
+	icon_state = "scythe"
+	icon = 'icons/roguetown/weapons/64.dmi'
+	item_state = "scythe"
+	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
+	sharpness = IS_SHARP
+	associated_skill = /datum/skill/combat/polearms
+	//dropshrink = 0.8
+	wlength = 33
+	var/list/forked = list()
+	slot_flags = ITEM_SLOT_BACK
+	drop_sound = 'sound/foley/dropsound/wooden_drop.ogg'
+	smeltresult = /obj/item/ingot/iron
+	wdefense = 6
+
+/datum/intent/axe/chop/battle/scythe
+	reach = 2
+	swingdelay = 5
+
+/obj/item/rogueweapon/sickle/scythe/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen")
+				return list("shrink" = 0.6,"sx" = -7,"sy" = 2,"nx" = 7,"ny" = 3,"wx" = -2,"wy" = 1,"ex" = 1,"ey" = 1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -38,"sturn" = 37,"wturn" = 30,"eturn" = -30,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
+			if("wielded")
+				return list("shrink" = 0.6,"sx" = 5,"sy" = -3,"nx" = -5,"ny" = -2,"wx" = -5,"wy" = -1,"ex" = 3,"ey" = -2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 7,"sturn" = -7,"wturn" = 16,"eturn" = -22,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
+			if("onbelt")
+				return list("shrink" = 0.3,"sx" = -2,"sy" = -5,"nx" = 4,"ny" = -5,"wx" = 0,"wy" = -5,"ex" = 2,"ey" = -5,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)

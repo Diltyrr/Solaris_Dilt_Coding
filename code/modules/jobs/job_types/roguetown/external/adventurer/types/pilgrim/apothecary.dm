@@ -33,6 +33,7 @@
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/guidance)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/aerosolize)
+	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/stave_the_dying)
 	if(H.gender == FEMALE)
 		armor = /obj/item/clothing/suit/roguetown/armor/corset
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/lowcut

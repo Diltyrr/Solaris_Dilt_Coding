@@ -1,5 +1,5 @@
 /area/provincial/outdoors/forest
-	name = "The Emerald Glade"
+	name = "\proper Emerald Glade"
 	icon_state = "woods"
 	ambientsounds = AMB_FORESTDAY
 	ambientnight = AMB_FORESTNIGHT
@@ -21,3 +21,7 @@
 	first_time_text = "THE EMERALD GLADE"
 	brief_descriptor = "where trees line all view, and all thought"
 	general_location = "From the Emerald Glade!"
+
+/area/provincial/outdoors/forest/brightway
+	name = "\proper Brightway Woods"
+	first_time_text = "THE BRIGHTWAY WOODS"

@@ -1,19 +1,22 @@
 Welcome back to Solaris Ridge!
 
-Tiefling lore has been written.
-Faith Saluting now has proper effects.
-Several classes and roles have been heavily rebalanced.
-You can now summon a quest marker.
-Noticeboards are here! Check them out to see the buzz about town!
-Some. Crazy characters are here - Cat'erpillars. Mothcats...
-Several new dungeons are here!
-Even MORE of the aesthetic has rapidly shifted.
-Old people no longer get free spellpoints.
-It's not Marquise, it's Marquess.
-Flagellant has been disabled pending balance rework.
-Ambient Occlusion has been re-enabled!
-Speaking & Emoting have been refactored internally. If you can't do either; UPDATE YOUR KEYBINDS.
-There is now a jobrole overseeing the adventurer's guild.
-Ration packs are in!
+You can no longer teleport to the backrooms by being summoned to the keep.
+Merchants & Tailors have more to play with!
+Quite a LOT of Dun World has been tweaked and remapped. Go out and explore!
+You should more reliably be able to use lensdump for your headshot.
+More magic rebalancing!
+YOU CAN CUSTOMIZE YOUR SIZE NOW!!
+Unleash your inner Kobold; traps and triggers are here for you to mess with! ...What do you mean the wrench is a reskinned ss13 multitool?
+THE AREA JUMBLE UNLEASHETH. You'll notice jumping around as a ghost is a lot easier; amongst a handful of other benefits! Like doors being named! Holy shit!
+Some stuff with inventory size and reagent capacity has been tweaked.
+Repairing now longer damages items at a low skill level.
+WILD MAGIC. GET SILLY.
+You can jump out of - and through - windows now!
+Speaking of jumping - NPC AI has been drastically enhanced and rewritten. You should be afraid.
+Some random QOL stuff.
+Kasmidian Beacons now act as a nexus for explorers.
+New armors!
+Bronze arms now get a hidden blade! Get silly!
+Resprites; resprites, resprites!
 
 Have fun!

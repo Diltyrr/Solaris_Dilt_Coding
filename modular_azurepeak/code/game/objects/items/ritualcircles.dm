@@ -7,6 +7,7 @@
 	density = FALSE
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	var/chosenled = FALSE //is a priest running the ritual?
 
 /obj/structure/ritualcircle/attack_right(mob/living/carbon/human/user)
 	user.visible_message(span_warning("[user] begins wiping away the rune"))
@@ -15,13 +16,13 @@
 		qdel(src)
 
 /obj/structure/ritualcircle/aeternus
-	name = "Rune of the Sun" 
-	icon_state = "astrata_chalky" // Ensure your icon state has an active / inactive state, should it call them. 
+	name = "Rune of the Sun"
+	icon_state = "astrata_chalky" // Ensure your icon state has an active / inactive state, should it call them.
 	desc = "The holy rune of Aeternus; god of the sun."
 	/// Valid options for rites to perform on this ritual circle.
 	var/solarrites = list("Guiding Light")
 
-/obj/structure/ritualcircle/aeternus/attack_hand(mob/living/user) 
+/obj/structure/ritualcircle/aeternus/attack_hand(mob/living/user)
 	if((user.patron?.type) != /datum/patron/lording_three/aeternus)
 		to_chat(user,span_smallred("I don't know the proper rites for this..."))
 		return
@@ -104,7 +105,69 @@
 
 /obj/structure/ritualcircle/carthus
 	name = "Rune of the Warrior"
+	icon_state = "carthus_chalky"
 	desc = "A Holy Rune of Carthus"
+	var/warrites = list("Perfection of Form")
+
+/obj/structure/ritualcircle/carthus/attack_hand(mob/living/user)
+	if((user.patron?.type) != /datum/patron/peoples_pantheon/carthus)
+		to_chat(user,span_smallred("I don't know the proper rites for this..."))
+		return
+	if(!HAS_TRAIT(user, TRAIT_RITUALIST))
+		to_chat(user,span_smallred("I don't know the proper rites for this...")) // You need ritualist to use them
+		return
+	if(user.has_status_effect(/datum/status_effect/debuff/ritesexpended))
+		to_chat(user,span_smallred("I have performed enough rituals for the day... I must rest before communing more.")) // If you have already done a ritual in the last 30 minutes, you cannot do another.
+		return
+	var/riteselection = input(user, "Rituals of War", src) as null|anything in warrites
+	switch(riteselection)
+		if("Perfection of Form")
+			if(do_after(user, 50))
+				user.say("By sweat and grit we seek perfection!") //if you want to make these sound better go ahead honestly
+				if(do_after(user, 50))
+					user.say("Wet our Ambition, Grant us a vision!")
+					if(do_after(user,50))
+						user.say("Grant us the sight of honed sublimity!! ")
+						to_chat(user,span_danger("Red motes of energy start floating out of the rune"))
+						icon_state = "carthus_active"
+						if(HAS_TRAIT(user, TRAIT_CHOSEN)) //Bonus effect when cast by a priest
+							chosenled = TRUE
+						playsound(loc, 'sound/magic/holyshield.ogg', 80, FALSE, -1)
+						sleep(3 SECONDS)
+						warriorinstinct(src)
+						user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
+						spawn(120)
+							icon_state = "carthus_chalky"
+							chosenled = FALSE
+
+/obj/structure/ritualcircle/carthus/proc/warriorinstinct(src)
+	var/instinctpower = 0 //each person around the ritual gives +1
+	if(chosenled == TRUE) //is the person who clicked the rune the priest?
+		instinctpower += 2
+	var/bufftarget = view(0,loc) 
+	var/debufftargets = view(1,loc)
+	var/list/debufftargetsa = list()
+	debufftargetsa += debufftargets
+	debufftargetsa -= bufftarget
+	for(var/mob/living/carbon/human/target in debufftargetsa)
+		target.apply_status_effect(/datum/status_effect/debuff/unnaturalexhaustion)
+		instinctpower++
+	for(var/mob/living/carbon/human/target in bufftarget)
+		if(instinctpower >= 10) //7 people giving +1, priest giving +3. The highest possible. This doesn't give any bonus mechanical effect over having 3, but it adds a small flavor message to dodge/parry
+			visible_message("<span class='info'>You feel the holy energies surge into [target], giving them grace beyond mortal means.</span>")
+			target.apply_status_effect(/datum/status_effect/buff/carthusgrace)
+			target.apply_status_effect(/datum/status_effect/buff/carthusinstinct)
+			target.dodgecharges = 3
+			return
+		if(instinctpower >= 3) //Just a priest, or a Ritualist +2 people
+			visible_message("<span class='info'>You feel the holy energies float into [target], giving them honed reflexes.</span>")
+			target.apply_status_effect(/datum/status_effect/buff/carthusinstinct)
+			target.dodgecharges = 3
+			return
+		else
+			visible_message("<span class='info'>You feel the holy energies start to fade into [target] for the briefest moment before dissipating.</span>") //War is not fought alone, get some allies to help
+			target.dodgecharges = 1
+			return
 
 /obj/structure/ritualcircle/tamari
 	name = "Rune of Beasts"
@@ -199,7 +262,7 @@
 	var/ritualtargets = view(7, loc)
 	for(var/mob/living/carbon/human/target in ritualtargets)
 		target.apply_status_effect(/datum/status_effect/buff/deathbargain)
-	
+
 
 /obj/structure/ritualcircle/varielle
 	name = "Rune of Love"

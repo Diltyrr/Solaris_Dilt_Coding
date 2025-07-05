@@ -79,29 +79,72 @@
 	else
 		GLOB.board_viewers += user
 		to_chat(user, span_smallred("A new posting has been made since I last checked!"))
-
+	
+/obj/structure/roguemachine/noticeboard/Topic(href, href_list)
+	. = ..()
+	if(!usr.canUseTopic(src, BE_CLOSE))
+		return
+	if(href_list["changecategory"])
+		current_category = href_list["changecategory"]
+	if(href_list["makepost"])
+		make_post(usr)
+		return attack_hand(usr)
+	if(href_list["premiumpost"])
+		premium_post(usr)
+		return attack_hand(usr)
+	if(href_list["removepost"])
+		remove_post(usr)
+		return attack_hand(usr)
+	if(href_list["authorityremovepost"])
+		authority_removepost(usr)
+		return attack_hand(usr) 
+	return attack_hand(usr)
 
 /obj/structure/roguemachine/noticeboard/attack_hand(mob/living/carbon/human/user)
-	if(!ishuman(user)) return
-	var/mob/living/carbon/human/guy = user
-	var/list/noticemenu = list("Check Posts", "Make a Posting", "Remove Posting")
+	if(!ishuman(user)) 
+		return
+	var/can_remove = FALSE
+	var/can_premium = FALSE
 	if(user.job in authority_roles)
-		noticemenu += "Authoritative Removal"
+		can_remove = TRUE
 	if(user.job in premium_roles)
-		noticemenu += "Make a Premium Posting"
-	var/selection = input(user, "What shall I do...", src) as null|anything in noticemenu
-	switch(selection)
-		if("Check Posts")
-			check_postings(guy)
-			GLOB.board_viewers += guy
-		if("Make a Premium Posting")
-			premium_post(guy)
-		if("Make a Posting")
-			make_post(guy)
-		if("Remove Posting")
-			remove_post(guy)
-		if("Authoritative Removal")
-			authority_removepost(guy)
+		can_premium = TRUE
+	var/contents
+	contents += "<center>NOTICEBOARD<BR>"
+	contents += "--------------<BR>"
+	var/selection = "Categories: "
+	for(var/i = 1, i <= length(categories), i++)
+		var/category = categories[i]
+		if(category == current_category)
+			selection += "<b>[current_category]</b>"
+		else if(i != length(categories))
+			selection += "<a href='?src=[REF(src)];changecategory=[category]'>[category]</a> | "
+		else
+			selection += "<a href='?src=[REF(src)];changecategory=[category]'>[category]</a> "
+	contents += selection + "<BR>"
+	contents += "<a href='?src=[REF(src)];makepost=1'>Make a Posting</a>"
+	if(can_premium)
+		contents += " | <a href='?src=[REF(src)];premiumpost=1'>Make a Premium Posting</a><br>"
+	else
+		contents += "<br>"
+	contents += "<a href='?src=[REF(src)];removepost=1'>Remove my Posting</a><br>"
+	if(can_remove)
+		contents += "<a href='?src=[REF(src)];authorityremovepost=1'>Authority: Remove a Posting</a>"
+	var/board_empty = TRUE
+	switch(current_category)
+		if("Postings")
+			for(var/datum/noticeboardpost/saved_post in GLOB.noticeboard_posts)
+				contents += saved_post.banner
+				board_empty = FALSE
+		if("Premium Postings")
+			for(var/datum/noticeboardpost/saved_post in GLOB.premium_noticeboardposts)
+				contents += saved_post.banner
+				board_empty = FALSE
+	if(board_empty)
+		contents += "<br><span class='notice'>No postings have been made yet!</span>"
+	var/datum/browser/popup = new(user, "NOTICEBOARD", "", 800, 650)
+	popup.set_content(contents)
+	popup.open()
 
 /obj/structure/roguemachine/noticeboard/proc/check_postings(mob/living/carbon/human/user)
 	var/check_menu
@@ -265,7 +308,6 @@
 		new_post.banner += ", [new_post.posterstitle]"
 	new_post.banner += "<BR>"
 	new_post.banner += "--------------<BR>"
-
 
 /datum/status_effect/debuff/postcooldown
 	id = "postcooldown"

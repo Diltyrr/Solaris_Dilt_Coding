@@ -28,6 +28,7 @@
 	associated_skill = /datum/skill/misc/music
 	recharge_time = 2 MINUTES
 	range = 7
+	xp_gain = TRUE
 
 /obj/effect/proc_holder/spell/invoked/mockery/cast(list/targets, mob/user = usr)
 	playsound(get_turf(user), 'sound/magic/mockery.ogg', 40, FALSE)

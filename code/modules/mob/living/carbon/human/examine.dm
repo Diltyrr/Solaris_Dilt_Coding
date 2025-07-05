@@ -142,7 +142,7 @@
 				. += span_secradio("[m1] looking with eyes filled with a desire to inflict pain. So exciting.")
 
 		if(leprosy == 1)
-			. += span_necrosis("A LEPER...")
+			. += span_necrosis("A horrid disease carrier... They look sick to the bone. Repulsive...")
 	
 		if (HAS_TRAIT(src, TRAIT_BEAUTIFUL))
 			switch (pronouns)

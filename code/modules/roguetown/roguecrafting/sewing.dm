@@ -189,6 +189,18 @@
 
 /* craftdif of 2+ */
 
+/datum/crafting_recipe/roguetown/sewing/singlebedsheet
+	name = "Single Bedsheet (2 cloth)"
+	result = list(/obj/item/bedsheet/rogue/cloth)
+	reqs = list(/obj/item/natural/cloth = 2)
+	craftdiff = 3
+
+/datum/crafting_recipe/roguetown/sewing/doublebedsheet
+	name = "Double Bedsheet (4 cloth)"
+	result = list(/obj/item/bedsheet/rogue/double_pelt)
+	reqs = list(/obj/item/natural/cloth = 4)
+	craftdiff = 3
+
 /datum/crafting_recipe/roguetown/sewing/wrappings
 	name = "solar wrappings (2 cloth)"
 	result = list(/obj/item/clothing/wrists/roguetown/wrappings)

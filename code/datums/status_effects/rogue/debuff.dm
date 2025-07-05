@@ -310,3 +310,14 @@
 	name = "Carthus' Burden"
 	desc = "My arms and legs are restrained by divine chains!\n"
 	icon_state = "restrained"
+
+/datum/status_effect/debuff/unnaturalexhaustion
+	id = "unnaturalexhaustion"
+	alert_type = /atom/movable/screen/alert/status_effect/debuff/unnaturalexhaustion
+	effectedstats = list("endurance" = -2, "fortune" = -1)
+	duration = 5 MINUTES
+
+/atom/movable/screen/alert/status_effect/debuff/unnaturalexhaustion
+	name = "Unnatural Exhaustion"
+	desc = "My whole body is sore, I feel like I spent all day working out"
+	icon_state = "muscles"

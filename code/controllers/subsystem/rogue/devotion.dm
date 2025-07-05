@@ -156,7 +156,7 @@
 	if(!H || !H.mind || !patron)
 		return
 	granted_spells = list()
-	var/list/spelllist = list(patron.extra_spell, /obj/effect/proc_holder/spell/targeted/touch/orison, patron.t0, patron.t1, patron.t2, patron.t3, patron.t4)
+	var/list/spelllist = list(patron.extra_spell, /obj/effect/proc_holder/spell/targeted/touch/orison, /obj/effect/proc_holder/spell/invoked/diagnose, patron.t0, patron.t1, patron.t2, patron.t3, patron.t4)
 	for(var/spell_type in spelllist)
 		if(!spell_type || H.mind.has_spell(spell_type))
 			continue
@@ -190,7 +190,7 @@
 		return
 
 	granted_spells = list()
-	var/list/spelllist = list(patron.extra_spell, /obj/effect/proc_holder/spell/targeted/touch/orison, patron.t0, patron.t1, patron.t2, patron.t3, patron.t4)
+	var/list/spelllist = list(patron.extra_spell, /obj/effect/proc_holder/spell/targeted/touch/orison, /obj/effect/proc_holder/spell/invoked/diagnose, patron.t0, patron.t1, patron.t2, patron.t3, patron.t4)
 	for(var/spell_type in spelllist)
 		if(!spell_type || H.mind.has_spell(spell_type))
 			continue

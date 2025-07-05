@@ -637,6 +637,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			var/oldy = pixel_y
 			pixel_y = pixel_y+5
 			animate(src, pixel_y = oldy, time = 0.5)
+		SEND_SIGNAL(src, COMSIG_ITEM_DROPPED_TURF, user)
 	if(altgripped || wielded)
 		ungrip(user, FALSE)
 	item_flags &= ~IN_INVENTORY
@@ -802,7 +803,7 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		if(prob(50))
 			if(M.stat != DEAD)
 				if(M.drop_all_held_items())
-					to_chat(M, span_danger("I drop what you're holding and clutch at my eyes!"))
+					to_chat(M, span_danger("I drop what I'm holding and clutch at my eyes!"))
 			M.adjust_blurriness(10)
 			M.Unconscious(20)
 			M.Paralyze(40)
